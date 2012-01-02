@@ -11,6 +11,9 @@ public class CmdGate extends GateCommand
 		super();
 		this.addAliases(Conf.baseCommandAliases);
 		this.addSubCommand(new CmdGateCreate());
+		this.addSubCommand(new CmdGateDelete());
+		this.addSubCommand(new CmdGateList());
+		this.addSubCommand(new CmdGateSelect());
 	}
 	
 	@Override

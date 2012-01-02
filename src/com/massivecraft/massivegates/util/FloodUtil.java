@@ -1,4 +1,4 @@
-package com.massivecraft.massivegates.flood;
+package com.massivecraft.massivegates.util;
 
 import java.util.Collection;
 import java.util.EnumSet;
@@ -47,7 +47,7 @@ public class FloodUtil
 	}
 	public static Set<Block> getFloodBlocks(Block startBlock, Set<BlockFace> expandFaces, Set<Material> allowedMaterials)
 	{
-		return getFloodBlocks(startBlock, expandFaces, allowedMaterials, Conf.maxarea);
+		return getFloodBlocks(startBlock, expandFaces, allowedMaterials, Conf.floodFillLimit);
 	}
 	public static Set<Block> getFloodBlocks(Block startBlock, Set<BlockFace> expandFaces)
 	{
@@ -69,7 +69,7 @@ public class FloodUtil
 	}
 	public static Map<FloodOrientation, Set<Block>> getFloods(Block startBlock, Collection<FloodOrientation> orientations, Set<Material> allowedMaterials)
 	{
-		return getFloods(startBlock, orientations, allowedMaterials, Conf.maxarea);
+		return getFloods(startBlock, orientations, allowedMaterials, Conf.floodFillLimit);
 	}
 	public static Map<FloodOrientation, Set<Block>> getFloods(Block startBlock, Collection<FloodOrientation> orientations)
 	{

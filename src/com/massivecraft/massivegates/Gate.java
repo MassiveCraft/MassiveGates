@@ -54,6 +54,32 @@ public class Gate extends Entity<Gate>
 	// -------------------------------------------- //
 	
 	// -------------------------------------------- //
+	// STRING GEN
+	// -------------------------------------------- //
+	
+	public String getIdNameStringShort()
+	{
+		String ret = "<h>"+this.getId();
+		if (this.getName() != null)
+		{
+			ret += " <c>"+this.getName();
+		}
+		return ret;
+	}
+	
+	public String getIdNameStringLong()
+	{
+		String ret = "<p>id <h>"+this.getId();
+		if (this.getName() != null)
+		{
+			ret += " <p>name <h>"+this.getName()+"<i>";
+		}
+		return ret;
+	}
+	
+	
+	
+	// -------------------------------------------- //
 	// FILL
 	// -------------------------------------------- //
 	

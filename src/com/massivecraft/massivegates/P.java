@@ -5,7 +5,7 @@ import org.bukkit.event.Event.Type;
 
 import com.massivecraft.massivegates.adapter.WorldCoord3Adapter;
 import com.massivecraft.massivegates.cmd.CmdGate;
-import com.massivecraft.massivegates.cmd.arg.AHGate;
+import com.massivecraft.massivegates.cmdarg.AHGate;
 import com.massivecraft.massivegates.event.GateAlterType;
 import com.massivecraft.massivegates.privatelistener.PlayerListenerMonitor;
 import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterCancelContentBlockListener;
@@ -84,7 +84,7 @@ public class P extends MPlugin
 		this.cmd.addCommand(this.cmdGate);
 		
 		// Add Argument Handlers
-		this.cmd.setArgHandler(Gate.class, new AHGate());
+		this.cmd.setArgHandler(Gate.class, AHGate.getInstance());
 		
 		// Register events
 		this.registerEvent(Type.PLAYER_MOVE, this.playerListenerMonitor, Priority.Monitor);
@@ -101,4 +101,5 @@ public class P extends MPlugin
 		return super.getGsonBuilder()
 		.registerTypeAdapter(WorldCoord3.class, WorldCoord3Adapter.getInstance());
 	}
+	
 }

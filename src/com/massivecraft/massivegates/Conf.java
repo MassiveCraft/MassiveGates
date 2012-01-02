@@ -10,14 +10,14 @@ import com.massivecraft.massivegates.event.GateAlterType;
 public class Conf
 {
 	public static List<String> baseCommandAliases = new ArrayList<String>();
-	public static int maxarea = 200;
+	public static int floodFillLimit = 200;
+	public static int lineOfSightLimit = 100;
 	public static Map<GateAlterType, Boolean> canContent = new HashMap<GateAlterType, Boolean>();
 	public static Map<GateAlterType, Boolean> canFrame = new HashMap<GateAlterType, Boolean>();
 	
 	static
 	{
 		baseCommandAliases.add("g");
-		baseCommandAliases.add("gate");
 		
 		canContent.put(GateAlterType.PLACE, false);
 		canContent.put(GateAlterType.BREAK, false);

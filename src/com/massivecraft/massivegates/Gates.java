@@ -4,8 +4,6 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.bukkit.entity.Player;
-
 import com.massivecraft.mcore1.persist.gson.GsonClassManager;
 
 public class Gates extends GsonClassManager<Gate>
@@ -72,30 +70,18 @@ public class Gates extends GsonClassManager<Gate>
 		}
 	}
 	
+	public Gate getGateAtCoord(WorldCoord3 coord)
+	{
+		Gate gate = this.getGateAtFrameCoord(coord);
+		if (gate != null) return gate;
+		return this.getGateAtContentCoord(coord);
+	}
+	
 	// Rebuild both of the maps
 	public void rebuildCoordToGate()
 	{
 		this.rebuildContentCoordToGate();
 		this.rebuildFrameCoordToGate();
 	}
-	
-	// -------------------------------------------- //
-	// PLAYER GATE SELECTED
-	// -------------------------------------------- //
-	
-	Det behövs faktiskt... en GPlayer... för... lagra i maps är bara cp
-	
-	private Map<String, String> playerName2GateId = new HashMap<String, String>();
-	public Gate getPlayerSelectedGate(String playerName)
-	{
-		String id = this.playerName2GateId.get(playerName);
-		if (id == null) return null;
-		return this.get(id);
-	}
-	public Gate getPlayerSelectedGate(Player player)
-	{
-		return this.getPlayerSelectedGate(player.getName());
-	}
-	public void setPlayerSelectedGate(String playerName)
 	
 }

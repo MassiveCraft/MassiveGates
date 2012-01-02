@@ -1,36 +1,23 @@
 package com.massivecraft.massivegates.cmd;
 
-import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.Gates;
+import com.massivecraft.mcore1.cmd.HelpCommand;
 
 public class CmdGateSelect extends GateCommand
 {
 	public CmdGateSelect()
 	{
-		this.addAliases("select", "sel");
-		this.addOptionalArg("idOrName", "*looking at*");
-		this.setErrorOnToManyArgs(false);
+		super();
+		this.addAliases("sel", "selection");
+		this.addSubCommand(new CmdGateSelectSet());
+		this.addSubCommand(new CmdGateSelectGet());
+		this.addSubCommand(new CmdGateSelectDel());
 	}
-
+	
 	@Override
 	public void perform()
 	{
-		if (this.argIsSet(0))
-		{
-			String idOrName = this.argConcatFrom(0);
-			
-		}
-		
-		
-		if (idOrName)
-		
-		Gate gate = Gates.i.create();
-		
-		gate.setName(name);
-		
-		this.msg("<i>You created a new gate.");
-		this.msg("<i>Id: <h>%s", gate.getId());
-		this.msg("<i>Name: <h>%s", gate.getName() == null ? "*this gate has no name*" : gate.getName());
+		this.getCommandChain().add(this);
+		HelpCommand.getInstance().execute(this.sender, this.args, this.commandChain);
 	}
 }

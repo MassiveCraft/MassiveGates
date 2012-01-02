@@ -20,8 +20,6 @@ public class CmdGateCreate extends GateCommand
 		String name = this.argConcatFrom(0);
 		gate.setName(name);
 		
-		this.msg("<i>You created a new gate.");
-		this.msg("<i>Id: <h>%s", gate.getId());
-		this.msg("<i>Name: <h>%s", gate.getName() == null ? "*this gate has no name*" : gate.getName());
+		this.msg("<i>New gate created: "+gate.getIdNameStringLong());
 	}
 }

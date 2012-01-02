@@ -1,4 +1,4 @@
-package com.massivecraft.massivegates.flood;
+package com.massivecraft.massivegates.util;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
