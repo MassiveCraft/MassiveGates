@@ -1,11 +1,13 @@
 package com.massivecraft.massivegates.cmd;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.LocWrap;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
-import com.massivecraft.mcore1.cmd.req.ReqHasPerm;
+import com.massivecraft.mcore1.cmd.HelpCommand;
 import com.massivecraft.mcore1.cmd.req.ReqIsPlayer;
 
 public class CmdGateExit extends GateCommand
@@ -14,17 +16,36 @@ public class CmdGateExit extends GateCommand
 	{
 		super();
 		this.addAliases("exit");
-		this.addOptionalArg("get|set|goto", "get");
-		
+		this.addSubCommand(new CmdGateExitHere());
+		this.addSubCommand(new CmdGateExitGoto());
 		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
-		this.addRequirements(new ReqHasPerm(Permission.EXIT_GOTO.node));
+		this.setDesc("manage gate exit");
+	}
+	
+	protected final static String firstHelpLine = "<i>The gate exit is the location for arrivers.";
+	@Override
+	public List<String> getHelp()
+	{
+		List<String> ret = new ArrayList<String>(2);
+		ret.add(firstHelpLine);
+		
+		if (Permission.TARGET_GET.has(sender))
+		{
+			Gate gate = gme.getSelectedGate();
+			ret.add("<i>Current exit: "+gate.getExitDesc());
+		}
+		
+		return ret;
 	}
 	
 	@Override
 	public void perform()
 	{
+		this.getCommandChain().add(this);
+		HelpCommand.getInstance().execute(this.sender, this.args, this.commandChain);
 		
-		// TODO: Many times the same prefix appears...
+		
+		/*// TODO: Many times the same prefix appears...
 		
 		Gate gate = gme.getSelectedGate();
 		
@@ -66,6 +87,6 @@ public class CmdGateExit extends GateCommand
 		else
 		{
 			this.msg("<b>Arg must be get|set|goto.");
-		}
+		}*/
 	}
 }

@@ -8,6 +8,7 @@ permissions:
       massivegates.simple.*: true
       massivegates.delete: true
       massivegates.edit.*: true
+      massivegates.exit.*: true
       massivegates.list: true
       massivegates.matc: true
       massivegates.mato: true
@@ -33,7 +34,7 @@ permissions:
     description: use simple gates
   massivegates.delete:
     default: false
-    description: delete gates
+    description: delete a gate
   massivegates.edit.*:
     children:
       massivegates.edit.clear: true
@@ -51,12 +52,12 @@ permissions:
   massivegates.exit.*:
     children:
       massivegates.exit.get: true
-      massivegates.exit.set: true
+      massivegates.exit.here: true
       massivegates.exit.goto: true
   massivegates.exit.get:
     default: false
     description: get internal exit
-  massivegates.exit.set:
+  massivegates.exit.here:
     default: false
     description: set internal exit
   massivegates.exit.goto:

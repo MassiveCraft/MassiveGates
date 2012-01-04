@@ -108,6 +108,15 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	protected LocWrap exit;
 	public LocWrap getExit() { return this.exit; }
 	public void setExit(LocWrap val) { this.exit = val; }
+	public String getExitDesc()
+	{
+		String ret = "<v>*NONE*<i>";
+		if (this.exit != null)
+		{
+			ret = "<v>"+this.exit.getVeryShortDesc()+"<i>";
+		}
+		return ret;
+	}
 	
 	// -------------------------------------------- //
 	// FIELD TARGET

@@ -12,6 +12,7 @@ public class CmdGateEdit extends GateCommand
 		this.addSubCommand(new CmdGateEditThat());
 		this.addSubCommand(new CmdGateEditFlood());
 		this.addSubCommand(new CmdGateEditClear());
+		this.setDesc("edit gate shape");
 	}
 	
 	@Override

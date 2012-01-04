@@ -13,6 +13,7 @@ public class CmdGateWhen extends GateCommand
 		this.addSubCommand(new CmdGateWhenList());
 		this.addSubCommand(new CmdGateWhenAdd());
 		this.addSubCommand(new CmdGateWhenDel());
+		this.setDesc("manage gate actions");
 	}
 	
 	@Override

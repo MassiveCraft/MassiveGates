@@ -14,7 +14,7 @@ public enum Permission
 	EDIT_FLOOD("edit.flood"),
 	EDIT_THAT("edit.that"),
 	EXIT_GET("exit.get"),
-	EXIT_SET("exit.set"),
+	EXIT_HERE("exit.here"),
 	EXIT_GOTO("exit.goto"),
 	LIST("list"),
 	MATC("matc"),

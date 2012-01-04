@@ -8,7 +8,6 @@ import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.mcore1.cmd.HelpCommand;
-import com.massivecraft.mcore1.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore1.cmd.req.ReqIsPlayer;
 
 public class CmdGateTarget extends GateCommand
@@ -19,8 +18,9 @@ public class CmdGateTarget extends GateCommand
 		this.addAliases("target");
 		this.addSubCommand(new CmdGateTargetHere());
 		this.addSubCommand(new CmdGateTargetGate());
+		this.addSubCommand(new CmdGateTargetGoto());
 		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
-		this.addRequirements(new ReqHasPerm(Permission.TARGET_GET.node));
+		this.setDesc("manage gate target");
 	}
 	
 	protected final static String firstHelpLine = "<i>The gate will teleport users to the target.";
@@ -29,8 +29,13 @@ public class CmdGateTarget extends GateCommand
 	{
 		List<String> ret = new ArrayList<String>(2);
 		ret.add(firstHelpLine);
-		Gate gate = gme.getSelectedGate();
-		ret.add("<i>Current target: "+gate.getTargetDesc());
+		
+		if (Permission.TARGET_GET.has(sender))
+		{
+			Gate gate = gme.getSelectedGate();
+			ret.add("<i>Current target: "+gate.getTargetDesc());
+		}
+		
 		return ret;
 	}
 	
