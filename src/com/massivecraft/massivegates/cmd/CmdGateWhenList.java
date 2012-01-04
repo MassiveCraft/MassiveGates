@@ -2,20 +2,19 @@ package com.massivecraft.massivegates.cmd;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Gates;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
-import com.massivecraft.massivegates.fx.GateFx;
-import com.massivecraft.massivegates.fx.GateFxMoment;
+import com.massivecraft.massivegates.when.Action;
+import com.massivecraft.massivegates.when.Trigger;
 import com.massivecraft.mcore1.cmd.req.ReqIsPlayer;
 import com.massivecraft.mcore1.util.Txt;
 
-public class CmdGateFxList extends GateCommand
+public class CmdGateWhenList extends GateCommand
 {
-	public CmdGateFxList()
+	public CmdGateWhenList()
 	{
 		super();
 		this.addAliases("list");
@@ -34,23 +33,17 @@ public class CmdGateFxList extends GateCommand
 		
 		List<String> lines = new ArrayList<String>();
 		
-		for(GateFxMoment fxm : GateFxMoment.values())
+		for(Trigger trigger : Gates.i.getTriggers())
 		{
-			int idx = 0;
-			for (String parsie : gate.getFxParsies(fxm))
+			for (Action action : gate.getActions(trigger))
 			{
-				idx += 1;
-				GateFx gfx = Gates.i.getFx(parsie);
-				if (gfx != null)
-				{
-					Map<String, Object> fxArgs = gfx.parse(parsie);
-					lines.add("<aqua>"+idx+". <lime>"+fxm.getShortName()+" <pink>"+parsie+" <i>"+gfx.getDesc(fxArgs));
-				}
-				else
-				{
-					lines.add("<aqua>"+idx+". <lime>"+fxm.getShortName()+" <pink>"+parsie+" <b>ERROR: Unknown FX.");
-				}
+				lines.add("<lime>"+trigger.getName()+" <pink>"+action.getName()+" <i>"+action.getDesc());
 			}
+		}
+		
+		if (lines.size() == 0)
+		{
+			lines.add("<i>This gate has actions added. What a lame gate :O");
 		}
 		
 		lines = Txt.parseWrap(lines);

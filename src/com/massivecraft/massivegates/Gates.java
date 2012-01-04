@@ -9,10 +9,9 @@ import java.util.Set;
 import com.massivecraft.massivegates.event.GateAttachEvent;
 import com.massivecraft.massivegates.event.GateDetachEvent;
 import com.massivecraft.massivegates.event.GateSaveEvent;
-import com.massivecraft.massivegates.fx.FXFakeExplosion;
-import com.massivecraft.massivegates.fx.FXLightning;
-import com.massivecraft.massivegates.fx.FXSmoke;
-import com.massivecraft.massivegates.fx.GateFx;
+import com.massivecraft.massivegates.when.Action;
+import com.massivecraft.massivegates.when.Trigger;
+import com.massivecraft.mcore1.persist.Persist;
 import com.massivecraft.mcore1.persist.gson.GsonClassManager;
 
 public class Gates extends GsonClassManager<Gate>
@@ -29,11 +28,6 @@ public class Gates extends GsonClassManager<Gate>
 		P.p.persist.setSaveInterval(Gate.class, 1000*60*30);
 		
 		this.loadAll();
-		
-		// Register inhouse fx
-		this.registerFx(FXLightning.getInstance());
-		this.registerFx(FXSmoke.getInstance());
-		this.registerFx(FXFakeExplosion.getInstance());
 	}
 
 	@Override
@@ -101,6 +95,7 @@ public class Gates extends GsonClassManager<Gate>
 		{
 			// The attach was successful
 			
+			// Index
 			for (WorldCoord3 coord : entity.getContent())
 			{
 				this.contentToGate.put(coord, entity);
@@ -145,9 +140,10 @@ public class Gates extends GsonClassManager<Gate>
 	}
 	
 	// -------------------------------------------- //
-	// FX SECTION
+	// WHEN ACTION
 	// -------------------------------------------- //
 	
+	/*
 	protected Set<GateFx> fxs = new HashSet<GateFx>();
 	public Set<GateFx> getFxs() { return this.fxs; }
 	public void registerFx(GateFx fx) {this.fxs.add(fx); }
@@ -158,6 +154,60 @@ public class Gates extends GsonClassManager<Gate>
 			if (gfx.parse(parsie) != null) return gfx; 
 		}
 		return null;
+	}*/
+	
+	protected Set<Action> actions = new HashSet<Action>();
+	protected Map<String, Action> id2action = new HashMap<String, Action>();
+	protected Map<String, Action> name2action = new HashMap<String, Action>();
+	public void registerAction(Action action)
+	{
+		this.actions.add(action);
+		this.id2action.put(action.getId(), action);
+		this.name2action.put(action.getName(), action);
+	}
+	public Set<Action> getActions()
+	{
+		return this.actions;
+	}
+	public Action getActionId(String id)
+	{
+		return this.id2action.get(id);
+	}
+	public Action getActionName(String name)
+	{
+		Action ret = null;
+		String bestName = Persist.getBestCIStart(name2action.keySet(), name);
+		if (bestName != null) ret = name2action.get(bestName);
+		return ret;
+	}
+	
+	// -------------------------------------------- //
+	// WHEN TRIGGER
+	// -------------------------------------------- //
+	
+	protected Set<Trigger> triggers = new HashSet<Trigger>();
+	protected Map<String, Trigger> id2trigger = new HashMap<String, Trigger>();
+	protected Map<String, Trigger> name2trigger = new HashMap<String, Trigger>();
+	public void registerTrigger(Trigger trigger)
+	{
+		this.triggers.add(trigger);
+		this.id2trigger.put(trigger.getId(), trigger);
+		this.name2trigger.put(trigger.getName(), trigger);
+	}
+	public Set<Trigger> getTriggers()
+	{
+		return this.triggers;
+	}
+	public Trigger getTriggerId(String id)
+	{
+		return this.id2trigger.get(id);
+	}
+	public Trigger getTriggerName(String name)
+	{
+		Trigger ret = null;
+		String bestName = Persist.getBestCIStart(name2trigger.keySet(), name);
+		if (bestName != null) ret = name2trigger.get(bestName);
+		return ret;
 	}
 	
 }

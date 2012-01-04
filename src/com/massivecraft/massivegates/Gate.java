@@ -2,9 +2,9 @@ package com.massivecraft.massivegates;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -15,14 +15,17 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
 
 import com.massivecraft.massivegates.event.GateBeforeTeleportEvent;
 import com.massivecraft.massivegates.event.GateAfterTeleportEvent;
 import com.massivecraft.massivegates.event.GateUseEvent;
-import com.massivecraft.massivegates.fx.GateFx;
-import com.massivecraft.massivegates.fx.GateFxMoment;
 import com.massivecraft.massivegates.util.TeleportUtil;
 import com.massivecraft.massivegates.util.VisualizeUtil;
+import com.massivecraft.massivegates.when.Action;
+import com.massivecraft.massivegates.when.Trigger;
+import com.massivecraft.massivegates.when.TriggerClose;
+import com.massivecraft.massivegates.when.TriggerOpen;
 
 public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 {
@@ -42,16 +45,18 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	public void setOpen(boolean val)
 	{
 		this.open = val;
+		this.fillContent();
 		if (this.open)
 		{
-			this.fillContent(this.getMatopen());
-			this.runFx(GateFxMoment.OPEN, null);
+			// TODO: Make cancellable
+			this.trigger(TriggerOpen.getInstance(), null, null);
 		}
 		else
 		{
-			this.fillContent(this.getMatclosed());
-			this.runFx(GateFxMoment.CLOSE, null);
+			// TODO: Make cancellable
+			this.trigger(TriggerClose.getInstance(), null, null);
 		}
+		this.save(); // This is safe as you only may save attached entites.
 	}
 	
 	// FIELD: name
@@ -335,7 +340,7 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	// -------------------------------------------- //
 	// FIELD FX
 	// -------------------------------------------- //
-	
+	/*
 	protected Map<GateFxMoment, List<String>> fxMoment2Parsies;
 	protected void ensureFxListExists(GateFxMoment fxMoment)
 	{
@@ -384,6 +389,15 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 		}
 		return ret;
 	}
+	public void clearFx(GateFxMoment fxMoment)
+	{
+		if (fxMoment == null)
+		{
+			this.fxMoment2Parsies.clear();
+			return;
+		}
+		this.getFxParsies(fxMoment).clear();
+	}
 	public void runFx(GateFxMoment fxMoment, Entity entity)
 	{
 		List<String> parsies = this.getFxParsies(fxMoment);
@@ -392,6 +406,52 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 			GateFx fx = Gates.i.getFx(parsie);
 			if (fx == null) continue;
 			fx.run(parsie, this, entity);
+		}
+	}*/
+	
+	protected Map<String, Set<String>> triggerId2ActionId;
+	protected void ensureTriggerListExists(Trigger trigger)
+	{
+		if (this.triggerId2ActionId.containsKey(trigger.getId())) return;
+		this.triggerId2ActionId.put(trigger.getId(), new LinkedHashSet<String>());
+	}
+	public List<Action> getActions(Trigger trigger)
+	{
+		this.ensureTriggerListExists(trigger);
+		Set<String> actionIds = this.triggerId2ActionId.get(trigger.getId());
+		List<Action> ret = new ArrayList<Action>(actionIds.size());
+		for (String actionId : actionIds)
+		{
+			Action action = Gates.i.getActionId(actionId);
+			if (action == null) continue;
+			ret.add(action);
+		}
+		return ret;
+	}
+	public void addAction(Trigger trigger, Action action)
+	{
+		this.ensureTriggerListExists(trigger);
+		this.triggerId2ActionId.get(trigger.getId()).add(action.getId());
+	}
+	public void delAction(Trigger trigger, Action action)
+	{
+		this.ensureTriggerListExists(trigger);
+		this.triggerId2ActionId.get(trigger.getId()).remove(action.getId());
+	}
+	public void delActions(Trigger trigger)
+	{
+		this.triggerId2ActionId.remove(trigger.getId());
+	}
+	public void delActions()
+	{
+		this.triggerId2ActionId.clear();
+	}
+	public void trigger(Trigger trigger, Entity entity, Cancellable cancellable)
+	{
+		List<Action> actions = this.getActions(trigger);
+		for (Action action : actions)
+		{
+			action.perform(this, entity, cancellable);
 		}
 	}
 
@@ -406,7 +466,8 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 		this.matopen = Material.PORTAL;
 		this.content = new HashSet<WorldCoord3>();
 		this.frame = new HashSet<WorldCoord3>();
-		this.fxMoment2Parsies = new EnumMap<GateFxMoment, List<String>>(GateFxMoment.class);
+		//this.fxMoment2Parsies = new EnumMap<GateFxMoment, List<String>>(GateFxMoment.class);
+		this.triggerId2ActionId = new HashMap<String, Set<String>>();
 	}
 			
 	// -------------------------------------------- //
@@ -521,6 +582,18 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	public void fillContent(Material material)
 	{
 		fillCoords(this.getContent(), material);
+	}
+	
+	public void fillContent()
+	{
+		if (this.isOpen())
+		{
+			fillContent(this.getMatopen());
+		}
+		else
+		{
+			fillContent(this.getMatclosed());
+		}
 	}
 	
 	public void fillFrame(Material material, byte data)

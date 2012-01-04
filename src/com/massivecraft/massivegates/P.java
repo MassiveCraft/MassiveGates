@@ -6,12 +6,10 @@ import org.bukkit.event.Event.Type;
 import com.massivecraft.massivegates.adapter.LocWrapAdapter;
 import com.massivecraft.massivegates.adapter.WorldCoord3Adapter;
 import com.massivecraft.massivegates.cmd.CmdGate;
+import com.massivecraft.massivegates.cmdarg.AHAction;
 import com.massivecraft.massivegates.cmdarg.AHGate;
-import com.massivecraft.massivegates.cmdarg.AHGateFx;
-import com.massivecraft.massivegates.cmdarg.AHGateFxMoment;
+import com.massivecraft.massivegates.cmdarg.AHTrigger;
 import com.massivecraft.massivegates.event.GateAlterType;
-import com.massivecraft.massivegates.fx.GateFx;
-import com.massivecraft.massivegates.fx.GateFxMoment;
 import com.massivecraft.massivegates.privatelistener.PluginGateListener;
 import com.massivecraft.massivegates.privatelistener.PluginPlayerListener;
 import com.massivecraft.massivegates.privatelistener.PluginPlayerListenerVis;
@@ -27,6 +25,19 @@ import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterMonitorC
 import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterMonitorFrameBlockListener;
 import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterMonitorFrameEntityListener;
 import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterMonitorFramePlayerListener;
+import com.massivecraft.massivegates.when.Action;
+import com.massivecraft.massivegates.when.ActionFxExp;
+import com.massivecraft.massivegates.when.ActionFxSmoke;
+import com.massivecraft.massivegates.when.ActionFxStrike;
+import com.massivecraft.massivegates.when.ActionUse;
+import com.massivecraft.massivegates.when.Trigger;
+import com.massivecraft.massivegates.when.TriggerAtp;
+import com.massivecraft.massivegates.when.TriggerBtp;
+import com.massivecraft.massivegates.when.TriggerClose;
+import com.massivecraft.massivegates.when.TriggerFrameAlter;
+import com.massivecraft.massivegates.when.TriggerOpen;
+import com.massivecraft.massivegates.when.TriggerPlayerEnter;
+import com.massivecraft.massivegates.when.TriggerUse;
 import com.massivecraft.mcore1.MPlugin;
 import com.massivecraft.mcore1.lib.gson.GsonBuilder;
 
@@ -84,8 +95,20 @@ public class P extends MPlugin
 	{
 		if ( ! preEnable()) return;
 		
-		// This will force the static instance to be created.
-		Gates.i.getClass();
+		// Register Triggers & Actions
+		Gates.i.registerAction(ActionUse.getInstance());
+		Gates.i.registerAction(ActionFxExp.getInstance());
+		Gates.i.registerAction(ActionFxSmoke.getInstance());
+		Gates.i.registerAction(ActionFxStrike.getInstance());
+		
+		Gates.i.registerTrigger(TriggerOpen.getInstance());
+		Gates.i.registerTrigger(TriggerClose.getInstance());
+		Gates.i.registerTrigger(TriggerPlayerEnter.getInstance());
+		Gates.i.registerTrigger(TriggerUse.getInstance());
+		Gates.i.registerTrigger(TriggerBtp.getInstance());
+		Gates.i.registerTrigger(TriggerAtp.getInstance());
+		Gates.i.registerTrigger(TriggerFrameAlter.getInstance());
+		
 		
 		// Load Conf from disk
 		Conf.load();
@@ -96,8 +119,8 @@ public class P extends MPlugin
 		
 		// Add Argument Handlers
 		this.cmd.setArgHandler(Gate.class, AHGate.getInstance());
-		this.cmd.setArgHandler(GateFx.class, AHGateFx.getInstance());
-		this.cmd.setArgHandler(GateFxMoment.class, AHGateFxMoment.getInstance());
+		this.cmd.setArgHandler(Trigger.class, AHTrigger.getInstance());
+		this.cmd.setArgHandler(Action.class, AHAction.getInstance());		
 		
 		// Register events
 		this.registerEvent(Type.PLAYER_MOVE, this.playerListener, Priority.High);
