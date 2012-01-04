@@ -3,7 +3,9 @@ package com.massivecraft.massivegates.cmd;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.LocWrap;
+import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
+import com.massivecraft.mcore1.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore1.cmd.req.ReqIsPlayer;
 
 public class CmdGateExit extends GateCommand
@@ -15,6 +17,7 @@ public class CmdGateExit extends GateCommand
 		this.addOptionalArg("get|set|goto", "get");
 		
 		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(new ReqHasPerm(Permission.EXIT_GOTO.node));
 	}
 	
 	@Override

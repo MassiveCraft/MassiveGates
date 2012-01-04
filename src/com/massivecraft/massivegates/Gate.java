@@ -19,13 +19,14 @@ import org.bukkit.event.Cancellable;
 
 import com.massivecraft.massivegates.event.GateBeforeTeleportEvent;
 import com.massivecraft.massivegates.event.GateAfterTeleportEvent;
+import com.massivecraft.massivegates.event.GateCloseEvent;
+import com.massivecraft.massivegates.event.GateOpenEvent;
 import com.massivecraft.massivegates.event.GateUseEvent;
+import com.massivecraft.massivegates.event.abs.CancellableSingleGateEvent;
 import com.massivecraft.massivegates.util.TeleportUtil;
 import com.massivecraft.massivegates.util.VisualizeUtil;
 import com.massivecraft.massivegates.when.Action;
 import com.massivecraft.massivegates.when.Trigger;
-import com.massivecraft.massivegates.when.TriggerClose;
-import com.massivecraft.massivegates.when.TriggerOpen;
 
 public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 {
@@ -40,37 +41,41 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	// FIELDS
 	// -------------------------------------------- //
 	
-	private boolean open;
-	public boolean isOpen() { return this.open; } // TODO: Trigger events here?
-	public void setOpen(boolean val)
+	protected boolean open;
+	public boolean isOpen() { return this.open; }
+	public void setOpen(boolean open)
 	{
-		this.open = val;
-		this.fillContent();
-		if (this.open)
+		CancellableSingleGateEvent event;
+		if (open)
 		{
-			// TODO: Make cancellable
-			this.trigger(TriggerOpen.getInstance(), null, null);
+			event = new GateOpenEvent(this);
 		}
 		else
 		{
-			// TODO: Make cancellable
-			this.trigger(TriggerClose.getInstance(), null, null);
+			event = new GateCloseEvent(this);
 		}
-		this.save(); // This is safe as you only may save attached entites.
+		event.run();
+		if (event.isCancelled()) return;
+		
+		this.open = open;
+		this.fillContent();
+		
+		// This is safe as you only may save attached entites.
+		this.save(); 
 	}
 	
 	// FIELD: name
-	private String name;
+	protected String name;
 	public String getName() { return this.name; }
 	public void setName(String val) { this.name = val; }
 	
 	// FIELD: desc
-	private String desc;
+	protected String desc;
 	public String getDesc() { return this.desc; }
 	public void setDesc(String val) { this.desc = val; }
 	
 	// FIELD: matopen
-	private Material matopen;
+	protected Material matopen;
 	public Material getMatopen()
 	{
 		return this.matopen;
@@ -85,7 +90,7 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	}
 	
 	// FIELD: matclosed
-	private Material matclosed;
+	protected Material matclosed;
 	public Material getMatclosed()
 	{
 		return this.matclosed;
@@ -100,7 +105,7 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	}
 	
 	// FIELD: exit
-	private LocWrap exit;
+	protected LocWrap exit;
 	public LocWrap getExit() { return this.exit; }
 	public void setExit(LocWrap val) { this.exit = val; }
 	
@@ -109,7 +114,7 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	// -------------------------------------------- //
 	
 	// FIELD: targetFixedLoc - used when the gate is targeting a fixed location
-	private LocWrap targetFixedLoc;
+	protected LocWrap targetFixedLoc;
 	public LocWrap getTargetFixedLoc()
 	{
 		return this.targetFixedLoc;
@@ -121,7 +126,7 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	}
 	
 	// FIELD: targetGateId - Used when the gate is targeting another certain gate
-	private String targetGateId;
+	protected String targetGateId;
 	public String getTargetGateId()
 	{
 		return this.targetGateId;
@@ -180,7 +185,7 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	// FIELD CONTENT
 	// -------------------------------------------- //
 	
-	private Set<WorldCoord3> content;
+	protected Set<WorldCoord3> content;
 	public Set<WorldCoord3> getContent() { return this.content; } // TODO: Make immutable?
 	public void addContent(WorldCoord3 coord)
 	{
@@ -268,7 +273,7 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	// FIELD FRAME
 	// -------------------------------------------- //
 	
-	private Set<WorldCoord3> frame;
+	protected Set<WorldCoord3> frame;
 	public Set<WorldCoord3> getFrame() { return this.frame;} // TODO: Make immutable?
 	
 	public void addFrame(WorldCoord3 coord)
@@ -338,76 +343,8 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	}
 	
 	// -------------------------------------------- //
-	// FIELD FX
+	// WHEN
 	// -------------------------------------------- //
-	/*
-	protected Map<GateFxMoment, List<String>> fxMoment2Parsies;
-	protected void ensureFxListExists(GateFxMoment fxMoment)
-	{
-		if (this.fxMoment2Parsies.containsKey(fxMoment)) return;
-		this.fxMoment2Parsies.put(fxMoment, new ArrayList<String>());
-	}
-	public List<String> getFxParsies(GateFxMoment fxMoment)
-	{
-		this.ensureFxListExists(fxMoment);
-		return this.fxMoment2Parsies.get(fxMoment);
-	}
-	public void addFxParsie(GateFxMoment fxMoment, String parsie)
-	{
-		this.ensureFxListExists(fxMoment);
-		this.fxMoment2Parsies.get(fxMoment).add(parsie);
-	}
-	public boolean delFxParsieByIndex(GateFxMoment fxMoment, int index)
-	{
-		this.ensureFxListExists(fxMoment);
-		List<String> parsies = this.getFxParsies(fxMoment);
-		try
-		{
-			parsies.remove(index);
-			return true;
-		}
-		catch (Exception e)
-		{
-			return false;
-		}
-	}
-	public int delFxParsieByStart(GateFxMoment fxMoment, String start)
-	{
-		int ret = 0;
-		this.ensureFxListExists(fxMoment);
-		List<String> parsies = this.getFxParsies(fxMoment);
-		start = start.toLowerCase();
-		for (Iterator<String> iter = parsies.iterator(); iter.hasNext();)
-		{
-			String parsie = iter.next();
-			parsie.toLowerCase();
-			if (parsie.startsWith(start))
-			{
-				iter.remove();
-				ret += 1;
-			}
-		}
-		return ret;
-	}
-	public void clearFx(GateFxMoment fxMoment)
-	{
-		if (fxMoment == null)
-		{
-			this.fxMoment2Parsies.clear();
-			return;
-		}
-		this.getFxParsies(fxMoment).clear();
-	}
-	public void runFx(GateFxMoment fxMoment, Entity entity)
-	{
-		List<String> parsies = this.getFxParsies(fxMoment);
-		for (String parsie : parsies)
-		{
-			GateFx fx = Gates.i.getFx(parsie);
-			if (fx == null) continue;
-			fx.run(parsie, this, entity);
-		}
-	}*/
 	
 	protected Map<String, Set<String>> triggerId2ActionId;
 	protected void ensureTriggerListExists(Trigger trigger)

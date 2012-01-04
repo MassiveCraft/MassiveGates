@@ -1,9 +1,7 @@
 package com.massivecraft.massivegates.event;
 
-import org.bukkit.event.Cancellable;
-
 import com.massivecraft.massivegates.Gate;
-import com.massivecraft.massivegates.event.abs.SingleGateEvent;
+import com.massivecraft.massivegates.event.abs.CancellableSingleGateEvent;
 
 /**
  * This should be called when a gate is opened. There are many reasons to why a gate would open.
@@ -13,16 +11,10 @@ import com.massivecraft.massivegates.event.abs.SingleGateEvent;
  */
 
 @SuppressWarnings("serial")
-public class GateOpenEvent extends SingleGateEvent implements Cancellable
-{
-	// FIELD: cancelled
-	private boolean cancelled = false;
-	@Override public boolean isCancelled() { return this.cancelled; }
-	@Override public void setCancelled(boolean cancel) { this.cancelled = cancel; }
-	
+public class GateOpenEvent extends CancellableSingleGateEvent
+{	
 	public GateOpenEvent(Gate gate)
 	{
 		super("GateOpenEvent", gate);
-	}
-	
+	}	
 }

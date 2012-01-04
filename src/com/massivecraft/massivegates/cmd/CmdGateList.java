@@ -6,6 +6,8 @@ import java.util.List;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Gates;
+import com.massivecraft.massivegates.Permission;
+import com.massivecraft.mcore1.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore1.util.Txt;
 
 public class CmdGateList extends GateCommand
@@ -14,6 +16,7 @@ public class CmdGateList extends GateCommand
 	{
 		this.addAliases("l");
 		this.addOptionalArg("page", "1");
+		this.addRequirements(new ReqHasPerm(Permission.LIST.node));
 	}
 
 	@Override

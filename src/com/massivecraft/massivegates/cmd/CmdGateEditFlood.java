@@ -8,10 +8,12 @@ import org.bukkit.block.Block;
 import com.massivecraft.massivegates.Conf;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
+import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.util.FloodOrientation;
 import com.massivecraft.massivegates.util.FloodUtil;
 import com.massivecraft.massivegates.util.VisualizeUtil;
+import com.massivecraft.mcore1.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore1.cmd.req.ReqIsPlayer;
 
 public class CmdGateEditFlood extends GateCommand
@@ -22,6 +24,7 @@ public class CmdGateEditFlood extends GateCommand
 		this.addAliases("flood");
 		this.addOptionalArg("frame", "true");
 		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(new ReqHasPerm(Permission.EDIT_FLOOD.node));
 	}
 	
 	@Override

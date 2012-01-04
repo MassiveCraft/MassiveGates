@@ -2,7 +2,7 @@ package com.massivecraft.massivegates;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -156,7 +156,7 @@ public class Gates extends GsonClassManager<Gate>
 		return null;
 	}*/
 	
-	protected Set<Action> actions = new HashSet<Action>();
+	protected Set<Action> actions = new LinkedHashSet<Action>();
 	protected Map<String, Action> id2action = new HashMap<String, Action>();
 	protected Map<String, Action> name2action = new HashMap<String, Action>();
 	public void registerAction(Action action)
@@ -185,7 +185,7 @@ public class Gates extends GsonClassManager<Gate>
 	// WHEN TRIGGER
 	// -------------------------------------------- //
 	
-	protected Set<Trigger> triggers = new HashSet<Trigger>();
+	protected Set<Trigger> triggers = new LinkedHashSet<Trigger>();
 	protected Map<String, Trigger> id2trigger = new HashMap<String, Trigger>();
 	protected Map<String, Trigger> name2trigger = new HashMap<String, Trigger>();
 	public void registerTrigger(Trigger trigger)

@@ -5,8 +5,10 @@ import java.util.List;
 
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Gates;
+import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.when.Action;
 import com.massivecraft.massivegates.when.Trigger;
+import com.massivecraft.mcore1.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore1.util.Txt;
 
 public class CmdGateWhenAlt extends GateCommand
@@ -17,6 +19,7 @@ public class CmdGateWhenAlt extends GateCommand
 		this.addAliases("alt");
 		this.addRequiredArg("trigger|action");
 		this.addOptionalArg("page", "1");
+		this.addRequirements(new ReqHasPerm(Permission.WHEN_ALT.node));
 	}
 	
 	@Override

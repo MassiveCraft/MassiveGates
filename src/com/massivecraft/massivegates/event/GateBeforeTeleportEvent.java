@@ -13,5 +13,4 @@ public class GateBeforeTeleportEvent extends GateTeleportEvent
 	{
 		super("GateBeforeTeleportEvent", gate, user, from, to);
 	}
-
 }

@@ -2,3 +2,120 @@ name: massivegates
 version: 1.0.0
 main: com.massivecraft.massivegates.P
 depend: [mcore1]
+permissions:
+  massivegates.*:
+    children:
+      massivegates.simple.*: true
+      massivegates.delete: true
+      massivegates.edit.*: true
+      massivegates.list: true
+      massivegates.matc: true
+      massivegates.mato: true
+      massivegates.new: true
+      massivegates.open: true
+      massivegates.see: true
+      massivegates.sel: true
+      massivegates.target.*: true
+      massivegates.when.*: true
+  massivegates.simple.*:
+    children:
+      massivegates.simple.create: true
+      massivegates.simple.destroy: true
+      massivegates.simple.use: true
+  massivegates.simple.create:
+    default: false
+    description: create simple gates
+  massivegates.simple.destroy:
+    default: false
+    description: destroy simple gates
+  massivegates.simple.use:
+    default: false
+    description: use simple gates
+  massivegates.delete:
+    default: false
+    description: delete gates
+  massivegates.edit.*:
+    children:
+      massivegates.edit.clear: true
+      massivegates.edit.flood: true
+      massivegates.edit.that: true
+  massivegates.edit.clear:
+    default: false
+    description: clear gate parts
+  massivegates.edit.flood:
+    default: false
+    description: append using floodfill
+  massivegates.edit.that:
+    default: false
+    description: sniper edit
+  massivegates.exit.*:
+    children:
+      massivegates.exit.get: true
+      massivegates.exit.set: true
+      massivegates.exit.goto: true
+  massivegates.exit.get:
+    default: false
+    description: get internal exit
+  massivegates.exit.set:
+    default: false
+    description: set internal exit
+  massivegates.exit.goto:
+    default: false
+    description: goto internal exit
+  massivegates.list:
+    default: false
+    description: list gates
+  massivegates.matc:
+    default: false
+    description: set closed material
+  massivegates.mato:
+    default: false
+    description: set open material
+  massivegates.new:
+    default: false
+    description: create new gate
+  massivegates.open:
+    default: false
+    description: open or close the gate
+  massivegates.see:
+    default: false
+    description: visualise the gate
+  massivegates.sel:
+    default: false
+    description: select a gate
+  massivegates.target.*:
+    children:
+      massivegates.target.get: true
+      massivegates.target.set: true
+      massivegates.target.here: true
+      massivegates.target.goto: true
+  massivegates.target.get:
+    default: false
+    description: get current target
+  massivegates.target.gate:
+    default: false
+    description: set target to a gate
+  massivegates.target.here:
+    default: false
+    description: set target where you stand
+  massivegates.target.goto:
+    default: false
+    description: goto current target
+  massivegates.when.*:
+    children:
+      massivegates.when.add: true
+      massivegates.when.alt: true
+      massivegates.when.del: true
+      massivegates.when.list: true
+  massivegates.when.add:
+    default: false
+    description: add action
+  massivegates.when.alt:
+    default: false
+    description: list triggers and actions
+  massivegates.when.del:
+    default: false
+    description: delete action
+  massivegates.when.list:
+    default: false
+    description: list current actions

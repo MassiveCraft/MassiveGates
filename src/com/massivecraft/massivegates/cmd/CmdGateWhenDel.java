@@ -2,9 +2,11 @@ package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
+import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.when.Action;
 import com.massivecraft.massivegates.when.Trigger;
+import com.massivecraft.mcore1.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore1.cmd.req.ReqIsPlayer;
 
 public class CmdGateWhenDel extends GateCommand
@@ -17,6 +19,7 @@ public class CmdGateWhenDel extends GateCommand
 		this.addRequiredArg("action|all");
 		
 		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(new ReqHasPerm(Permission.WHEN_DEL.node));
 	}
 	
 	@Override
@@ -43,7 +46,7 @@ public class CmdGateWhenDel extends GateCommand
 		}
 		
 		// Fetch the Action
-		Action action = this.argAs(0, Action.class);
+		Action action = this.argAs(1, Action.class);
 		if (action == null) return;
 		
 		gate.delAction(trigger, action);

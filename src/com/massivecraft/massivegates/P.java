@@ -30,6 +30,7 @@ import com.massivecraft.massivegates.when.ActionFxExp;
 import com.massivecraft.massivegates.when.ActionFxSmoke;
 import com.massivecraft.massivegates.when.ActionFxStrike;
 import com.massivecraft.massivegates.when.ActionUse;
+import com.massivecraft.massivegates.when.ActionUseIfOpen;
 import com.massivecraft.massivegates.when.Trigger;
 import com.massivecraft.massivegates.when.TriggerAtp;
 import com.massivecraft.massivegates.when.TriggerBtp;
@@ -97,6 +98,7 @@ public class P extends MPlugin
 		
 		// Register Triggers & Actions
 		Gates.i.registerAction(ActionUse.getInstance());
+		Gates.i.registerAction(ActionUseIfOpen.getInstance());
 		Gates.i.registerAction(ActionFxExp.getInstance());
 		Gates.i.registerAction(ActionFxSmoke.getInstance());
 		Gates.i.registerAction(ActionFxStrike.getInstance());
@@ -130,6 +132,12 @@ public class P extends MPlugin
 		
 		// Register the gate protection related events.
 		GateAlterType.registerListeners();
+		
+		// Disable Vanilla Gates (if requested)
+		if (Conf.disableVanillaGates)
+		{
+			this.registerEvent(Type.PLAYER_PORTAL, this.playerListener);
+		}
 		
 		postEnable();
 	}

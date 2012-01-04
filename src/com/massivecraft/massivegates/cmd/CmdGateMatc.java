@@ -4,7 +4,9 @@ import org.bukkit.Material;
 
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
+import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
+import com.massivecraft.mcore1.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore1.cmd.req.ReqIsPlayer;
 import com.massivecraft.mcore1.util.Txt;
 
@@ -17,6 +19,7 @@ public class CmdGateMatc extends GateCommand
 		this.addOptionalArg("material", "get");
 		
 		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(new ReqHasPerm(Permission.MATC.node));
 	}
 	
 	@Override

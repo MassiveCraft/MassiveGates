@@ -1,5 +1,6 @@
 package com.massivecraft.massivegates.event;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 
 import com.massivecraft.massivegates.Gate;
@@ -17,9 +18,14 @@ public class GatePlayerWalkEvent extends DualGateEvent implements Cancellable
 	protected GatePlayerWalkType walkType;
 	public GatePlayerWalkType getWalkType() { return this.walkType; }
 	
-	public GatePlayerWalkEvent(Gate gateFrom, Gate gateTo, GatePlayerWalkType walkType)
+	// FIELD: user
+	private Player player;
+	public Player getPlayer() { return this.player; }
+	
+	public GatePlayerWalkEvent(Player player, Gate gateFrom, Gate gateTo, GatePlayerWalkType walkType)
 	{
 		super("GatePlayerWalkEvent");
+		this.player = player;
 		this.gateFrom = gateFrom;
 		this.gateTo = gateTo;
 		this.walkType = walkType;

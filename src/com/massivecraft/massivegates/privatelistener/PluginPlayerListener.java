@@ -1,8 +1,10 @@
 package com.massivecraft.massivegates.privatelistener;
 
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerPortalEvent;
 
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.Gates;
@@ -30,7 +32,9 @@ public class PluginPlayerListener extends PlayerListener
 		
 		if (blockFrom.equals(blockTo)) return;
 		
-		VisualizeUtil.clear(event.getPlayer());
+		Player player = event.getPlayer();
+		
+		VisualizeUtil.clear(player);
 		
 		WorldCoord3 coordFrom = new WorldCoord3(blockFrom);
 		WorldCoord3 coordTo = new WorldCoord3(blockTo);
@@ -42,7 +46,7 @@ public class PluginPlayerListener extends PlayerListener
 		
 		if (gateFrom != null & gateFrom == gateTo)
 		{
-			gateEvent = new GatePlayerWalkEvent(gateFrom, gateTo, GatePlayerWalkType.WITHIN);
+			gateEvent = new GatePlayerWalkEvent(player, gateFrom, gateTo, GatePlayerWalkType.WITHIN);
 			gateEvent.run();
 			if (gateEvent.isCancelled())
 			{
@@ -55,7 +59,7 @@ public class PluginPlayerListener extends PlayerListener
 		if (gateFrom != null)
 		{
 			// OUT
-			gateEvent = new GatePlayerWalkEvent(gateFrom, gateTo, GatePlayerWalkType.OUT);
+			gateEvent = new GatePlayerWalkEvent(player, gateFrom, gateTo, GatePlayerWalkType.OUT);
 			gateEvent.run();
 			if (gateEvent.isCancelled())
 			{
@@ -66,17 +70,23 @@ public class PluginPlayerListener extends PlayerListener
 		if (gateTo != null)
 		{
 			// INTO
-			gateEvent = new GatePlayerWalkEvent(gateFrom, gateTo, GatePlayerWalkType.INTO);
+			gateEvent = new GatePlayerWalkEvent(player, gateFrom, gateTo, GatePlayerWalkType.INTO);
 			gateEvent.run();
 			if (gateEvent.isCancelled())
 			{
 				event.setCancelled(true);
 			}
-			else if (gateTo.isOpen())
+			/*else if (gateTo.isOpen())
 			{
 				// Trigger usage of the gate :)
 				gateTo.use(event.getPlayer());
-			}
+			}*/
 		}
+	}
+	
+	@Override
+	public void onPlayerPortal(PlayerPortalEvent event)
+	{
+		event.setCancelled(false);
 	}
 }

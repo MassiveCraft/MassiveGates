@@ -2,6 +2,8 @@ package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
+import com.massivecraft.massivegates.Permission;
+import com.massivecraft.mcore1.cmd.req.ReqHasPerm;
 
 public class CmdGateDel extends GateCommand
 {
@@ -9,6 +11,8 @@ public class CmdGateDel extends GateCommand
 	{
 		this.addAliases("del", "delete", "rem", "remove");
 		this.addRequiredArg("gate");
+		
+		this.addRequirements(new ReqHasPerm(Permission.DELETE.node));
 	}
 
 	@Override

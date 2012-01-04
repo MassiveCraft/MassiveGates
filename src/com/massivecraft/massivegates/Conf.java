@@ -16,6 +16,7 @@ public class Conf
 	public static final transient int visContent = Material.GLOWSTONE.getId();
 	
 	public static List<String> baseCommandAliases = new ArrayList<String>();
+	public static boolean disableVanillaGates = false;
 	public static int floodFillLimit = 200;
 	public static int lineOfSightLimit = 100;
 	public static Map<GateAlterType, Boolean> canContent = new HashMap<GateAlterType, Boolean>();
