@@ -4,6 +4,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 
 import com.massivecraft.massivegates.Gate;
+import com.massivecraft.massivegates.event.abs.SingleGateEvent;
 
 /**
  * Should be fired when someone uses a gate. Some gates might be used just by

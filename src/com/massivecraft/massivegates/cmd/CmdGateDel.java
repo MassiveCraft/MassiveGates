@@ -3,13 +3,12 @@ package com.massivecraft.massivegates.cmd;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 
-public class CmdGateDelete extends GateCommand
+public class CmdGateDel extends GateCommand
 {
-	public CmdGateDelete()
+	public CmdGateDel()
 	{
-		this.addAliases("delete", "remove");
-		this.addRequiredArg("id");
-		this.setErrorOnToManyArgs(false);
+		this.addAliases("del", "delete", "rem", "remove");
+		this.addRequiredArg("gate");
 	}
 
 	@Override
@@ -18,6 +17,7 @@ public class CmdGateDelete extends GateCommand
 		Gate gate = this.argAs(0, Gate.class);
 		if (gate == null) return;
 		this.msg("<i>Gate deleted: "+gate.getIdNameStringLong());
+		gate.setOpen(false);
 		gate.detach();
 	}
 }

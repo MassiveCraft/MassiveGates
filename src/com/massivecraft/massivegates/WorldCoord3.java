@@ -1,12 +1,14 @@
 package com.massivecraft.massivegates;
 
+import java.util.Collection;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 
-public class WorldCoord3
+public class WorldCoord3 implements Cloneable
 {	
 	//----------------------------------------------//
 	// FIELDS
@@ -40,11 +42,19 @@ public class WorldCoord3
 	
 	public void load(String persistString)
 	{
-		String[] parts = persistString.split("|");
+		String[] parts = persistString.split("\\|");
 		this.worldName = parts[0];
 		this.x = Integer.parseInt(parts[1]);
 		this.y = Integer.parseInt(parts[2]);
 		this.z = Integer.parseInt(parts[3]);
+	}
+	
+	public void load(WorldCoord3 coord)
+	{
+		this.worldName = coord.worldName;
+		this.x = coord.x;
+		this.y = coord.y;
+		this.z = coord.z;
 	}
 	
 	public void load(String worldName, int x, int y, int z)
@@ -85,6 +95,11 @@ public class WorldCoord3
 		this.x = 0;
 		this.y = 0;
 		this.z = 0;
+	}
+	
+	public WorldCoord3(WorldCoord3 coord)
+	{
+		this.load(coord);
 	}
 	
 	public WorldCoord3(String persistString)
@@ -153,6 +168,15 @@ public class WorldCoord3
 		return sb.toString();
 	}
 	
+	public static <T extends Collection<WorldCoord3>> T populateBlocks(T target, Collection<Block> blocks)
+	{
+		for (Block block : blocks)
+		{
+			target.add(new WorldCoord3(block));
+		}
+		return target;
+	}
+	
 	//----------------------------------------------//
 	// COMPARISON
 	//----------------------------------------------//
@@ -174,6 +198,16 @@ public class WorldCoord3
 
 		WorldCoord3 that = (WorldCoord3) obj;
 		return this.x == that.x && this.y == that.y && this.z == that.z && ( this.worldName==null ? that.worldName==null : this.worldName.equals(that.worldName) );
+	}
+	
+	//----------------------------------------------//
+	// CLONE
+	//----------------------------------------------//
+	
+	@Override
+	public WorldCoord3 clone()
+	{
+		return new WorldCoord3(this);
 	}
 
 }

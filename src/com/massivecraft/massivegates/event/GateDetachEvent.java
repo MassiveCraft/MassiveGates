@@ -4,10 +4,10 @@ import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.event.abs.SingleGateEvent;
 
 @SuppressWarnings("serial")
-public class GateSaveEvent extends SingleGateEvent
+public class GateDetachEvent extends SingleGateEvent
 {
-	public GateSaveEvent(Gate gate)
+	public GateDetachEvent(Gate gate)
 	{
-		super("GateSaveEvent", gate);
+		super("GateDetachEvent", gate);
 	}
 }

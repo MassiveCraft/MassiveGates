@@ -3,6 +3,7 @@ package com.massivecraft.massivegates.event;
 import org.bukkit.event.Cancellable;
 
 import com.massivecraft.massivegates.Gate;
+import com.massivecraft.massivegates.event.abs.SingleGateEvent;
 
 /**
  * The reasons for gates to close can vary just as much as for opening.

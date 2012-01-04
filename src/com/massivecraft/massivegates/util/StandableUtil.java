@@ -3,12 +3,31 @@ package com.massivecraft.massivegates.util;
 import java.util.EnumMap;
 import java.util.Map;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 
 public class StandableUtil
 {
-	private static Map<Material, StandableInfo> m2s = new EnumMap<Material, StandableInfo>(Material.class);
-
+	public static boolean validPlayerLocation(Location location)
+	{
+		return validPlayerLocation(location.getBlock());
+	}
+	
+	public static boolean validPlayerLocation(Block lower)
+	{
+		if (! validLower(lower.getType())) return false;
+		
+		Block upper = lower.getRelative(BlockFace.UP);
+		if (! validUpper(upper.getType())) return false;
+		
+		Block ground = lower.getRelative(BlockFace.DOWN);
+		if (! validGround(ground.getType())) return false;
+		
+		return true;
+	}
+	
 	public static boolean validGround(Material material)
 	{
 		StandableInfo info = null;
@@ -16,7 +35,6 @@ public class StandableUtil
 		if (info == null) return true;
 		return info.isValidGround();
 	}
-	
 	public static boolean validLower(Material material)
 	{
 		StandableInfo info = null;
@@ -24,25 +42,23 @@ public class StandableUtil
 		if (info == null) return false;
 		return info.isValidLower();
 	}
-	
 	public static boolean validUpper(Material material)
 	{
 		StandableInfo info = null;
 		info = m2s.get(material);
 		if (info == null) return false;
 		return info.isValidUpper();
-	}
+	}	
 	
 	protected static void setInfo(Material material, final boolean validGround, final boolean validLower, final boolean validUpper)
 	{
 		m2s.put(material, new StandableInfo(validGround, validLower, validUpper));
 	}
-
 	protected static void setInfo(int id, final boolean validGround, final boolean validLower, final boolean validUpper)
 	{
 		setInfo(Material.getMaterial(id), validGround, validLower, validUpper);
 	}
-	
+	private static Map<Material, StandableInfo> m2s = new EnumMap<Material, StandableInfo>(Material.class);
 	static
 	{
 		setInfo(0, false, true, true); //0 Air

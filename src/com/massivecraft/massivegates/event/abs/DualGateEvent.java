@@ -1,11 +1,9 @@
-package com.massivecraft.massivegates.event;
-
-import org.bukkit.event.Event;
+package com.massivecraft.massivegates.event.abs;
 
 import com.massivecraft.massivegates.Gate;
 
 @SuppressWarnings("serial")
-public abstract class DualGateEvent extends Event
+public abstract class DualGateEvent extends GateEvent
 {
 	// FIELD: gateFrom
 	protected Gate gateFrom;

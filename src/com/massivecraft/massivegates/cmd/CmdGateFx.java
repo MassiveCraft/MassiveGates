@@ -3,15 +3,16 @@ package com.massivecraft.massivegates.cmd;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.mcore1.cmd.HelpCommand;
 
-public class CmdGateSelect extends GateCommand
+public class CmdGateFx extends GateCommand
 {
-	public CmdGateSelect()
+	public CmdGateFx()
 	{
 		super();
-		this.addAliases("sel", "selection");
-		this.addSubCommand(new CmdGateSelectSet());
-		this.addSubCommand(new CmdGateSelectGet());
-		this.addSubCommand(new CmdGateSelectDel());
+		this.addAliases("fx");
+		this.addSubCommand(new CmdGateFxAlt());
+		this.addSubCommand(new CmdGateFxList());
+		this.addSubCommand(new CmdGateFxAdd());
+		this.addSubCommand(new CmdGateFxDel());
 	}
 	
 	@Override

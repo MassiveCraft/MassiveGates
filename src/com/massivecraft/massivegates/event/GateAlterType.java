@@ -9,6 +9,8 @@ import com.massivecraft.massivegates.P;
 
 public enum GateAlterType
 {
+	// TODO: EMBED INTO THE ALTER EVENT!!?
+	
 	PLACE(true, Type.BLOCK_PLACE),
 	BREAK(true, Type.BLOCK_BREAK),
 	BUCKET_FILL(true, Type.PLAYER_BUCKET_FILL),

@@ -1,6 +1,5 @@
 package com.massivecraft.massivegates.privatelistener;
 
-import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -11,11 +10,12 @@ import com.massivecraft.massivegates.P;
 import com.massivecraft.massivegates.WorldCoord3;
 import com.massivecraft.massivegates.event.GatePlayerWalkEvent;
 import com.massivecraft.massivegates.event.GatePlayerWalkType;
+import com.massivecraft.massivegates.util.VisualizeUtil;
 
-public class PlayerListenerMonitor extends PlayerListener
+public class PluginPlayerListener extends PlayerListener
 {
 	P p;
-	public PlayerListenerMonitor(P p)
+	public PluginPlayerListener(P p)
 	{
 		this.p = p;
 	}
@@ -30,6 +30,8 @@ public class PlayerListenerMonitor extends PlayerListener
 		
 		if (blockFrom.equals(blockTo)) return;
 		
+		VisualizeUtil.clear(event.getPlayer());
+		
 		WorldCoord3 coordFrom = new WorldCoord3(blockFrom);
 		WorldCoord3 coordTo = new WorldCoord3(blockTo);
 		
@@ -41,7 +43,12 @@ public class PlayerListenerMonitor extends PlayerListener
 		if (gateFrom != null & gateFrom == gateTo)
 		{
 			gateEvent = new GatePlayerWalkEvent(gateFrom, gateTo, GatePlayerWalkType.WITHIN);
-			Bukkit.getPluginManager().callEvent(gateEvent);
+			gateEvent.run();
+			if (gateEvent.isCancelled())
+			{
+				event.setCancelled(true);
+			}
+			
 			return;
 		}
 		
@@ -49,14 +56,27 @@ public class PlayerListenerMonitor extends PlayerListener
 		{
 			// OUT
 			gateEvent = new GatePlayerWalkEvent(gateFrom, gateTo, GatePlayerWalkType.OUT);
-			Bukkit.getPluginManager().callEvent(gateEvent);
+			gateEvent.run();
+			if (gateEvent.isCancelled())
+			{
+				event.setCancelled(true);
+			}
 		}
 		
 		if (gateTo != null)
 		{
 			// INTO
 			gateEvent = new GatePlayerWalkEvent(gateFrom, gateTo, GatePlayerWalkType.INTO);
-			Bukkit.getPluginManager().callEvent(gateEvent);
+			gateEvent.run();
+			if (gateEvent.isCancelled())
+			{
+				event.setCancelled(true);
+			}
+			else if (gateTo.isOpen())
+			{
+				// Trigger usage of the gate :)
+				gateTo.use(event.getPlayer());
+			}
 		}
 	}
 }

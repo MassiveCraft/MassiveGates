@@ -5,6 +5,7 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.bukkit.Material;
@@ -55,7 +56,7 @@ public class FloodUtil
 	}
 	
 	//----------------------------------------------//
-	// MULTI-FLOOD
+	// MULTI-FLOOD ALL
 	//----------------------------------------------//
 	
 	public static Map<FloodOrientation, Set<Block>> getFloods(Block startBlock, Collection<FloodOrientation> orientations, Set<Material> allowedMaterials, int limit)
@@ -81,6 +82,35 @@ public class FloodUtil
 	}
 	
 	//----------------------------------------------//
+	// MULTI-FLOOD BEST
+	//----------------------------------------------//
+	
+	public static Entry<FloodOrientation, Set<Block>> getBestFlood(Block startBlock, Collection<FloodOrientation> orientations, Set<Material> allowedMaterials, int limit)
+	{
+		Map<FloodOrientation, Set<Block>> floods = getFloods(startBlock, orientations, allowedMaterials, limit);
+		Entry<FloodOrientation, Set<Block>> ret = null;
+		int bestSize = 0;
+		for (Entry<FloodOrientation, Set<Block>> entry : floods.entrySet())
+		{
+			if (entry.getValue() == null) continue;
+			if (entry.getValue().size() > bestSize) ret = entry;
+		}
+		return ret;
+	}
+	public static Entry<FloodOrientation, Set<Block>> getBestFlood(Block startBlock, Collection<FloodOrientation> orientations, Set<Material> allowedMaterials)
+	{
+		return getBestFlood(startBlock, orientations, allowedMaterials, Conf.floodFillLimit);
+	}
+	public static Entry<FloodOrientation, Set<Block>> getBestFlood(Block startBlock, Collection<FloodOrientation> orientations)
+	{
+		return getBestFlood(startBlock, orientations, airSet);
+	}
+	public static Entry<FloodOrientation, Set<Block>> getBestFlood(Block startBlock)
+	{
+		return getBestFlood(startBlock, EnumSet.allOf(FloodOrientation.class));
+	}
+	
+	//----------------------------------------------//
 	// GETTING A FRAME
 	//----------------------------------------------//
 	
@@ -102,5 +132,9 @@ public class FloodUtil
 			}
 		}
 		return frame;
+	}
+	public static Set<Block> getFrameFor(Set<Block> content, FloodOrientation orientation)
+	{
+		return getFrameFor(content, orientation.getDirections());
 	}
 }

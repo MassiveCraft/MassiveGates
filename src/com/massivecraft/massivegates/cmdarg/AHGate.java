@@ -1,21 +1,50 @@
 package com.massivecraft.massivegates.cmdarg;
 
-import org.bukkit.command.CommandSender;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import com.massivecraft.massivegates.GPlayer;
+import com.massivecraft.massivegates.GPlayers;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.Gates;
 import com.massivecraft.mcore1.MPlugin;
 import com.massivecraft.mcore1.cmd.arg.AHBase;
+import com.massivecraft.mcore1.persist.Persist;
 
 public class AHGate extends AHBase<Gate>
 {
 	@Override
 	public Gate parse(String str, String style, CommandSender sender, MPlugin p)
 	{	
-		// First we attempt to get by id.
-		Gate ret = Gates.i.get(str);
-		/*if ( ret != null) return ret;
+		this.error.clear();
+		Gate ret = null;
+		// Is this by chance a "that" request
+		if (str.equalsIgnoreCase("that"))
+		{
+			if ( ! (sender instanceof Player))
+			{
+				this.error.add("<b>You must be ingame player to use \"that\" gate detection.");
+				return null;
+			}
+			else
+			{
+				Player me = (Player)sender;
+				GPlayer gme = GPlayers.i.get(me);
+				ret = gme.getThatGate(false);
+				if (ret == null)
+				{
+					this.error.add("<b>No gate in sight.");
+				}
+				return ret;
+			}
+		}
 		
+		// Then we attempt to get by id.
+		ret = Gates.i.get(str);
+		if ( ret != null) return ret;
 		
 		// No matching id huh?... Lets test against the gate's name then:
 		// Build a name to gate map:
@@ -31,11 +60,11 @@ public class AHGate extends AHBase<Gate>
 		if (bestName != null)
 		{
 			ret = name2gate.get(bestName);
-		}*/
+		}
 		
 		if (ret == null)
 		{
-			this.error = "<b>No gate id \"<p>"+str+"<b>\".";
+			this.error.add("<b>No gate matching \"<p>"+str+"<b>\".");
 		}
 		
 		return ret;

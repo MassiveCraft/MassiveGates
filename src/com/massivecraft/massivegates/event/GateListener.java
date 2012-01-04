@@ -4,59 +4,65 @@ import org.bukkit.event.CustomEventListener;
 import org.bukkit.event.Event;
 
 
+
 public class GateListener extends CustomEventListener
 {
     @Override
     public void onCustomEvent(Event event)
     {
-        if(event instanceof GateLoadEvent)
+    	if (event instanceof GateAfterTeleportEvent)
         {
-        	onGateLoad((GateLoadEvent) event);
+        	this.onGateAfterTeleport((GateAfterTeleportEvent) event);
         }
-        else if(event instanceof GateSaveEvent)
+    	else if (event instanceof GateAlterEvent)
         {
-        	onGateSave((GateSaveEvent) event);
+        	this.onGateAlter((GateAlterEvent) event);
         }
-        else if(event instanceof GateCreateEvent)
+    	else if(event instanceof GateAttachEvent)
         {
-        	onGateCreate((GateCreateEvent) event);
+        	onGateAttach((GateAttachEvent) event);
         }
-        else if(event instanceof GateDeleteEvent)
+    	else if(event instanceof GateBeforeTeleportEvent)
         {
-        	onGateDelete((GateDeleteEvent) event);
+    		onGateBeforeTeleport((GateBeforeTeleportEvent) event);
         }
-        else if(event instanceof GateOpenEvent)
-        {
-        	onGateOpen((GateOpenEvent) event);
-        }
-        else if(event instanceof GateCloseEvent)
+    	else if(event instanceof GateCloseEvent)
         {
         	onGateClose((GateCloseEvent) event);
         }
-        else if(event instanceof GateUseEvent)
+    	else if(event instanceof GateDetachEvent)
         {
-        	onGateUse((GateUseEvent) event);
+    		onGateDetach((GateDetachEvent) event);
         }
-        else if(event instanceof GatePlayerWalkEvent)
+		else if(event instanceof GateOpenEvent)
+		{
+			onGateOpen((GateOpenEvent) event);
+		}
+		else if(event instanceof GatePlayerWalkEvent)
         {
         	onGatePlayerWalk((GatePlayerWalkEvent) event);
         }
+		else if(event instanceof GateSaveEvent)
+        {
+        	onGateSave((GateSaveEvent) event);
+        }
+    	else if(event instanceof GateUseEvent)
+        {
+        	onGateUse((GateUseEvent) event);
+        }
     }
     
-    public void onGateLoad(GateLoadEvent event) {}
-    
-    public void onGateSave(GateSaveEvent event) {}
-    
-    public void onGateCreate(GateCreateEvent event) {}
-    
-    public void onGateDelete(GateDeleteEvent event) {}
-    
-    public void onGateOpen(GateOpenEvent event) {}
-    
+    public void onGateAfterTeleport(GateAfterTeleportEvent event) {};
+    public void onGateAlter(GateAlterEvent event) {}
+    public void onGateAttach(GateAttachEvent event) {}
+    public void onGateBeforeTeleport(GateBeforeTeleportEvent event) {};
     public void onGateClose(GateCloseEvent event) {}
-    
+    public void onGateDetach(GateDetachEvent event) {}
+    public void onGateOpen(GateOpenEvent event) {}
+    public void onGatePlayerWalk(GatePlayerWalkEvent event) {}
+    public void onGateSave(GateSaveEvent event) {}
     public void onGateUse(GateUseEvent event) {}
     
-    public void onGatePlayerWalk(GatePlayerWalkEvent event) {}
+    //public void onGateCreate(GateAttachEvent event) {}
     
 }

@@ -3,6 +3,7 @@ package com.massivecraft.massivegates.event;
 import org.bukkit.event.Cancellable;
 
 import com.massivecraft.massivegates.Gate;
+import com.massivecraft.massivegates.event.abs.SingleGateEvent;
 
 /**
  * This should be called when a gate is opened. There are many reasons to why a gate would open.

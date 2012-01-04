@@ -3,14 +3,16 @@ package com.massivecraft.massivegates.cmd;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Gates;
+import com.massivecraft.mcore1.cmd.req.ReqIsPlayer;
 
-public class CmdGateCreate extends GateCommand
+public class CmdGateNew extends GateCommand
 {
-	public CmdGateCreate()
+	public CmdGateNew()
 	{
-		this.addAliases("new", "create");
+		this.addAliases("new");
 		this.addOptionalArg("name", "*none*");
 		this.setErrorOnToManyArgs(false);
+		this.addRequirements(ReqIsPlayer.getInstance());
 	}
 
 	@Override
@@ -19,7 +21,8 @@ public class CmdGateCreate extends GateCommand
 		Gate gate = Gates.i.create();
 		String name = this.argConcatFrom(0);
 		gate.setName(name);
-		
-		this.msg("<i>New gate created: "+gate.getIdNameStringLong());
+		gme.setSelectedGate(gate);
+		this.msg("<i>Created and selected the new gate: "+gate.getIdNameStringLong());
 	}
+	
 }

@@ -5,10 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.bukkit.Material;
+
 import com.massivecraft.massivegates.event.GateAlterType;
 
 public class Conf
 {
+	public static final transient int lookupMapRebuildTicksDelay = 20;
+	public static final transient int visFrame = Material.JACK_O_LANTERN.getId();
+	public static final transient int visContent = Material.GLOWSTONE.getId();
+	
 	public static List<String> baseCommandAliases = new ArrayList<String>();
 	public static int floodFillLimit = 200;
 	public static int lineOfSightLimit = 100;

@@ -3,30 +3,34 @@ package com.massivecraft.massivegates.cmd;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Gates;
+import com.massivecraft.massivegates.fx.GateFx;
 import com.massivecraft.mcore1.util.Txt;
 
-public class CmdGateList extends GateCommand
+public class CmdGateFxAlt extends GateCommand
 {
-	public CmdGateList()
+	public CmdGateFxAlt()
 	{
-		this.addAliases("l");
+		super();
+		this.addAliases("alt");
 		this.addOptionalArg("page", "1");
 	}
-
+	
 	@Override
 	public void perform()
 	{
 		Integer pageHumanBased = this.argAs(0, Integer.class, 1);
 		if (pageHumanBased == null) return;
-		List<String> gateInfos = new ArrayList<String>(Gates.i.getAll().size());
-		for (Gate gate : Gates.i.getAll())
+		
+		List<String> lines = new ArrayList<String>();
+		
+		for(GateFx fx : Gates.i.getFxs())
 		{
-			gateInfos.add("<white>"+gate.getIdNameStringShort());
+			lines.add("<h>"+fx.getUsagePattern()+" <i>"+fx.getDesc());
 		}
 		
-		this.sendMessage(Txt.getPage(Txt.parseWrap(Txt.implodeCommaAndDot(gateInfos, "<i>")), pageHumanBased, "Gate List"));	
+		lines = Txt.parseWrap(lines);
+		this.sendMessage(Txt.getPage(lines, pageHumanBased, "FX Alternatives"));
 	}
 }

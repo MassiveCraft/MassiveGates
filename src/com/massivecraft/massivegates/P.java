@@ -3,11 +3,18 @@ package com.massivecraft.massivegates;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event.Type;
 
+import com.massivecraft.massivegates.adapter.LocWrapAdapter;
 import com.massivecraft.massivegates.adapter.WorldCoord3Adapter;
 import com.massivecraft.massivegates.cmd.CmdGate;
 import com.massivecraft.massivegates.cmdarg.AHGate;
+import com.massivecraft.massivegates.cmdarg.AHGateFx;
+import com.massivecraft.massivegates.cmdarg.AHGateFxMoment;
 import com.massivecraft.massivegates.event.GateAlterType;
-import com.massivecraft.massivegates.privatelistener.PlayerListenerMonitor;
+import com.massivecraft.massivegates.fx.GateFx;
+import com.massivecraft.massivegates.fx.GateFxMoment;
+import com.massivecraft.massivegates.privatelistener.PluginGateListener;
+import com.massivecraft.massivegates.privatelistener.PluginPlayerListener;
+import com.massivecraft.massivegates.privatelistener.PluginPlayerListenerVis;
 import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterCancelContentBlockListener;
 import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterCancelContentEntityListener;
 import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterCancelContentPlayerListener;
@@ -43,7 +50,9 @@ public class P extends MPlugin
 	public GateAlterMonitorFramePlayerListener gateAlterMonitorFramePlayerListener;
 	
 	// Other Listeners
-	public PlayerListenerMonitor playerListenerMonitor;
+	public PluginPlayerListener playerListener;
+	public PluginGateListener gateListener;
+	public PluginPlayerListenerVis playerListenerVis; 
 	
 	// Command
 	public CmdGate cmdGate;
@@ -65,7 +74,9 @@ public class P extends MPlugin
 		this.gateAlterMonitorFrameEntityListener = new GateAlterMonitorFrameEntityListener(this);
 		this.gateAlterMonitorFramePlayerListener = new GateAlterMonitorFramePlayerListener(this);
 		
-		this.playerListenerMonitor = new PlayerListenerMonitor(this);
+		this.playerListener = new PluginPlayerListener(this);
+		this.playerListenerVis = new PluginPlayerListenerVis(this);
+		this.gateListener = new PluginGateListener(this);
 	}
 	
 	@Override
@@ -85,9 +96,14 @@ public class P extends MPlugin
 		
 		// Add Argument Handlers
 		this.cmd.setArgHandler(Gate.class, AHGate.getInstance());
+		this.cmd.setArgHandler(GateFx.class, AHGateFx.getInstance());
+		this.cmd.setArgHandler(GateFxMoment.class, AHGateFxMoment.getInstance());
 		
 		// Register events
-		this.registerEvent(Type.PLAYER_MOVE, this.playerListenerMonitor, Priority.Monitor);
+		this.registerEvent(Type.PLAYER_MOVE, this.playerListener, Priority.High);
+		this.registerEvent(Type.CUSTOM_EVENT, this.gateListener, Priority.Normal);
+		this.registerEvent(Type.PLAYER_PRELOGIN, this.playerListenerVis, Priority.Lowest);
+		this.registerEvent(Type.PLAYER_QUIT, this.playerListenerVis, Priority.Lowest);
 		
 		// Register the gate protection related events.
 		GateAlterType.registerListeners();
@@ -99,7 +115,9 @@ public class P extends MPlugin
 	public GsonBuilder getGsonBuilder()
 	{
 		return super.getGsonBuilder()
-		.registerTypeAdapter(WorldCoord3.class, WorldCoord3Adapter.getInstance());
+		.registerTypeAdapter(WorldCoord3.class, WorldCoord3Adapter.getInstance())
+		.registerTypeAdapter(LocWrap.class, LocWrapAdapter.getInstance())
+		;
 	}
 	
 }

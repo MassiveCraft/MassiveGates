@@ -3,6 +3,7 @@ package com.massivecraft.massivegates.event;
 import org.bukkit.entity.Player;
 
 import com.massivecraft.massivegates.Gate;
+import com.massivecraft.massivegates.event.abs.SingleGateEvent;
 
 @SuppressWarnings("serial")
 public class GateAlterEvent extends SingleGateEvent
