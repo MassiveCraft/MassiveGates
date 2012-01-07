@@ -23,6 +23,7 @@ public class CmdGate extends GateCommand
 		this.addSubCommand(new CmdGateTarget());
 		this.addSubCommand(new CmdGateExit());
 		this.addSubCommand(new CmdGateWhen());
+		this.addSubCommand(new CmdGateTesteffect());
 	}
 	
 	@Override

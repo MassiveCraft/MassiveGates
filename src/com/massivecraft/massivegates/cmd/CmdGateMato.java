@@ -36,6 +36,13 @@ public class CmdGateMato extends GateCommand
 		
 		mat = this.argAs(0, Material.class);
 		if (mat == null) return;
+		
+		if ( ! mat.isBlock())
+		{
+			this.msg("<h>asdf <b>is an item and not a block.");
+			return;
+		}
+		
 		gate.setMatopen(mat);
 		this.msg("<i>New open material: <h>"+Txt.getMaterialName(mat)+"<i>.");
 	}

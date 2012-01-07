@@ -1,5 +1,6 @@
 package com.massivecraft.massivegates;
 
+import org.bukkit.Effect;
 import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event.Type;
 
@@ -7,6 +8,7 @@ import com.massivecraft.massivegates.adapter.LocWrapAdapter;
 import com.massivecraft.massivegates.adapter.WorldCoord3Adapter;
 import com.massivecraft.massivegates.cmd.CmdGate;
 import com.massivecraft.massivegates.cmdarg.AHAction;
+import com.massivecraft.massivegates.cmdarg.AHEffect;
 import com.massivecraft.massivegates.cmdarg.AHGate;
 import com.massivecraft.massivegates.cmdarg.AHTrigger;
 import com.massivecraft.massivegates.event.GateAlterType;
@@ -122,7 +124,8 @@ public class P extends MPlugin
 		// Add Argument Handlers
 		this.cmd.setArgHandler(Gate.class, AHGate.getInstance());
 		this.cmd.setArgHandler(Trigger.class, AHTrigger.getInstance());
-		this.cmd.setArgHandler(Action.class, AHAction.getInstance());		
+		this.cmd.setArgHandler(Action.class, AHAction.getInstance());
+		this.cmd.setArgHandler(Effect.class, AHEffect.getInstance());		
 		
 		// Register events
 		this.registerEvent(Type.PLAYER_MOVE, this.playerListener, Priority.High);

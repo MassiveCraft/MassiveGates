@@ -484,10 +484,10 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 		new GateBeforeTeleportEvent(this, user, from, to).run();
 		
 		// Do safe teleport
-		TeleportUtil.safeTeleport(user, to, 10);
+		TeleportUtil.safeTeleport(user, to);
 		
 		// Call the after teleport event a bit later
-		new GateAfterTeleportEvent(this, user, from, to).run(15);
+		new GateAfterTeleportEvent(this, user, from, to).run(1);
 	}
 	
 	// -------------------------------------------- //

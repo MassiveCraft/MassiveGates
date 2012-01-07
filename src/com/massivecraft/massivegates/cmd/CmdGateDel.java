@@ -1,5 +1,7 @@
 package com.massivecraft.massivegates.cmd;
 
+import org.bukkit.Material;
+
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
@@ -22,6 +24,7 @@ public class CmdGateDel extends GateCommand
 		if (gate == null) return;
 		this.msg("<i>Gate deleted: "+gate.getIdNameStringLong());
 		gate.setOpen(false);
+		gate.fillContent(Material.AIR);
 		gate.detach();
 	}
 }

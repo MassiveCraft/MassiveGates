@@ -10,6 +10,11 @@ public class TeleportUtil
 {
 	public static void safeTeleport(Entity entity, Location location, long delay)
 	{
-		Bukkit.getScheduler().scheduleSyncDelayedTask(P.p, new TeleportTask(entity, location), 10);
+		Bukkit.getScheduler().scheduleSyncDelayedTask(P.p, new TeleportTask(entity, location), delay);
+	}
+	
+	public static void safeTeleport(Entity entity, Location location)
+	{
+		safeTeleport(entity, location, 0);
 	}
 }
