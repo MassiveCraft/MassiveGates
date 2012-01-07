@@ -12,11 +12,11 @@ public class ActionFxStrike extends BaseAction
 	public static ActionFxStrike getInstance() { return instance; }
 	protected ActionFxStrike()
 	{
-		super("massivegates_core_fx_strike", "FxStrike", "Non damaging lightning strike effect.");
+		super("mgcore_fx_strike", "FxStrike", "Non damaging lightning strike effect.");
 	}
 	
 	@Override
-	public void perform(Gate gate, Entity entity, Cancellable cancellable)
+	public void perform(String arg, Gate gate, Entity entity, Cancellable cancellable)
 	{
 		Location location = null;
 		if (entity != null)

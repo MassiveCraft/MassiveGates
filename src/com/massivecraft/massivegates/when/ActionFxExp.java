@@ -12,11 +12,11 @@ public class ActionFxExp extends BaseAction
 	public static ActionFxExp getInstance() { return instance; }
 	protected ActionFxExp()
 	{
-		super("massivegates_core_fx_exp", "FxExp", "Non damaging TNT explosion effect.");
+		super("mgcore_fx_exp", "FxExp", "Non damaging TNT explosion effect.");
 	}
 	
 	@Override
-	public void perform(Gate gate, Entity entity, Cancellable cancellable)
+	public void perform(String arg, Gate gate, Entity entity, Cancellable cancellable)
 	{
 		if (entity != null)
 		{

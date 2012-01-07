@@ -18,11 +18,11 @@ public class ActionFxSmoke extends BaseAction
 	public static ActionFxSmoke getInstance() { return instance; }
 	protected ActionFxSmoke()
 	{
-		super("massivegates_core_fx_smoke", "FxSmoke", "Smoke effect.");
+		super("mgcore_fx_smoke", "FxSmoke", "Smoke effect.");
 	}
 	
 	@Override
-	public void perform(Gate gate, Entity entity, Cancellable cancellable)
+	public void perform(String arg, Gate gate, Entity entity, Cancellable cancellable)
 	{
 		List<Location> locations = new ArrayList<Location>();
 		

@@ -1,12 +1,15 @@
 package com.massivecraft.massivegates;
 
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.bukkit.Bukkit;
@@ -355,49 +358,82 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	// WHEN
 	// -------------------------------------------- //
 	
-	protected Map<String, Set<String>> triggerId2ActionId;
+	// So to clarify: an "ActionIdArg" is an "entry" containing "actionId" and "arg" (the custom argument/data for the action)
+	// So to clarify: an "ActionArg"   is an "entry" containing "action"   and "arg" (the custom argument/data for the action)
+	// The arg is optional and is null in such case? TODO: Does that match up well with gson?
+	
+	protected Map<String, List<List<String>>> trigger2ActionIdArgs;
 	protected void ensureTriggerListExists(Trigger trigger)
 	{
-		if (this.triggerId2ActionId.containsKey(trigger.getId())) return;
-		this.triggerId2ActionId.put(trigger.getId(), new LinkedHashSet<String>());
+		if (this.trigger2ActionIdArgs.containsKey(trigger.getId())) return;
+		this.trigger2ActionIdArgs.put(trigger.getId(), new ArrayList<List<String>>());
 	}
-	public List<Action> getActions(Trigger trigger)
+	public List<Entry<Action, String>> getActionArgs(Trigger trigger)
 	{
 		this.ensureTriggerListExists(trigger);
-		Set<String> actionIds = this.triggerId2ActionId.get(trigger.getId());
-		List<Action> ret = new ArrayList<Action>(actionIds.size());
-		for (String actionId : actionIds)
+		List<List<String>> actionIdArgs = this.trigger2ActionIdArgs.get(trigger.getId());
+		List<Entry<Action, String>> ret = new ArrayList<Entry<Action, String>>(actionIdArgs.size());
+		for (List<String> actionIdArg : actionIdArgs)
 		{
+			String actionId = actionIdArg.get(0);
+			String arg = actionIdArg.get(1);
 			Action action = Gates.i.getActionId(actionId);
 			if (action == null) continue;
-			ret.add(action);
+			Entry<Action, String> actionArg = new SimpleEntry<Action, String>(action, arg);
+			ret.add(actionArg);
 		}
 		return ret;
 	}
-	public void addAction(Trigger trigger, Action action)
+	public void addAction(Trigger trigger, Action action, String arg)
 	{
 		this.ensureTriggerListExists(trigger);
-		this.triggerId2ActionId.get(trigger.getId()).add(action.getId());
+		this.trigger2ActionIdArgs.get(trigger.getId()).add(Arrays.asList(action.getId(), arg));
 	}
-	public void delAction(Trigger trigger, Action action)
+	public boolean delAction(Trigger trigger, int index)
 	{
 		this.ensureTriggerListExists(trigger);
-		this.triggerId2ActionId.get(trigger.getId()).remove(action.getId());
+		List<List<String>> actionIdArgs = this.trigger2ActionIdArgs.get(trigger.getId());
+		if (index < 0 || index >= actionIdArgs.size())
+		{
+			return false;
+		}
+		actionIdArgs.remove(index);
+		return true;
 	}
-	public void delActions(Trigger trigger)
+	public int delActions(Trigger trigger, Action action)
 	{
-		this.triggerId2ActionId.remove(trigger.getId());
+		int ret = 0;
+		this.ensureTriggerListExists(trigger);
+		Iterator<List<String>> iter = this.trigger2ActionIdArgs.get(trigger.getId()).iterator();
+		while (iter.hasNext())
+		{
+			List<String> actionIdArg = iter.next();
+			String actionId = actionIdArg.get(0);
+			if ( ! actionId.equals(action.getId())) continue;
+			iter.remove();
+			ret += 1;
+		}
+		return ret;
+	}
+	public int delActions(Trigger trigger)
+	{
+		if ( ! this.trigger2ActionIdArgs.containsKey(trigger.getId())) return 0;
+		int ret = this.trigger2ActionIdArgs.get(trigger.getId()).size();
+		this.trigger2ActionIdArgs.remove(trigger.getId());
+		return ret;
 	}
 	public void delActions()
 	{
-		this.triggerId2ActionId.clear();
+		this.trigger2ActionIdArgs.clear();
 	}
 	public void trigger(Trigger trigger, Entity entity, Cancellable cancellable)
 	{
-		List<Action> actions = this.getActions(trigger);
-		for (Action action : actions)
+		List<Entry<Action, String>> actionArgs = this.getActionArgs(trigger);
+		for (Entry<Action, String> actionArg : actionArgs)
 		{
-			action.perform(this, entity, cancellable);
+			Action action = actionArg.getKey();
+			String arg = actionArg.getValue();
+			action.perform(arg, this, entity, cancellable);
 		}
 	}
 
@@ -412,8 +448,7 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 		this.matopen = Material.PORTAL;
 		this.content = new HashSet<WorldCoord3>();
 		this.frame = new HashSet<WorldCoord3>();
-		//this.fxMoment2Parsies = new EnumMap<GateFxMoment, List<String>>(GateFxMoment.class);
-		this.triggerId2ActionId = new HashMap<String, Set<String>>();
+		this.trigger2ActionIdArgs = new HashMap<String, List<List<String>>>();
 	}
 			
 	// -------------------------------------------- //

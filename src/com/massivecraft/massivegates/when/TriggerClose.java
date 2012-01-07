@@ -6,6 +6,6 @@ public class TriggerClose extends BaseTrigger
 	public static TriggerClose getInstance() { return instance; }
 	protected TriggerClose()
 	{
-		super("massivegates_core_close", "Close", "When the gate closes.");
+		super("mgcore_close", "Close", "When the gate closes.");
 	}
 }

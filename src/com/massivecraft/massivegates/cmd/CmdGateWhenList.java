@@ -2,6 +2,7 @@ package com.massivecraft.massivegates.cmd;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
 
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
@@ -38,9 +39,11 @@ public class CmdGateWhenList extends GateCommand
 		
 		for(Trigger trigger : Gates.i.getTriggers())
 		{
-			for (Action action : gate.getActions(trigger))
+			for (Entry<Action, String> actionArg : gate.getActionArgs(trigger))
 			{
-				lines.add("<lime>"+trigger.getName()+" <pink>"+action.getName()+" <i>"+action.getDesc());
+				Action action = actionArg.getKey();
+				String arg = actionArg.getValue();
+				lines.add("<lime>"+trigger.getName()+" <k>"+action.getName()+(arg==null?"":(" <v>"+arg))+" <i>"+action.getDesc());
 			}
 		}
 		
@@ -50,6 +53,6 @@ public class CmdGateWhenList extends GateCommand
 		}
 		
 		lines = Txt.parseWrap(lines);
-		this.sendMessage(Txt.getPage(lines, pageHumanBased, "FX For Gate "+Txt.parse(gate.getIdNameStringShort())));
+		this.sendMessage(Txt.getPage(lines, pageHumanBased, "TriggerActions For Gate "+Txt.parse(gate.getIdNameStringShort())));
 	}
 }

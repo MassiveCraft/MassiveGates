@@ -6,6 +6,6 @@ public class TriggerAtp extends BaseTrigger
 	public static TriggerAtp getInstance() { return instance; }
 	protected TriggerAtp()
 	{
-		super("massivegates_core_atp", "ATP", "Right after the gate user is teleported.");
+		super("mgcore_atp", "ATP", "Right after the gate user is teleported.");
 	}
 }

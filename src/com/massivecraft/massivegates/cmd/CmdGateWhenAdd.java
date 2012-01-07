@@ -1,5 +1,7 @@
 package com.massivecraft.massivegates.cmd;
 
+import java.util.List;
+
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
@@ -17,6 +19,8 @@ public class CmdGateWhenAdd extends GateCommand
 		this.addAliases("add");
 		this.addRequiredArg("trigger");
 		this.addRequiredArg("action");
+		this.addOptionalArg("argument", "");
+		this.setErrorOnToManyArgs(false);
 		
 		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
 		this.addRequirements(new ReqHasPerm(Permission.WHEN_ADD.node));
@@ -35,8 +39,20 @@ public class CmdGateWhenAdd extends GateCommand
 		Action action = this.argAs(1, Action.class);
 		if (action == null) return;
 		
-		gate.addAction(trigger, action);
-		this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>added:");
-		this.msg("<lime>"+trigger.getName()+" <pink>"+action.getName()+" <i>"+action.getDesc());
+		// Fetch the arg
+		String arg = this.argConcatFrom(2);
+		
+		// Check the arg
+		List<String> errors = action.checkArg(arg);
+		if (errors != null && errors.size() > 0)
+		{
+			gme.msg(errors);
+			return;
+		}
+		
+		// Cool :) All is OK. Lets add it ^^
+		gate.addAction(trigger, action, arg);
+		this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>added: <lime>trigger <k>action <v>arg");
+		this.msg("<lime>"+trigger.getName()+" <k>"+action.getName()+" <v>"+(arg==null?"*none*":arg));
 	}
 }

@@ -37,7 +37,7 @@ public class CmdGateWhenAlt extends GateCommand
 			title = "Trigger Alternatives";
 			for(Trigger trigger : Gates.i.getTriggers())
 			{
-				lines.add("<h>"+trigger.getName()+" <i>"+trigger.getDesc());
+				lines.add("<lime>"+trigger.getName()+" <i>"+trigger.getDesc());
 			}
 		}
 		else
@@ -45,7 +45,7 @@ public class CmdGateWhenAlt extends GateCommand
 			title = "Action Alternatives";
 			for(Action action : Gates.i.getActions())
 			{
-				lines.add("<h>"+action.getName()+" <i>"+action.getDesc());
+				lines.add("<k>"+action.getName()+" <i>"+action.getDesc());
 			}
 		}
 		

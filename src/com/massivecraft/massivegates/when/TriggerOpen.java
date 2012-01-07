@@ -6,6 +6,6 @@ public class TriggerOpen extends BaseTrigger
 	public static TriggerOpen getInstance() { return instance; }
 	protected TriggerOpen()
 	{
-		super("massivegates_core_open", "Open", "When the gate opens.");
+		super("mgcore_open", "Open", "When the gate opens.");
 	}
 }

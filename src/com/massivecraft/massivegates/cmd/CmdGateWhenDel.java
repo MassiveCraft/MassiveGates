@@ -16,10 +16,19 @@ public class CmdGateWhenDel extends GateCommand
 		super();
 		this.addAliases("del");
 		this.addRequiredArg("trigger|all");
-		this.addRequiredArg("action|all");
+		this.addRequiredArg("index|action|all");
 		
 		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
 		this.addRequirements(new ReqHasPerm(Permission.WHEN_DEL.node));
+	}
+	
+	public boolean isNumeric(String s)
+	{
+		for (int i = 0; i < s.length(); i++)
+		{
+			if ( ! Character.isDigit(s.charAt(i))) return false;
+		}
+		return true;
 	}
 	
 	@Override
@@ -40,16 +49,39 @@ public class CmdGateWhenDel extends GateCommand
 		
 		if (this.arg(1).equalsIgnoreCase("all"))
 		{
-			gate.delActions(trigger);
-			this.msg("<i>Gate "+gate.getIdNameStringShort()+"<i> deleted all actions for trigger <lime>"+trigger.getName()+"<i>.");
+			int count = gate.delActions(trigger);
+			this.msg("<i>Gate "+gate.getIdNameStringShort()+"<i> deleted all (<h>"+count+"<i>) actions for trigger <lime>"+trigger.getName()+"<i>.");
 			return;
 		}
 		
-		// Fetch the Action
-		Action action = this.argAs(1, Action.class);
-		if (action == null) return;
+		// The action may either be an index or an action id
+		if (isNumeric(this.arg(1)))
+		{
+			// Delete by index
+			Integer index = this.argAs(1, Integer.class);
+			if (index == null) return;
+			
+			boolean success = gate.delAction(trigger, index);
+			if (success)
+			{
+				this.msg("<i>Gate "+gate.getIdNameStringShort()+"<i> deleted action index <h>"+index+" <i>for trigger <lime>"+trigger.getName()+"<i>.");
+			}
+			else
+			{
+				this.msg("<b>Gate "+gate.getIdNameStringShort()+"<b> there is no index <h>"+index+" <i>for trigger <lime>"+trigger.getName()+"<i>.");
+			}
+		}
+		else
+		{
+			// Delete by actionId
+			// Fetch the Action
+			Action action = this.argAs(1, Action.class);
+			if (action == null) return;
+			
+			int count = gate.delActions(trigger, action);
+			this.msg("<i>Gate "+gate.getIdNameStringShort()+"<i> deleted "+count+" <pink>"+action.getName()+"-action <i>for trigger <lime>"+trigger.getName()+"<i>.");
+		}
 		
-		gate.delAction(trigger, action);
-		this.msg("<i>Gate "+gate.getIdNameStringShort()+"<i> deleted action <pink>"+action.getName()+" <i>for trigger <lime>"+trigger.getName()+"<i>.");
+		
 	}
 }

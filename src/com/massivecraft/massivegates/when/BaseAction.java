@@ -1,5 +1,8 @@
 package com.massivecraft.massivegates.when;
 
+import java.util.Arrays;
+import java.util.List;
+
 public abstract class BaseAction implements Action
 {
 	protected final String id;
@@ -16,6 +19,15 @@ public abstract class BaseAction implements Action
 		this.id = id;
 		this.name = name;
 		this.desc = desc;
+	}
+	
+	
+	public final static List<String> errorsNoneExpected = Arrays.asList("<b>No argument expected for this action.");
+	@Override
+	public List<String> checkArg(String arg)
+	{
+		if (arg == null) return null;
+		return errorsNoneExpected;
 	}
 	
 	@Override

@@ -13,7 +13,7 @@ import com.massivecraft.massivegates.when.TriggerAtp;
 import com.massivecraft.massivegates.when.TriggerBtp;
 import com.massivecraft.massivegates.when.TriggerClose;
 import com.massivecraft.massivegates.when.TriggerOpen;
-import com.massivecraft.massivegates.when.TriggerPlayerEnter;
+import com.massivecraft.massivegates.when.TriggerEnter;
 import com.massivecraft.massivegates.when.TriggerUse;
 
 public class PluginGateListener extends GateListener
@@ -60,7 +60,7 @@ public class PluginGateListener extends GateListener
 	{
 		if (event.getWalkType() == GatePlayerWalkType.INTO)
 		{
-			event.getGateTo().trigger(TriggerPlayerEnter.getInstance(), event.getPlayer(), event);
+			event.getGateTo().trigger(TriggerEnter.getInstance(), event.getPlayer(), event);
 		}
 	}
 }

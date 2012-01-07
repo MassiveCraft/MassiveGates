@@ -6,6 +6,6 @@ public class TriggerBtp extends BaseTrigger
 	public static TriggerBtp getInstance() { return instance; }
 	protected TriggerBtp()
 	{
-		super("massivegates_core_btp", "BTP", "Right before the gate user is teleported.");
+		super("mgcore_btp", "BTP", "Right before the gate user is teleported.");
 	}
 }

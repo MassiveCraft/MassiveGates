@@ -1,5 +1,7 @@
 package com.massivecraft.massivegates.when;
 
+import java.util.List;
+
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 
@@ -17,5 +19,8 @@ public interface Action
 	public String getDesc();
 	
 	/** Perform the action */
-	public void perform(Gate gate, Entity entity, Cancellable cancellable);
+	public void perform(String arg, Gate gate, Entity entity, Cancellable cancellable);
+	
+	/** Check the arg to see if it looks ok. Returns errors. */
+	public List<String> checkArg(String arg);
 }

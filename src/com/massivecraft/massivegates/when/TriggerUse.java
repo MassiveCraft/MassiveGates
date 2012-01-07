@@ -6,6 +6,6 @@ public class TriggerUse extends BaseTrigger
 	public static TriggerUse getInstance() { return instance; }
 	protected TriggerUse()
 	{
-		super("massivegates_core_use", "Use", "When the gate is used.");
+		super("mgcore_use", "Use", "When the gate is used.");
 	}
 }

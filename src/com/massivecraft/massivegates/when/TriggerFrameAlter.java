@@ -6,6 +6,6 @@ public class TriggerFrameAlter extends BaseTrigger
 	public static TriggerFrameAlter getInstance() { return instance; }
 	protected TriggerFrameAlter()
 	{
-		super("massivegates_core_frame_alter", "FrameAlter", "When the gate frame is altered.");
+		super("mgcore_frame_alter", "FrameAlter", "When the gate frame is altered.");
 	}
 }
