@@ -15,7 +15,7 @@ public class CmdGateMato extends GateCommand
 	public CmdGateMato()
 	{
 		super();
-		this.addAliases("mato");
+		this.addAliases("mo","mato");
 		this.addOptionalArg("material", "get");
 		
 		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());

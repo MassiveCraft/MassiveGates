@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -15,6 +16,7 @@ import java.util.Set;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -22,14 +24,13 @@ import org.bukkit.event.Cancellable;
 
 import com.massivecraft.massivegates.event.GateBeforeTeleportEvent;
 import com.massivecraft.massivegates.event.GateAfterTeleportEvent;
-import com.massivecraft.massivegates.event.GateCloseEvent;
-import com.massivecraft.massivegates.event.GateOpenEvent;
+import com.massivecraft.massivegates.event.GateOpenChangeEvent;
+import com.massivecraft.massivegates.event.GatePowerChangeEvent;
 import com.massivecraft.massivegates.event.GateUseEvent;
-import com.massivecraft.massivegates.event.abs.CancellableSingleGateEvent;
+import com.massivecraft.massivegates.ta.Action;
+import com.massivecraft.massivegates.ta.Trigger;
 import com.massivecraft.massivegates.util.TeleportUtil;
 import com.massivecraft.massivegates.util.VisualizeUtil;
-import com.massivecraft.massivegates.when.Action;
-import com.massivecraft.massivegates.when.Trigger;
 
 public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 {
@@ -48,23 +49,12 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	public boolean isOpen() { return this.open; }
 	public void setOpen(boolean open)
 	{
-		CancellableSingleGateEvent event;
-		if (open)
-		{
-			event = new GateOpenEvent(this);
-		}
-		else
-		{
-			event = new GateCloseEvent(this);
-		}
-		event.run();
-		if (event.isCancelled()) return;
-		
 		this.open = open;
 		this.fillContent();
 		
 		// This is safe as you only may save attached entites.
-		this.save(); 
+		this.save();
+		new GateOpenChangeEvent(this).run();
 	}
 	
 	// FIELD: name
@@ -295,6 +285,7 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 		{
 			// Just add - nothing else
 			this.frame.add(coord);
+			this.powerCheck(coord);
 			return;
 		}
 		
@@ -308,6 +299,7 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 		
 		// Add
 		this.frame.add(coord);
+		this.powerCheck(coord);
 		
 		// Index
 		Gates.i.frameToGate.put(coord, this);
@@ -320,11 +312,13 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 		{
 			// Just delete - nothing else
 			this.frame.remove(coord);
+			this.powerRemove(coord);
 			return;
 		}
 		
 		// Delete
 		this.frame.remove(coord);
+		this.powerRemove(coord);
 		
 		// Index
 		Gates.i.frameToGate.remove(coord);
@@ -355,12 +349,79 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	}
 	
 	// -------------------------------------------- //
-	// WHEN
+	// REDSTONE POWER
+	// -------------------------------------------- //
+	
+	protected Set<WorldCoord3> powercoords;
+	public boolean powerHas() { return this.powercoords.size() > 0; }
+	public void powerAdd(WorldCoord3 coord)
+	{
+		boolean before = this.powerHas();
+		if (this.powercoords.add(coord))
+		{
+			this.powerEventCheck(before);
+		}
+	}
+	public void powerAdd(Collection<WorldCoord3> coords)
+	{
+		boolean before = this.powerHas();
+		if (this.powercoords.addAll(coords))
+		{
+			this.powerEventCheck(before);
+		}
+	}
+	public void powerRemove(WorldCoord3 coord)
+	{
+		boolean before = this.powerHas();
+		if (this.powercoords.remove(coord))
+		{
+			this.powerEventCheck(before);
+		}
+	}
+	public void powerRemove(Collection<WorldCoord3> coords)
+	{
+		boolean before = this.powerHas();
+		if (this.powercoords.removeAll(coords))
+		{
+			this.powerEventCheck(before);
+		}
+	}
+	public void powerSet(Collection<WorldCoord3> coords)
+	{
+		boolean before = this.powerHas();
+		this.powercoords.clear();
+		this.powercoords.addAll(coords);
+		this.powerEventCheck(before);
+	}
+	public void powerCheck(WorldCoord3 coord)
+	{
+		// It is understood from before that this coord is part of the gate frame
+		Block block = coord.getBlock();
+		if (block == null) return;
+		if (block.isBlockIndirectlyPowered())
+		{
+			this.powerAdd(coord);
+		}
+		else
+		{
+			this.powerRemove(coord);
+		}
+	}
+	protected void powerEventCheck(boolean before)
+	{
+		boolean after = this.powerHas();
+		if (before == after) return;
+		
+		// Call the event
+		new GatePowerChangeEvent(this, after).run();
+	}
+	
+	// -------------------------------------------- //
+	// TRIGGER ACTIONS
 	// -------------------------------------------- //
 	
 	// So to clarify: an "ActionIdArg" is an "entry" containing "actionId" and "arg" (the custom argument/data for the action)
 	// So to clarify: an "ActionArg"   is an "entry" containing "action"   and "arg" (the custom argument/data for the action)
-	// The arg is optional and is null in such case? TODO: Does that match up well with gson?
 	
 	protected Map<String, List<List<String>>> trigger2ActionIdArgs;
 	protected void ensureTriggerListExists(Trigger trigger)
@@ -448,6 +509,7 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 		this.matopen = Material.PORTAL;
 		this.content = new HashSet<WorldCoord3>();
 		this.frame = new HashSet<WorldCoord3>();
+		this.powercoords = new LinkedHashSet<WorldCoord3>();
 		this.trigger2ActionIdArgs = new HashMap<String, List<List<String>>>();
 	}
 			
@@ -474,6 +536,13 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 		}
 		
 		return ret;
+	}
+	
+	public World calcGateWorld()
+	{
+		Location center = this.calcGateCenter();
+		if (center == null) return null;
+		return center.getWorld();
 	}
 	
 	// -------------------------------------------- //
@@ -506,6 +575,9 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	
 	public void use(Entity user)
 	{
+		// Is there even a target?
+		if (this.getTarget() == null) return;
+				
 		// Call the use event
 		GateUseEvent useEvent = new GateUseEvent(this, user);
 		Bukkit.getPluginManager().callEvent(useEvent);

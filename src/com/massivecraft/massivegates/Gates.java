@@ -1,6 +1,7 @@
 package com.massivecraft.massivegates;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
@@ -9,8 +10,8 @@ import java.util.Set;
 import com.massivecraft.massivegates.event.GateAttachEvent;
 import com.massivecraft.massivegates.event.GateDetachEvent;
 import com.massivecraft.massivegates.event.GateSaveEvent;
-import com.massivecraft.massivegates.when.Action;
-import com.massivecraft.massivegates.when.Trigger;
+import com.massivecraft.massivegates.ta.Action;
+import com.massivecraft.massivegates.ta.Trigger;
 import com.massivecraft.mcore1.persist.Persist;
 import com.massivecraft.mcore1.persist.gson.GsonClassManager;
 
@@ -188,11 +189,18 @@ public class Gates extends GsonClassManager<Gate>
 	protected Set<Trigger> triggers = new LinkedHashSet<Trigger>();
 	protected Map<String, Trigger> id2trigger = new HashMap<String, Trigger>();
 	protected Map<String, Trigger> name2trigger = new HashMap<String, Trigger>();
-	public void registerTrigger(Trigger trigger)
+	public <T extends Trigger> void registerTrigger(T trigger)
 	{
 		this.triggers.add(trigger);
 		this.id2trigger.put(trigger.getId(), trigger);
 		this.name2trigger.put(trigger.getName(), trigger);
+	}
+	public void registerTriggers(Collection<? extends Trigger> triggers)
+	{
+		for (Trigger trigger : triggers)
+		{
+			this.registerTrigger(trigger);
+		}
 	}
 	public Set<Trigger> getTriggers()
 	{

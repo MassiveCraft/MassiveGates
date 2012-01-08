@@ -11,7 +11,7 @@ import com.massivecraft.massivegates.event.GateAlterType;
 
 public class Conf
 {
-	public static final transient int lookupMapRebuildTicksDelay = 20;
+	public static final transient int hourTriggingTaskTicks = 60;
 	public static final transient int visFrame = Material.JACK_O_LANTERN.getId();
 	public static final transient int visContent = Material.GLOWSTONE.getId();
 	

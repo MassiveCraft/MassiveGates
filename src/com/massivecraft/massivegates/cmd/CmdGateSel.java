@@ -15,7 +15,7 @@ public class CmdGateSel extends GateCommand
 		this.addOptionalArg("gate", "*get*");
 		
 		this.addRequirements(ReqIsPlayer.getInstance());
-		this.addRequirements(new ReqHasPerm(Permission.SEL.node));
+		this.addRequirements(new ReqHasPerm(Permission.SELECT.node));
 	}
 	
 	@Override

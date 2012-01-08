@@ -8,7 +8,7 @@ public class CmdGateEdit extends GateCommand
 	public CmdGateEdit()
 	{
 		super();
-		this.addAliases("edit");
+		this.addAliases("e", "edit");
 		this.addSubCommand(new CmdGateEditThat());
 		this.addSubCommand(new CmdGateEditFlood());
 		this.addSubCommand(new CmdGateEditClear());

@@ -15,7 +15,7 @@ public class CmdGateMatc extends GateCommand
 	public CmdGateMatc()
 	{
 		super();
-		this.addAliases("matc");
+		this.addAliases("mc","matc");
 		this.addOptionalArg("material", "get");
 		
 		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());

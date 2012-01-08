@@ -14,7 +14,7 @@ public class CmdGateList extends GateCommand
 {
 	public CmdGateList()
 	{
-		this.addAliases("l");
+		this.addAliases("l","ls","list");
 		this.addOptionalArg("page", "1");
 		this.addRequirements(new ReqHasPerm(Permission.LIST.node));
 	}

@@ -10,30 +10,29 @@ import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.mcore1.cmd.HelpCommand;
 import com.massivecraft.mcore1.cmd.req.ReqIsPlayer;
 
-public class CmdGateOpen extends GateCommand
+public class CmdGateName extends GateCommand
 {
-	public CmdGateOpen()
+	public CmdGateName()
 	{
 		super();
-		this.addAliases("open");
-		this.addSubCommand(new CmdGateOpenSet());
+		this.addAliases("name");
+		this.addSubCommand(new CmdGateNameSet());
+		this.addSubCommand(new CmdGateNameRemove());
 		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
-		this.setDesc("manage gate open/closed state");
+		this.setDesc("manage gate name");
 	}
 	
-	protected final static String firstHelpLine = "<i>The content material is decided by the open-state.";
+	protected final static String firstHelpLine = "<i>Gates can have a name for easier selection.";
 	@Override
 	public List<String> getHelp()
 	{
 		List<String> ret = new ArrayList<String>(2);
 		ret.add(firstHelpLine);
 		
-		if (Permission.OPEN_GET.has(sender))
+		if (Permission.NAME_GET.has(sender))
 		{
 			Gate gate = gme.getSelectedGate();
-			boolean currentState = gate.isOpen();
-			String currentStateStr = currentState ? "<g>OPEN" : "<b>CLOSED";
-			ret.add("<i>The gate is currently "+currentStateStr+"<i>.");
+			ret.add("<i>Current name: <v>"+(gate.getName()==null?"*NONE*":gate.getName()));
 		}
 		
 		return ret;

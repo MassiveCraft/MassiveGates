@@ -26,21 +26,21 @@ public class GateListener extends CustomEventListener
         {
     		onGateBeforeTeleport((GateBeforeTeleportEvent) event);
         }
-    	else if(event instanceof GateCloseEvent)
-        {
-        	onGateClose((GateCloseEvent) event);
-        }
     	else if(event instanceof GateDetachEvent)
         {
     		onGateDetach((GateDetachEvent) event);
         }
-		else if(event instanceof GateOpenEvent)
+		else if(event instanceof GateOpenChangeEvent)
 		{
-			onGateOpen((GateOpenEvent) event);
+			onGateOpenChange((GateOpenChangeEvent) event);
 		}
 		else if(event instanceof GatePlayerWalkEvent)
         {
         	onGatePlayerWalk((GatePlayerWalkEvent) event);
+        }
+		else if(event instanceof GatePowerChangeEvent)
+        {
+        	onGatePowerChange((GatePowerChangeEvent) event);
         }
 		else if(event instanceof GateSaveEvent)
         {
@@ -56,10 +56,10 @@ public class GateListener extends CustomEventListener
     public void onGateAlter(GateAlterEvent event) {}
     public void onGateAttach(GateAttachEvent event) {}
     public void onGateBeforeTeleport(GateBeforeTeleportEvent event) {};
-    public void onGateClose(GateCloseEvent event) {}
     public void onGateDetach(GateDetachEvent event) {}
-    public void onGateOpen(GateOpenEvent event) {}
+    public void onGateOpenChange(GateOpenChangeEvent event) {}
     public void onGatePlayerWalk(GatePlayerWalkEvent event) {}
+    public void onGatePowerChange(GatePowerChangeEvent event) {}
     public void onGateSave(GateSaveEvent event) {}
     public void onGateUse(GateUseEvent event) {}
     

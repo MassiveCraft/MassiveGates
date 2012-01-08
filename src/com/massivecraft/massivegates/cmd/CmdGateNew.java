@@ -11,7 +11,7 @@ public class CmdGateNew extends GateCommand
 {
 	public CmdGateNew()
 	{
-		this.addAliases("new");
+		this.addAliases("new", "create");
 		this.addOptionalArg("name", "*none*");
 		this.setErrorOnToManyArgs(false);
 		this.addRequirements(ReqIsPlayer.getInstance());

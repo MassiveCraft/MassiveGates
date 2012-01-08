@@ -9,15 +9,17 @@ permissions:
       massivegates.delete: true
       massivegates.edit.*: true
       massivegates.exit.*: true
+      massivegates.fx.*: true
       massivegates.list: true
       massivegates.matc: true
       massivegates.mato: true
+      massivegates.name.*: true
       massivegates.new: true
-      massivegates.open: true
+      massivegates.open.*: true
       massivegates.see: true
-      massivegates.sel: true
+      massivegates.select: true
       massivegates.target.*: true
-      massivegates.when.*: true
+      massivegates.ta.*: true
   massivegates.simple.*:
     children:
       massivegates.simple.create: true
@@ -32,7 +34,7 @@ permissions:
   massivegates.simple.use:
     default: false
     description: use simple gates
-  massivegates.delete:
+  massivegates.detele:
     default: false
     description: delete a gate
   massivegates.edit.*:
@@ -54,6 +56,7 @@ permissions:
       massivegates.exit.get: true
       massivegates.exit.here: true
       massivegates.exit.goto: true
+      massivegates.exit.remove: true
   massivegates.exit.get:
     default: false
     description: get internal exit
@@ -63,6 +66,19 @@ permissions:
   massivegates.exit.goto:
     default: false
     description: goto internal exit
+  massivegates.exit.remove:
+    default: false
+    description: remove internal exit
+  massivegates.fx.*:
+    children:
+      massivegates.fx.alt: true
+      massivegates.fx.test: true
+  massivegates.fx.alt:
+    default: false
+    description: list available special fx
+  massivegates.fx.test:
+    default: false
+    description: test special fx
   massivegates.list:
     default: false
     description: list gates
@@ -72,16 +88,37 @@ permissions:
   massivegates.mato:
     default: false
     description: set open material
+  massivegates.name.*:
+    children:
+      massivegates.name.get: true
+      massivegates.name.set: true
+      massivegates.name.remove: true
+  massivegates.name.get:
+    default: false
+    description: get gate name
+  massivegates.name.set:
+    default: false
+    description: set gate name
+  massivegates.name.remove:
+    default: false
+    description: remove gate name
   massivegates.new:
     default: false
     description: create new gate
-  massivegates.open:
+  massivegates.open.*:
+    children:
+      massivegates.open.get: true
+      massivegates.open.set: true
+  massivegates.open.get:
     default: false
-    description: open or close the gate
+    description: get the open-state
+  massivegates.open.set:
+    default: false
+    description: set the open-state
   massivegates.see:
     default: false
     description: visualise the gate
-  massivegates.sel:
+  massivegates.select:
     default: false
     description: select a gate
   massivegates.target.*:
@@ -90,6 +127,7 @@ permissions:
       massivegates.target.set: true
       massivegates.target.here: true
       massivegates.target.goto: true
+      massivegates.target.remove: true
   massivegates.target.get:
     default: false
     description: get current target
@@ -102,21 +140,24 @@ permissions:
   massivegates.target.goto:
     default: false
     description: goto current target
-  massivegates.when.*:
+  massivegates.target.remove:
+    default: false
+    description: remove current target
+  massivegates.ta.*:
     children:
-      massivegates.when.add: true
-      massivegates.when.alt: true
-      massivegates.when.del: true
-      massivegates.when.list: true
-  massivegates.when.add:
+      massivegates.ta.add: true
+      massivegates.ta.alt: true
+      massivegates.ta.del: true
+      massivegates.ta.list: true
+  massivegates.ta.add:
     default: false
     description: add action
-  massivegates.when.alt:
+  massivegates.ta.alt:
     default: false
-    description: list triggers and actions
-  massivegates.when.del:
+    description: list triggers or actions
+  massivegates.ta.del:
     default: false
     description: delete action
-  massivegates.when.list:
+  massivegates.ta.list:
     default: false
-    description: list current actions
+    description: list current trigger-actions

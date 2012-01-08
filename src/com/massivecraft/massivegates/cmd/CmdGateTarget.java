@@ -19,6 +19,7 @@ public class CmdGateTarget extends GateCommand
 		this.addSubCommand(new CmdGateTargetHere());
 		this.addSubCommand(new CmdGateTargetGate());
 		this.addSubCommand(new CmdGateTargetGoto());
+		this.addSubCommand(new CmdGateTargetRemove());
 		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
 		this.setDesc("manage gate target");
 	}

@@ -12,9 +12,10 @@ public class CmdGate extends GateCommand
 		this.addAliases(Conf.baseCommandAliases);
 		this.addSubCommand(HelpCommand.getInstance());
 		this.addSubCommand(new CmdGateNew());
-		this.addSubCommand(new CmdGateDel());
+		this.addSubCommand(new CmdGateDelete());
 		this.addSubCommand(new CmdGateList());
 		this.addSubCommand(new CmdGateSel());
+		this.addSubCommand(new CmdGateName());
 		this.addSubCommand(new CmdGateOpen());
 		this.addSubCommand(new CmdGateEdit());
 		this.addSubCommand(new CmdGateMato());
@@ -22,8 +23,8 @@ public class CmdGate extends GateCommand
 		this.addSubCommand(new CmdGateSee());
 		this.addSubCommand(new CmdGateTarget());
 		this.addSubCommand(new CmdGateExit());
-		this.addSubCommand(new CmdGateWhen());
-		this.addSubCommand(new CmdGateTesteffect());
+		this.addSubCommand(new CmdGateTa());
+		this.addSubCommand(new CmdGateFx());
 	}
 	
 	@Override
