@@ -13,7 +13,7 @@ public class CmdGateExitHere extends GateCommand
 	public CmdGateExitHere()
 	{
 		super();
-		this.addAliases("here");
+		this.addAliases("here", "set");
 		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
 		this.addRequirements(new ReqHasPerm(Permission.EXIT_HERE.node));
 	}

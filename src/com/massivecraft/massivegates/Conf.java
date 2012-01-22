@@ -14,6 +14,7 @@ public class Conf
 	public static final transient int hourTriggingTaskTicks = 60;
 	public static final transient int visFrame = Material.JACK_O_LANTERN.getId();
 	public static final transient int visContent = Material.GLOWSTONE.getId();
+	public static final transient int visPower = Material.STATIONARY_LAVA.getId();
 	
 	public static List<String> baseCommandAliases = new ArrayList<String>();
 	public static boolean disableVanillaGates = false;

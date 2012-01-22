@@ -4,6 +4,7 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -188,7 +189,7 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	// -------------------------------------------- //
 	
 	protected Set<WorldCoord3> content;
-	public Set<WorldCoord3> getContent() { return this.content; } // TODO: Make immutable?
+	public Set<WorldCoord3> getContent() { return Collections.unmodifiableSet(this.content); }
 	public void addContent(WorldCoord3 coord)
 	{
 		// Easy if detached
@@ -276,7 +277,7 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	// -------------------------------------------- //
 	
 	protected Set<WorldCoord3> frame;
-	public Set<WorldCoord3> getFrame() { return this.frame;} // TODO: Make immutable?
+	public Set<WorldCoord3> getFrame() { return Collections.unmodifiableSet(this.frame); }
 	
 	public void addFrame(WorldCoord3 coord)
 	{
@@ -353,6 +354,7 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	// -------------------------------------------- //
 	
 	protected Set<WorldCoord3> powercoords;
+	public Set<WorldCoord3> getPower() { return Collections.unmodifiableSet(this.powercoords); }
 	public boolean powerHas() { return this.powercoords.size() > 0; }
 	public void powerAdd(WorldCoord3 coord)
 	{
@@ -605,6 +607,7 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	{
 		VisualizeUtil.addCoords(player, this.getFrame(), Conf.visFrame);
 		VisualizeUtil.addCoords(player, this.getContent(), Conf.visContent);
+		VisualizeUtil.addCoords(player, this.getPower(), Conf.visPower);
 	}
 	
 	// -------------------------------------------- //

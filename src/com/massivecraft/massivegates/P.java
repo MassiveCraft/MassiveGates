@@ -30,7 +30,9 @@ import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterMonitorF
 import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterMonitorFrameEntityListener;
 import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterMonitorFramePlayerListener;
 import com.massivecraft.massivegates.ta.Action;
+import com.massivecraft.massivegates.ta.ActionChat;
 import com.massivecraft.massivegates.ta.ActionClose;
+import com.massivecraft.massivegates.ta.ActionCmd;
 import com.massivecraft.massivegates.ta.ActionFxe;
 import com.massivecraft.massivegates.ta.ActionFxg;
 import com.massivecraft.massivegates.ta.ActionMsg;
@@ -82,31 +84,12 @@ public class P extends MPlugin
 	public P()
 	{
 		P.p = this;
-		
-		this.gateAlterCancelContentBlockListener = new GateAlterCancelContentBlockListener(this);
-		this.gateAlterCancelContentEntityListener = new GateAlterCancelContentEntityListener(this);
-		this.gateAlterCancelContentPlayerListener = new GateAlterCancelContentPlayerListener(this);
-		this.gateAlterCancelFrameBlockListener = new GateAlterCancelFrameBlockListener(this);
-		this.gateAlterCancelFrameEntityListener = new GateAlterCancelFrameEntityListener(this);
-		this.gateAlterCancelFramePlayerListener = new GateAlterCancelFramePlayerListener(this);
-		this.gateAlterMonitorContentBlockListener = new GateAlterMonitorContentBlockListener(this);
-		this.gateAlterMonitorContentEntityListener = new GateAlterMonitorContentEntityListener(this);
-		this.gateAlterMonitorContentPlayerListener = new GateAlterMonitorContentPlayerListener(this);
-		this.gateAlterMonitorFrameBlockListener = new GateAlterMonitorFrameBlockListener(this);
-		this.gateAlterMonitorFrameEntityListener = new GateAlterMonitorFrameEntityListener(this);
-		this.gateAlterMonitorFramePlayerListener = new GateAlterMonitorFramePlayerListener(this);
-		
-		this.playerListener = new PluginPlayerListener(this);
-		this.playerListenerVis = new PluginPlayerListenerVis(this);
-		this.gateListener = new PluginGateListener(this);
-		this.blockListener = new PluginBlockListener(this);
 	}
 	
 	@Override
 	public void onEnable()
 	{
 		if ( ! preEnable()) return;
-		
 		// Register Triggers & Actions
 		Gates.i.registerAction(ActionUse.getInstance());
 		Gates.i.registerAction(ActionUseForced.getInstance());
@@ -115,6 +98,8 @@ public class P extends MPlugin
 		Gates.i.registerAction(ActionFxe.getInstance());
 		Gates.i.registerAction(ActionFxg.getInstance());
 		Gates.i.registerAction(ActionMsg.getInstance());
+		Gates.i.registerAction(ActionCmd.getInstance());
+		Gates.i.registerAction(ActionChat.getInstance());
 		
 		Gates.i.registerTrigger(TriggerEnter.getInstance());
 		Gates.i.registerTrigger(TriggerBtp.getInstance());
@@ -141,6 +126,24 @@ public class P extends MPlugin
 		this.cmd.setArgHandler(Effect.class, AHEffect.getInstance());		
 		
 		// Register events
+		this.gateAlterCancelContentBlockListener = new GateAlterCancelContentBlockListener(this);
+		this.gateAlterCancelContentEntityListener = new GateAlterCancelContentEntityListener(this);
+		this.gateAlterCancelContentPlayerListener = new GateAlterCancelContentPlayerListener(this);
+		this.gateAlterCancelFrameBlockListener = new GateAlterCancelFrameBlockListener(this);
+		this.gateAlterCancelFrameEntityListener = new GateAlterCancelFrameEntityListener(this);
+		this.gateAlterCancelFramePlayerListener = new GateAlterCancelFramePlayerListener(this);
+		this.gateAlterMonitorContentBlockListener = new GateAlterMonitorContentBlockListener(this);
+		this.gateAlterMonitorContentEntityListener = new GateAlterMonitorContentEntityListener(this);
+		this.gateAlterMonitorContentPlayerListener = new GateAlterMonitorContentPlayerListener(this);
+		this.gateAlterMonitorFrameBlockListener = new GateAlterMonitorFrameBlockListener(this);
+		this.gateAlterMonitorFrameEntityListener = new GateAlterMonitorFrameEntityListener(this);
+		this.gateAlterMonitorFramePlayerListener = new GateAlterMonitorFramePlayerListener(this);
+		
+		this.playerListener = new PluginPlayerListener(this);
+		this.playerListenerVis = new PluginPlayerListenerVis(this);
+		this.gateListener = new PluginGateListener(this);
+		this.blockListener = new PluginBlockListener(this);
+		
 		this.registerEvent(Type.PLAYER_MOVE, this.playerListener, Priority.High);
 		this.registerEvent(Type.CUSTOM_EVENT, this.gateListener, Priority.Normal);
 		this.registerEvent(Type.PLAYER_PRELOGIN, this.playerListenerVis, Priority.Lowest);
