@@ -250,7 +250,8 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	
 	public void clearContent()
 	{
-		for (WorldCoord3 coord : this.getContent())
+		List<WorldCoord3> contentCopy = new ArrayList<WorldCoord3>(this.content);
+		for (WorldCoord3 coord : contentCopy)
 		{
 			this.delContent(coord);
 		}
@@ -327,7 +328,8 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 	
 	public void clearFrame()
 	{
-		for (WorldCoord3 coord : this.getFrame())
+		List<WorldCoord3> frameCopy = new ArrayList<WorldCoord3>(this.frame);
+		for (WorldCoord3 coord : frameCopy)
 		{
 			this.delFrame(coord);
 		}

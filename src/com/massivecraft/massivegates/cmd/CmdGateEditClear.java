@@ -28,15 +28,18 @@ public class CmdGateEditClear extends GateCommand
 		if (firstArgChar == 'f')
 		{
 			gate.clearFrame();
+			this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>all frame blocks was removed (but no content).");
 		}
 		else if (firstArgChar == 'c')
 		{
 			gate.clearContent();
+			this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>all content blocks was removed (but no frame).");
 		}
 		else if (firstArgChar == 'a')
 		{
 			gate.clearFrame();
 			gate.clearContent();
+			this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>all blocks was removed (both frame and content).");
 		}
 		else
 		{
