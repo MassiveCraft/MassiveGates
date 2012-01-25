@@ -26,6 +26,8 @@ import org.bukkit.event.Cancellable;
 import com.massivecraft.massivegates.event.GateBeforeTeleportEvent;
 import com.massivecraft.massivegates.event.GateAfterTeleportEvent;
 import com.massivecraft.massivegates.event.GateOpenChangeEvent;
+import com.massivecraft.massivegates.event.GatePlayerWalkEvent;
+import com.massivecraft.massivegates.event.GatePlayerWalkType;
 import com.massivecraft.massivegates.event.GatePowerChangeEvent;
 import com.massivecraft.massivegates.event.GateUseEvent;
 import com.massivecraft.massivegates.ta.Action;
@@ -56,6 +58,18 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 		// This is safe as you only may save attached entites.
 		this.save();
 		new GateOpenChangeEvent(this).run();
+		
+		// If someone is standing in a gate while it opens that should be considered as entering the gate.
+		if (this.open)
+		{
+			WorldCoord3 coord = new WorldCoord3();
+			for (Player player : Bukkit.getOnlinePlayers())
+			{
+				coord.load(player);
+				if (this != Gates.i.getGateAtContentCoord(coord)) continue;
+				new GatePlayerWalkEvent(player, null, this, GatePlayerWalkType.INTO).run();
+			}
+		}
 	}
 	
 	// FIELD: name
