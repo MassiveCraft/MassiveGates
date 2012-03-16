@@ -1,7 +1,8 @@
 package com.massivecraft.massivegates;
 
 import java.io.File;
-import com.massivecraft.mcore1.persist.gson.GsonPlayerEntityManager;
+
+import com.massivecraft.mcore2.persist.gson.GsonPlayerEntityManager;
 
 public class GPlayers extends GsonPlayerEntityManager<GPlayer>
 {
@@ -19,5 +20,4 @@ public class GPlayers extends GsonPlayerEntityManager<GPlayer>
 	{
 		return false;
 	}
-	
 }

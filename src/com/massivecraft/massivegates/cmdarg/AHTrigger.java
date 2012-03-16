@@ -3,8 +3,8 @@ package com.massivecraft.massivegates.cmdarg;
 import org.bukkit.command.CommandSender;
 import com.massivecraft.massivegates.Gates;
 import com.massivecraft.massivegates.ta.Trigger;
-import com.massivecraft.mcore1.MPlugin;
-import com.massivecraft.mcore1.cmd.arg.AHBase;
+import com.massivecraft.mcore2.MPlugin;
+import com.massivecraft.mcore2.cmd.arg.AHBase;
 
 public class AHTrigger extends AHBase<Trigger>
 {

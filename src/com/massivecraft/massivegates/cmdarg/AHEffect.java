@@ -2,8 +2,9 @@ package com.massivecraft.massivegates.cmdarg;
 
 import org.bukkit.Effect;
 import org.bukkit.command.CommandSender;
-import com.massivecraft.mcore1.MPlugin;
-import com.massivecraft.mcore1.cmd.arg.AHBase;
+
+import com.massivecraft.mcore2.MPlugin;
+import com.massivecraft.mcore2.cmd.arg.AHBase;
 
 public class AHEffect extends AHBase<Effect>
 {

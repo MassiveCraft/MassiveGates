@@ -11,9 +11,9 @@ import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
-import com.massivecraft.mcore1.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore1.cmd.req.ReqIsPlayer;
-import com.massivecraft.mcore1.util.Txt;
+import com.massivecraft.mcore2.cmd.req.ReqHasPerm;
+import com.massivecraft.mcore2.cmd.req.ReqIsPlayer;
+import com.massivecraft.mcore2.util.Txt;
 
 public class CmdGateTaList extends GateCommand
 {

@@ -2,7 +2,6 @@ package com.massivecraft.massivegates.event.abs;
 
 import com.massivecraft.massivegates.Gate;
 
-@SuppressWarnings("serial")
 public abstract class DualGateEvent extends GateEvent
 {
 	// FIELD: gateFrom
@@ -12,10 +11,4 @@ public abstract class DualGateEvent extends GateEvent
 	// FIELD: gateTo
 	protected Gate gateTo;
 	public Gate getGateTo() { return this.gateTo; }
-	
-	protected DualGateEvent(String name)
-	{
-		super(name);
-	}
-	
 }

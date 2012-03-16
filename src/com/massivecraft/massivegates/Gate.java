@@ -27,7 +27,7 @@ import com.massivecraft.massivegates.event.GateBeforeTeleportEvent;
 import com.massivecraft.massivegates.event.GateAfterTeleportEvent;
 import com.massivecraft.massivegates.event.GateOpenChangeEvent;
 import com.massivecraft.massivegates.event.GatePlayerWalkEvent;
-import com.massivecraft.massivegates.event.GatePlayerWalkType;
+import com.massivecraft.massivegates.event.GatePlayerWalkEvent.GatePlayerWalkType;
 import com.massivecraft.massivegates.event.GatePowerChangeEvent;
 import com.massivecraft.massivegates.event.GateUseEvent;
 import com.massivecraft.massivegates.ta.Action;
@@ -35,7 +35,7 @@ import com.massivecraft.massivegates.ta.Trigger;
 import com.massivecraft.massivegates.util.TeleportUtil;
 import com.massivecraft.massivegates.util.VisualizeUtil;
 
-public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
+public class Gate extends com.massivecraft.mcore2.persist.Entity<Gate>
 {
 	// -------------------------------------------- //
 	// META
@@ -124,6 +124,17 @@ public class Gate extends com.massivecraft.mcore1.persist.Entity<Gate>
 			ret = "<v>"+this.exit.getVeryShortDesc()+"<i>";
 		}
 		return ret;
+	}
+	
+	// FIELD: Editable
+	public boolean isContentEditable()
+	{
+		return false;
+	}
+	
+	public boolean isFrameEditable()
+	{
+		return true;
 	}
 	
 	// -------------------------------------------- //

@@ -10,9 +10,9 @@ import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.WorldCoord3;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.util.VisualizeUtil;
-import com.massivecraft.mcore1.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore1.cmd.req.ReqIsPlayer;
-import com.massivecraft.mcore1.util.SmokeUtil;
+import com.massivecraft.mcore2.cmd.req.ReqHasPerm;
+import com.massivecraft.mcore2.cmd.req.ReqIsPlayer;
+import com.massivecraft.mcore2.util.SmokeUtil;
 
 public class CmdGateEditThat extends GateCommand
 {

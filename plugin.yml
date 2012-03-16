@@ -1,7 +1,7 @@
 name: massivegates
-version: 1.0.0
+version: 1.1.1
 main: com.massivecraft.massivegates.P
-depend: [mcore1]
+depend: [mcore2]
 permissions:
   massivegates.*:
     children:

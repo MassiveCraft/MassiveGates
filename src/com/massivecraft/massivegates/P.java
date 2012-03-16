@@ -2,8 +2,6 @@ package com.massivecraft.massivegates;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
-import org.bukkit.event.Event.Priority;
-import org.bukkit.event.Event.Type;
 
 import com.massivecraft.massivegates.adapter.LocWrapAdapter;
 import com.massivecraft.massivegates.adapter.WorldCoord3Adapter;
@@ -12,23 +10,6 @@ import com.massivecraft.massivegates.cmdarg.AHAction;
 import com.massivecraft.massivegates.cmdarg.AHEffect;
 import com.massivecraft.massivegates.cmdarg.AHGate;
 import com.massivecraft.massivegates.cmdarg.AHTrigger;
-import com.massivecraft.massivegates.event.GateAlterType;
-import com.massivecraft.massivegates.privatelistener.PluginBlockListener;
-import com.massivecraft.massivegates.privatelistener.PluginGateListener;
-import com.massivecraft.massivegates.privatelistener.PluginPlayerListener;
-import com.massivecraft.massivegates.privatelistener.PluginPlayerListenerVis;
-import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterCancelContentBlockListener;
-import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterCancelContentEntityListener;
-import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterCancelContentPlayerListener;
-import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterCancelFrameBlockListener;
-import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterCancelFrameEntityListener;
-import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterCancelFramePlayerListener;
-import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterMonitorContentBlockListener;
-import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterMonitorContentEntityListener;
-import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterMonitorContentPlayerListener;
-import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterMonitorFrameBlockListener;
-import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterMonitorFrameEntityListener;
-import com.massivecraft.massivegates.privatelistener.alterimpl.GateAlterMonitorFramePlayerListener;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.ActionChat;
 import com.massivecraft.massivegates.ta.ActionClose;
@@ -50,33 +31,16 @@ import com.massivecraft.massivegates.ta.TriggerOpen;
 import com.massivecraft.massivegates.ta.TriggerPowerOff;
 import com.massivecraft.massivegates.ta.TriggerPowerOn;
 import com.massivecraft.massivegates.ta.TriggerUse;
-import com.massivecraft.mcore1.MPlugin;
-import com.massivecraft.mcore1.lib.gson.GsonBuilder;
+import com.massivecraft.mcore2.MPlugin;
+import com.massivecraft.mcore2.lib.gson.GsonBuilder;
 
 public class P extends MPlugin
 {
 	// Our single plugin instance
 	public static P p;
 	
-	// GateAlter Listeners
-	public GateAlterCancelContentBlockListener gateAlterCancelContentBlockListener;
-	public GateAlterCancelContentEntityListener gateAlterCancelContentEntityListener;
-	public GateAlterCancelContentPlayerListener gateAlterCancelContentPlayerListener;
-	public GateAlterCancelFrameBlockListener gateAlterCancelFrameBlockListener;
-	public GateAlterCancelFrameEntityListener gateAlterCancelFrameEntityListener;
-	public GateAlterCancelFramePlayerListener gateAlterCancelFramePlayerListener;
-	public GateAlterMonitorContentBlockListener gateAlterMonitorContentBlockListener;
-	public GateAlterMonitorContentEntityListener gateAlterMonitorContentEntityListener;
-	public GateAlterMonitorContentPlayerListener gateAlterMonitorContentPlayerListener;
-	public GateAlterMonitorFrameBlockListener gateAlterMonitorFrameBlockListener;
-	public GateAlterMonitorFrameEntityListener gateAlterMonitorFrameEntityListener;
-	public GateAlterMonitorFramePlayerListener gateAlterMonitorFramePlayerListener;
-	
-	// Other Listeners
-	public PluginPlayerListener playerListener;
-	public PluginGateListener gateListener;
-	public PluginPlayerListenerVis playerListenerVis;
-	public PluginBlockListener blockListener; 
+	// Listener
+	protected TheListener theListener;
 	
 	// Command
 	public CmdGate cmdGate;
@@ -126,38 +90,7 @@ public class P extends MPlugin
 		this.cmd.setArgHandler(Effect.class, AHEffect.getInstance());		
 		
 		// Register events
-		this.gateAlterCancelContentBlockListener = new GateAlterCancelContentBlockListener(this);
-		this.gateAlterCancelContentEntityListener = new GateAlterCancelContentEntityListener(this);
-		this.gateAlterCancelContentPlayerListener = new GateAlterCancelContentPlayerListener(this);
-		this.gateAlterCancelFrameBlockListener = new GateAlterCancelFrameBlockListener(this);
-		this.gateAlterCancelFrameEntityListener = new GateAlterCancelFrameEntityListener(this);
-		this.gateAlterCancelFramePlayerListener = new GateAlterCancelFramePlayerListener(this);
-		this.gateAlterMonitorContentBlockListener = new GateAlterMonitorContentBlockListener(this);
-		this.gateAlterMonitorContentEntityListener = new GateAlterMonitorContentEntityListener(this);
-		this.gateAlterMonitorContentPlayerListener = new GateAlterMonitorContentPlayerListener(this);
-		this.gateAlterMonitorFrameBlockListener = new GateAlterMonitorFrameBlockListener(this);
-		this.gateAlterMonitorFrameEntityListener = new GateAlterMonitorFrameEntityListener(this);
-		this.gateAlterMonitorFramePlayerListener = new GateAlterMonitorFramePlayerListener(this);
-		
-		this.playerListener = new PluginPlayerListener(this);
-		this.playerListenerVis = new PluginPlayerListenerVis(this);
-		this.gateListener = new PluginGateListener(this);
-		this.blockListener = new PluginBlockListener(this);
-		
-		this.registerEvent(Type.PLAYER_MOVE, this.playerListener, Priority.High);
-		this.registerEvent(Type.CUSTOM_EVENT, this.gateListener, Priority.Normal);
-		this.registerEvent(Type.PLAYER_PRELOGIN, this.playerListenerVis, Priority.Lowest);
-		this.registerEvent(Type.PLAYER_QUIT, this.playerListenerVis, Priority.Lowest);
-		this.registerEvent(Type.BLOCK_PHYSICS, this.blockListener, Priority.Monitor);
-		
-		// Register the gate protection related events.
-		GateAlterType.registerListeners();
-		
-		// Disable Vanilla Gates (if requested)
-		if (Conf.disableVanillaGates)
-		{
-			this.registerEvent(Type.PLAYER_PORTAL, this.playerListener);
-		}
+		this.theListener = new TheListener(this);
 		
 		// Register the HourTriggingTask
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new HourTriggingTask(), Conf.hourTriggingTaskTicks, Conf.hourTriggingTaskTicks);
@@ -173,5 +106,4 @@ public class P extends MPlugin
 		.registerTypeAdapter(LocWrap.class, LocWrapAdapter.getInstance())
 		;
 	}
-	
 }

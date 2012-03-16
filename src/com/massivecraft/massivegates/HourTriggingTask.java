@@ -91,6 +91,4 @@ public class HourTriggingTask implements Runnable
 		ret /= ticksPerHour;
 		return ret;
 	}
-	
-
 }

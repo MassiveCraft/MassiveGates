@@ -5,7 +5,6 @@ import org.bukkit.entity.Entity;
 
 import com.massivecraft.massivegates.Gate;
 
-@SuppressWarnings("serial")
 public abstract class GateTeleportEvent extends SingleGateEvent
 {	
 	// FIELD: user
@@ -20,9 +19,9 @@ public abstract class GateTeleportEvent extends SingleGateEvent
 	private Location to;
 	public Location getTo() { return this.to; }
 	
-	public GateTeleportEvent(String name, Gate gate, Entity user, Location from, Location to)
+	public GateTeleportEvent(Gate gate, Entity user, Location from, Location to)
 	{
-		super(name, gate);
+		super(gate);
 		this.user = user;
 		this.from = from;
 		this.to = to;
