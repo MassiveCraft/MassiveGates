@@ -89,11 +89,16 @@ public class FloodUtil
 	{
 		Map<FloodOrientation, Set<Block>> floods = getFloods(startBlock, orientations, allowedMaterials, limit);
 		Entry<FloodOrientation, Set<Block>> ret = null;
-		int bestSize = 0;
+		Integer bestSize = null;
 		for (Entry<FloodOrientation, Set<Block>> entry : floods.entrySet())
 		{
 			if (entry.getValue() == null) continue;
-			if (entry.getValue().size() > bestSize) ret = entry;
+			int size = entry.getValue().size();
+			if (bestSize == null || size < bestSize)
+			{
+				ret = entry;
+				bestSize = size;
+			}
 		}
 		return ret;
 	}
