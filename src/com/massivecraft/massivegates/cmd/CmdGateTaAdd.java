@@ -10,6 +10,7 @@ import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
 import com.massivecraft.mcore2.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore2.cmd.req.ReqIsPlayer;
+import com.massivecraft.mcore2.util.Perm;
 
 public class CmdGateTaAdd extends GateCommand
 {
@@ -47,6 +48,14 @@ public class CmdGateTaAdd extends GateCommand
 		if (errors != null && errors.size() > 0)
 		{
 			gme.msg(errors);
+			return;
+		}
+		
+		// Do you have the permission to add this action?
+		String perm = "massivegates.action."+action.getId();
+		if ( ! sender.hasPermission(perm))
+		{
+			this.msg(Perm.getForbiddenMessage(perm));
 			return;
 		}
 		

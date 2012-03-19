@@ -37,6 +37,13 @@ public enum Fx
     GHAST_SHOOT(false, true, false, Effect.GHAST_SHOOT, "Shoot fireball sound", "shoot", "ghastshoot"),
     BLAZE_SHOOT(false, true, false, Effect.BLAZE_SHOOT, "Blaze shoot sound", "blazeshoot"),
     RECORD_PLAY(false, true, true, Effect.RECORD_PLAY, "Play record sound", "record", "recordplay"),
+    
+    // TODO
+    /*
+    ZOMBIE_CHEW_WOODEN_DOOR(1010, Type.SOUND),
+    ZOMBIE_CHEW_IRON_DOOR(1011, Type.SOUND),
+    ZOMBIE_DESTROY_DOOR(1012, Type.SOUND),
+    */
 	;
 	
 	protected final boolean hasVisual;
@@ -206,7 +213,7 @@ public enum Fx
 		for (Location location : locations)
 		{
 			if (location == null) continue;
-			location.getWorld().playEffect(location, fx.bukkitEffect, data);
+			location.getWorld().playEffect(location, fx.bukkitEffect, data.intValue());
 		}
 	}
 	

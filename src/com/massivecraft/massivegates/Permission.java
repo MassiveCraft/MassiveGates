@@ -39,6 +39,15 @@ public enum Permission
 	TA_ALT("ta.alt"),
 	TA_DEL("ta.del"),
 	TA_LIST("ta.list"),
+	ACTION_CHAT("action.mgcore_chat"),
+	ACTION_CLOSE("action.mgcore_close"),
+	ACTION_CMD("action.mgcore_cmd"),
+	ACTION_FXE("action.mgcore_fxe"),
+	ACTION_FXG("action.mgcore_fxg"),
+	ACTION_MSG("action.mgcore_msg"),
+	ACTION_OPEN("action.mgcore_open"),
+	ACTION_USE("action.mgcore_use"),
+	ACTION_USE_FORCED("action.mgcore_use_forced"),
 	;
 	
 	public final String node;

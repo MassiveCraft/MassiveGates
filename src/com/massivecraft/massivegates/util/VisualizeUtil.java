@@ -21,9 +21,19 @@ public class VisualizeUtil
 {
 	protected static Map<String, Set<Location>> playerLocations = new HashMap<String, Set<Location>>();
 	
-	public static void onPlayerPreLogin(String name)
+	public static Set<Location> getPlayerLocations(String playerName)
 	{
-		playerLocations.put(name, new HashSet<Location>());
+		Set<Location> ret = playerLocations.get(playerName);
+		if (ret == null)
+		{
+			ret = new HashSet<Location>();
+			playerLocations.put(playerName, ret);
+		}
+		return ret;
+	}
+	public static Set<Location> getPlayerLocations(Player player)
+	{
+		return getPlayerLocations(player.getName());
 	}
 	
 	// -------------------------------------------- //
@@ -32,13 +42,13 @@ public class VisualizeUtil
 	
 	public static void addLocation(Player player, Location location, int typeId, byte data)
 	{
-		playerLocations.get(player.getName()).add(location);
+		getPlayerLocations(player).add(location);
 		player.sendBlockChange(location, typeId, data);
 	}
 	
 	public static void addLocation(Player player, Location location, int typeId)
 	{
-		playerLocations.get(player.getName()).add(location);
+		getPlayerLocations(player).add(location);
 		player.sendBlockChange(location, typeId, (byte) 0);
 	}
 	
@@ -48,7 +58,7 @@ public class VisualizeUtil
 	
 	public static void addLocations(Player player, Map<Location, Integer> locationMaterialIds)
 	{
-		Set<Location> ploc = playerLocations.get(player.getName());
+		Set<Location> ploc = getPlayerLocations(player);
 		for (Entry<Location, Integer> entry : locationMaterialIds.entrySet())
 		{
 			ploc.add(entry.getKey());
@@ -58,7 +68,7 @@ public class VisualizeUtil
 	
 	public static void addLocations(Player player, Collection<Location> locations, int typeId)
 	{
-		Set<Location> ploc = playerLocations.get(player.getName());
+		Set<Location> ploc = getPlayerLocations(player);
 		for (Location location : locations)
 		{
 			ploc.add(location);
@@ -68,7 +78,7 @@ public class VisualizeUtil
 	
 	public static void addCoords(Player player, Collection<WorldCoord3> coords, int typeId)
 	{
-		Set<Location> ploc = playerLocations.get(player.getName());
+		Set<Location> ploc = getPlayerLocations(player);
 		for (WorldCoord3 coord : coords)
 		{
 			Location location = coord.getLocation();
@@ -79,7 +89,7 @@ public class VisualizeUtil
 	
 	public static void addBlocks(Player player, Collection<Block> blocks, int typeId)
 	{
-		Set<Location> ploc = playerLocations.get(player.getName());
+		Set<Location> ploc = getPlayerLocations(player);
 		for (Block block : blocks)
 		{
 			Location location = block.getLocation();
@@ -94,14 +104,14 @@ public class VisualizeUtil
 	
 	public static void clear(Player player)
 	{
-		Set<Location> locations = playerLocations.get(player.getName());
+		Set<Location> locations = getPlayerLocations(player);
 		if (locations == null) return;
 		for (Location location : locations)
 		{
 			Block block = location.getWorld().getBlockAt(location);
 			player.sendBlockChange(location, block.getTypeId(), block.getData());
 		}
-		playerLocations.remove(player);
+		getPlayerLocations(player).clear();
 	}
 	
 }

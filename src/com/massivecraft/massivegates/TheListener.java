@@ -26,7 +26,6 @@ import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
-import org.bukkit.event.player.PlayerPreLoginEvent;
 
 import com.massivecraft.massivegates.event.GateAfterTeleportEvent;
 import com.massivecraft.massivegates.event.GateAlterEvent;
@@ -58,17 +57,6 @@ public class TheListener implements Listener
 	public TheListener(P p)
 	{
 		this.p = p;
-		Bukkit.getServer().getPluginManager().registerEvents(this, this.p);
-	}
-	
-	// -------------------------------------------- //
-	// VISUALIZE UTIL
-	// -------------------------------------------- //
-	
-	@EventHandler(priority = EventPriority.LOWEST)
-	public void lowestPlayerPreLoginEvent(PlayerPreLoginEvent event)
-	{
-		VisualizeUtil.onPlayerPreLogin(event.getName());
 	}
 	
 	// -------------------------------------------- //

@@ -91,6 +91,7 @@ public class P extends MPlugin
 		
 		// Register events
 		this.theListener = new TheListener(this);
+		Bukkit.getServer().getPluginManager().registerEvents(this.theListener, this);
 		
 		// Register the HourTriggingTask
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new HourTriggingTask(), Conf.hourTriggingTaskTicks, Conf.hourTriggingTaskTicks);

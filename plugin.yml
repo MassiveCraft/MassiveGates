@@ -1,5 +1,5 @@
 name: massivegates
-version: 1.1.1
+version: 1.1.2
 main: com.massivecraft.massivegates.P
 depend: [mcore2]
 permissions:
@@ -20,6 +20,7 @@ permissions:
       massivegates.select: true
       massivegates.target.*: true
       massivegates.ta.*: true
+      massivegates.action.*: true
   massivegates.simple.*:
     children:
       massivegates.simple.create: true
@@ -161,3 +162,41 @@ permissions:
   massivegates.ta.list:
     default: false
     description: list current trigger-actions
+  massivegates.action.*:
+    children:
+      massivegates.action.mgcore_chat: true
+      massivegates.action.mgcore_close: true
+      massivegates.action.mgcore_cmd: true
+      massivegates.action.mgcore_fxe: true
+      massivegates.action.mgcore_fxg: true
+      massivegates.action.mgcore_msg: true
+      massivegates.action.mgcore_open: true
+      massivegates.action.mgcore_use: true
+      massivegates.action.mgcore_use_forced: true
+  massivegates.action.mgcore_chat:
+    default: false
+    description: assign the chat action to a gate
+  massivegates.action.mgcore_close:
+    default: false
+    description: assign the close action to a gate
+  massivegates.action.mgcore_cmd:
+    default: false
+    description: assign the cmd action to a gate
+  massivegates.action.mgcore_fxe:
+    default: false
+    description: assign the fxe action to a gate
+  massivegates.action.mgcore_fxg:
+    default: false
+    description: assign the fxg action to a gate
+  massivegates.action.mgcore_msg:
+    default: false
+    description: assign the msg action to a gate
+  massivegates.action.mgcore_open:
+    default: false
+    description: assign the open action to a gate
+  massivegates.action.mgcore_use:
+    default: false
+    description: assign the use action to a gate
+  massivegates.action.mgcore_use_forced:
+    default: false
+    description: assign the useforced action to a gate
