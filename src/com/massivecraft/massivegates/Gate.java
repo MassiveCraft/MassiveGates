@@ -84,31 +84,43 @@ public class Gate extends com.massivecraft.mcore2.persist.Entity<Gate>
 	
 	// FIELD: matopen
 	protected Material matopen;
+	protected Byte dataopen;
 	public Material getMatopen()
 	{
 		return this.matopen;
 	}
-	public void setMatopen(Material val)
+	public Byte getDataopen()
 	{
-		this.matopen = val;
+		return this.dataopen;
+	}
+	public void setMatopen(Material mat, Byte data)
+	{
+		this.matopen = mat;
+		this.dataopen = data;
 		if (this.open == true)
 		{
-			this.fillContent(this.matopen);
+			this.fillContent(this.matopen, this.dataopen);
 		}
 	}
 	
 	// FIELD: matclosed
 	protected Material matclosed;
+	protected Byte dataclosed;
 	public Material getMatclosed()
 	{
 		return this.matclosed;
 	}
-	public void setMatclosed(Material val)
+	public Byte getDataclosed()
 	{
-		this.matclosed = val;
+		return this.dataclosed;
+	}
+	public void setMatclosed(Material mat, Byte data)
+	{
+		this.matclosed = mat;
+		this.dataclosed = data;
 		if (this.open == false)
 		{
-			this.fillContent(this.matclosed);
+			this.fillContent(this.matclosed, this.dataclosed);
 		}
 	}
 	
@@ -535,7 +547,9 @@ public class Gate extends com.massivecraft.mcore2.persist.Entity<Gate>
 	{
 		this.open = false;
 		this.matclosed = Material.AIR;
+		this.dataclosed = 0;
 		this.matopen = Material.PORTAL;
+		this.dataopen = 0;
 		this.content = new HashSet<WorldCoord3>();
 		this.frame = new HashSet<WorldCoord3>();
 		this.powercoords = new LinkedHashSet<WorldCoord3>();
@@ -671,11 +685,11 @@ public class Gate extends com.massivecraft.mcore2.persist.Entity<Gate>
 	{
 		if (this.isOpen())
 		{
-			fillContent(this.getMatopen());
+			fillContent(this.getMatopen(), this.getDataopen());
 		}
 		else
 		{
-			fillContent(this.getMatclosed());
+			fillContent(this.getMatclosed(), this.getDataclosed());
 		}
 	}
 	

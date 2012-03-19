@@ -17,6 +17,7 @@ public class CmdGateMato extends GateCommand
 		super();
 		this.addAliases("mo","mato");
 		this.addOptionalArg("material", "get");
+		this.addOptionalArg("data", "0");
 		
 		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
 		this.addRequirements(new ReqHasPerm(Permission.MATO.node));
@@ -27,15 +28,19 @@ public class CmdGateMato extends GateCommand
 	{
 		Gate gate = gme.getSelectedGate();
 		Material mat = gate.getMatopen();
+		Byte data = gate.getDataopen();
 		
 		if ( ! this.argIsSet(0))
 		{
-			this.msg("<i>Current open material: <h>"+Txt.getMaterialName(mat)+"<i>.");
+			this.msg("<i>Current open <k>Material <v>"+Txt.getMaterialName(mat)+" <k>Data <v>"+data+".");
 			return;
 		}
 		
 		mat = this.argAs(0, Material.class);
 		if (mat == null) return;
+		
+		data = this.argAs(1, Byte.class, (byte) 0);
+		if (data == null) return;
 		
 		if ( ! mat.isBlock())
 		{
@@ -43,7 +48,7 @@ public class CmdGateMato extends GateCommand
 			return;
 		}
 		
-		gate.setMatopen(mat);
-		this.msg("<i>New open material: <h>"+Txt.getMaterialName(mat)+"<i>.");
+		gate.setMatopen(mat, data);
+		this.msg("<i>New open <k>Material <v>"+Txt.getMaterialName(mat)+" <k>Data <v>"+data+".");
 	}
 }
