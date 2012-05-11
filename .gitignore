@@ -3,8 +3,9 @@
 /.project
 /.settings
 
-# netbeans
+# NetBeans
 /nbproject
+/build.xml
 
 # vim
 .*.sw[a-p]
@@ -13,7 +14,7 @@
 /build
 /bin
 /dist
-/localexport.jardesc
+/*.jardesc
 
 # Mac filesystem dust
 .DS_Store
