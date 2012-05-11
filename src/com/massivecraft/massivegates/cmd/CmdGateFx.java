@@ -1,7 +1,7 @@
 package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.mcore2.cmd.HelpCommand;
+import com.massivecraft.mcore3.cmd.HelpCommand;
 
 public class CmdGateFx extends GateCommand
 {

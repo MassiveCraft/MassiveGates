@@ -6,8 +6,8 @@ import java.util.List;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.util.Fx;
-import com.massivecraft.mcore2.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore2.util.Txt;
+import com.massivecraft.mcore3.cmd.req.ReqHasPerm;
+import com.massivecraft.mcore3.util.Txt;
 
 public class CmdGateFxAlt extends GateCommand
 {

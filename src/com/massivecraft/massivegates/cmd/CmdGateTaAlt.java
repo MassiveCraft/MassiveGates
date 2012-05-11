@@ -8,8 +8,8 @@ import com.massivecraft.massivegates.Gates;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
-import com.massivecraft.mcore2.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore2.util.Txt;
+import com.massivecraft.mcore3.cmd.req.ReqHasPerm;
+import com.massivecraft.mcore3.util.Txt;
 
 public class CmdGateTaAlt extends GateCommand
 {

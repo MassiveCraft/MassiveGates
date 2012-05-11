@@ -1,6 +1,6 @@
 package com.massivecraft.massivegates;
 
-import com.massivecraft.mcore2.cmd.MCommand;
+import com.massivecraft.mcore3.cmd.MCommand;
 
 public abstract class GateCommand extends MCommand
 {

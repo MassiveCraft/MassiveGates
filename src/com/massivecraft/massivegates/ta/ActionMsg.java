@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 
 import com.massivecraft.massivegates.Gate;
-import com.massivecraft.mcore2.util.Txt;
+import com.massivecraft.mcore3.util.Txt;
 
 public class ActionMsg extends BaseAction
 {

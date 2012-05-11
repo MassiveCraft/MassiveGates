@@ -13,8 +13,8 @@ import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.util.FloodOrientation;
 import com.massivecraft.massivegates.util.FloodUtil;
 import com.massivecraft.massivegates.util.VisualizeUtil;
-import com.massivecraft.mcore2.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore2.cmd.req.ReqIsPlayer;
+import com.massivecraft.mcore3.cmd.req.ReqHasPerm;
+import com.massivecraft.mcore3.cmd.req.ReqIsPlayer;
 
 public class CmdGateEditFlood extends GateCommand
 {

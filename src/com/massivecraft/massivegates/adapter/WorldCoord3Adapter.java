@@ -3,13 +3,13 @@ package com.massivecraft.massivegates.adapter;
 import java.lang.reflect.Type;
 
 import com.massivecraft.massivegates.WorldCoord3;
-import com.massivecraft.mcore2.lib.gson.JsonDeserializationContext;
-import com.massivecraft.mcore2.lib.gson.JsonDeserializer;
-import com.massivecraft.mcore2.lib.gson.JsonElement;
-import com.massivecraft.mcore2.lib.gson.JsonParseException;
-import com.massivecraft.mcore2.lib.gson.JsonPrimitive;
-import com.massivecraft.mcore2.lib.gson.JsonSerializationContext;
-import com.massivecraft.mcore2.lib.gson.JsonSerializer;
+import com.massivecraft.mcore3.lib.gson.JsonDeserializationContext;
+import com.massivecraft.mcore3.lib.gson.JsonDeserializer;
+import com.massivecraft.mcore3.lib.gson.JsonElement;
+import com.massivecraft.mcore3.lib.gson.JsonParseException;
+import com.massivecraft.mcore3.lib.gson.JsonPrimitive;
+import com.massivecraft.mcore3.lib.gson.JsonSerializationContext;
+import com.massivecraft.mcore3.lib.gson.JsonSerializer;
 
 public class WorldCoord3Adapter implements JsonDeserializer<WorldCoord3>, JsonSerializer<WorldCoord3>
 {
