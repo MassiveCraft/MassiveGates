@@ -53,6 +53,8 @@ public class CmdGateTaAdd extends GateCommand
 		
 		// Do you have the permission to add this action?
 		String perm = "massivegates.action."+action.getId();
+		System.out.println(perm);
+		System.out.println(sender);
 		if ( ! sender.hasPermission(perm))
 		{
 			this.msg(Perm.getForbiddenMessage(perm));

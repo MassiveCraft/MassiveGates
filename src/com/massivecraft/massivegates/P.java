@@ -81,7 +81,7 @@ public class P extends MPlugin
 		
 		// Add Base Commands
 		this.cmdGate = new CmdGate();
-		this.cmd.addCommand(this.cmdGate);
+		this.cmdGate.register();
 		
 		// Add Argument Handlers
 		this.cmd.setArgHandler(Gate.class, AHGate.getInstance());

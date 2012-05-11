@@ -35,7 +35,7 @@ permissions:
   massivegates.simple.use:
     default: false
     description: use simple gates
-  massivegates.detele:
+  massivegates.delete:
     default: false
     description: delete a gate
   massivegates.edit.*:
