@@ -14,7 +14,6 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockFadeEvent;
 import org.bukkit.event.block.BlockFormEvent;
-import org.bukkit.event.block.BlockFromToEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
@@ -304,7 +303,7 @@ public class TheListener implements Listener
 		// WILL TRIGGER FAR TO OFTEN ???
 	}
 	
-	@EventHandler(priority = EventPriority.NORMAL)
+	/*@EventHandler(priority = EventPriority.NORMAL)
 	public void normalBlockFromToEvent(BlockFromToEvent event)
 	{
 		if (this.handlerNormalSingle(event.getBlock(), event))
@@ -318,7 +317,7 @@ public class TheListener implements Listener
 	{
 		this.handlerMonitorSingle(event, event.getBlock(), GateAlterType.FLOW, null);
 		this.handlerMonitorSingle(event, event.getToBlock(), GateAlterType.FLOW, null);
-	}
+	}*/
 	
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void normalBlockFormEvent(BlockFormEvent event)
