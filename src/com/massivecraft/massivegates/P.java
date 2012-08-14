@@ -31,8 +31,8 @@ import com.massivecraft.massivegates.ta.TriggerOpen;
 import com.massivecraft.massivegates.ta.TriggerPowerOff;
 import com.massivecraft.massivegates.ta.TriggerPowerOn;
 import com.massivecraft.massivegates.ta.TriggerUse;
-import com.massivecraft.mcore3.MPlugin;
-import com.massivecraft.mcore3.lib.gson.GsonBuilder;
+import com.massivecraft.mcore4.MPlugin;
+import com.massivecraft.mcore4.lib.gson.GsonBuilder;
 
 public class P extends MPlugin
 {

@@ -2,7 +2,7 @@ package com.massivecraft.massivegates;
 
 import org.bukkit.command.CommandSender;
 
-import com.massivecraft.mcore3.util.Perm;
+import com.massivecraft.mcore4.util.Perm;
 
 public enum Permission
 {

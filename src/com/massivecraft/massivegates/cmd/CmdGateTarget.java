@@ -7,8 +7,8 @@ import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
-import com.massivecraft.mcore3.cmd.HelpCommand;
-import com.massivecraft.mcore3.cmd.req.ReqIsPlayer;
+import com.massivecraft.mcore4.cmd.HelpCommand;
+import com.massivecraft.mcore4.cmd.req.ReqIsPlayer;
 
 public class CmdGateTarget extends GateCommand
 {

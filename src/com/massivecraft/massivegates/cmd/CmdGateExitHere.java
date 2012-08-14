@@ -5,8 +5,8 @@ import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.LocWrap;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
-import com.massivecraft.mcore3.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore3.cmd.req.ReqIsPlayer;
+import com.massivecraft.mcore4.cmd.req.ReqHasPerm;
+import com.massivecraft.mcore4.cmd.req.ReqIsPlayer;
 
 public class CmdGateExitHere extends GateCommand
 {

@@ -35,7 +35,7 @@ import com.massivecraft.massivegates.ta.Trigger;
 import com.massivecraft.massivegates.util.TeleportUtil;
 import com.massivecraft.massivegates.util.VisualizeUtil;
 
-public class Gate extends com.massivecraft.mcore3.persist.Entity<Gate>
+public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 {
 	// -------------------------------------------- //
 	// META

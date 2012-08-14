@@ -7,8 +7,8 @@ import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Gates;
 import com.massivecraft.massivegates.Permission;
-import com.massivecraft.mcore3.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore3.util.Txt;
+import com.massivecraft.mcore4.cmd.req.ReqHasPerm;
+import com.massivecraft.mcore4.util.Txt;
 
 public class CmdGateList extends GateCommand
 {

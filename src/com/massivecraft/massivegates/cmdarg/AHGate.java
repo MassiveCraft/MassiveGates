@@ -10,9 +10,9 @@ import com.massivecraft.massivegates.GPlayer;
 import com.massivecraft.massivegates.GPlayers;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.Gates;
-import com.massivecraft.mcore3.MPlugin;
-import com.massivecraft.mcore3.cmd.arg.AHBase;
-import com.massivecraft.mcore3.persist.Persist;
+import com.massivecraft.mcore4.MPlugin;
+import com.massivecraft.mcore4.cmd.arg.AHBase;
+import com.massivecraft.mcore4.persist.Persist;
 
 public class AHGate extends AHBase<Gate>
 {

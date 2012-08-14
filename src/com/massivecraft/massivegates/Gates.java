@@ -12,8 +12,8 @@ import com.massivecraft.massivegates.event.GateDetachEvent;
 import com.massivecraft.massivegates.event.GateSaveEvent;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
-import com.massivecraft.mcore3.persist.Persist;
-import com.massivecraft.mcore3.persist.gson.GsonClassManager;
+import com.massivecraft.mcore4.persist.Persist;
+import com.massivecraft.mcore4.persist.gson.GsonClassManager;
 
 public class Gates extends GsonClassManager<Gate>
 {
