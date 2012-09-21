@@ -5,6 +5,8 @@ import java.util.List;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
+import com.massivecraft.massivegates.cmdarg.ARAction;
+import com.massivecraft.massivegates.cmdarg.ARTrigger;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
@@ -33,11 +35,11 @@ public class CmdGateTaAdd extends GateCommand
 		Gate gate = gme.getSelectedGate();
 		
 		// Fetch Trigger
-		Trigger trigger = this.argAs(0, Trigger.class);
+		Trigger trigger = this.arg(0, ARTrigger.get());
 		if (trigger == null) return;
 		
 		// Fetch the Action
-		Action action = this.argAs(1, Action.class);
+		Action action = this.arg(1, ARAction.get());
 		if (action == null) return;
 		
 		// Fetch the arg

@@ -13,6 +13,7 @@ import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.util.FloodOrientation;
 import com.massivecraft.massivegates.util.FloodUtil;
 import com.massivecraft.massivegates.util.VisualizeUtil;
+import com.massivecraft.mcore4.cmd.arg.ARBoolean;
 import com.massivecraft.mcore4.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore4.cmd.req.ReqIsPlayer;
 
@@ -32,7 +33,7 @@ public class CmdGateEditFlood extends GateCommand
 	{
 		Gate gate = gme.getSelectedGate();
 		
-		Boolean addFrame = this.argAs(0, Boolean.class, true);
+		Boolean addFrame = this.arg(0, ARBoolean.get(), true);
 		if (addFrame == null) return;
 		
 		Entry<FloodOrientation, Set<Block>> flood = gme.getBestFloodHere(true);

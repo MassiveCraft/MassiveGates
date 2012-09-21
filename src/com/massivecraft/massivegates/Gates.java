@@ -12,8 +12,8 @@ import com.massivecraft.massivegates.event.GateDetachEvent;
 import com.massivecraft.massivegates.event.GateSaveEvent;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
-import com.massivecraft.mcore4.persist.Persist;
 import com.massivecraft.mcore4.persist.gson.GsonClassManager;
+import com.massivecraft.mcore4.util.Txt;
 
 public class Gates extends GsonClassManager<Gate>
 {
@@ -177,7 +177,7 @@ public class Gates extends GsonClassManager<Gate>
 	public Action getActionName(String name)
 	{
 		Action ret = null;
-		String bestName = Persist.getBestCIStart(name2action.keySet(), name);
+		String bestName = Txt.getBestCIStart(name2action.keySet(), name);
 		if (bestName != null) ret = name2action.get(bestName);
 		return ret;
 	}
@@ -213,7 +213,7 @@ public class Gates extends GsonClassManager<Gate>
 	public Trigger getTriggerName(String name)
 	{
 		Trigger ret = null;
-		String bestName = Persist.getBestCIStart(name2trigger.keySet(), name);
+		String bestName = Txt.getBestCIStart(name2trigger.keySet(), name);
 		if (bestName != null) ret = name2trigger.get(bestName);
 		return ret;
 	}

@@ -3,13 +3,13 @@ package com.massivecraft.massivegates.adapter;
 import java.lang.reflect.Type;
 
 import com.massivecraft.massivegates.LocWrap;
-import com.massivecraft.mcore4.lib.gson.JsonDeserializationContext;
-import com.massivecraft.mcore4.lib.gson.JsonDeserializer;
-import com.massivecraft.mcore4.lib.gson.JsonElement;
-import com.massivecraft.mcore4.lib.gson.JsonParseException;
-import com.massivecraft.mcore4.lib.gson.JsonPrimitive;
-import com.massivecraft.mcore4.lib.gson.JsonSerializationContext;
-import com.massivecraft.mcore4.lib.gson.JsonSerializer;
+import com.massivecraft.mcore4.xlib.gson.JsonDeserializationContext;
+import com.massivecraft.mcore4.xlib.gson.JsonDeserializer;
+import com.massivecraft.mcore4.xlib.gson.JsonElement;
+import com.massivecraft.mcore4.xlib.gson.JsonParseException;
+import com.massivecraft.mcore4.xlib.gson.JsonPrimitive;
+import com.massivecraft.mcore4.xlib.gson.JsonSerializationContext;
+import com.massivecraft.mcore4.xlib.gson.JsonSerializer;
 
 public class LocWrapAdapter implements JsonDeserializer<LocWrap>, JsonSerializer<LocWrap>
 {

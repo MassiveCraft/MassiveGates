@@ -5,6 +5,7 @@ import org.bukkit.Material;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
+import com.massivecraft.massivegates.cmdarg.ARGate;
 import com.massivecraft.mcore4.cmd.req.ReqHasPerm;
 
 public class CmdGateDelete extends GateCommand
@@ -20,7 +21,7 @@ public class CmdGateDelete extends GateCommand
 	@Override
 	public void perform()
 	{
-		Gate gate = this.argAs(0, Gate.class);
+		Gate gate = this.arg(0, ARGate.get());
 		if (gate == null) return;
 		this.msg("<i>Gate deleted: "+gate.getIdNameStringLong());
 		gate.setOpen(false);

@@ -6,6 +6,8 @@ import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
+import com.massivecraft.mcore4.cmd.arg.ARByte;
+import com.massivecraft.mcore4.cmd.arg.ARMaterial;
 import com.massivecraft.mcore4.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore4.cmd.req.ReqIsPlayer;
 import com.massivecraft.mcore4.util.Txt;
@@ -36,10 +38,10 @@ public class CmdGateMatc extends GateCommand
 			return;
 		}
 		
-		mat = this.argAs(0, Material.class);
+		mat = this.arg(0, ARMaterial.get());
 		if (mat == null) return;
 		
-		data = this.argAs(1, Byte.class, (byte) 0);
+		data = this.arg(1, ARByte.get(), (byte) 0);
 		if (data == null) return;
 		
 		if ( ! mat.isBlock())

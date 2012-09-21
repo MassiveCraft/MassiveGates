@@ -11,6 +11,7 @@ import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
+import com.massivecraft.mcore4.cmd.arg.ARInteger;
 import com.massivecraft.mcore4.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore4.cmd.req.ReqIsPlayer;
 import com.massivecraft.mcore4.util.Txt;
@@ -30,7 +31,7 @@ public class CmdGateTaList extends GateCommand
 	@Override
 	public void perform()
 	{
-		Integer pageHumanBased = this.argAs(0, Integer.class, 1);
+		Integer pageHumanBased = this.arg(0, ARInteger.get(), 1);
 		if (pageHumanBased == null) return;
 		
 		Gate gate = gme.getSelectedGate();

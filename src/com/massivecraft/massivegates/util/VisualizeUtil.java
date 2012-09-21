@@ -82,6 +82,7 @@ public class VisualizeUtil
 		for (WorldCoord3 coord : coords)
 		{
 			Location location = coord.getLocation();
+			if (location == null) continue;
 			ploc.add(location);
 			player.sendBlockChange(location, typeId, (byte) 0);
 		}

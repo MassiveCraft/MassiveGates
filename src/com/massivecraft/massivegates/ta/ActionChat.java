@@ -16,7 +16,7 @@ public class ActionChat extends BaseAction
 	public static ActionChat getInstance() { return instance; }
 	protected ActionChat()
 	{
-		super("mgcore_chat", "Chat", "Chat or command as player. Replacing {p} with playername.");
+		super("mgcore_chat", "Chat", "chat/command as player. Replacing {p} with playername.");
 	}
 	
 	@Override

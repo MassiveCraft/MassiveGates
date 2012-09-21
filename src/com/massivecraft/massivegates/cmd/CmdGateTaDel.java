@@ -3,9 +3,12 @@ package com.massivecraft.massivegates.cmd;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
+import com.massivecraft.massivegates.cmdarg.ARAction;
+import com.massivecraft.massivegates.cmdarg.ARTrigger;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
+import com.massivecraft.mcore4.cmd.arg.ARInteger;
 import com.massivecraft.mcore4.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore4.cmd.req.ReqIsPlayer;
 
@@ -45,7 +48,7 @@ public class CmdGateTaDel extends GateCommand
 		}
 		
 		// Fetch the Trigger
-		Trigger trigger = this.argAs(0, Trigger.class);
+		Trigger trigger = this.arg(0, ARTrigger.get());
 		if (trigger == null) return;
 		
 		if ( ! this.argIsSet(1) || this.arg(1).equalsIgnoreCase("all"))
@@ -59,7 +62,7 @@ public class CmdGateTaDel extends GateCommand
 		if (isNumeric(this.arg(1)))
 		{
 			// Delete by index
-			Integer index = this.argAs(1, Integer.class);
+			Integer index = this.arg(1, ARInteger.get());
 			if (index == null) return;
 			
 			// Make it zero-based while deleting
@@ -80,7 +83,7 @@ public class CmdGateTaDel extends GateCommand
 		{
 			// Delete by actionId
 			// Fetch the Action
-			Action action = this.argAs(1, Action.class);
+			Action action = this.arg(1, ARAction.get());
 			if (action == null) return;
 			
 			int count = gate.delActions(trigger, action);

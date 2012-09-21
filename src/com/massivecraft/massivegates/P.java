@@ -1,16 +1,10 @@
 package com.massivecraft.massivegates;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Effect;
 
 import com.massivecraft.massivegates.adapter.LocWrapAdapter;
 import com.massivecraft.massivegates.adapter.WorldCoord3Adapter;
 import com.massivecraft.massivegates.cmd.CmdGate;
-import com.massivecraft.massivegates.cmdarg.AHAction;
-import com.massivecraft.massivegates.cmdarg.AHEffect;
-import com.massivecraft.massivegates.cmdarg.AHGate;
-import com.massivecraft.massivegates.cmdarg.AHTrigger;
-import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.ActionChat;
 import com.massivecraft.massivegates.ta.ActionClose;
 import com.massivecraft.massivegates.ta.ActionCmd;
@@ -18,9 +12,9 @@ import com.massivecraft.massivegates.ta.ActionFxe;
 import com.massivecraft.massivegates.ta.ActionFxg;
 import com.massivecraft.massivegates.ta.ActionMsg;
 import com.massivecraft.massivegates.ta.ActionOpen;
+import com.massivecraft.massivegates.ta.ActionSetVelocity;
 import com.massivecraft.massivegates.ta.ActionUse;
 import com.massivecraft.massivegates.ta.ActionUseForced;
-import com.massivecraft.massivegates.ta.Trigger;
 import com.massivecraft.massivegates.ta.TriggerAtp;
 import com.massivecraft.massivegates.ta.TriggerBtp;
 import com.massivecraft.massivegates.ta.TriggerClose;
@@ -32,7 +26,7 @@ import com.massivecraft.massivegates.ta.TriggerPowerOff;
 import com.massivecraft.massivegates.ta.TriggerPowerOn;
 import com.massivecraft.massivegates.ta.TriggerUse;
 import com.massivecraft.mcore4.MPlugin;
-import com.massivecraft.mcore4.lib.gson.GsonBuilder;
+import com.massivecraft.mcore4.xlib.gson.GsonBuilder;
 
 public class P extends MPlugin
 {
@@ -64,6 +58,7 @@ public class P extends MPlugin
 		Gates.i.registerAction(ActionMsg.getInstance());
 		Gates.i.registerAction(ActionCmd.getInstance());
 		Gates.i.registerAction(ActionChat.getInstance());
+		Gates.i.registerAction(ActionSetVelocity.getInstance());
 		
 		Gates.i.registerTrigger(TriggerEnter.getInstance());
 		Gates.i.registerTrigger(TriggerBtp.getInstance());
@@ -81,13 +76,7 @@ public class P extends MPlugin
 		
 		// Add Base Commands
 		this.cmdGate = new CmdGate();
-		this.cmdGate.register();
-		
-		// Add Argument Handlers
-		this.cmd.setArgHandler(Gate.class, AHGate.getInstance());
-		this.cmd.setArgHandler(Trigger.class, AHTrigger.getInstance());
-		this.cmd.setArgHandler(Action.class, AHAction.getInstance());
-		this.cmd.setArgHandler(Effect.class, AHEffect.getInstance());		
+		this.cmdGate.register();	
 		
 		// Register events
 		this.theListener = new TheListener(this);

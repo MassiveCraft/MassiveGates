@@ -8,6 +8,7 @@ import com.massivecraft.massivegates.Gates;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
+import com.massivecraft.mcore4.cmd.arg.ARInteger;
 import com.massivecraft.mcore4.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore4.util.Txt;
 
@@ -25,7 +26,7 @@ public class CmdGateTaAlt extends GateCommand
 	@Override
 	public void perform()
 	{
-		Integer pageHumanBased = this.argAs(1, Integer.class, 1);
+		Integer pageHumanBased = this.arg(1, ARInteger.get(), 1);
 		if (pageHumanBased == null) return;
 		
 		List<String> lines = new ArrayList<String>();

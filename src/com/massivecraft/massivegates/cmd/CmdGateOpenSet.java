@@ -4,6 +4,7 @@ import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
+import com.massivecraft.mcore4.cmd.arg.ARBoolean;
 import com.massivecraft.mcore4.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore4.cmd.req.ReqIsPlayer;
 
@@ -23,7 +24,7 @@ public class CmdGateOpenSet extends GateCommand
 	{
 		Gate gate = gme.getSelectedGate();
 		
-		Boolean newState = this.argAs(0, Boolean.class);
+		Boolean newState = this.arg(0, ARBoolean.get());
 		if (newState == null) return;
 		
 		boolean currentState = gate.isOpen();

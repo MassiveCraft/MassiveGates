@@ -3,6 +3,7 @@ package com.massivecraft.massivegates.cmd;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
+import com.massivecraft.massivegates.cmdarg.ARGate;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.mcore4.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore4.cmd.req.ReqIsPlayer;
@@ -23,7 +24,7 @@ public class CmdGateTargetGate extends GateCommand
 	{
 		Gate gate = gme.getSelectedGate();
 		
-		Gate target = this.argAs(0, Gate.class);
+		Gate target = this.arg(0, ARGate.get());
 		if (target == null) return;
 		
 		gate.setTargetGate(target);

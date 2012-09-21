@@ -7,6 +7,7 @@ import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Gates;
 import com.massivecraft.massivegates.Permission;
+import com.massivecraft.mcore4.cmd.arg.ARInteger;
 import com.massivecraft.mcore4.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore4.util.Txt;
 
@@ -22,7 +23,7 @@ public class CmdGateList extends GateCommand
 	@Override
 	public void perform()
 	{
-		Integer pageHumanBased = this.argAs(0, Integer.class, 1);
+		Integer pageHumanBased = this.arg(0, ARInteger.get(), 1);
 		if (pageHumanBased == null) return;
 		List<String> gateInfos = new ArrayList<String>(Gates.i.getAll().size());
 		for (Gate gate : Gates.i.getAll())
