@@ -153,11 +153,6 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 	// FIELD TARGET
 	// -------------------------------------------- //
 	
-	// Old stuff!
-	// TODO: Load into the target properly!
-	public PS targetFixedLoc;
-	public String targetGateId;
-	
 	protected Target target = new Target();
 	public Target getTarget() { return this.target; }
 	

@@ -2,7 +2,6 @@ package com.massivecraft.massivegates;
 
 import org.bukkit.Bukkit;
 
-import com.massivecraft.massivegates.adapter.GateAdapter;
 import com.massivecraft.massivegates.cmd.CmdGate;
 import com.massivecraft.massivegates.ta.ActionChat;
 import com.massivecraft.massivegates.ta.ActionClose;
@@ -25,8 +24,6 @@ import com.massivecraft.massivegates.ta.TriggerPowerOff;
 import com.massivecraft.massivegates.ta.TriggerPowerOn;
 import com.massivecraft.massivegates.ta.TriggerUse;
 import com.massivecraft.mcore4.MPlugin;
-import com.massivecraft.mcore4.xlib.gson.Gson;
-import com.massivecraft.mcore4.xlib.gson.GsonBuilder;
 
 public class P extends MPlugin
 {
@@ -39,9 +36,6 @@ public class P extends MPlugin
 	// Command
 	public CmdGate cmdGate;
 	
-	// TODO remove asap
-	public Gson gfgson;
-	
 	public P()
 	{
 		P.p = this;
@@ -51,8 +45,6 @@ public class P extends MPlugin
 	public void onEnable()
 	{
 		if ( ! preEnable()) return;
-		
-		this.gfgson = this.getGateFreeGsonBuilder().create();
 		
 		// Load Conf from disk
 		ConfServer.i.load();
@@ -95,19 +87,6 @@ public class P extends MPlugin
 		Bukkit.getMessenger().registerOutgoingPluginChannel(this, "RubberBand");
 		
 		postEnable();
-	}
-	
-	@Override
-	public GsonBuilder getGsonBuilder()
-	{
-		return this.getGateFreeGsonBuilder()
-		.registerTypeAdapter(Gate.class, GateAdapter.getInstance())
-		;
-	}
-	
-	public GsonBuilder getGateFreeGsonBuilder()
-	{
-		return super.getGsonBuilder();
 	}
 	
 }
