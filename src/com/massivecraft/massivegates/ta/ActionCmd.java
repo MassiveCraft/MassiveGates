@@ -40,7 +40,7 @@ public class ActionCmd extends BaseAction
 			cmd = cmd.replace("{p}", player.getName());
 		}
 		
-		P.p.log("CMD-Action:", cmd);
+		P.p.log("CMD-Action: ", cmd);
 		Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), cmd);
 	}
 	
