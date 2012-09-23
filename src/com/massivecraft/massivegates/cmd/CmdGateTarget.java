@@ -18,6 +18,7 @@ public class CmdGateTarget extends GateCommand
 		this.addAliases("target");
 		this.addSubCommand(new CmdGateTargetHere());
 		this.addSubCommand(new CmdGateTargetGate());
+		this.addSubCommand(new CmdGateTargetRubberserver());
 		this.addSubCommand(new CmdGateTargetGoto());
 		this.addSubCommand(new CmdGateTargetRemove());
 		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
@@ -34,7 +35,7 @@ public class CmdGateTarget extends GateCommand
 		if (Permission.TARGET_GET.has(sender))
 		{
 			Gate gate = gme.getSelectedGate();
-			ret.add("<i>Current target: "+gate.getTargetDesc());
+			ret.add("<i>Current target: "+gate.getTarget().getDesc());
 		}
 		
 		return ret;

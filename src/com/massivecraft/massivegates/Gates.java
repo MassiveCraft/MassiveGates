@@ -64,26 +64,6 @@ public class Gates extends GsonClassManager<Gate>
 		return this.getGateAtContentCoord(coord);
 	}
 	
-	/*public void rawReindex()
-	{
-		this.frameToGate.clear();
-		this.contentToGate.clear();
-		for (Gate gate : this.getAll())
-		{
-			for (WorldCoord3 coord : gate.getFrame())
-			{
-				this.frameToGate.put(coord, gate);
-			}
-			for (WorldCoord3 coord : gate.getContent())
-			{
-				this.contentToGate.put(coord, gate);
-			}
-		}
-	}
-
-	protected boolean shouldReindex;
-	public void reindex() { this.shouldReindex = true; }*/
-	
 	// -------------------------------------------- //
 	// BUILT IN EVENTS
 	// -------------------------------------------- //

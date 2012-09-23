@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 
 import com.massivecraft.massivegates.Gate;
+import com.massivecraft.massivegates.Target;
 
 public abstract class GateTeleportEvent extends SingleGateEvent
 {	
@@ -16,10 +17,10 @@ public abstract class GateTeleportEvent extends SingleGateEvent
 	public Location getFrom() { return this.from; }
 	
 	// FIELD: to
-	private Location to;
-	public Location getTo() { return this.to; }
+	private Target to;
+	public Target getTo() { return this.to; }
 	
-	public GateTeleportEvent(Gate gate, Entity user, Location from, Location to)
+	public GateTeleportEvent(Gate gate, Entity user, Location from, Target to)
 	{
 		super(gate);
 		this.user = user;

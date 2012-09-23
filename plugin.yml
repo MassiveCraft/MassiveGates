@@ -127,6 +127,7 @@ permissions:
       massivegates.target.get: true
       massivegates.target.set: true
       massivegates.target.here: true
+      massivegates.target.rubberserver: true
       massivegates.target.goto: true
       massivegates.target.remove: true
   massivegates.target.get:
@@ -138,6 +139,9 @@ permissions:
   massivegates.target.here:
     default: false
     description: set target where you stand
+  massivegates.target.rubberserver:
+    default: false
+    description: target rubberband server
   massivegates.target.goto:
     default: false
     description: goto current target

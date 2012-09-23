@@ -5,6 +5,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.event.HandlerList;
 
 import com.massivecraft.massivegates.Gate;
+import com.massivecraft.massivegates.Target;
 import com.massivecraft.massivegates.event.abs.GateTeleportEvent;
 
 public class GateBeforeTeleportEvent extends GateTeleportEvent
@@ -20,7 +21,7 @@ public class GateBeforeTeleportEvent extends GateTeleportEvent
 	// FIELDS
 	// -------------------------------------------- //
 	
-	public GateBeforeTeleportEvent(Gate gate, Entity user, Location from, Location to)
+	public GateBeforeTeleportEvent(Gate gate, Entity user, Location from, Target to)
 	{
 		super(gate, user, from, to);
 	}

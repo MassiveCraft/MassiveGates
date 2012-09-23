@@ -21,7 +21,7 @@ public class CmdGateTargetRemove extends GateCommand
 	public void perform()
 	{
 		Gate gate = gme.getSelectedGate();
-		gate.setTargetFixedLoc(null);
+		gate.getTarget().remove();
 		this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>target was removed.");
 	}
 }

@@ -2,7 +2,6 @@ package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.LocWrap;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.mcore4.cmd.req.ReqHasPerm;
@@ -21,20 +20,17 @@ public class CmdGateTargetGoto extends GateCommand
 	@Override
 	public void perform()
 	{
-		
-		// TODO: Unreachable location check.
-		
 		Gate gate = gme.getSelectedGate();
-		LocWrap locw = gate.getTarget();
-		if (locw != null)
+		
+		if (!gate.getTarget().exists())
 		{
-			me.teleport(locw.getLocation());
-			this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>teleportet to target:");
-			this.msg(gate.getTargetDesc());
+			this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>does not have a target.");
 		}
 		else
 		{
-			this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>does not have a target.");
+			this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>teleportet to target:");
+			this.msg(gate.getTarget().getDesc());
+			gate.getTarget().teleport(me);
 		}
 	}
 }

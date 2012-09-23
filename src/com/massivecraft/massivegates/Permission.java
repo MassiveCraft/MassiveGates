@@ -33,6 +33,7 @@ public enum Permission
 	TARGET_GET("target.get"),
 	TARGET_GATE("target.gate"),
 	TARGET_HERE("target.here"),
+	TARGET_RUBBERSERVER("target.rubberserver"),
 	TARGET_GOTO("target.goto"),
 	TARGET_REMOVE("target.remove"),
 	TA_ADD("ta.add"),

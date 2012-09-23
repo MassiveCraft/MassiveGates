@@ -32,7 +32,6 @@ import com.massivecraft.massivegates.event.GatePowerChangeEvent;
 import com.massivecraft.massivegates.event.GateUseEvent;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
-import com.massivecraft.massivegates.util.TeleportUtil;
 import com.massivecraft.massivegates.util.VisualizeUtil;
 
 public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
@@ -153,73 +152,13 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 	// FIELD TARGET
 	// -------------------------------------------- //
 	
-	// FIELD: targetFixedLoc - used when the gate is targeting a fixed location
-	protected LocWrap targetFixedLoc;
-	public LocWrap getTargetFixedLoc()
-	{
-		return this.targetFixedLoc;
-	}
-	public void setTargetFixedLoc(LocWrap val)
-	{
-		this.targetFixedLoc = val;
-		this.targetGateId = null;
-	}
+	// Old stuff!
+	// TODO: Load into the target properly!
+	public LocWrap targetFixedLoc;
+	public String targetGateId;
 	
-	// FIELD: targetGateId - Used when the gate is targeting another certain gate
-	protected String targetGateId;
-	public String getTargetGateId()
-	{
-		return this.targetGateId;
-	}
-	public void setTargetGateId(String val)
-	{
-		this.targetGateId = val;
-		this.targetFixedLoc = null;
-	}
-	public Gate getTargetGate()
-	{
-		return Gates.i.get(this.getTargetGateId());
-	}
-	public void setTargetGate(Gate val)
-	{
-		this.setTargetGateId(val.getId());
-	}
-	
-	// MIXED
-	public LocWrap getTarget()
-	{
-		if (this.targetFixedLoc != null) return this.targetFixedLoc;
-		if (this.getTargetGate() != null && this.getTargetGate().getExit() != null) return this.getTargetGate().getExit();
-		return null;
-	}
-	
-	public TargetType getTargetType()
-	{
-		if (this.targetFixedLoc != null) return TargetType.LOCATION;
-		if (this.getTargetGate() != null && this.getTargetGate().getExit() != null) return TargetType.GATE;
-		return TargetType.NONE;
-	}
-	
-	public String getTargetDesc()
-	{
-		String ret = null;
-		TargetType targetType = this.getTargetType();
-		switch(targetType)
-		{
-			case LOCATION: 
-				LocWrap wloc = getTargetFixedLoc();
-				ret = "<k>Location: <v>"+wloc.getVeryShortDesc();
-			break;
-			case GATE: 
-				Gate gate = getTargetGate();
-				ret = "<k>Gate: <v>"+gate.getIdNameStringShort();
-			break;
-			case NONE: 
-				ret = "<v>*NONE*";
-			break;
-		}
-		return ret;
-	}
+	protected Target target = new Target();
+	public Target getTarget() { return this.target; }
 	
 	// -------------------------------------------- //
 	// FIELD CONTENT
@@ -619,7 +558,7 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 	public void use(Entity user)
 	{
 		// Is there even a target?
-		if (this.getTarget() == null) return;
+		if (!this.getTarget().exists()) return;
 				
 		// Call the use event
 		GateUseEvent useEvent = new GateUseEvent(this, user);
@@ -628,13 +567,13 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 		
 		// Store from and to locations
 		Location from = user.getLocation();
-		Location to = this.getTarget().getLocation();
+		Target to = this.getTarget();
 		
 		// Call the before event
 		new GateBeforeTeleportEvent(this, user, from, to).run();
 		
 		// Do safe teleport
-		TeleportUtil.safeTeleport(user, to);
+		target.delayedTeleport(user);
 		
 		// Call the after teleport event a bit later
 		new GateAfterTeleportEvent(this, user, from, to).run(1);

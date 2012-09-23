@@ -27,7 +27,7 @@ public class CmdGateTargetGate extends GateCommand
 		Gate target = this.arg(0, ARGate.get());
 		if (target == null) return;
 		
-		gate.setTargetGate(target);
+		gate.getTarget().setGate(target);
 		this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>now has target gate "+target.getIdNameStringShort()+"<i>.");
 	}
 }
