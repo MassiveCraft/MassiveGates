@@ -585,9 +585,9 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 	
 	public void visualizeFor(Player player)
 	{
-		VisualizeUtil.addCoords(player, this.getFrame(), Conf.visFrame);
-		VisualizeUtil.addCoords(player, this.getContent(), Conf.visContent);
-		VisualizeUtil.addCoords(player, this.getPower(), Conf.visPower);
+		VisualizeUtil.addCoords(player, this.getFrame(), Const.visFrame);
+		VisualizeUtil.addCoords(player, this.getContent(), Const.visContent);
+		VisualizeUtil.addCoords(player, this.getPower(), Const.visPower);
 	}
 	
 	// -------------------------------------------- //

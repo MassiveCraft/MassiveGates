@@ -1,6 +1,6 @@
 package com.massivecraft.massivegates.cmd;
 
-import com.massivecraft.massivegates.Conf;
+import com.massivecraft.massivegates.ConfServer;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.mcore4.cmd.HelpCommand;
 
@@ -9,7 +9,7 @@ public class CmdGate extends GateCommand
 	public CmdGate()
 	{
 		super();
-		this.addAliases(Conf.baseCommandAliases);
+		this.addAliases(ConfServer.baseCommandAliases);
 		this.addSubCommand(HelpCommand.getInstance());
 		this.addSubCommand(new CmdGateNew());
 		this.addSubCommand(new CmdGateDelete());

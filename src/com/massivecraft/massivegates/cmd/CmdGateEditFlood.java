@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 
 import org.bukkit.block.Block;
 
-import com.massivecraft.massivegates.Conf;
+import com.massivecraft.massivegates.Const;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
@@ -46,11 +46,11 @@ public class CmdGateEditFlood extends GateCommand
 		{
 			Set<Block> frame = FloodUtil.getFrameFor(content, orientation);
 			gate.addFrameBlocks(frame);
-			VisualizeUtil.addBlocks(me, frame, Conf.visFrame);
+			VisualizeUtil.addBlocks(me, frame, Const.visFrame);
 		}
 		
 		gate.addContentBlocks(content);
-		VisualizeUtil.addBlocks(me, content, Conf.visContent);
+		VisualizeUtil.addBlocks(me, content, Const.visContent);
 		
 		this.msg("<i>The flood found an added a gate shape <h>"+orientation.getDesc()+"<i>.");
 		if (addFrame)

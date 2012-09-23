@@ -3,7 +3,7 @@ package com.massivecraft.massivegates.cmd;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 
-import com.massivecraft.massivegates.Conf;
+import com.massivecraft.massivegates.Const;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
@@ -41,13 +41,13 @@ public class CmdGateEditThat extends GateCommand
 		if (firstArgChar == 'f')
 		{
 			gate.addFrame(thatCoord);
-			VisualizeUtil.addLocation(me, thatLoc, Conf.visFrame);
+			VisualizeUtil.addLocation(me, thatLoc, Const.visFrame);
 			SmokeUtil.spawnCloudSimple(thatLoc);
 		}
 		else if (firstArgChar == 'c')
 		{
 			gate.addContent(thatCoord);
-			VisualizeUtil.addLocation(me, thatLoc, Conf.visContent);
+			VisualizeUtil.addLocation(me, thatLoc, Const.visContent);
 			SmokeUtil.spawnCloudSimple(thatLoc);	
 		}
 		else if (firstArgChar == 'd')

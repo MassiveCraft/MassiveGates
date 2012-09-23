@@ -55,7 +55,7 @@ public class GPlayer extends PlayerEntity<GPlayer>
 		
 		Block block = null;
 		
-		Iterator<Block> itr = new BlockIterator(me, Conf.lineOfSightLimit);
+		Iterator<Block> itr = new BlockIterator(me, ConfServer.lineOfSightLimit);
 		while (itr.hasNext())
 		{
 			block = itr.next();
@@ -81,7 +81,7 @@ public class GPlayer extends PlayerEntity<GPlayer>
 		Gate ret = null;
 		
 		WorldCoord3 coord = new WorldCoord3();
-		Iterator<Block> itr = new BlockIterator(me, Conf.lineOfSightLimit);
+		Iterator<Block> itr = new BlockIterator(me, ConfServer.lineOfSightLimit);
 		while (itr.hasNext())
 		{
 			coord.load(itr.next());

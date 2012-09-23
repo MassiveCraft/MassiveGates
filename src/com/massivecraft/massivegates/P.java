@@ -56,6 +56,9 @@ public class P extends MPlugin
 		
 		this.gfgson = this.getGateFreeGsonBuilder().create();
 		
+		// Load Conf from disk
+		ConfServer.i.load();
+		
 		// Register Triggers & Actions
 		Gates.i.registerAction(ActionUse.getInstance());
 		Gates.i.registerAction(ActionUseForced.getInstance());
@@ -79,9 +82,6 @@ public class P extends MPlugin
 		Gates.i.registerTrigger(TriggerFrameAlter.getInstance());
 		Gates.i.registerTriggers(TriggerHour.triggerHours.values());
 		
-		// Load Conf from disk
-		Conf.load();
-		
 		// Add Base Commands
 		this.cmdGate = new CmdGate();
 		this.cmdGate.register();	
@@ -91,7 +91,7 @@ public class P extends MPlugin
 		Bukkit.getServer().getPluginManager().registerEvents(this.theListener, this);
 		
 		// Register the HourTriggingTask
-		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new HourTriggingTask(), Conf.hourTriggingTaskTicks, Conf.hourTriggingTaskTicks);
+		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new HourTriggingTask(), Const.hourTriggingTaskTicks, Const.hourTriggingTaskTicks);
 		
 		// Connect to RubberBand
 		Bukkit.getMessenger().registerOutgoingPluginChannel(this, "RubberBand");

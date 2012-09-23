@@ -65,7 +65,7 @@ public class TheListener implements Listener
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void normalPlayerPortalEvent(PlayerPortalEvent event)
 	{
-		if (Conf.disableVanillaGates)
+		if (ConfServer.disableVanillaGates)
 		{
 			event.setCancelled(false);
 		}
