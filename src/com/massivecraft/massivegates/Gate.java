@@ -35,14 +35,17 @@ import com.massivecraft.massivegates.ta.Trigger;
 import com.massivecraft.massivegates.util.VisualizeUtil;
 import com.massivecraft.mcore4.PS;
 
-public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
+public class Gate extends com.massivecraft.mcore4.store.Entity<Gate, String>
 {
 	// -------------------------------------------- //
 	// META
 	// -------------------------------------------- //
 	
-	@Override public Gates getManager() { return Gates.i; }
 	@Override protected Gate getThis() { return this; }
+	
+	private final static transient Gate defaultInstance = new Gate();
+	@Override public Gate getDefaultInstance(){ return defaultInstance; }
+	@Override protected Class<Gate> getClazz() { return Gate.class; }
 	
 	// -------------------------------------------- //
 	// FIELDS
@@ -56,7 +59,7 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 		this.fillContent();
 		
 		// This is safe as you only may save attached entites.
-		this.save();
+		this.sync();
 		new GateOpenChangeEvent(this).run();
 		
 		// If someone is standing in a gate while it opens that should be considered as entering the gate.
@@ -66,7 +69,7 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 			for (Player player : Bukkit.getOnlinePlayers())
 			{
 				coord.read(player.getLocation().getBlock());
-				if (this != Gates.i.getGateAtContentCoord(coord)) continue;
+				if (this != GateColl.i.getGateAtContentCoord(coord)) continue;
 				new GatePlayerWalkEvent(player, null, this, GatePlayerWalkType.INTO).run();
 			}
 		}
@@ -173,7 +176,7 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 		}
 		
 		// Overwrite
-		Gate currentGateThere = Gates.i.getGateAtCoord(coord);
+		Gate currentGateThere = GateColl.i.getGateAtCoord(coord);
 		if (currentGateThere != null)
 		{
 			currentGateThere.delContent(coord);
@@ -184,7 +187,7 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 		this.content.add(coord);
 		
 		// Index
-		Gates.i.contentToGate.put(coord, this);
+		GateColl.i.contentToGate.put(coord, this);
 		
 		// Ensure material
 		if (this.isOpen())
@@ -209,7 +212,7 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 		this.content.remove(coord);		
 		
 		// Index
-		Gates.i.contentToGate.remove(coord);
+		GateColl.i.contentToGate.remove(coord);
 		
 		// Ensure material
 		if (this.open)
@@ -269,7 +272,7 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 		}
 		
 		// Overwrite
-		Gate currentGateThere = Gates.i.getGateAtCoord(coord);
+		Gate currentGateThere = GateColl.i.getGateAtCoord(coord);
 		if (currentGateThere != null)
 		{
 			currentGateThere.delContent(coord);
@@ -281,7 +284,7 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 		this.powerCheck(coord);
 		
 		// Index
-		Gates.i.frameToGate.put(coord, this);
+		GateColl.i.frameToGate.put(coord, this);
 	}
 	
 	public void delFrame(PS coord)
@@ -300,7 +303,7 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 		this.powerRemove(coord);
 		
 		// Index
-		Gates.i.frameToGate.remove(coord);
+		GateColl.i.frameToGate.remove(coord);
 	}
 	
 	public void clearFrame()
@@ -424,7 +427,7 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 		{
 			String actionId = actionIdArg.get(0);
 			String arg = actionIdArg.get(1);
-			Action action = Gates.i.getActionId(actionId);
+			Action action = GateColl.i.getActionId(actionId);
 			if (action == null) continue;
 			Entry<Action, String> actionArg = new SimpleEntry<Action, String>(action, arg);
 			ret.add(actionArg);

@@ -15,7 +15,7 @@ public class Target
 	
 	public String gateId;
 	public void setGate(Gate gate) { this.remove(); this.gateId = gate.getId(); }
-	public Gate getGate() { return Gates.i.get(this.gateId); }
+	public Gate getGate() { return GateColl.i.get(this.gateId); }
 	
 	public String rubberServerName;
 	public void setRubberServer(String name) { this.remove(); this.rubberServerName = name; }

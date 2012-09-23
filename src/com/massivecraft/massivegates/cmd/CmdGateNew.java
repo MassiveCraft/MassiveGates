@@ -2,7 +2,7 @@ package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.Gates;
+import com.massivecraft.massivegates.GateColl;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.mcore4.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore4.cmd.req.ReqIsPlayer;
@@ -21,7 +21,7 @@ public class CmdGateNew extends GateCommand
 	@Override
 	public void perform()
 	{
-		Gate gate = Gates.i.create();
+		Gate gate = GateColl.i.create();
 		String name = this.argConcatFrom(0);
 		gate.setName(name);
 		gme.setSelectedGate(gate);

@@ -49,28 +49,32 @@ public class P extends MPlugin
 		// Load Conf from disk
 		ConfServer.i.load();
 		
-		// Register Triggers & Actions
-		Gates.i.registerAction(ActionUse.getInstance());
-		Gates.i.registerAction(ActionUseForced.getInstance());
-		Gates.i.registerAction(ActionOpen.getInstance());
-		Gates.i.registerAction(ActionClose.getInstance());
-		Gates.i.registerAction(ActionFxe.getInstance());
-		Gates.i.registerAction(ActionFxg.getInstance());
-		Gates.i.registerAction(ActionMsg.getInstance());
-		Gates.i.registerAction(ActionCmd.getInstance());
-		Gates.i.registerAction(ActionChat.getInstance());
-		Gates.i.registerAction(ActionSetVelocity.getInstance());
+		// Init collections
+		GateColl.i.init();
+		GPlayerColl.i.init();
 		
-		Gates.i.registerTrigger(TriggerEnter.getInstance());
-		Gates.i.registerTrigger(TriggerBtp.getInstance());
-		Gates.i.registerTrigger(TriggerAtp.getInstance());
-		Gates.i.registerTrigger(TriggerUse.getInstance());
-		Gates.i.registerTrigger(TriggerOpen.getInstance());
-		Gates.i.registerTrigger(TriggerClose.getInstance());
-		Gates.i.registerTrigger(TriggerPowerOn.getInstance());
-		Gates.i.registerTrigger(TriggerPowerOff.getInstance());
-		Gates.i.registerTrigger(TriggerFrameAlter.getInstance());
-		Gates.i.registerTriggers(TriggerHour.triggerHours.values());
+		// Register Triggers & Actions
+		GateColl.i.registerAction(ActionUse.getInstance());
+		GateColl.i.registerAction(ActionUseForced.getInstance());
+		GateColl.i.registerAction(ActionOpen.getInstance());
+		GateColl.i.registerAction(ActionClose.getInstance());
+		GateColl.i.registerAction(ActionFxe.getInstance());
+		GateColl.i.registerAction(ActionFxg.getInstance());
+		GateColl.i.registerAction(ActionMsg.getInstance());
+		GateColl.i.registerAction(ActionCmd.getInstance());
+		GateColl.i.registerAction(ActionChat.getInstance());
+		GateColl.i.registerAction(ActionSetVelocity.getInstance());
+		
+		GateColl.i.registerTrigger(TriggerEnter.getInstance());
+		GateColl.i.registerTrigger(TriggerBtp.getInstance());
+		GateColl.i.registerTrigger(TriggerAtp.getInstance());
+		GateColl.i.registerTrigger(TriggerUse.getInstance());
+		GateColl.i.registerTrigger(TriggerOpen.getInstance());
+		GateColl.i.registerTrigger(TriggerClose.getInstance());
+		GateColl.i.registerTrigger(TriggerPowerOn.getInstance());
+		GateColl.i.registerTrigger(TriggerPowerOff.getInstance());
+		GateColl.i.registerTrigger(TriggerFrameAlter.getInstance());
+		GateColl.i.registerTriggers(TriggerHour.triggerHours.values());
 		
 		// Add Base Commands
 		this.cmdGate = new CmdGate();

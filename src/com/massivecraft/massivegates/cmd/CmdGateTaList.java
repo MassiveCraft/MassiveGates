@@ -6,7 +6,7 @@ import java.util.Map.Entry;
 
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.Gates;
+import com.massivecraft.massivegates.GateColl;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.ta.Action;
@@ -38,7 +38,7 @@ public class CmdGateTaList extends GateCommand
 		
 		List<String> lines = new ArrayList<String>();
 		
-		for(Trigger trigger : Gates.i.getTriggers())
+		for(Trigger trigger : GateColl.i.getTriggers())
 		{
 			int i = 0;
 			for (Entry<Action, String> actionArg : gate.getActionArgs(trigger))

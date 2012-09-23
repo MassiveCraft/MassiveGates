@@ -13,8 +13,7 @@ import org.bukkit.util.BlockIterator;
 import com.massivecraft.massivegates.util.FloodOrientation;
 import com.massivecraft.massivegates.util.FloodUtil;
 import com.massivecraft.mcore4.PS;
-import com.massivecraft.mcore4.persist.IClassManager;
-import com.massivecraft.mcore4.persist.PlayerEntity;
+import com.massivecraft.mcore4.store.PlayerEntity;
 
 /**
  * The VPlayer is a "skin" for a normal player.
@@ -26,18 +25,21 @@ public class GPlayer extends PlayerEntity<GPlayer>
 	// META
 	// -------------------------------------------- //
 	
-	@Override public IClassManager<GPlayer> getManager() { return GPlayers.i; }
 	@Override protected GPlayer getThis() { return this; }
 	
+	private final static transient GPlayer defaultInstance = new GPlayer();
+	@Override public GPlayer getDefaultInstance(){ return defaultInstance; }
+	@Override protected Class<GPlayer> getClazz() { return GPlayer.class; }
+
 	// -------------------------------------------- //
 	// FIELDS
 	// -------------------------------------------- //
 	
 	// FIELD: selectedGateId
-	private String selectedGateId = null;
+	protected String selectedGateId = null;
 	public Gate getSelectedGate()
 	{
-		return this.selectedGateId == null ? null : Gates.i.get(this.selectedGateId);
+		return this.selectedGateId == null ? null : GateColl.i.get(this.selectedGateId);
 	}
 	
 	public void setSelectedGate(Gate val)
@@ -86,7 +88,7 @@ public class GPlayer extends PlayerEntity<GPlayer>
 		while (itr.hasNext())
 		{
 			coord.read(itr.next());
-			ret = Gates.i.getGateAtCoord(coord);
+			ret = GateColl.i.getGateAtCoord(coord);
 			if (ret != null) break;
 		}
 		

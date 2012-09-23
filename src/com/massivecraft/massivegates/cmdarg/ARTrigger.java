@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.massivecraft.massivegates.Gates;
+import com.massivecraft.massivegates.GateColl;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.ta.Trigger;
 import com.massivecraft.mcore4.cmd.MCommand;
@@ -21,7 +21,7 @@ public class ARTrigger extends ARAbstractSelect<Trigger>
 	@Override
 	public Trigger select(String str, MCommand mcommand)
 	{
-		return Gates.i.getTriggerName(str);
+		return GateColl.i.getTriggerName(str);
 	}
 	
 	@Override
@@ -34,7 +34,7 @@ public class ARTrigger extends ARAbstractSelect<Trigger>
 	public Collection<String> altNames(MCommand mcommand)
 	{
 		List<String> ret = new ArrayList<String>();
-		for (Trigger trigger : Gates.i.getTriggers())
+		for (Trigger trigger : GateColl.i.getTriggers())
 		{
 			ret.add(trigger.getName());
 		}

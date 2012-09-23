@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.massivecraft.massivegates.Gates;
+import com.massivecraft.massivegates.GateColl;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.mcore4.cmd.MCommand;
@@ -21,7 +21,7 @@ public class ARAction extends ARAbstractSelect<Action>
 	@Override
 	public Action select(String str, MCommand mcommand)
 	{
-		return Gates.i.getActionName(str);
+		return GateColl.i.getActionName(str);
 	}
 	
 	@Override
@@ -34,7 +34,7 @@ public class ARAction extends ARAbstractSelect<Action>
 	public Collection<String> altNames(MCommand mcommand)
 	{
 		List<String> ret = new ArrayList<String>();
-		for (Action action : Gates.i.getActions())
+		for (Action action : GateColl.i.getActions())
 		{
 			ret.add(action.getName());
 		}

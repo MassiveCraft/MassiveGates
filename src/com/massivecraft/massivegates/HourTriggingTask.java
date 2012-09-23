@@ -66,7 +66,7 @@ public class HourTriggingTask implements Runnable
 	public void triggerWorldHour(World world, int h)
 	{
 		h = h % 24;
-		for (Gate gate : Gates.i.getAll())
+		for (Gate gate : GateColl.i.getAll())
 		{
 			World gateWorld = gate.calcGateWorld();
 			if ( ! world.equals(gateWorld)) continue;

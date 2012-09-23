@@ -1,6 +1,5 @@
 package com.massivecraft.massivegates;
 
-import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -13,38 +12,47 @@ import com.massivecraft.massivegates.event.GateSaveEvent;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
 import com.massivecraft.mcore4.PS;
-import com.massivecraft.mcore4.persist.gson.GsonClassManager;
+import com.massivecraft.mcore4.store.Coll;
+import com.massivecraft.mcore4.store.MStore;
+import com.massivecraft.mcore4.store.ModificationState;
 import com.massivecraft.mcore4.util.Txt;
 
-public class Gates extends GsonClassManager<Gate>
+public class GateColl extends Coll<Gate, String>
 {
 	// -------------------------------------------- //
 	// META
 	// -------------------------------------------- //
-	public static Gates i = new Gates();
 	
-	private Gates()
+	public static GateColl i = new GateColl();
+	private GateColl()
 	{
-		super(P.p.gson, new File(P.p.getDataFolder(), "gate"), false, true);
-		P.p.persist.setManager(Gate.class, this);
-		P.p.persist.setSaveInterval(Gate.class, 1000*60*30);
+		super(MStore.getDb(ConfServer.dburi), P.p, "ai", Const.gateBasename, Gate.class, String.class, false);
+	}
+	
+	// -------------------------------------------- //
+	// COPY
+	// -------------------------------------------- //
+	// TODO: Even though this works it's hell to maintain! Fix a better solution :P
+	@Override
+	public void copy(Object ofrom, Object oto)
+	{
+		Gate from = (Gate)ofrom;
+		Gate to = (Gate)oto;
 		
-		this.loadAll();
+		to.open = from.open;
+		to.name = from.name;
+		to.desc = from.desc;
+		to.matopen = from.matopen;
+		to.dataopen = from.dataopen;
+		to.matclosed = from.matclosed;
+		to.dataclosed = from.dataclosed;
+		to.exit = from.exit;
+		to.target = from.target;
+		to.content = from.content;
+		to.frame = from.frame;
+		to.powercoords = from.powercoords;
+		to.trigger2ActionIdArgs = from.trigger2ActionIdArgs;
 	}
-
-	@Override
-	public Class<Gate> getManagedClass() { return Gate.class; }
-
-	@Override
-	public String idFix(Object oid)
-	{
-		if (oid == null) return null;
-		if (oid instanceof String) return (String) oid;
-		return null;
-	}
-
-	@Override
-	public boolean idCanFix(Class<?> clazz) { return clazz.equals(String.class); }
 	
 	// -------------------------------------------- //
 	// INDEX
@@ -65,14 +73,85 @@ public class Gates extends GsonClassManager<Gate>
 		return this.getGateAtContentCoord(coord);
 	}
 	
+	public void clearIndexFor(Gate gate)
+	{
+		for (PS coord : gate.getContent())
+		{
+			this.contentToGate.remove(coord);
+		}
+		for (PS coord : gate.getFrame())
+		{
+			this.frameToGate.remove(coord);
+		}
+	}
+	
+	public void buildIndexFor(Gate gate)
+	{
+		for (PS coord : gate.getContent())
+		{
+			this.contentToGate.put(coord, gate);
+		}
+		for (PS coord : gate.getFrame())
+		{
+			this.frameToGate.put(coord, gate);
+		}
+	}
+	
 	// -------------------------------------------- //
 	// BUILT IN EVENTS
 	// -------------------------------------------- //
 	
 	@Override
-	protected synchronized String attach(Gate entity, Object oid, boolean allowExistingIdUsage)
+	public ModificationState syncId(String id)
 	{
-		String ret = super.attach(entity, oid, allowExistingIdUsage);
+		Gate gate = this.id2entity.get(id);
+		
+		if (gate != null)
+		{
+			// Run event
+			new GateSaveEvent(gate).run();
+		}
+		
+		return super.syncId(id);
+	}
+	
+	@Override
+	public synchronized Gate removeAtLocal(String id)
+	{
+		Gate entity = this.id2entity.get(id);
+		
+		this.clearIndexFor(entity);
+		
+		// Run event
+		new GateDetachEvent(entity).run();
+		
+		return super.removeAtLocal(id);
+	}
+	
+	@Override
+	public synchronized void loadFromRemote(String id)
+	{
+		Gate gate = this.id2entity.get(id);
+		if (gate == null)
+		{
+			super.loadFromRemote(id);
+			gate = this.id2entity.get(id);
+			this.buildIndexFor(gate);
+			new GateAttachEvent(gate).run();
+		}
+		else
+		{
+			this.clearIndexFor(gate);
+			super.loadFromRemote(id);
+			this.buildIndexFor(gate);
+		}
+	}
+	
+	/*
+	@Override
+	protected synchronized String attach(Gate entity, Object oid, boolean noteChange)
+	{
+		String ret = super.attach(entity, oid, noteChange);
 		if (ret != null)
 		{
 			// The attach was successful
@@ -88,55 +167,14 @@ public class Gates extends GsonClassManager<Gate>
 			}
 			
 			// Run event
-			new GateAttachEvent(entity).run();
+			new GateAttachEvent(entity).run(); // TODO
 		}
 		return ret;
-		
-	}
-	
-	@Override
-	protected synchronized void detach(Gate entity, String id)
-	{
-		for (PS coord : entity.getContent())
-		{
-			this.contentToGate.remove(coord);
-		}
-		for (PS coord : entity.getFrame())
-		{
-			this.frameToGate.remove(coord);
-		}
-		
-		// Run event
-		new GateDetachEvent(entity).run();
-		
-		super.detach(entity, id);
-	}
-	
-	@Override
-	protected boolean save(String id, Gate entity)
-	{
-		// Run event
-		new GateSaveEvent(entity).run();
-		
-		return super.save(id, entity);
-	}
+	}*/
 	
 	// -------------------------------------------- //
 	// WHEN ACTION
 	// -------------------------------------------- //
-	
-	/*
-	protected Set<GateFx> fxs = new HashSet<GateFx>();
-	public Set<GateFx> getFxs() { return this.fxs; }
-	public void registerFx(GateFx fx) {this.fxs.add(fx); }
-	public GateFx getFx(String parsie)
-	{
-		for (GateFx gfx : this.getFxs())
-		{
-			if (gfx.parse(parsie) != null) return gfx; 
-		}
-		return null;
-	}*/
 	
 	protected Set<Action> actions = new LinkedHashSet<Action>();
 	protected Map<String, Action> id2action = new HashMap<String, Action>();

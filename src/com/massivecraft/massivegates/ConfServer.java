@@ -11,6 +11,8 @@ public class ConfServer extends SimpleConfig
 	// FIELDS
 	// -------------------------------------------- //
 	
+	public static String dburi = "default";
+	
 	public static List<String> baseCommandAliases = MUtil.list("g");
 	public static boolean disableVanillaGates = false;
 	public static int floodFillLimit = 200;

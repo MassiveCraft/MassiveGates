@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.Gates;
+import com.massivecraft.massivegates.GateColl;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.mcore4.cmd.arg.ARInteger;
 import com.massivecraft.mcore4.cmd.req.ReqHasPerm;
@@ -25,8 +25,8 @@ public class CmdGateList extends GateCommand
 	{
 		Integer pageHumanBased = this.arg(0, ARInteger.get(), 1);
 		if (pageHumanBased == null) return;
-		List<String> gateInfos = new ArrayList<String>(Gates.i.getAll().size());
-		for (Gate gate : Gates.i.getAll())
+		List<String> gateInfos = new ArrayList<String>(GateColl.i.getAll().size());
+		for (Gate gate : GateColl.i.getAll())
 		{
 			gateInfos.add("<white>"+gate.getIdNameStringShort());
 		}

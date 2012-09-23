@@ -21,7 +21,7 @@ public abstract class GateCommand extends MCommand
 	@Override
 	public void fixSenderVars()
 	{
-		this.gme = GPlayers.i.get(this.me);
+		this.gme = GPlayerColl.i.get(this.me);
 	}
 	
 }

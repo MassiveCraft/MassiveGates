@@ -6,9 +6,9 @@ import java.util.Map;
 import org.bukkit.entity.Player;
 
 import com.massivecraft.massivegates.GPlayer;
-import com.massivecraft.massivegates.GPlayers;
+import com.massivecraft.massivegates.GPlayerColl;
 import com.massivecraft.massivegates.Gate;
-import com.massivecraft.massivegates.Gates;
+import com.massivecraft.massivegates.GateColl;
 import com.massivecraft.mcore4.cmd.MCommand;
 import com.massivecraft.mcore4.cmd.arg.ArgReader;
 import com.massivecraft.mcore4.cmd.arg.ArgResult;
@@ -32,7 +32,7 @@ public class ARGate implements ArgReader<Gate>
 			else
 			{
 				Player me = (Player)mcommand.sender;
-				GPlayer gme = GPlayers.i.get(me);
+				GPlayer gme = GPlayerColl.i.get(me);
 				result.setResult(gme.getThatGate(false));
 				if (result.hasResult() == false)
 				{
@@ -43,13 +43,13 @@ public class ARGate implements ArgReader<Gate>
 		}
 		
 		// Then we attempt to get by id.
-		result.setResult(Gates.i.get(str));
+		result.setResult(GateColl.i.get(str));
 		if (result.hasResult()) return result;
 		
 		// No matching id huh?... Lets test against the gate's name then:
 		// Build a name to gate map:
 		Map<String, Gate> name2gate = new HashMap<String, Gate>();
-		for (Gate g : Gates.i.getAll())
+		for (Gate g : GateColl.i.getAll())
 		{
 			if (g.getName() == null) continue;
 			name2gate.put(g.getName(), g);

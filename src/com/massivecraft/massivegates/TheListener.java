@@ -82,7 +82,7 @@ public class TheListener implements Listener
 		Block block = event.getBlock();
 		PS coord = new PS(block);
 		
-		Gate gate = Gates.i.getGateAtFrameCoord(coord);
+		Gate gate = GateColl.i.getGateAtFrameCoord(coord);
 		if (gate == null) return;
 		
 		if (block.isBlockIndirectlyPowered())
@@ -116,8 +116,8 @@ public class TheListener implements Listener
 		PS coordFrom = new PS(blockFrom);
 		PS coordTo = new PS(blockTo);
 		
-		Gate gateFrom = Gates.i.getGateAtContentCoord(coordFrom);
-		Gate gateTo = Gates.i.getGateAtContentCoord(coordTo);
+		Gate gateFrom = GateColl.i.getGateAtContentCoord(coordFrom);
+		Gate gateTo = GateColl.i.getGateAtContentCoord(coordTo);
 		
 		GatePlayerWalkEvent gateEvent;
 		
@@ -233,14 +233,14 @@ public class TheListener implements Listener
 		
 		PS coord = new PS(block);
 		
-		Gate contentGate = Gates.i.getGateAtContentCoord(coord);
+		Gate contentGate = GateColl.i.getGateAtContentCoord(coord);
 		if (contentGate != null && ! contentGate.isContentEditable())
 		{
 			event.setCancelled(true);
 			return true;
 		}
 		
-		Gate frameGate = Gates.i.getGateAtFrameCoord(coord);
+		Gate frameGate = GateColl.i.getGateAtFrameCoord(coord);
 		if (frameGate != null && ! frameGate.isFrameEditable())
 		{
 			event.setCancelled(true);
@@ -254,7 +254,7 @@ public class TheListener implements Listener
 	{
 		if (event.isCancelled()) return;
 		PS coord = new PS(block);
-		Gate gate = Gates.i.getGateAtCoord(coord);
+		Gate gate = GateColl.i.getGateAtCoord(coord);
 		if (gate == null) return;
 		new GateAlterEvent(gate, alterType, player).run();
 	}
@@ -434,7 +434,7 @@ public class TheListener implements Listener
 		
 		for (Block block : event.blockList())
 		{
-			Gate gate = Gates.i.getGateAtCoord(new PS(block));
+			Gate gate = GateColl.i.getGateAtCoord(new PS(block));
 			if (gate == null) continue;
 			alteredGates.add(gate);
 		}

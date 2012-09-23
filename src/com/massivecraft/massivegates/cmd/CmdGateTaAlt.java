@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.Gates;
+import com.massivecraft.massivegates.GateColl;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
@@ -36,7 +36,7 @@ public class CmdGateTaAlt extends GateCommand
 		if (this.arg(0).charAt(0) == 't')
 		{
 			title = "Trigger Alternatives";
-			for(Trigger trigger : Gates.i.getTriggers())
+			for(Trigger trigger : GateColl.i.getTriggers())
 			{
 				lines.add("<lime>"+trigger.getName()+" <i>"+trigger.getDesc());
 			}
@@ -44,7 +44,7 @@ public class CmdGateTaAlt extends GateCommand
 		else
 		{
 			title = "Action Alternatives";
-			for(Action action : Gates.i.getActions())
+			for(Action action : GateColl.i.getActions())
 			{
 				lines.add("<k>"+action.getName()+" <i>"+action.getDesc());
 			}
