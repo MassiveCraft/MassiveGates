@@ -12,6 +12,7 @@ import com.massivecraft.massivegates.event.GateDetachEvent;
 import com.massivecraft.massivegates.event.GateSaveEvent;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
+import com.massivecraft.mcore4.PS;
 import com.massivecraft.mcore4.persist.gson.GsonClassManager;
 import com.massivecraft.mcore4.util.Txt;
 
@@ -49,15 +50,15 @@ public class Gates extends GsonClassManager<Gate>
 	// INDEX
 	// -------------------------------------------- //
 	
-	protected Map<WorldCoord3, Gate> contentToGate = new HashMap<WorldCoord3, Gate>();
-	protected Map<WorldCoord3, Gate> frameToGate = new HashMap<WorldCoord3, Gate>();
+	protected Map<PS, Gate> contentToGate = new HashMap<PS, Gate>();
+	protected Map<PS, Gate> frameToGate = new HashMap<PS, Gate>();
 	
-	public Map<WorldCoord3, Gate> getContentToGate() { return this.contentToGate; }
-	public Map<WorldCoord3, Gate> getFrameCoordToGate() { return this.frameToGate; }
+	public Map<PS, Gate> getContentToGate() { return this.contentToGate; }
+	public Map<PS, Gate> getFrameCoordToGate() { return this.frameToGate; }
 	
-	public Gate getGateAtContentCoord(WorldCoord3 coord) { return this.contentToGate.get(coord); }
-	public Gate getGateAtFrameCoord(WorldCoord3 coord) { return this.frameToGate.get(coord); }
-	public Gate getGateAtCoord(WorldCoord3 coord)
+	public Gate getGateAtContentCoord(PS coord) { return this.contentToGate.get(coord); }
+	public Gate getGateAtFrameCoord(PS coord) { return this.frameToGate.get(coord); }
+	public Gate getGateAtCoord(PS coord)
 	{
 		Gate gate = this.getGateAtFrameCoord(coord);
 		if (gate != null) return gate;
@@ -77,11 +78,11 @@ public class Gates extends GsonClassManager<Gate>
 			// The attach was successful
 			
 			// Index
-			for (WorldCoord3 coord : entity.getContent())
+			for (PS coord : entity.getContent())
 			{
 				this.contentToGate.put(coord, entity);
 			}
-			for (WorldCoord3 coord : entity.getFrame())
+			for (PS coord : entity.getFrame())
 			{
 				this.frameToGate.put(coord, entity);
 			}
@@ -96,11 +97,11 @@ public class Gates extends GsonClassManager<Gate>
 	@Override
 	protected synchronized void detach(Gate entity, String id)
 	{
-		for (WorldCoord3 coord : entity.getContent())
+		for (PS coord : entity.getContent())
 		{
 			this.contentToGate.remove(coord);
 		}
-		for (WorldCoord3 coord : entity.getFrame())
+		for (PS coord : entity.getFrame())
 		{
 			this.frameToGate.remove(coord);
 		}

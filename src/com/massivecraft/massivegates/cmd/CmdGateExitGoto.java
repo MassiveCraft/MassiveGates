@@ -2,9 +2,9 @@ package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.LocWrap;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
+import com.massivecraft.mcore4.PS;
 import com.massivecraft.mcore4.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore4.cmd.req.ReqIsPlayer;
 
@@ -25,10 +25,10 @@ public class CmdGateExitGoto extends GateCommand
 		// TODO: Unreachable location check.
 		
 		Gate gate = gme.getSelectedGate();
-		LocWrap locw = gate.getExit();
+		PS locw = gate.getExit();
 		if (locw != null)
 		{
-			me.teleport(locw.getLocation());
+			me.teleport(locw.location());
 			this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>teleportet to exit:");
 			this.msg(gate.getExitDesc());
 		}

@@ -5,11 +5,13 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
+import com.massivecraft.mcore4.PS;
+
 public class Target
 {
-	public LocWrap location;
-	public void setLocation(Location location) { this.remove(); this.location = new LocWrap(location); }
-	public Location getLocation() { return this.location.getLocation(); }
+	public PS location;
+	public void setLocation(Location location) { this.remove(); this.location = new PS(location); }
+	public Location getLocation() { return this.location.location(); }
 	
 	public String gateId;
 	public void setGate(Gate gate) { this.remove(); this.gateId = gate.getId(); }
@@ -38,7 +40,7 @@ public class Target
 	{
 		switch(this.getType())
 		{
-			case LOCATION: return "<k>Location: <v>"+this.location.getVeryShortDesc();
+			case LOCATION: return "<k>Location: <v>"+this.location.getShortDesc();
 			case GATE: return "<k>Gate: <v>"+this.getGate().getIdNameStringShort();
 			case RUBBERSERVER: return "<k>RubberServer: <v>"+this.rubberServerName;
 			default: return "<v>*NONE*";
@@ -50,7 +52,7 @@ public class Target
 		switch(this.getType())
 		{
 			case LOCATION: return this.getLocation() != null;
-			case GATE: return this.getGate().getExit().getLocation() != null;
+			case GATE: return this.getGate().getExit().location() != null;
 			case RUBBERSERVER: return true;
 			default: return false;
 		}
@@ -62,10 +64,10 @@ public class Target
 		switch(this.getType())
 		{
 			case LOCATION:
-				entity.teleport(this.location.getLocation());
+				this.location.write(entity);
 				return true;
 			case GATE:
-				entity.teleport(this.getGate().getExit().getLocation());
+				this.getGate().getExit().write(entity);
 				return true;
 			case RUBBERSERVER: 
 				if (!(entity instanceof Player)) return false;

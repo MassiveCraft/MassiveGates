@@ -3,8 +3,6 @@ package com.massivecraft.massivegates;
 import org.bukkit.Bukkit;
 
 import com.massivecraft.massivegates.adapter.GateAdapter;
-import com.massivecraft.massivegates.adapter.LocWrapAdapter;
-import com.massivecraft.massivegates.adapter.WorldCoord3Adapter;
 import com.massivecraft.massivegates.cmd.CmdGate;
 import com.massivecraft.massivegates.ta.ActionChat;
 import com.massivecraft.massivegates.ta.ActionClose;
@@ -109,10 +107,7 @@ public class P extends MPlugin
 	
 	public GsonBuilder getGateFreeGsonBuilder()
 	{
-		return super.getGsonBuilder()
-		.registerTypeAdapter(WorldCoord3.class, WorldCoord3Adapter.getInstance())
-		.registerTypeAdapter(LocWrap.class, LocWrapAdapter.getInstance())
-		;
+		return super.getGsonBuilder();
 	}
 	
 }

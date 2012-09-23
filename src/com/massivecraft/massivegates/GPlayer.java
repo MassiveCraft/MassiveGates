@@ -12,6 +12,7 @@ import org.bukkit.util.BlockIterator;
 
 import com.massivecraft.massivegates.util.FloodOrientation;
 import com.massivecraft.massivegates.util.FloodUtil;
+import com.massivecraft.mcore4.PS;
 import com.massivecraft.mcore4.persist.IClassManager;
 import com.massivecraft.mcore4.persist.PlayerEntity;
 
@@ -80,11 +81,11 @@ public class GPlayer extends PlayerEntity<GPlayer>
 		
 		Gate ret = null;
 		
-		WorldCoord3 coord = new WorldCoord3();
+		PS coord = new PS();
 		Iterator<Block> itr = new BlockIterator(me, ConfServer.lineOfSightLimit);
 		while (itr.hasNext())
 		{
-			coord.load(itr.next());
+			coord.read(itr.next());
 			ret = Gates.i.getGateAtCoord(coord);
 			if (ret != null) break;
 		}

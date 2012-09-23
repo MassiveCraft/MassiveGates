@@ -33,6 +33,7 @@ import com.massivecraft.massivegates.event.GateUseEvent;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
 import com.massivecraft.massivegates.util.VisualizeUtil;
+import com.massivecraft.mcore4.PS;
 
 public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 {
@@ -61,10 +62,10 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 		// If someone is standing in a gate while it opens that should be considered as entering the gate.
 		if (this.open)
 		{
-			WorldCoord3 coord = new WorldCoord3();
+			PS coord = new PS();
 			for (Player player : Bukkit.getOnlinePlayers())
 			{
-				coord.load(player);
+				coord.read(player.getLocation().getBlock());
 				if (this != Gates.i.getGateAtContentCoord(coord)) continue;
 				new GatePlayerWalkEvent(player, null, this, GatePlayerWalkType.INTO).run();
 			}
@@ -124,15 +125,15 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 	}
 	
 	// FIELD: exit
-	protected LocWrap exit;
-	public LocWrap getExit() { return this.exit; }
-	public void setExit(LocWrap val) { this.exit = val; }
+	protected PS exit;
+	public PS getExit() { return this.exit; }
+	public void setExit(PS val) { this.exit = val; }
 	public String getExitDesc()
 	{
 		String ret = "<v>*NONE*<i>";
 		if (this.exit != null)
 		{
-			ret = "<v>"+this.exit.getVeryShortDesc()+"<i>";
+			ret = "<v>"+this.exit.getShortDesc()+"<i>";
 		}
 		return ret;
 	}
@@ -154,7 +155,7 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 	
 	// Old stuff!
 	// TODO: Load into the target properly!
-	public LocWrap targetFixedLoc;
+	public PS targetFixedLoc;
 	public String targetGateId;
 	
 	protected Target target = new Target();
@@ -164,9 +165,9 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 	// FIELD CONTENT
 	// -------------------------------------------- //
 	
-	protected Set<WorldCoord3> content;
-	public Set<WorldCoord3> getContent() { return Collections.unmodifiableSet(this.content); }
-	public void addContent(WorldCoord3 coord)
+	protected Set<PS> content;
+	public Set<PS> getContent() { return Collections.unmodifiableSet(this.content); }
+	public void addContent(PS coord)
 	{
 		// Easy if detached
 		if (this.detached())
@@ -193,13 +194,13 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 		// Ensure material
 		if (this.isOpen())
 		{
-			Block block = coord.getBlock();
+			Block block = coord.block();
 			if (block == null) return;
 			block.setType(this.matopen);
 		}
 	}
 	
-	public void delContent(WorldCoord3 coord)
+	public void delContent(PS coord)
 	{
 		// Easy if detached
 		if (this.detached())
@@ -218,7 +219,7 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 		// Ensure material
 		if (this.open)
 		{
-			Block block = coord.getBlock();
+			Block block = coord.block();
 			if (block == null) return;
 			block.setType(Material.AIR);
 		}
@@ -226,37 +227,42 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 	
 	public void clearContent()
 	{
-		List<WorldCoord3> contentCopy = new ArrayList<WorldCoord3>(this.content);
-		for (WorldCoord3 coord : contentCopy)
+		List<PS> contentCopy = new ArrayList<PS>(this.content);
+		for (PS coord : contentCopy)
 		{
 			this.delContent(coord);
 		}
 	}
-	public void setContent(Collection<WorldCoord3> coords)
+	public void setContent(Collection<PS> coords)
 	{
 		this.clearContent();
 		this.addContent(coords);
 	}
-	public void addContent(Collection<WorldCoord3> coords)
+	public void addContent(Collection<PS> coords)
 	{
-		for (WorldCoord3 coord : coords)
+		for (PS coord : coords)
 		{
 			this.addContent(coord);
 		}
 	}
 	public void addContentBlocks(Collection<Block> blocks)
 	{
-		this.addContent(WorldCoord3.populateBlocks(new ArrayList<WorldCoord3>(blocks.size()), blocks));
+		List<PS> coords = new ArrayList<PS>();
+		for (Block block : blocks)
+		{
+			coords.add(new PS(block));
+		}
+		this.addContent(coords);
 	}
 	
 	// -------------------------------------------- //
 	// FIELD FRAME
 	// -------------------------------------------- //
 	
-	protected Set<WorldCoord3> frame;
-	public Set<WorldCoord3> getFrame() { return Collections.unmodifiableSet(this.frame); }
+	protected Set<PS> frame;
+	public Set<PS> getFrame() { return Collections.unmodifiableSet(this.frame); }
 	
-	public void addFrame(WorldCoord3 coord)
+	public void addFrame(PS coord)
 	{
 		// Easy if detached
 		if (this.detached())
@@ -283,7 +289,7 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 		Gates.i.frameToGate.put(coord, this);
 	}
 	
-	public void delFrame(WorldCoord3 coord)
+	public void delFrame(PS coord)
 	{
 		// Easy if detached
 		if (this.detached())
@@ -304,37 +310,42 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 	
 	public void clearFrame()
 	{
-		List<WorldCoord3> frameCopy = new ArrayList<WorldCoord3>(this.frame);
-		for (WorldCoord3 coord : frameCopy)
+		List<PS> frameCopy = new ArrayList<PS>(this.frame);
+		for (PS coord : frameCopy)
 		{
 			this.delFrame(coord);
 		}
 	}
-	public void setFrame(Collection<WorldCoord3> coords)
+	public void setFrame(Collection<PS> coords)
 	{
 		this.clearFrame();
 		this.addFrame(coords);
 	}
-	public void addFrame(Collection<WorldCoord3> coords)
+	public void addFrame(Collection<PS> coords)
 	{
-		for (WorldCoord3 coord : coords)
+		for (PS coord : coords)
 		{
 			this.addFrame(coord);
 		}
 	}
 	public void addFrameBlocks(Collection<Block> blocks)
 	{
-		this.addFrame(WorldCoord3.populateBlocks(new ArrayList<WorldCoord3>(blocks.size()), blocks));
+		List<PS> coords = new ArrayList<PS>();
+		for (Block block : blocks)
+		{
+			coords.add(new PS(block));
+		}
+		this.addFrame(coords);
 	}
 	
 	// -------------------------------------------- //
 	// REDSTONE POWER
 	// -------------------------------------------- //
 	
-	protected Set<WorldCoord3> powercoords;
-	public Set<WorldCoord3> getPower() { return Collections.unmodifiableSet(this.powercoords); }
+	protected Set<PS> powercoords;
+	public Set<PS> getPower() { return Collections.unmodifiableSet(this.powercoords); }
 	public boolean powerHas() { return this.powercoords.size() > 0; }
-	public void powerAdd(WorldCoord3 coord)
+	public void powerAdd(PS coord)
 	{
 		boolean before = this.powerHas();
 		if (this.powercoords.add(coord))
@@ -342,7 +353,7 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 			this.powerEventCheck(before);
 		}
 	}
-	public void powerAdd(Collection<WorldCoord3> coords)
+	public void powerAdd(Collection<PS> coords)
 	{
 		boolean before = this.powerHas();
 		if (this.powercoords.addAll(coords))
@@ -350,7 +361,7 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 			this.powerEventCheck(before);
 		}
 	}
-	public void powerRemove(WorldCoord3 coord)
+	public void powerRemove(PS coord)
 	{
 		boolean before = this.powerHas();
 		if (this.powercoords.remove(coord))
@@ -358,7 +369,7 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 			this.powerEventCheck(before);
 		}
 	}
-	public void powerRemove(Collection<WorldCoord3> coords)
+	public void powerRemove(Collection<PS> coords)
 	{
 		boolean before = this.powerHas();
 		if (this.powercoords.removeAll(coords))
@@ -366,17 +377,17 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 			this.powerEventCheck(before);
 		}
 	}
-	public void powerSet(Collection<WorldCoord3> coords)
+	public void powerSet(Collection<PS> coords)
 	{
 		boolean before = this.powerHas();
 		this.powercoords.clear();
 		this.powercoords.addAll(coords);
 		this.powerEventCheck(before);
 	}
-	public void powerCheck(WorldCoord3 coord)
+	public void powerCheck(PS coord)
 	{
 		// It is understood from before that this coord is part of the gate frame
-		Block block = coord.getBlock();
+		Block block = coord.block();
 		if (block == null) return;
 		if (block.isBlockIndirectlyPowered())
 		{
@@ -489,9 +500,9 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 		this.dataclosed = 0;
 		this.matopen = Material.PORTAL;
 		this.dataopen = 0;
-		this.content = new HashSet<WorldCoord3>();
-		this.frame = new HashSet<WorldCoord3>();
-		this.powercoords = new LinkedHashSet<WorldCoord3>();
+		this.content = new HashSet<PS>();
+		this.frame = new HashSet<PS>();
+		this.powercoords = new LinkedHashSet<PS>();
 		this.trigger2ActionIdArgs = new HashMap<String, List<List<String>>>();
 	}
 			
@@ -507,13 +518,13 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 		
 		if ( ! this.getContent().isEmpty())
 		{
-			ret = this.getContent().iterator().next().getLocation();
+			ret = this.getContent().iterator().next().locationCalc();
 			if (ret != null) return ret;
 		}
 		
 		if ( ! this.getFrame().isEmpty())
 		{
-			ret = this.getFrame().iterator().next().getLocation();
+			ret = this.getFrame().iterator().next().locationCalc();
 			if (ret != null) return ret;
 		}
 		
@@ -594,18 +605,18 @@ public class Gate extends com.massivecraft.mcore4.persist.Entity<Gate>
 	// FILL
 	// -------------------------------------------- //
 	
-	public static void fillCoords(Collection<WorldCoord3> coords, Material material, byte data)
+	public static void fillCoords(Collection<PS> coords, Material material, byte data)
 	{
-		for (WorldCoord3 coord : coords)
+		for (PS coord : coords)
 		{
-			Block block = coord.getBlock();
+			Block block = coord.block();
 			if (block == null) continue;
 			block.setType(material);
 			block.setData(data);
 		}
 	}
 	
-	public static void fillCoords(Collection<WorldCoord3> coords, Material material)
+	public static void fillCoords(Collection<PS> coords, Material material)
 	{
 		fillCoords(coords, material, (byte) 0);
 	}

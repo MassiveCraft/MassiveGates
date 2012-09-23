@@ -14,7 +14,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.HumanEntity;
 
 import com.massivecraft.massivegates.Gate;
-import com.massivecraft.massivegates.WorldCoord3;
+import com.massivecraft.mcore4.PS;
 import com.massivecraft.mcore4.util.SmokeUtil;
 import com.massivecraft.mcore4.util.Txt;
 
@@ -245,9 +245,9 @@ public enum Fx
 		else
 		{
 			locations = new ArrayList<Location>(gate.getContent().size());
-			for (WorldCoord3 coord : gate.getContent())
+			for (PS coord : gate.getContent())
 			{
-				locations.add(coord.getLocation());
+				locations.add(coord.locationCalc());
 			}
 		}
 		perform(fx, dataString, locations);

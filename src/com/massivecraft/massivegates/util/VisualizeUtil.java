@@ -11,7 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-import com.massivecraft.massivegates.WorldCoord3;
+import com.massivecraft.mcore4.PS;
 
 // TODO: Only send blocks in visual range
 // TODO: Only send blocks that where changed when clearing?
@@ -76,12 +76,12 @@ public class VisualizeUtil
 		}
 	}
 	
-	public static void addCoords(Player player, Collection<WorldCoord3> coords, int typeId)
+	public static void addCoords(Player player, Collection<PS> coords, int typeId)
 	{
 		Set<Location> ploc = getPlayerLocations(player);
-		for (WorldCoord3 coord : coords)
+		for (PS coord : coords)
 		{
-			Location location = coord.getLocation();
+			Location location = coord.locationCalc();
 			if (location == null) continue;
 			ploc.add(location);
 			player.sendBlockChange(location, typeId, (byte) 0);

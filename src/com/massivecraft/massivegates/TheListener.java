@@ -44,6 +44,7 @@ import com.massivecraft.massivegates.ta.TriggerPowerOff;
 import com.massivecraft.massivegates.ta.TriggerPowerOn;
 import com.massivecraft.massivegates.ta.TriggerUse;
 import com.massivecraft.massivegates.util.VisualizeUtil;
+import com.massivecraft.mcore4.PS;
 
 
 public class TheListener implements Listener
@@ -79,7 +80,7 @@ public class TheListener implements Listener
 	public void monitorBlockPhysicsEvent(BlockPhysicsEvent event)
 	{
 		Block block = event.getBlock();
-		WorldCoord3 coord = new WorldCoord3(block); 
+		PS coord = new PS(block);
 		
 		Gate gate = Gates.i.getGateAtFrameCoord(coord);
 		if (gate == null) return;
@@ -112,8 +113,8 @@ public class TheListener implements Listener
 		
 		VisualizeUtil.clear(player);
 		
-		WorldCoord3 coordFrom = new WorldCoord3(blockFrom);
-		WorldCoord3 coordTo = new WorldCoord3(blockTo);
+		PS coordFrom = new PS(blockFrom);
+		PS coordTo = new PS(blockTo);
 		
 		Gate gateFrom = Gates.i.getGateAtContentCoord(coordFrom);
 		Gate gateTo = Gates.i.getGateAtContentCoord(coordTo);
@@ -230,7 +231,7 @@ public class TheListener implements Listener
 	{
 		if (event.isCancelled()) return true;
 		
-		WorldCoord3 coord = new WorldCoord3(block);
+		PS coord = new PS(block);
 		
 		Gate contentGate = Gates.i.getGateAtContentCoord(coord);
 		if (contentGate != null && ! contentGate.isContentEditable())
@@ -252,7 +253,7 @@ public class TheListener implements Listener
 	public void handlerMonitorSingle(Cancellable event, Block block, GateAlterType alterType, Player player)
 	{
 		if (event.isCancelled()) return;
-		WorldCoord3 coord = new WorldCoord3(block);
+		PS coord = new PS(block);
 		Gate gate = Gates.i.getGateAtCoord(coord);
 		if (gate == null) return;
 		new GateAlterEvent(gate, alterType, player).run();
@@ -433,7 +434,7 @@ public class TheListener implements Listener
 		
 		for (Block block : event.blockList())
 		{
-			Gate gate = Gates.i.getGateAtCoord(new WorldCoord3(block));
+			Gate gate = Gates.i.getGateAtCoord(new PS(block));
 			if (gate == null) continue;
 			alteredGates.add(gate);
 		}
