@@ -91,7 +91,7 @@ public class Gate extends com.massivecraft.mcore4.store.Entity<Gate, String>
 			PS coord = new PS();
 			for (Player player : Bukkit.getOnlinePlayers())
 			{
-				coord.read(player.getLocation().getBlock());
+				coord.setBlock(player.getLocation().getBlock());
 				if (this != GateColl.i.getGateAtContentCoord(coord)) continue;
 				new GatePlayerWalkEvent(player, null, this, GatePlayerWalkType.INTO).run();
 			}
@@ -215,7 +215,7 @@ public class Gate extends com.massivecraft.mcore4.store.Entity<Gate, String>
 		// Ensure material
 		if (this.isOpen())
 		{
-			Block block = coord.block();
+			Block block = coord.getBlock();
 			if (block == null) return;
 			block.setType(this.matopen);
 		}
@@ -240,7 +240,7 @@ public class Gate extends com.massivecraft.mcore4.store.Entity<Gate, String>
 		// Ensure material
 		if (this.open)
 		{
-			Block block = coord.block();
+			Block block = coord.getBlock();
 			if (block == null) return;
 			block.setType(Material.AIR);
 		}
@@ -408,7 +408,7 @@ public class Gate extends com.massivecraft.mcore4.store.Entity<Gate, String>
 	public void powerCheck(PS coord)
 	{
 		// It is understood from before that this coord is part of the gate frame
-		Block block = coord.block();
+		Block block = coord.getBlock();
 		if (block == null) return;
 		if (block.isBlockIndirectlyPowered())
 		{
@@ -539,13 +539,13 @@ public class Gate extends com.massivecraft.mcore4.store.Entity<Gate, String>
 		
 		if ( ! this.getContent().isEmpty())
 		{
-			ret = this.getContent().iterator().next().locationCalc();
+			ret = this.getContent().iterator().next().calcLocation();
 			if (ret != null) return ret;
 		}
 		
 		if ( ! this.getFrame().isEmpty())
 		{
-			ret = this.getFrame().iterator().next().locationCalc();
+			ret = this.getFrame().iterator().next().calcLocation();
 			if (ret != null) return ret;
 		}
 		
@@ -630,7 +630,7 @@ public class Gate extends com.massivecraft.mcore4.store.Entity<Gate, String>
 	{
 		for (PS coord : coords)
 		{
-			Block block = coord.block();
+			Block block = coord.getBlock();
 			if (block == null) continue;
 			block.setType(material);
 			block.setData(data);

@@ -87,7 +87,7 @@ public class GPlayer extends PlayerEntity<GPlayer>
 		Iterator<Block> itr = new BlockIterator(me, ConfServer.lineOfSightLimit);
 		while (itr.hasNext())
 		{
-			coord.read(itr.next());
+			coord.setBlock(itr.next());
 			ret = GateColl.i.getGateAtCoord(coord);
 			if (ret != null) break;
 		}

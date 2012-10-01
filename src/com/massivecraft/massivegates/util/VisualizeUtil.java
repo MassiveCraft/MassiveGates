@@ -81,7 +81,7 @@ public class VisualizeUtil
 		Set<Location> ploc = getPlayerLocations(player);
 		for (PS coord : coords)
 		{
-			Location location = coord.locationCalc();
+			Location location = coord.calcLocation();
 			if (location == null) continue;
 			ploc.add(location);
 			player.sendBlockChange(location, typeId, (byte) 0);

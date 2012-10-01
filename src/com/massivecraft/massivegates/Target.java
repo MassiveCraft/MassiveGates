@@ -11,7 +11,7 @@ public class Target
 {
 	public PS location;
 	public void setLocation(Location location) { this.remove(); this.location = new PS(location); }
-	public Location getLocation() { return this.location.location(); }
+	public Location getLocation() { return this.location.getLocation(); }
 	
 	public String gateId;
 	public void setGate(Gate gate) { this.remove(); this.gateId = gate.getId(); }
@@ -52,7 +52,7 @@ public class Target
 		switch(this.getType())
 		{
 			case LOCATION: return this.getLocation() != null;
-			case GATE: return this.getGate().getExit().location() != null;
+			case GATE: return this.getGate().getExit().getLocation() != null;
 			case RUBBERSERVER: return true;
 			default: return false;
 		}

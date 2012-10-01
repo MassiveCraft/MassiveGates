@@ -247,7 +247,7 @@ public enum Fx
 			locations = new ArrayList<Location>(gate.getContent().size());
 			for (PS coord : gate.getContent())
 			{
-				locations.add(coord.locationCalc());
+				locations.add(coord.calcLocation());
 			}
 		}
 		perform(fx, dataString, locations);

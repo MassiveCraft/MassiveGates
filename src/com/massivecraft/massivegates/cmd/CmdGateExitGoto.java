@@ -28,7 +28,7 @@ public class CmdGateExitGoto extends GateCommand
 		PS locw = gate.getExit();
 		if (locw != null)
 		{
-			me.teleport(locw.location());
+			me.teleport(locw.getLocation());
 			this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>teleportet to exit:");
 			this.msg(gate.getExitDesc());
 		}
