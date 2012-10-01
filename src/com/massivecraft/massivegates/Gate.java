@@ -48,6 +48,29 @@ public class Gate extends com.massivecraft.mcore4.store.Entity<Gate, String>
 	@Override protected Class<Gate> getClazz() { return Gate.class; }
 	
 	// -------------------------------------------- //
+	// LOAD
+	// -------------------------------------------- //
+	// TODO: Even though this works it's hell to maintain! Fix a better solution :P
+	@Override
+	public Gate load(Gate that)
+	{
+		this.open = that.open;
+		this.name = that.name;
+		this.desc = that.desc;
+		this.matopen = that.matopen;
+		this.dataopen = that.dataopen;
+		this.matclosed = that.matclosed;
+		this.dataclosed = that.dataclosed;
+		this.exit = that.exit;
+		this.target = that.target;
+		this.content = that.content;
+		this.frame = that.frame;
+		this.powercoords = that.powercoords;
+		this.trigger2ActionIdArgs = that.trigger2ActionIdArgs;
+		return this;
+	}
+	
+	// -------------------------------------------- //
 	// FIELDS
 	// -------------------------------------------- //
 	

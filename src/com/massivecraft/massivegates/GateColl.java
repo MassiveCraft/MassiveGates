@@ -30,31 +30,6 @@ public class GateColl extends Coll<Gate, String>
 	}
 	
 	// -------------------------------------------- //
-	// COPY
-	// -------------------------------------------- //
-	// TODO: Even though this works it's hell to maintain! Fix a better solution :P
-	@Override
-	public void copy(Object ofrom, Object oto)
-	{
-		Gate from = (Gate)ofrom;
-		Gate to = (Gate)oto;
-		
-		to.open = from.open;
-		to.name = from.name;
-		to.desc = from.desc;
-		to.matopen = from.matopen;
-		to.dataopen = from.dataopen;
-		to.matclosed = from.matclosed;
-		to.dataclosed = from.dataclosed;
-		to.exit = from.exit;
-		to.target = from.target;
-		to.content = from.content;
-		to.frame = from.frame;
-		to.powercoords = from.powercoords;
-		to.trigger2ActionIdArgs = from.trigger2ActionIdArgs;
-	}
-	
-	// -------------------------------------------- //
 	// INDEX
 	// -------------------------------------------- //
 	
