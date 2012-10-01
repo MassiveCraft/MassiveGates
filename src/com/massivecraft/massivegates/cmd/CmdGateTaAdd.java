@@ -53,6 +53,7 @@ public class CmdGateTaAdd extends GateCommand
 			return;
 		}
 		
+		// TODO: merge this into the arg-check?
 		// Do you have the permission to add this action?
 		String perm = "massivegates.action."+action.getId();
 		System.out.println(perm);

@@ -19,11 +19,8 @@ public class ConfServer extends SimpleConfig
 	public static int lineOfSightLimit = 100;
 	
 	// -------------------------------------------- //
-	// Persistance
+	// Persistence
 	// -------------------------------------------- //
 	public static transient ConfServer i = new ConfServer();
-	private ConfServer()
-	{
-		super(P.p);
-	}
+	public ConfServer() { super(P.p); }
 }
