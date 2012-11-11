@@ -4,8 +4,8 @@ import org.bukkit.command.CommandSender;
 
 import com.massivecraft.massivegates.GPlayer;
 import com.massivecraft.massivegates.GPlayerColl;
-import com.massivecraft.mcore4.cmd.MCommand;
-import com.massivecraft.mcore4.cmd.req.IReq;
+import com.massivecraft.mcore5.cmd.MCommand;
+import com.massivecraft.mcore5.cmd.req.IReq;
 
 public class ReqGateSelected implements IReq
 {

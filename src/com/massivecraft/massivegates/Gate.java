@@ -33,9 +33,9 @@ import com.massivecraft.massivegates.event.GateUseEvent;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
 import com.massivecraft.massivegates.util.VisualizeUtil;
-import com.massivecraft.mcore4.PS;
+import com.massivecraft.mcore5.PS;
 
-public class Gate extends com.massivecraft.mcore4.store.Entity<Gate, String>
+public class Gate extends com.massivecraft.mcore5.store.Entity<Gate, String>
 {
 	// -------------------------------------------- //
 	// META

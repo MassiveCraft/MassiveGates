@@ -5,7 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
-import com.massivecraft.mcore4.PS;
+import com.massivecraft.mcore5.PS;
 
 public class Target
 {

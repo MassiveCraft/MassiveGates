@@ -1,7 +1,7 @@
 package com.massivecraft.massivegates;
 
-import com.massivecraft.mcore4.store.MStore;
-import com.massivecraft.mcore4.store.PlayerColl;
+import com.massivecraft.mcore5.store.MStore;
+import com.massivecraft.mcore5.store.PlayerColl;
 
 public class GPlayerColl extends PlayerColl<GPlayer>
 {

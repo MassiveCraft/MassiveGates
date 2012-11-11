@@ -8,9 +8,9 @@ import com.massivecraft.massivegates.cmdarg.ARTrigger;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
-import com.massivecraft.mcore4.cmd.arg.ARInteger;
-import com.massivecraft.mcore4.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore4.cmd.req.ReqIsPlayer;
+import com.massivecraft.mcore5.cmd.arg.ARInteger;
+import com.massivecraft.mcore5.cmd.req.ReqHasPerm;
+import com.massivecraft.mcore5.cmd.req.ReqIsPlayer;
 
 public class CmdGateTaDel extends GateCommand
 {

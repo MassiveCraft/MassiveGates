@@ -6,7 +6,7 @@ import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdarg.ARGate;
-import com.massivecraft.mcore4.cmd.req.ReqHasPerm;
+import com.massivecraft.mcore5.cmd.req.ReqHasPerm;
 
 public class CmdGateDelete extends GateCommand
 {

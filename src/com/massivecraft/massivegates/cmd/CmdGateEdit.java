@@ -1,7 +1,7 @@
 package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.mcore4.cmd.HelpCommand;
+import com.massivecraft.mcore5.cmd.HelpCommand;
 
 public class CmdGateEdit extends GateCommand
 {

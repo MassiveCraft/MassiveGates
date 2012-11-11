@@ -7,8 +7,8 @@ import java.util.List;
 import com.massivecraft.massivegates.GateColl;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.ta.Trigger;
-import com.massivecraft.mcore4.cmd.MCommand;
-import com.massivecraft.mcore4.cmd.arg.ARAbstractSelect;
+import com.massivecraft.mcore5.cmd.MCommand;
+import com.massivecraft.mcore5.cmd.arg.ARAbstractSelect;
 
 public class ARTrigger extends ARAbstractSelect<Trigger>
 {

@@ -2,7 +2,7 @@ package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivegates.ConfServer;
 import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.mcore4.cmd.HelpCommand;
+import com.massivecraft.mcore5.cmd.HelpCommand;
 
 public class CmdGate extends GateCommand
 {

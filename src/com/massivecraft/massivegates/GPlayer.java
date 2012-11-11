@@ -12,8 +12,8 @@ import org.bukkit.util.BlockIterator;
 
 import com.massivecraft.massivegates.util.FloodOrientation;
 import com.massivecraft.massivegates.util.FloodUtil;
-import com.massivecraft.mcore4.PS;
-import com.massivecraft.mcore4.store.PlayerEntity;
+import com.massivecraft.mcore5.PS;
+import com.massivecraft.mcore5.store.PlayerEntity;
 
 /**
  * The VPlayer is a "skin" for a normal player.

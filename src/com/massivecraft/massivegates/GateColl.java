@@ -11,11 +11,11 @@ import com.massivecraft.massivegates.event.GateDetachEvent;
 import com.massivecraft.massivegates.event.GateSaveEvent;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
-import com.massivecraft.mcore4.PS;
-import com.massivecraft.mcore4.store.Coll;
-import com.massivecraft.mcore4.store.MStore;
-import com.massivecraft.mcore4.store.ModificationState;
-import com.massivecraft.mcore4.util.Txt;
+import com.massivecraft.mcore5.PS;
+import com.massivecraft.mcore5.store.Coll;
+import com.massivecraft.mcore5.store.MStore;
+import com.massivecraft.mcore5.store.ModificationState;
+import com.massivecraft.mcore5.util.Txt;
 
 public class GateColl extends Coll<Gate, String>
 {
