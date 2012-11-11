@@ -127,6 +127,7 @@ permissions:
       massivegates.target.get: true
       massivegates.target.set: true
       massivegates.target.here: true
+      massivegates.target.gate: true
       massivegates.target.rubberserver: true
       massivegates.target.goto: true
       massivegates.target.remove: true
