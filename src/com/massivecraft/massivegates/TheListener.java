@@ -45,6 +45,7 @@ import com.massivecraft.massivegates.ta.TriggerPowerOn;
 import com.massivecraft.massivegates.ta.TriggerUse;
 import com.massivecraft.massivegates.util.VisualizeUtil;
 import com.massivecraft.mcore5.PS;
+import com.massivecraft.mcore5.event.MCoreAfterPlayerTeleportEvent;
 
 
 public class TheListener implements Listener
@@ -159,6 +160,19 @@ public class TheListener implements Listener
 				gateTo.use(event.getPlayer());
 			}*/
 		}
+	}
+	
+	// -------------------------------------------- //
+	// AFTER TELEPORT
+	// -------------------------------------------- //
+	
+	@EventHandler(priority = EventPriority.NORMAL)
+	public void afterTeleport(MCoreAfterPlayerTeleportEvent event)
+	{
+		Player player = event.getPlayer();
+		GateAfterTeleportEvent ate = p.afterTeleportTodo.remove(player);
+		if (ate == null) return; 
+		ate.run();
 	}
 	
 	// -------------------------------------------- //

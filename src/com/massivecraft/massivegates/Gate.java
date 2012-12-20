@@ -607,8 +607,8 @@ public class Gate extends com.massivecraft.mcore5.store.Entity<Gate, String>
 		// Do safe teleport
 		target.delayedTeleport(user);
 		
-		// Call the after teleport event a bit later
-		new GateAfterTeleportEvent(this, user, from, to).run(1);
+		// Queue up the after teleport event to be run in the MCore event
+		P.p.afterTeleportTodo.put(user, new GateAfterTeleportEvent(this, user, from, to));
 	}
 	
 	// -------------------------------------------- //
