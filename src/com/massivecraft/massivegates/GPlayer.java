@@ -22,16 +22,6 @@ import com.massivecraft.mcore5.store.PlayerEntity;
 public class GPlayer extends PlayerEntity<GPlayer>
 {
 	// -------------------------------------------- //
-	// META
-	// -------------------------------------------- //
-	
-	@Override protected GPlayer getThis() { return this; }
-	
-	private final static transient GPlayer defaultInstance = new GPlayer();
-	@Override public GPlayer getDefaultInstance(){ return defaultInstance; }
-	@Override protected Class<GPlayer> getClazz() { return GPlayer.class; }
-
-	// -------------------------------------------- //
 	// FIELDS
 	// -------------------------------------------- //
 	

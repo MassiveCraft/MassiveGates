@@ -178,6 +178,8 @@ permissions:
       massivegates.action.mgcore_open: true
       massivegates.action.mgcore_use: true
       massivegates.action.mgcore_use_forced: true
+      massivegates.action.mgcore_reqperm: true
+      massivegates.action.mgcore_SetVelocity: true
   massivegates.action.mgcore_chat:
     default: false
     description: assign the chat action to a gate
@@ -205,3 +207,9 @@ permissions:
   massivegates.action.mgcore_use_forced:
     default: false
     description: assign the useforced action to a gate
+  massivegates.action.mgcore_reqperm:
+    default: false
+    description: assign the reqperm action to a gate
+  massivegates.action.mgcore_SetVelocity:
+    default: false
+    description: assign the setvel action to a gate

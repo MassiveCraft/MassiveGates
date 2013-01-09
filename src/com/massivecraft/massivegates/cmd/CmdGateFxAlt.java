@@ -52,6 +52,6 @@ public class CmdGateFxAlt extends GateCommand
 		}
 		
 		lines = Txt.parseWrap(lines);
-		this.sendMessage(Txt.getPage(lines, pageHumanBased, "Available Special FX"));
+		this.sendMessage(Txt.getPage(lines, pageHumanBased, "Available Special FX", sender));
 	}
 }

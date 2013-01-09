@@ -31,6 +31,6 @@ public class CmdGateList extends GateCommand
 			gateInfos.add("<white>"+gate.getIdNameStringShort());
 		}
 		
-		this.sendMessage(Txt.getPage(Txt.parseWrap(Txt.implodeCommaAndDot(gateInfos, "<i>")), pageHumanBased, "Gate List"));	
+		this.sendMessage(Txt.getPage(Txt.parseWrap(Txt.implodeCommaAndDot(gateInfos, "<i>")), pageHumanBased, "Gate List", sender));	
 	}
 }

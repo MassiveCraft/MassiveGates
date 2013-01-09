@@ -51,6 +51,6 @@ public class CmdGateTaAlt extends GateCommand
 		}
 		
 		lines = Txt.parseWrap(lines);
-		this.sendMessage(Txt.getPage(lines, pageHumanBased, title));
+		this.sendMessage(Txt.getPage(lines, pageHumanBased, title, sender));
 	}
 }

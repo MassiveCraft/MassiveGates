@@ -38,16 +38,6 @@ import com.massivecraft.mcore5.PS;
 public class Gate extends com.massivecraft.mcore5.store.Entity<Gate, String>
 {
 	// -------------------------------------------- //
-	// META
-	// -------------------------------------------- //
-	
-	@Override protected Gate getThis() { return this; }
-	
-	private final static transient Gate defaultInstance = new Gate();
-	@Override public Gate getDefaultInstance(){ return defaultInstance; }
-	@Override protected Class<Gate> getClazz() { return Gate.class; }
-	
-	// -------------------------------------------- //
 	// LOAD
 	// -------------------------------------------- //
 	// TODO: Even though this works it's hell to maintain! Fix a better solution :P

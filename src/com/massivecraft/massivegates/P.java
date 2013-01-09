@@ -15,6 +15,7 @@ import com.massivecraft.massivegates.ta.ActionFxe;
 import com.massivecraft.massivegates.ta.ActionFxg;
 import com.massivecraft.massivegates.ta.ActionMsg;
 import com.massivecraft.massivegates.ta.ActionOpen;
+import com.massivecraft.massivegates.ta.ActionReqPerm;
 import com.massivecraft.massivegates.ta.ActionSetVelocity;
 import com.massivecraft.massivegates.ta.ActionUse;
 import com.massivecraft.massivegates.ta.ActionUseForced;
@@ -72,6 +73,7 @@ public class P extends MPlugin
 		GateColl.i.registerAction(ActionCmd.getInstance());
 		GateColl.i.registerAction(ActionChat.getInstance());
 		GateColl.i.registerAction(ActionSetVelocity.getInstance());
+		GateColl.i.registerAction(ActionReqPerm.getInstance());
 		
 		GateColl.i.registerTrigger(TriggerEnter.getInstance());
 		GateColl.i.registerTrigger(TriggerBtp.getInstance());
