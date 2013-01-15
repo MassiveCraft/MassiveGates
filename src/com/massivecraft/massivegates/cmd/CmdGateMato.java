@@ -21,7 +21,7 @@ public class CmdGateMato extends GateCommand
 		this.addOptionalArg("material", "get");
 		this.addOptionalArg("data", "0");
 		
-		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
 		this.addRequirements(new ReqHasPerm(Permission.MATO.node));
 	}
 	

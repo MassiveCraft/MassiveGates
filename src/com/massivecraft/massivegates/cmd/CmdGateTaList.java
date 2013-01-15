@@ -24,7 +24,7 @@ public class CmdGateTaList extends GateCommand
 		this.addAliases("list");
 		this.addOptionalArg("page", "1");
 		
-		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
 		this.addRequirements(new ReqHasPerm(Permission.TA_LIST.node));
 	}
 	

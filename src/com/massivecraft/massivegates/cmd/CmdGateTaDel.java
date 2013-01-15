@@ -21,7 +21,7 @@ public class CmdGateTaDel extends GateCommand
 		this.addRequiredArg("trigger|all");
 		this.addOptionalArg("index|action|all","all");
 		
-		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
 		this.addRequirements(new ReqHasPerm(Permission.TA_DEL.node));
 	}
 	

@@ -18,7 +18,7 @@ public class CmdGateName extends GateCommand
 		this.addAliases("name");
 		this.addSubCommand(new CmdGateNameSet());
 		this.addSubCommand(new CmdGateNameRemove());
-		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
 		this.setDesc("manage gate name");
 	}
 	

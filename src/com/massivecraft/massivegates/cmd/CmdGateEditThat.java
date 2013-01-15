@@ -21,7 +21,7 @@ public class CmdGateEditThat extends GateCommand
 		super();
 		this.addAliases("that");
 		this.addRequiredArg("frame|content|del");
-		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
 		this.addRequirements(new ReqHasPerm(Permission.EDIT_THAT.node));
 	}
 	

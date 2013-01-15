@@ -14,7 +14,7 @@ public class CmdGateNameSet extends GateCommand
 		super();
 		this.addAliases("set");
 		this.addRequiredArg("name");
-		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
 		this.addRequirements(new ReqHasPerm(Permission.NAME_SET.node));
 	}
 	

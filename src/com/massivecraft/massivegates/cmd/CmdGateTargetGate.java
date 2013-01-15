@@ -15,7 +15,7 @@ public class CmdGateTargetGate extends GateCommand
 		super();
 		this.addAliases("gate");
 		this.addRequiredArg("targetgate");
-		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
 		this.addRequirements(new ReqHasPerm(Permission.TARGET_GATE.node));
 	}
 	

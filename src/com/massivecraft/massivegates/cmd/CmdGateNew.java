@@ -14,7 +14,7 @@ public class CmdGateNew extends GateCommand
 		this.addAliases("new", "create");
 		this.addOptionalArg("name", "*none*");
 		this.setErrorOnToManyArgs(false);
-		this.addRequirements(ReqIsPlayer.getInstance());
+		this.addRequirements(ReqIsPlayer.get());
 		this.addRequirements(new ReqHasPerm(Permission.NEW.node));
 	}
 

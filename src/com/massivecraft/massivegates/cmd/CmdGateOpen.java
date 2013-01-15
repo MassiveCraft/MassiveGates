@@ -17,7 +17,7 @@ public class CmdGateOpen extends GateCommand
 		super();
 		this.addAliases("open");
 		this.addSubCommand(new CmdGateOpenSet());
-		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
 		this.setDesc("manage gate open/closed state");
 	}
 	

@@ -15,7 +15,7 @@ public class CmdGateOpenSet extends GateCommand
 		super();
 		this.addAliases("set");
 		this.addRequiredArg("flag");
-		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
 		this.addRequirements(new ReqHasPerm(Permission.OPEN_SET.node));
 	}
 	

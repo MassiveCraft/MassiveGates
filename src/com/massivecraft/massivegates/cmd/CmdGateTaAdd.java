@@ -12,7 +12,7 @@ import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
 import com.massivecraft.mcore5.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore5.cmd.req.ReqIsPlayer;
-import com.massivecraft.mcore5.util.Perm;
+import com.massivecraft.mcore5.util.PermUtil;
 
 public class CmdGateTaAdd extends GateCommand
 {
@@ -25,7 +25,7 @@ public class CmdGateTaAdd extends GateCommand
 		this.addOptionalArg("argument", "");
 		this.setErrorOnToManyArgs(false);
 		
-		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
 		this.addRequirements(new ReqHasPerm(Permission.TA_ADD.node));
 	}
 	
@@ -60,7 +60,7 @@ public class CmdGateTaAdd extends GateCommand
 		System.out.println(sender);
 		if ( ! sender.hasPermission(perm))
 		{
-			this.msg(Perm.getForbiddenMessage(perm));
+			this.msg(PermUtil.getForbiddenMessage(perm));
 			return;
 		}
 		

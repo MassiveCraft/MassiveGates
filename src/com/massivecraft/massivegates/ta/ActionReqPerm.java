@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 
 import com.massivecraft.massivegates.Gate;
-import com.massivecraft.mcore5.util.Perm;
+import com.massivecraft.mcore5.util.PermUtil;
 
 public class ActionReqPerm extends BaseAction
 {
@@ -47,6 +47,6 @@ public class ActionReqPerm extends BaseAction
 		if ( ! (entity instanceof Player)) return false;
 		Player player = (Player)entity;
 		
-		return Perm.has(player, perm, true);
+		return PermUtil.has(player, perm, true);
 	}
 }

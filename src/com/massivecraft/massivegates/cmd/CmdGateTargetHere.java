@@ -13,7 +13,7 @@ public class CmdGateTargetHere extends GateCommand
 	{
 		super();
 		this.addAliases("here", "set");
-		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
 		this.addRequirements(new ReqHasPerm(Permission.TARGET_HERE.node));
 	}
 	

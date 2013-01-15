@@ -21,7 +21,7 @@ public class CmdGateTarget extends GateCommand
 		this.addSubCommand(new CmdGateTargetRubberserver());
 		this.addSubCommand(new CmdGateTargetGoto());
 		this.addSubCommand(new CmdGateTargetRemove());
-		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
 		this.setDesc("manage gate target");
 	}
 	

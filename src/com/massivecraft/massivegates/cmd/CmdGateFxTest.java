@@ -15,7 +15,7 @@ public class CmdGateFxTest extends GateCommand
 		super();
 		this.addAliases("test");
 		this.addRequiredArg("fxstring");
-		this.addRequirements(ReqIsPlayer.getInstance());
+		this.addRequirements(ReqIsPlayer.get());
 		this.addRequirements(new ReqHasPerm(Permission.FX_TEST.node));
 	}
 	

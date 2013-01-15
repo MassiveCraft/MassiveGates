@@ -13,7 +13,7 @@ public class CmdGateTargetRemove extends GateCommand
 	{
 		super();
 		this.addAliases("remove");
-		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
 		this.addRequirements(new ReqHasPerm(Permission.TARGET_REMOVE.node));
 	}
 	

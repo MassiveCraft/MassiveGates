@@ -14,7 +14,7 @@ public class CmdGateEditClear extends GateCommand
 		super();
 		this.addAliases("clear");
 		this.addRequiredArg("frame|content|all");
-		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
 		this.addRequirements(new ReqHasPerm(Permission.EDIT_CLEAR.node));
 	}
 	

@@ -19,7 +19,7 @@ public class CmdGateExit extends GateCommand
 		this.addSubCommand(new CmdGateExitHere());
 		this.addSubCommand(new CmdGateExitGoto());
 		this.addSubCommand(new CmdGateExitRemove());
-		this.addRequirements(ReqIsPlayer.getInstance(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
 		this.setDesc("manage gate exit");
 	}
 	

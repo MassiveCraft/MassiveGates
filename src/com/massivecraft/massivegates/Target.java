@@ -6,6 +6,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import com.massivecraft.mcore5.PS;
+import com.massivecraft.mcore5.PSTeleporterException;
 
 public class Target
 {
@@ -61,22 +62,34 @@ public class Target
 	public boolean teleport(Entity entity)
 	{
 		if (!this.exists()) return false;
-		switch(this.getType())
+		try
 		{
-			case LOCATION:
-				this.location.write(entity);
-				return true;
-			case GATE:
-				this.getGate().getExit().write(entity);
-				return true;
-			case RUBBERSERVER: 
-				if (!(entity instanceof Player)) return false;
-				Player player = (Player) entity;
-				player.sendPluginMessage(P.p, "RubberBand", this.rubberServerName.getBytes());
-				return true;
-			default:
-				return false;
+			switch(this.getType())
+			{
+				case LOCATION:
+					this.location.write(entity);
+					return true;
+				case GATE:
+					this.getGate().getExit().write(entity);
+					return true;
+				case RUBBERSERVER: 
+					if (!(entity instanceof Player)) return false;
+					Player player = (Player) entity;
+					player.sendPluginMessage(P.p, "RubberBand", this.rubberServerName.getBytes());
+					return true;
+				default:
+					return false;
+			}
 		}
+		catch (PSTeleporterException e)
+		{
+			if (entity instanceof Player)
+			{
+				Player player = (Player) entity;
+				player.sendMessage(e.getMessage());
+			}
+		}
+		return false;
 	}
 	
 	public void delayedTeleport(final Entity entity)
