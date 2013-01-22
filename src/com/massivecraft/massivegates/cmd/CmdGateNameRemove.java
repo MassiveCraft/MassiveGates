@@ -5,7 +5,6 @@ import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.mcore5.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore5.cmd.req.ReqIsPlayer;
 
 public class CmdGateNameRemove extends GateCommand
 {
@@ -13,7 +12,7 @@ public class CmdGateNameRemove extends GateCommand
 	{
 		super();
 		this.addAliases("remove");
-		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqGateSelected.get());
 		this.addRequirements(new ReqHasPerm(Permission.NAME_REMOVE.node));
 	}
 	

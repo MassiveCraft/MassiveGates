@@ -6,7 +6,6 @@ import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.mcore5.cmd.arg.ARBoolean;
 import com.massivecraft.mcore5.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore5.cmd.req.ReqIsPlayer;
 
 public class CmdGateOpenSet extends GateCommand
 {
@@ -15,7 +14,7 @@ public class CmdGateOpenSet extends GateCommand
 		super();
 		this.addAliases("set");
 		this.addRequiredArg("flag");
-		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqGateSelected.get());
 		this.addRequirements(new ReqHasPerm(Permission.OPEN_SET.node));
 	}
 	

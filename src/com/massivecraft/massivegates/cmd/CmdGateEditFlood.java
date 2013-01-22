@@ -24,7 +24,7 @@ public class CmdGateEditFlood extends GateCommand
 		super();
 		this.addAliases("flood");
 		this.addOptionalArg("frame", "true");
-		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.get());
 		this.addRequirements(new ReqHasPerm(Permission.EDIT_FLOOD.node));
 	}
 	

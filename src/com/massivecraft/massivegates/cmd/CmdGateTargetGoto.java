@@ -13,7 +13,7 @@ public class CmdGateTargetGoto extends GateCommand
 	{
 		super();
 		this.addAliases("goto");
-		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.get());
 		this.addRequirements(new ReqHasPerm(Permission.TARGET_GOTO.node));
 	}
 	

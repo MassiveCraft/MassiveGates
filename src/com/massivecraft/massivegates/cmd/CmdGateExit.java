@@ -8,7 +8,6 @@ import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.mcore5.cmd.HelpCommand;
-import com.massivecraft.mcore5.cmd.req.ReqIsPlayer;
 
 public class CmdGateExit extends GateCommand
 {
@@ -19,7 +18,7 @@ public class CmdGateExit extends GateCommand
 		this.addSubCommand(new CmdGateExitHere());
 		this.addSubCommand(new CmdGateExitGoto());
 		this.addSubCommand(new CmdGateExitRemove());
-		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqGateSelected.get());
 		this.setDesc("manage gate exit");
 	}
 	

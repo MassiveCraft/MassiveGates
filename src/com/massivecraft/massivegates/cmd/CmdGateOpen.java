@@ -8,7 +8,6 @@ import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.mcore5.cmd.HelpCommand;
-import com.massivecraft.mcore5.cmd.req.ReqIsPlayer;
 
 public class CmdGateOpen extends GateCommand
 {
@@ -17,7 +16,7 @@ public class CmdGateOpen extends GateCommand
 		super();
 		this.addAliases("open");
 		this.addSubCommand(new CmdGateOpenSet());
-		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqGateSelected.get());
 		this.setDesc("manage gate open/closed state");
 	}
 	

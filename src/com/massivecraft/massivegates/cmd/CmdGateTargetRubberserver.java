@@ -6,7 +6,6 @@ import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.mcore5.cmd.arg.ARString;
 import com.massivecraft.mcore5.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore5.cmd.req.ReqIsPlayer;
 
 public class CmdGateTargetRubberserver extends GateCommand
 {
@@ -15,7 +14,7 @@ public class CmdGateTargetRubberserver extends GateCommand
 		super();
 		this.addAliases("rubberserver");
 		this.addRequiredArg("name");
-		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqGateSelected.get());
 		this.addRequirements(new ReqHasPerm(Permission.TARGET_RUBBERSERVER.node));
 	}
 	

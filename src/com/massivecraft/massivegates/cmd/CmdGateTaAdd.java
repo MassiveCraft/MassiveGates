@@ -11,7 +11,6 @@ import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
 import com.massivecraft.mcore5.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore5.cmd.req.ReqIsPlayer;
 import com.massivecraft.mcore5.util.PermUtil;
 
 public class CmdGateTaAdd extends GateCommand
@@ -25,7 +24,7 @@ public class CmdGateTaAdd extends GateCommand
 		this.addOptionalArg("argument", "");
 		this.setErrorOnToManyArgs(false);
 		
-		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqGateSelected.get());
 		this.addRequirements(new ReqHasPerm(Permission.TA_ADD.node));
 	}
 	

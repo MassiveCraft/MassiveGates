@@ -13,7 +13,6 @@ import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
 import com.massivecraft.mcore5.cmd.arg.ARInteger;
 import com.massivecraft.mcore5.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore5.cmd.req.ReqIsPlayer;
 import com.massivecraft.mcore5.util.Txt;
 
 public class CmdGateTaList extends GateCommand
@@ -24,7 +23,7 @@ public class CmdGateTaList extends GateCommand
 		this.addAliases("list");
 		this.addOptionalArg("page", "1");
 		
-		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqGateSelected.get());
 		this.addRequirements(new ReqHasPerm(Permission.TA_LIST.node));
 	}
 	

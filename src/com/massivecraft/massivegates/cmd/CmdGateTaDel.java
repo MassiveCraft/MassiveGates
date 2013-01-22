@@ -10,7 +10,6 @@ import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
 import com.massivecraft.mcore5.cmd.arg.ARInteger;
 import com.massivecraft.mcore5.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore5.cmd.req.ReqIsPlayer;
 
 public class CmdGateTaDel extends GateCommand
 {
@@ -21,7 +20,7 @@ public class CmdGateTaDel extends GateCommand
 		this.addRequiredArg("trigger|all");
 		this.addOptionalArg("index|action|all","all");
 		
-		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqGateSelected.get());
 		this.addRequirements(new ReqHasPerm(Permission.TA_DEL.node));
 	}
 	

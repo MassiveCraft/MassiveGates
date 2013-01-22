@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
+import org.bukkit.permissions.Permissible;
 
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.mcore5.util.PermUtil;
@@ -44,9 +44,9 @@ public class ActionReqPerm extends BaseAction
 	public static boolean hasPerm(String perm, Entity entity)
 	{
 		if (entity == null) return false;
-		if ( ! (entity instanceof Player)) return false;
-		Player player = (Player)entity;
+		if ( ! (entity instanceof Permissible)) return false;
+		Permissible permissible = (Permissible)entity;
 		
-		return PermUtil.has(player, perm, true);
+		return PermUtil.has(permissible, perm, true);
 	}
 }

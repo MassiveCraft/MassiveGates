@@ -1,18 +1,18 @@
 package com.massivecraft.massivegates;
 
 import com.massivecraft.mcore5.store.MStore;
-import com.massivecraft.mcore5.store.PlayerColl;
+import com.massivecraft.mcore5.store.SenderColl;
 
-public class GPlayerColl extends PlayerColl<GPlayer>
+public class GSenderColl extends SenderColl<GSender>
 {
 	// -------------------------------------------- //
 	// META
 	// -------------------------------------------- //
-	public static GPlayerColl i = new GPlayerColl();
+	public static GSenderColl i = new GSenderColl();
 	
-	private GPlayerColl()
+	public GSenderColl()
 	{
-		super(MStore.getDb(ConfServer.dburi), P.p, Const.playerBasename, GPlayer.class);
+		super(MStore.getDb(ConfServer.dburi), P.p, Const.senderBasename, GSender.class, DEFAULT_CREATIVE, DEFAULT_LOWERCASING, null, null);
 	}
 
 	// -------------------------------------------- //
@@ -20,7 +20,7 @@ public class GPlayerColl extends PlayerColl<GPlayer>
 	// -------------------------------------------- //
 	
 	@Override
-	public boolean isDefault(GPlayer entity)
+	public boolean isDefault(GSender entity)
 	{
 		return entity.getSelectedGate() == null;
 	}

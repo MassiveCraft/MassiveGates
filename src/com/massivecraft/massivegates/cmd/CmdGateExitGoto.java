@@ -14,7 +14,7 @@ public class CmdGateExitGoto extends GateCommand
 	{
 		super();
 		this.addAliases("goto");
-		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.get());
 		this.addRequirements(new ReqHasPerm(Permission.EXIT_GOTO.node));
 	}
 	

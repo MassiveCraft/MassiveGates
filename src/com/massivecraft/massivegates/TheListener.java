@@ -21,6 +21,8 @@ import org.bukkit.event.block.BlockPistonRetractEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.EntityPortalEvent;
+import org.bukkit.event.entity.EntityPortalExitEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -65,11 +67,20 @@ public class TheListener implements Listener
 	// -------------------------------------------- //
 			
 	@EventHandler(priority = EventPriority.NORMAL)
-	public void normalPlayerPortalEvent(PlayerPortalEvent event)
+	public void disableVanillaGates(PlayerPortalEvent event)
 	{
 		if (ConfServer.disableVanillaGates)
 		{
-			event.setCancelled(false);
+			event.setCancelled(true);
+		}
+	}
+	
+	@EventHandler(priority = EventPriority.NORMAL)
+	public void disableVanillaGates(EntityPortalEvent event)
+	{
+		if (ConfServer.disableVanillaGates)
+		{
+			event.setCancelled(true);
 		}
 	}
 	

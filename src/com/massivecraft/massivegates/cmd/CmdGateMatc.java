@@ -9,7 +9,6 @@ import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.mcore5.cmd.arg.ARByte;
 import com.massivecraft.mcore5.cmd.arg.ARMaterial;
 import com.massivecraft.mcore5.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore5.cmd.req.ReqIsPlayer;
 import com.massivecraft.mcore5.util.Txt;
 
 public class CmdGateMatc extends GateCommand
@@ -21,7 +20,7 @@ public class CmdGateMatc extends GateCommand
 		this.addOptionalArg("material", "get");
 		this.addOptionalArg("data", "0");
 		
-		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqGateSelected.get());
 		this.addRequirements(new ReqHasPerm(Permission.MATC.node));
 	}
 	

@@ -2,8 +2,8 @@ package com.massivecraft.massivegates.cmdreq;
 
 import org.bukkit.command.CommandSender;
 
-import com.massivecraft.massivegates.GPlayer;
-import com.massivecraft.massivegates.GPlayerColl;
+import com.massivecraft.massivegates.GSender;
+import com.massivecraft.massivegates.GSenderColl;
 import com.massivecraft.mcore5.cmd.MCommand;
 import com.massivecraft.mcore5.cmd.req.IReq;
 
@@ -12,8 +12,8 @@ public class ReqGateSelected implements IReq
 	@Override
 	public boolean test(CommandSender sender, MCommand command)
 	{
-		GPlayer gplayer = GPlayerColl.i.get(sender);
-		return gplayer.getSelectedGate() != null;
+		GSender gsender = GSenderColl.i.get(sender);
+		return gsender.getSelectedGate() != null;
 	}
 
 	@Override
@@ -22,9 +22,11 @@ public class ReqGateSelected implements IReq
 		return "<b>You must select a gate before you "+command.getDesc()+".";
 	}
 	
-	protected static ReqGateSelected instance = new ReqGateSelected();
-	public static ReqGateSelected getInstance()
-	{
-		return instance;
-	}
+	// -------------------------------------------- //
+	// INSTANCE
+	// -------------------------------------------- //
+	
+	protected static ReqGateSelected i = new ReqGateSelected();
+	public static ReqGateSelected get() { return i; }
+	
 }

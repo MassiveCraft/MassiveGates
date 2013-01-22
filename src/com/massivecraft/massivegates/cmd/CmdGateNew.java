@@ -5,7 +5,6 @@ import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.GateColl;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.mcore5.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore5.cmd.req.ReqIsPlayer;
 
 public class CmdGateNew extends GateCommand
 {
@@ -14,7 +13,6 @@ public class CmdGateNew extends GateCommand
 		this.addAliases("new", "create");
 		this.addOptionalArg("name", "*none*");
 		this.setErrorOnToManyArgs(false);
-		this.addRequirements(ReqIsPlayer.get());
 		this.addRequirements(new ReqHasPerm(Permission.NEW.node));
 	}
 

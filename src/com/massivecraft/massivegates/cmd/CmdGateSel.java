@@ -5,7 +5,6 @@ import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdarg.ARGate;
 import com.massivecraft.mcore5.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore5.cmd.req.ReqIsPlayer;
 
 public class CmdGateSel extends GateCommand
 {
@@ -15,7 +14,6 @@ public class CmdGateSel extends GateCommand
 		this.addAliases("sel");
 		this.addOptionalArg("gate", "*get*");
 		
-		this.addRequirements(ReqIsPlayer.get());
 		this.addRequirements(new ReqHasPerm(Permission.SELECT.node));
 	}
 	
@@ -40,7 +38,10 @@ public class CmdGateSel extends GateCommand
 		gate = this.arg(0, ARGate.get());
 		if (gate == null) return;
 		gme.setSelectedGate(gate);
-		gate.visualizeFor(me);
+		if (me != null)
+		{
+			gate.visualizeFor(me);
+		}
 		this.msg("<i>Selected gate "+gate.getIdNameStringLong());
 	}
 }

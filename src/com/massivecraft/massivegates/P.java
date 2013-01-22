@@ -60,7 +60,7 @@ public class P extends MPlugin
 		
 		// Init collections
 		GateColl.i.init();
-		GPlayerColl.i.init();
+		GSenderColl.i.init();
 		
 		// Register Triggers & Actions
 		GateColl.i.registerAction(ActionUse.getInstance());
@@ -88,7 +88,7 @@ public class P extends MPlugin
 		
 		// Add Base Commands
 		this.cmdGate = new CmdGate();
-		this.cmdGate.register();	
+		this.cmdGate.register(this);	
 		
 		// Register events
 		this.theListener = new TheListener(this);

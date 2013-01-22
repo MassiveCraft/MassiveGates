@@ -14,7 +14,7 @@ public class CmdGateSee extends GateCommand
 		super();
 		this.addAliases("see");
 		
-		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.getInstance());
+		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.get());
 		this.addRequirements(new ReqHasPerm(Permission.SEE.node));
 	}
 	

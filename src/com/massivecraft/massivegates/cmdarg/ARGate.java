@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.bukkit.entity.Player;
 
-import com.massivecraft.massivegates.GPlayer;
-import com.massivecraft.massivegates.GPlayerColl;
+import com.massivecraft.massivegates.GSender;
+import com.massivecraft.massivegates.GSenderColl;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateColl;
 import com.massivecraft.mcore5.cmd.MCommand;
@@ -32,7 +32,7 @@ public class ARGate implements ArgReader<Gate>
 			else
 			{
 				Player me = (Player)mcommand.sender;
-				GPlayer gme = GPlayerColl.i.get(me);
+				GSender gme = GSenderColl.i.get(me);
 				result.setResult(gme.getThatGate(false));
 				if (result.hasResult() == false)
 				{
