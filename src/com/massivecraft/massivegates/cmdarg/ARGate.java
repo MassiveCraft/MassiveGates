@@ -3,13 +3,13 @@ package com.massivecraft.massivegates.cmdarg;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.massivecraft.massivegates.GSender;
 import com.massivecraft.massivegates.GSenderColl;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateColl;
-import com.massivecraft.mcore5.cmd.MCommand;
 import com.massivecraft.mcore5.cmd.arg.ArgReader;
 import com.massivecraft.mcore5.cmd.arg.ArgResult;
 import com.massivecraft.mcore5.util.Txt;
@@ -17,21 +17,21 @@ import com.massivecraft.mcore5.util.Txt;
 public class ARGate implements ArgReader<Gate>
 {
 	@Override
-	public ArgResult<Gate> read(String str, MCommand mcommand)
+	public ArgResult<Gate> read(String str, CommandSender sender)
 	{
 		ArgResult<Gate> result = new ArgResult<Gate>();
 		
 		// Is this by chance a "that" request
 		if (str.equalsIgnoreCase("that"))
 		{
-			if ( ! (mcommand.sender instanceof Player))
+			if ( ! (sender instanceof Player))
 			{
 				result.getErrors().add("<b>You must be ingame player to use \"that\" gate detection.");
 				return null;
 			}
 			else
 			{
-				Player me = (Player)mcommand.sender;
+				Player me = (Player)sender;
 				GSender gme = GSenderColl.i.get(me);
 				result.setResult(gme.getThatGate(false));
 				if (result.hasResult() == false)

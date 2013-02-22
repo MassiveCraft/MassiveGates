@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.bukkit.command.CommandSender;
+
 import com.massivecraft.massivegates.GateColl;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.ta.Action;
-import com.massivecraft.mcore5.cmd.MCommand;
 import com.massivecraft.mcore5.cmd.arg.ARAbstractSelect;
 
 public class ARAction extends ARAbstractSelect<Action>
@@ -19,19 +20,19 @@ public class ARAction extends ARAbstractSelect<Action>
 	}
 
 	@Override
-	public Action select(String str, MCommand mcommand)
+	public Action select(String str, CommandSender sender)
 	{
 		return GateColl.i.getActionName(str);
 	}
 	
 	@Override
-	public boolean canList(MCommand mcommand)
+	public boolean canList(CommandSender sender)
 	{
-		return Permission.TA_LIST.has(mcommand.sender, false);
+		return Permission.TA_LIST.has(sender, false);
 	}
 
 	@Override
-	public Collection<String> altNames(MCommand mcommand)
+	public Collection<String> altNames(CommandSender sender)
 	{
 		List<String> ret = new ArrayList<String>();
 		for (Action action : GateColl.i.getActions())

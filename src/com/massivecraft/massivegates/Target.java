@@ -6,7 +6,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import com.massivecraft.mcore5.PS;
-import com.massivecraft.mcore5.PSTeleporterException;
+import com.massivecraft.mcore5.mixin.TeleporterException;
 
 public class Target
 {
@@ -81,7 +81,7 @@ public class Target
 					return false;
 			}
 		}
-		catch (PSTeleporterException e)
+		catch (TeleporterException e)
 		{
 			if (entity instanceof Player)
 			{
