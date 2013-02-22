@@ -1,7 +1,7 @@
 package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.mcore5.cmd.HelpCommand;
+import com.massivecraft.mcore.cmd.HelpCommand;
 
 // In the sub commands we will often have rows like this:
 // trigger index action arg desc

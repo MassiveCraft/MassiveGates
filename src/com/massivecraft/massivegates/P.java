@@ -29,7 +29,7 @@ import com.massivecraft.massivegates.ta.TriggerOpen;
 import com.massivecraft.massivegates.ta.TriggerPowerOff;
 import com.massivecraft.massivegates.ta.TriggerPowerOn;
 import com.massivecraft.massivegates.ta.TriggerUse;
-import com.massivecraft.mcore5.MPlugin;
+import com.massivecraft.mcore.MPlugin;
 
 public class P extends MPlugin
 {

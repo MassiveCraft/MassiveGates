@@ -45,8 +45,8 @@ import com.massivecraft.massivegates.ta.TriggerPowerOff;
 import com.massivecraft.massivegates.ta.TriggerPowerOn;
 import com.massivecraft.massivegates.ta.TriggerUse;
 import com.massivecraft.massivegates.util.VisualizeUtil;
-import com.massivecraft.mcore5.PS;
-import com.massivecraft.mcore5.event.MCoreAfterPlayerTeleportEvent;
+import com.massivecraft.mcore.PS;
+import com.massivecraft.mcore.event.MCoreAfterPlayerTeleportEvent;
 
 
 public class TheListener implements Listener

@@ -11,7 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-import com.massivecraft.mcore5.PS;
+import com.massivecraft.mcore.PS;
 
 // TODO: Only send blocks in visual range
 // TODO: Only send blocks that where changed when clearing?

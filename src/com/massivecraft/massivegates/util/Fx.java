@@ -14,9 +14,9 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.HumanEntity;
 
 import com.massivecraft.massivegates.Gate;
-import com.massivecraft.mcore5.PS;
-import com.massivecraft.mcore5.util.SmokeUtil;
-import com.massivecraft.mcore5.util.Txt;
+import com.massivecraft.mcore.PS;
+import com.massivecraft.mcore.util.SmokeUtil;
+import com.massivecraft.mcore.util.Txt;
 
 public enum Fx
 {	

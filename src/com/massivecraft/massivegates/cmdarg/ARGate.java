@@ -10,9 +10,9 @@ import com.massivecraft.massivegates.GSender;
 import com.massivecraft.massivegates.GSenderColl;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateColl;
-import com.massivecraft.mcore5.cmd.arg.ArgReader;
-import com.massivecraft.mcore5.cmd.arg.ArgResult;
-import com.massivecraft.mcore5.util.Txt;
+import com.massivecraft.mcore.cmd.arg.ArgReader;
+import com.massivecraft.mcore.cmd.arg.ArgResult;
+import com.massivecraft.mcore.util.Txt;
 
 public class ARGate implements ArgReader<Gate>
 {

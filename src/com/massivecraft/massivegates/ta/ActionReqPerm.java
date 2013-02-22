@@ -8,7 +8,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.permissions.Permissible;
 
 import com.massivecraft.massivegates.Gate;
-import com.massivecraft.mcore5.util.PermUtil;
+import com.massivecraft.mcore.util.PermUtil;
 
 public class ActionReqPerm extends BaseAction
 {
