@@ -77,8 +77,10 @@ public class GateColl extends Coll<Gate, String>
 	// -------------------------------------------- //
 	
 	@Override
-	public ModificationState syncId(String id)
+	public ModificationState syncId(Object oid)
 	{
+		String id = this.fixId(oid);
+		
 		Gate gate = this.id2entity.get(id);
 		
 		if (gate != null)
@@ -91,8 +93,10 @@ public class GateColl extends Coll<Gate, String>
 	}
 	
 	@Override
-	public synchronized Gate removeAtLocal(String id)
+	public synchronized Gate removeAtLocal(Object oid)
 	{
+		String id = this.fixId(oid);
+		
 		Gate entity = this.id2entity.get(id);
 		
 		this.clearIndexFor(entity);
@@ -104,8 +108,10 @@ public class GateColl extends Coll<Gate, String>
 	}
 	
 	@Override
-	public synchronized void loadFromRemote(String id)
+	public synchronized void loadFromRemote(Object oid)
 	{
+		String id = this.fixId(oid);
+		
 		Gate gate = this.id2entity.get(id);
 		if (gate == null)
 		{
