@@ -5,14 +5,16 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
-import com.massivecraft.mcore.PS;
+import com.massivecraft.mcore.mixin.Mixin;
 import com.massivecraft.mcore.mixin.TeleporterException;
+import com.massivecraft.mcore.ps.PS;
+import com.massivecraft.mcore.ps.PSFormatDesc;
 
 public class Target
 {
 	public PS location;
-	public void setLocation(Location location) { this.remove(); this.location = new PS(location); }
-	public Location getLocation() { return this.location.getLocation(); }
+	public void setLocation(Location location) { this.remove(); this.location = PS.valueOf(location); }
+	public PS getLocation() { return this.location; }
 	
 	public String gateId;
 	public void setGate(Gate gate) { this.remove(); this.gateId = gate.getId(); }
@@ -41,7 +43,7 @@ public class Target
 	{
 		switch(this.getType())
 		{
-			case LOCATION: return "<k>Location: <v>"+this.location.getShortDesc();
+			case LOCATION: return "<k>Location: <v>"+this.location.toString(PSFormatDesc.get());
 			case GATE: return "<k>Gate: <v>"+this.getGate().getIdNameStringShort();
 			case RUBBERSERVER: return "<k>RubberServer: <v>"+this.rubberServerName;
 			default: return "<v>*NONE*";
@@ -67,10 +69,10 @@ public class Target
 			switch(this.getType())
 			{
 				case LOCATION:
-					this.location.write(entity);
+					Mixin.teleport((Player)entity, this.getLocation());
 					return true;
 				case GATE:
-					this.getGate().getExit().write(entity);
+					Mixin.teleport((Player)entity, this.getGate().getExit());
 					return true;
 				case RUBBERSERVER: 
 					if (!(entity instanceof Player)) return false;

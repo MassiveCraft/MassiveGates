@@ -4,9 +4,11 @@ import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
-import com.massivecraft.mcore.PS;
 import com.massivecraft.mcore.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore.cmd.req.ReqIsPlayer;
+import com.massivecraft.mcore.mixin.Mixin;
+import com.massivecraft.mcore.mixin.TeleporterException;
+import com.massivecraft.mcore.ps.PS;
 
 public class CmdGateExitGoto extends GateCommand
 {
@@ -28,9 +30,16 @@ public class CmdGateExitGoto extends GateCommand
 		PS locw = gate.getExit();
 		if (locw != null)
 		{
-			me.teleport(locw.getLocation());
-			this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>teleportet to exit:");
-			this.msg(gate.getExitDesc());
+			try
+			{
+				Mixin.teleport(me, locw, "sdf");
+				this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>teleported to exit:");
+				this.msg(gate.getExitDesc());
+			}
+			catch (TeleporterException e)
+			{
+				me.sendMessage(e.getMessage());
+			}
 		}
 		else
 		{

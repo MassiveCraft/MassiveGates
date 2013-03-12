@@ -11,7 +11,7 @@ import com.massivecraft.massivegates.event.GateDetachEvent;
 import com.massivecraft.massivegates.event.GateSaveEvent;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
-import com.massivecraft.mcore.PS;
+import com.massivecraft.mcore.ps.PS;
 import com.massivecraft.mcore.store.Coll;
 import com.massivecraft.mcore.store.MStore;
 import com.massivecraft.mcore.store.ModificationState;

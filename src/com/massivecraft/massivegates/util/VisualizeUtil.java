@@ -11,7 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
-import com.massivecraft.mcore.PS;
+import com.massivecraft.mcore.ps.PS;
 
 // TODO: Only send blocks in visual range
 // TODO: Only send blocks that where changed when clearing?
@@ -81,8 +81,16 @@ public class VisualizeUtil
 		Set<Location> ploc = getPlayerLocations(player);
 		for (PS coord : coords)
 		{
-			Location location = coord.calcLocation();
-			if (location == null) continue;
+			Location location = null;
+			try
+			{
+				location = coord.asBukkitLocation(true);
+			}
+			catch (Exception e)
+			{
+				continue;
+			}
+			
 			ploc.add(location);
 			player.sendBlockChange(location, typeId, (byte) 0);
 		}

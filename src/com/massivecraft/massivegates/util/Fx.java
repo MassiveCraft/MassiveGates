@@ -14,7 +14,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.HumanEntity;
 
 import com.massivecraft.massivegates.Gate;
-import com.massivecraft.mcore.PS;
+import com.massivecraft.mcore.ps.PS;
 import com.massivecraft.mcore.util.SmokeUtil;
 import com.massivecraft.mcore.util.Txt;
 
@@ -247,7 +247,14 @@ public enum Fx
 			locations = new ArrayList<Location>(gate.getContent().size());
 			for (PS coord : gate.getContent())
 			{
-				locations.add(coord.calcLocation());
+				try
+				{
+					locations.add(coord.asBukkitLocation(true));
+				}
+				catch (Exception e)
+				{
+					
+				}
 			}
 		}
 		perform(fx, dataString, locations);

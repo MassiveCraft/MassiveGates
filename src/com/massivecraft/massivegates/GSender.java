@@ -12,7 +12,7 @@ import org.bukkit.util.BlockIterator;
 
 import com.massivecraft.massivegates.util.FloodOrientation;
 import com.massivecraft.massivegates.util.FloodUtil;
-import com.massivecraft.mcore.PS;
+import com.massivecraft.mcore.ps.PS;
 import com.massivecraft.mcore.store.SenderEntity;
 
 /**
@@ -73,11 +73,10 @@ public class GSender extends SenderEntity<GSender>
 		
 		Gate ret = null;
 		
-		PS coord = new PS();
 		Iterator<Block> itr = new BlockIterator(me, ConfServer.lineOfSightLimit);
 		while (itr.hasNext())
 		{
-			coord.setBlock(itr.next());
+			PS coord = PS.valueOf(itr.next());
 			ret = GateColl.i.getGateAtCoord(coord);
 			if (ret != null) break;
 		}

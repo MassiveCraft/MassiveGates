@@ -45,8 +45,8 @@ import com.massivecraft.massivegates.ta.TriggerPowerOff;
 import com.massivecraft.massivegates.ta.TriggerPowerOn;
 import com.massivecraft.massivegates.ta.TriggerUse;
 import com.massivecraft.massivegates.util.VisualizeUtil;
-import com.massivecraft.mcore.PS;
 import com.massivecraft.mcore.event.MCoreAfterPlayerTeleportEvent;
+import com.massivecraft.mcore.ps.PS;
 
 
 public class TheListener implements Listener
@@ -91,7 +91,7 @@ public class TheListener implements Listener
 	public void monitorBlockPhysicsEvent(BlockPhysicsEvent event)
 	{
 		Block block = event.getBlock();
-		PS coord = new PS(block);
+		PS coord = PS.valueOf(block);
 		
 		Gate gate = GateColl.i.getGateAtFrameCoord(coord);
 		if (gate == null) return;
@@ -124,8 +124,8 @@ public class TheListener implements Listener
 		
 		VisualizeUtil.clear(player);
 		
-		PS coordFrom = new PS(blockFrom);
-		PS coordTo = new PS(blockTo);
+		PS coordFrom = PS.valueOf(blockFrom);
+		PS coordTo = PS.valueOf(blockTo);
 		
 		Gate gateFrom = GateColl.i.getGateAtContentCoord(coordFrom);
 		Gate gateTo = GateColl.i.getGateAtContentCoord(coordTo);
@@ -255,7 +255,7 @@ public class TheListener implements Listener
 	{
 		if (event.isCancelled()) return true;
 		
-		PS coord = new PS(block);
+		PS coord = PS.valueOf(block);
 		
 		Gate contentGate = GateColl.i.getGateAtContentCoord(coord);
 		if (contentGate != null && ! contentGate.isContentEditable())
@@ -277,7 +277,7 @@ public class TheListener implements Listener
 	public void handlerMonitorSingle(Cancellable event, Block block, GateAlterType alterType, Player player)
 	{
 		if (event.isCancelled()) return;
-		PS coord = new PS(block);
+		PS coord = PS.valueOf(block);
 		Gate gate = GateColl.i.getGateAtCoord(coord);
 		if (gate == null) return;
 		new GateAlterEvent(gate, alterType, player).run();
@@ -458,7 +458,7 @@ public class TheListener implements Listener
 		
 		for (Block block : event.blockList())
 		{
-			Gate gate = GateColl.i.getGateAtCoord(new PS(block));
+			Gate gate = GateColl.i.getGateAtCoord(PS.valueOf(block));
 			if (gate == null) continue;
 			alteredGates.add(gate);
 		}

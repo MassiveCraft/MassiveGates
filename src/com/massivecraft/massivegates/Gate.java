@@ -33,7 +33,8 @@ import com.massivecraft.massivegates.event.GateUseEvent;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
 import com.massivecraft.massivegates.util.VisualizeUtil;
-import com.massivecraft.mcore.PS;
+import com.massivecraft.mcore.ps.PS;
+import com.massivecraft.mcore.ps.PSFormatDesc;
 
 public class Gate extends com.massivecraft.mcore.store.Entity<Gate, String>
 {
@@ -78,10 +79,10 @@ public class Gate extends com.massivecraft.mcore.store.Entity<Gate, String>
 		// If someone is standing in a gate while it opens that should be considered as entering the gate.
 		if (this.open)
 		{
-			PS coord = new PS();
+			PS coord = null;
 			for (Player player : Bukkit.getOnlinePlayers())
 			{
-				coord.setBlock(player.getLocation().getBlock());
+				coord = PS.valueOf(player.getLocation().getBlock());
 				if (this != GateColl.i.getGateAtContentCoord(coord)) continue;
 				new GatePlayerWalkEvent(player, null, this, GatePlayerWalkType.INTO).run();
 			}
@@ -149,7 +150,7 @@ public class Gate extends com.massivecraft.mcore.store.Entity<Gate, String>
 		String ret = "<v>*NONE*<i>";
 		if (this.exit != null)
 		{
-			ret = "<v>"+this.exit.getShortDesc()+"<i>";
+			ret = "<v>"+this.exit.toString(PSFormatDesc.get())+"<i>";
 		}
 		return ret;
 	}
@@ -205,7 +206,15 @@ public class Gate extends com.massivecraft.mcore.store.Entity<Gate, String>
 		// Ensure material
 		if (this.isOpen())
 		{
-			Block block = coord.getBlock();
+			Block block = null;
+			try
+			{
+				block = coord.asBukkitBlock();
+			}
+			catch (Exception e)
+			{
+				
+			}
 			if (block == null) return;
 			block.setType(this.matopen);
 		}
@@ -230,7 +239,15 @@ public class Gate extends com.massivecraft.mcore.store.Entity<Gate, String>
 		// Ensure material
 		if (this.open)
 		{
-			Block block = coord.getBlock();
+			Block block = null;
+			try
+			{
+				block = coord.asBukkitBlock();
+			}
+			catch (Exception e)
+			{
+				
+			}
 			if (block == null) return;
 			block.setType(Material.AIR);
 		}
@@ -261,7 +278,7 @@ public class Gate extends com.massivecraft.mcore.store.Entity<Gate, String>
 		List<PS> coords = new ArrayList<PS>();
 		for (Block block : blocks)
 		{
-			coords.add(new PS(block));
+			coords.add(PS.valueOf(block));
 		}
 		this.addContent(coords);
 	}
@@ -344,7 +361,7 @@ public class Gate extends com.massivecraft.mcore.store.Entity<Gate, String>
 		List<PS> coords = new ArrayList<PS>();
 		for (Block block : blocks)
 		{
-			coords.add(new PS(block));
+			coords.add(PS.valueOf(block));
 		}
 		this.addFrame(coords);
 	}
@@ -398,8 +415,16 @@ public class Gate extends com.massivecraft.mcore.store.Entity<Gate, String>
 	public void powerCheck(PS coord)
 	{
 		// It is understood from before that this coord is part of the gate frame
-		Block block = coord.getBlock();
-		if (block == null) return;
+		Block block = null;
+		try
+		{
+			block = coord.asBukkitBlock();
+		}
+		catch (Exception e)
+		{
+			return;
+		}
+		
 		if (block.isBlockIndirectlyPowered())
 		{
 			this.powerAdd(coord);
@@ -524,22 +549,31 @@ public class Gate extends com.massivecraft.mcore.store.Entity<Gate, String>
 	public Location calcGateCenter()
 	{
 		// TODO: IMPROVE
-		
-		Location ret = null;
-		
 		if ( ! this.getContent().isEmpty())
 		{
-			ret = this.getContent().iterator().next().calcLocation();
-			if (ret != null) return ret;
+			try
+			{
+				return this.getContent().iterator().next().asBukkitLocation(true);
+			}
+			catch (Exception e)
+			{
+				
+			}
 		}
 		
 		if ( ! this.getFrame().isEmpty())
 		{
-			ret = this.getFrame().iterator().next().calcLocation();
-			if (ret != null) return ret;
+			try
+			{
+				return this.getFrame().iterator().next().asBukkitLocation(true);
+			}
+			catch (Exception e)
+			{
+				
+			}
 		}
 		
-		return ret;
+		return null;
 	}
 	
 	public World calcGateWorld()
@@ -620,8 +654,15 @@ public class Gate extends com.massivecraft.mcore.store.Entity<Gate, String>
 	{
 		for (PS coord : coords)
 		{
-			Block block = coord.getBlock();
-			if (block == null) continue;
+			Block block = null;
+			try
+			{
+				block = coord.asBukkitBlock();
+			}
+			catch (Exception e)
+			{
+				continue;
+			}
 			block.setType(material);
 			block.setData(data);
 		}

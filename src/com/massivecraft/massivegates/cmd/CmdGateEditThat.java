@@ -9,9 +9,9 @@ import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.util.VisualizeUtil;
-import com.massivecraft.mcore.PS;
 import com.massivecraft.mcore.cmd.req.ReqHasPerm;
 import com.massivecraft.mcore.cmd.req.ReqIsPlayer;
+import com.massivecraft.mcore.ps.PS;
 import com.massivecraft.mcore.util.SmokeUtil;
 
 public class CmdGateEditThat extends GateCommand
@@ -34,7 +34,7 @@ public class CmdGateEditThat extends GateCommand
 		if (thatBlock == null) return;
 		
 		Location thatLoc = thatBlock.getLocation();
-		PS thatCoord = new PS(thatBlock);
+		PS thatCoord = PS.valueOf(thatBlock);
 		
 		char firstArgChar = this.arg(0).toLowerCase().charAt(0);
 		
