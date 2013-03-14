@@ -10,11 +10,11 @@ import com.massivecraft.massivegates.GSender;
 import com.massivecraft.massivegates.GSenderColl;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateColl;
-import com.massivecraft.mcore.cmd.arg.ArgReader;
+import com.massivecraft.mcore.cmd.arg.ArgReaderAbstract;
 import com.massivecraft.mcore.cmd.arg.ArgResult;
 import com.massivecraft.mcore.util.Txt;
 
-public class ARGate implements ArgReader<Gate>
+public class ARGate extends ArgReaderAbstract<Gate>
 {
 	@Override
 	public ArgResult<Gate> read(String str, CommandSender sender)
