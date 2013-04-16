@@ -59,7 +59,7 @@ public class CmdGateTaAdd extends GateCommand
 		System.out.println(sender);
 		if ( ! sender.hasPermission(perm))
 		{
-			this.msg(PermUtil.getForbiddenMessage(perm));
+			this.msg(PermUtil.getDeniedMessage(perm));
 			return;
 		}
 		

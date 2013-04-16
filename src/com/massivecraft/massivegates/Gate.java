@@ -36,7 +36,7 @@ import com.massivecraft.massivegates.util.VisualizeUtil;
 import com.massivecraft.mcore.ps.PS;
 import com.massivecraft.mcore.ps.PSFormatDesc;
 
-public class Gate extends com.massivecraft.mcore.store.Entity<Gate, String>
+public class Gate extends com.massivecraft.mcore.store.Entity<Gate>
 {
 	// -------------------------------------------- //
 	// LOAD

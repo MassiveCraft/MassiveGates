@@ -17,7 +17,7 @@ import com.massivecraft.mcore.store.MStore;
 import com.massivecraft.mcore.store.ModificationState;
 import com.massivecraft.mcore.util.Txt;
 
-public class GateColl extends Coll<Gate, String>
+public class GateColl extends Coll<Gate>
 {
 	// -------------------------------------------- //
 	// META
@@ -26,7 +26,7 @@ public class GateColl extends Coll<Gate, String>
 	public static GateColl i = new GateColl();
 	private GateColl()
 	{
-		super(MStore.getDb(ConfServer.dburi), P.p, "ai", Const.gateBasename, Gate.class, String.class, false);
+		super(Const.gateBasename, Gate.class, MStore.getDb(ConfServer.dburi), P.p);
 	}
 	
 	// -------------------------------------------- //
