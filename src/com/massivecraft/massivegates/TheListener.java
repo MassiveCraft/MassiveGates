@@ -425,6 +425,7 @@ public class TheListener implements Listener
 		}
 		this.handlerNormalSingle(event.getRetractLocation().getBlock(), event);
 	}
+	
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void monitorBlockPistonRetractEvent(BlockPistonRetractEvent event)
 	{
