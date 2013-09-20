@@ -54,6 +54,7 @@ public class StandableUtil
 	{
 		m2s.put(material, new StandableInfo(validGround, validLower, validUpper));
 	}
+	@SuppressWarnings("deprecation")
 	protected static void setInfo(int id, final boolean validGround, final boolean validLower, final boolean validUpper)
 	{
 		setInfo(Material.getMaterial(id), validGround, validLower, validUpper);

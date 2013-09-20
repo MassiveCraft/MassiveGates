@@ -650,6 +650,7 @@ public class Gate extends com.massivecraft.mcore.store.Entity<Gate>
 	// FILL
 	// -------------------------------------------- //
 	
+	@SuppressWarnings("deprecation")
 	public static void fillCoords(Collection<PS> coords, Material material, byte data)
 	{
 		for (PS coord : coords)

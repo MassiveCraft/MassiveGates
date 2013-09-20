@@ -52,7 +52,7 @@ public class GSender extends SenderEntity<GSender>
 		while (itr.hasNext())
 		{
 			block = itr.next();
-			if (block.getTypeId() != 0)
+			if (block.getType() != Material.AIR)
 			{
 				return block;
 			}

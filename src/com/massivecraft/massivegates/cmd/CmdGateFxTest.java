@@ -19,6 +19,7 @@ public class CmdGateFxTest extends GateCommand
 		this.addRequirements(new ReqHasPerm(Permission.FX_TEST.node));
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void perform()
 	{

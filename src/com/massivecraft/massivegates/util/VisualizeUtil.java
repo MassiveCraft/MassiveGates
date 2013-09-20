@@ -40,12 +40,14 @@ public class VisualizeUtil
 	// SINGLE
 	// -------------------------------------------- //
 	
+	@SuppressWarnings("deprecation")
 	public static void addLocation(Player player, Location location, int typeId, byte data)
 	{
 		getPlayerLocations(player).add(location);
 		player.sendBlockChange(location, typeId, data);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static void addLocation(Player player, Location location, int typeId)
 	{
 		getPlayerLocations(player).add(location);
@@ -56,6 +58,7 @@ public class VisualizeUtil
 	// MANY
 	// -------------------------------------------- //
 	
+	@SuppressWarnings("deprecation")
 	public static void addLocations(Player player, Map<Location, Integer> locationMaterialIds)
 	{
 		Set<Location> ploc = getPlayerLocations(player);
@@ -66,6 +69,7 @@ public class VisualizeUtil
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static void addLocations(Player player, Collection<Location> locations, int typeId)
 	{
 		Set<Location> ploc = getPlayerLocations(player);
@@ -76,6 +80,7 @@ public class VisualizeUtil
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static void addCoords(Player player, Collection<PS> coords, int typeId)
 	{
 		Set<Location> ploc = getPlayerLocations(player);
@@ -96,6 +101,7 @@ public class VisualizeUtil
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	public static void addBlocks(Player player, Collection<Block> blocks, int typeId)
 	{
 		Set<Location> ploc = getPlayerLocations(player);
@@ -111,6 +117,7 @@ public class VisualizeUtil
 	// CLEAR
 	// -------------------------------------------- //
 	
+	@SuppressWarnings("deprecation")
 	public static void clear(Player player)
 	{
 		Set<Location> locations = getPlayerLocations(player);
