@@ -55,10 +55,8 @@ public class P extends MPlugin
 	{
 		if ( ! preEnable()) return;
 		
-		// Load Conf from disk
-		ConfServer.i.load();
-		
 		// Init collections
+		MConfColl.get().init();
 		GateColl.i.init();
 		GSenderColl.i.init();
 		
@@ -88,7 +86,7 @@ public class P extends MPlugin
 		
 		// Add Base Commands
 		this.cmdGate = new CmdGate();
-		this.cmdGate.register(this);	
+		this.cmdGate.register();	
 		
 		// Register events
 		this.theListener = new TheListener(this);

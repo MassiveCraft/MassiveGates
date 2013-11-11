@@ -48,7 +48,7 @@ public class GSender extends SenderEntity<GSender>
 		
 		Block block = null;
 		
-		Iterator<Block> itr = new BlockIterator(me, ConfServer.lineOfSightLimit);
+		Iterator<Block> itr = new BlockIterator(me, MConf.get().lineOfSightLimit);
 		while (itr.hasNext())
 		{
 			block = itr.next();
@@ -73,7 +73,7 @@ public class GSender extends SenderEntity<GSender>
 		
 		Gate ret = null;
 		
-		Iterator<Block> itr = new BlockIterator(me, ConfServer.lineOfSightLimit);
+		Iterator<Block> itr = new BlockIterator(me, MConf.get().lineOfSightLimit);
 		while (itr.hasNext())
 		{
 			PS coord = PS.valueOf(itr.next());

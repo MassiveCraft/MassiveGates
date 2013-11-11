@@ -11,7 +11,6 @@ public class CmdGateTargetRubberserver extends GateCommand
 {
 	public CmdGateTargetRubberserver()
 	{
-		super();
 		this.addAliases("rubberserver");
 		this.addRequiredArg("name");
 		this.addRequirements(ReqGateSelected.get());

@@ -10,7 +10,6 @@ public class CmdGateSel extends GateCommand
 {
 	public CmdGateSel()
 	{
-		super();
 		this.addAliases("sel");
 		this.addOptionalArg("gate", "*get*");
 		

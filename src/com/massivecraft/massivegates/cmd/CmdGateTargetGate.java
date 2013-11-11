@@ -11,7 +11,6 @@ public class CmdGateTargetGate extends GateCommand
 {
 	public CmdGateTargetGate()
 	{
-		super();
 		this.addAliases("gate");
 		this.addRequiredArg("targetgate");
 		this.addRequirements(ReqGateSelected.get());

@@ -15,7 +15,6 @@ public class CmdGateTaDel extends GateCommand
 {
 	public CmdGateTaDel()
 	{
-		super();
 		this.addAliases("del");
 		this.addRequiredArg("trigger|all");
 		this.addOptionalArg("index|action|all","all");

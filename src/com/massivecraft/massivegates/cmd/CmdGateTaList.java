@@ -19,7 +19,6 @@ public class CmdGateTaList extends GateCommand
 {
 	public CmdGateTaList()
 	{
-		super();
 		this.addAliases("list");
 		this.addOptionalArg("page", "1");
 		

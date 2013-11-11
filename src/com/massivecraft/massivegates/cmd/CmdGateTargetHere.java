@@ -11,7 +11,6 @@ public class CmdGateTargetHere extends GateCommand
 {
 	public CmdGateTargetHere()
 	{
-		super();
 		this.addAliases("here", "set");
 		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.get());
 		this.addRequirements(new ReqHasPerm(Permission.TARGET_HERE.node));

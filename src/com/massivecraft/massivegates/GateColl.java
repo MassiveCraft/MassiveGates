@@ -26,7 +26,7 @@ public class GateColl extends Coll<Gate>
 	public static GateColl i = new GateColl();
 	private GateColl()
 	{
-		super(Const.gateBasename, Gate.class, MStore.getDb(ConfServer.dburi), P.p);
+		super(Const.COLLECTION_GATE, Gate.class, MStore.getDb(), P.p);
 	}
 	
 	// -------------------------------------------- //

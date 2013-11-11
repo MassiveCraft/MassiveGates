@@ -11,7 +11,6 @@ public class CmdGateOpenSet extends GateCommand
 {
 	public CmdGateOpenSet()
 	{
-		super();
 		this.addAliases("set");
 		this.addRequiredArg("flag");
 		this.addRequirements(ReqGateSelected.get());

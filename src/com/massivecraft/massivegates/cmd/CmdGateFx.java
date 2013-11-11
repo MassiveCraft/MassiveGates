@@ -7,7 +7,6 @@ public class CmdGateFx extends GateCommand
 {
 	public CmdGateFx()
 	{
-		super();
 		this.addAliases("fx");
 		this.addSubCommand(new CmdGateFxAlt());
 		this.addSubCommand(new CmdGateFxTest());
@@ -24,6 +23,6 @@ public class CmdGateFx extends GateCommand
 	public void perform()
 	{
 		this.getCommandChain().add(this);
-		HelpCommand.getInstance().execute(this.sender, this.args, this.commandChain);
+		HelpCommand.get().execute(this.sender, this.args, this.commandChain);
 	}
 }

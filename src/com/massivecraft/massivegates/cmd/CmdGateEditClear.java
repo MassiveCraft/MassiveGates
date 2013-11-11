@@ -10,7 +10,6 @@ public class CmdGateEditClear extends GateCommand
 {
 	public CmdGateEditClear()
 	{
-		super();
 		this.addAliases("clear");
 		this.addRequiredArg("frame|content|all");
 		this.addRequirements(ReqGateSelected.get());

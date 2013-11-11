@@ -7,13 +7,11 @@ import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
-import com.massivecraft.mcore.cmd.HelpCommand;
 
 public class CmdGateTarget extends GateCommand
 {
 	public CmdGateTarget()
 	{
-		super();
 		this.addAliases("target");
 		this.addSubCommand(new CmdGateTargetHere());
 		this.addSubCommand(new CmdGateTargetGate());
@@ -39,11 +37,5 @@ public class CmdGateTarget extends GateCommand
 		
 		return ret;
 	}
-	
-	@Override
-	public void perform()
-	{
-		this.getCommandChain().add(this);
-		HelpCommand.getInstance().execute(this.sender, this.args, this.commandChain);
-	}
+
 }

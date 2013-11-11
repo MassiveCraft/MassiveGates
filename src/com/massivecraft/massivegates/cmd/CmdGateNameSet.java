@@ -10,7 +10,6 @@ public class CmdGateNameSet extends GateCommand
 {
 	public CmdGateNameSet()
 	{
-		super();
 		this.addAliases("set");
 		this.addRequiredArg("name");
 		this.addRequirements(ReqGateSelected.get());

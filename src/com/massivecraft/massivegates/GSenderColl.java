@@ -12,7 +12,7 @@ public class GSenderColl extends SenderColl<GSender>
 	
 	public GSenderColl()
 	{
-		super(Const.senderBasename, GSender.class, MStore.getDb(ConfServer.dburi), P.p);
+		super(Const.COLLECTION_SENDER, GSender.class, MStore.getDb(), P.p);
 	}
 
 	// -------------------------------------------- //

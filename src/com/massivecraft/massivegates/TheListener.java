@@ -68,7 +68,7 @@ public class TheListener implements Listener
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void disableVanillaGates(PlayerPortalEvent event)
 	{
-		if (ConfServer.disableVanillaGates)
+		if (MConf.get().disableVanillaGates)
 		{
 			event.setCancelled(true);
 		}
@@ -77,7 +77,7 @@ public class TheListener implements Listener
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void disableVanillaGates(EntityPortalEvent event)
 	{
-		if (ConfServer.disableVanillaGates)
+		if (MConf.get().disableVanillaGates)
 		{
 			event.setCancelled(true);
 		}

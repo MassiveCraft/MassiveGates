@@ -17,7 +17,6 @@ public class CmdGateTaAdd extends GateCommand
 {
 	public CmdGateTaAdd()
 	{
-		super();
 		this.addAliases("add");
 		this.addRequiredArg("trigger");
 		this.addRequiredArg("action");

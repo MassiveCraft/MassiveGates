@@ -1,16 +1,16 @@
 package com.massivecraft.massivegates.cmd;
 
-import com.massivecraft.massivegates.ConfServer;
+import java.util.List;
+
 import com.massivecraft.massivegates.GateCommand;
+import com.massivecraft.massivegates.MConf;
 import com.massivecraft.mcore.cmd.HelpCommand;
 
 public class CmdGate extends GateCommand
 {
 	public CmdGate()
 	{
-		super();
-		this.addAliases(ConfServer.baseCommandAliases);
-		this.addSubCommand(HelpCommand.getInstance());
+		this.addSubCommand(HelpCommand.get());
 		this.addSubCommand(new CmdGateNew());
 		this.addSubCommand(new CmdGateDelete());
 		this.addSubCommand(new CmdGateList());
@@ -28,9 +28,9 @@ public class CmdGate extends GateCommand
 	}
 	
 	@Override
-	public void perform()
+	public List<String> getAliases()
 	{
-		this.getCommandChain().add(this);
-		HelpCommand.getInstance().execute(this.sender, this.args, this.commandChain);
+		return MConf.get().aliasesG;
 	}
+
 }

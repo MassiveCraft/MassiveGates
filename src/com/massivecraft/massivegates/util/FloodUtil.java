@@ -12,7 +12,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 
-import com.massivecraft.massivegates.ConfServer;
+import com.massivecraft.massivegates.MConf;
 
 public class FloodUtil
 {
@@ -48,7 +48,7 @@ public class FloodUtil
 	}
 	public static Set<Block> getFloodBlocks(Block startBlock, Set<BlockFace> expandFaces, Set<Material> allowedMaterials)
 	{
-		return getFloodBlocks(startBlock, expandFaces, allowedMaterials, ConfServer.floodFillLimit);
+		return getFloodBlocks(startBlock, expandFaces, allowedMaterials, MConf.get().floodFillLimit);
 	}
 	public static Set<Block> getFloodBlocks(Block startBlock, Set<BlockFace> expandFaces)
 	{
@@ -70,7 +70,7 @@ public class FloodUtil
 	}
 	public static Map<FloodOrientation, Set<Block>> getFloods(Block startBlock, Collection<FloodOrientation> orientations, Set<Material> allowedMaterials)
 	{
-		return getFloods(startBlock, orientations, allowedMaterials, ConfServer.floodFillLimit);
+		return getFloods(startBlock, orientations, allowedMaterials, MConf.get().floodFillLimit);
 	}
 	public static Map<FloodOrientation, Set<Block>> getFloods(Block startBlock, Collection<FloodOrientation> orientations)
 	{
@@ -104,7 +104,7 @@ public class FloodUtil
 	}
 	public static Entry<FloodOrientation, Set<Block>> getBestFlood(Block startBlock, Collection<FloodOrientation> orientations, Set<Material> allowedMaterials)
 	{
-		return getBestFlood(startBlock, orientations, allowedMaterials, ConfServer.floodFillLimit);
+		return getBestFlood(startBlock, orientations, allowedMaterials, MConf.get().floodFillLimit);
 	}
 	public static Entry<FloodOrientation, Set<Block>> getBestFlood(Block startBlock, Collection<FloodOrientation> orientations)
 	{

@@ -15,7 +15,6 @@ public class CmdGateMato extends GateCommand
 {
 	public CmdGateMato()
 	{
-		super();
 		this.addAliases("mo","mato");
 		this.addOptionalArg("material", "get");
 		this.addOptionalArg("data", "0");

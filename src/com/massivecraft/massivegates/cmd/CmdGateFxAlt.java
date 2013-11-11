@@ -14,7 +14,6 @@ public class CmdGateFxAlt extends GateCommand
 {
 	public CmdGateFxAlt()
 	{
-		super();
 		this.addAliases("alt");
 		this.addOptionalArg("page", "1");
 		this.addRequirements(new ReqHasPerm(Permission.FX_ALT.node));

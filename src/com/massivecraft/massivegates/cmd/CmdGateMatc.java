@@ -15,7 +15,6 @@ public class CmdGateMatc extends GateCommand
 {
 	public CmdGateMatc()
 	{
-		super();
 		this.addAliases("mc","matc");
 		this.addOptionalArg("material", "get");
 		this.addOptionalArg("data", "0");

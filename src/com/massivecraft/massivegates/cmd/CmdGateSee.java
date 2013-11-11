@@ -11,7 +11,6 @@ public class CmdGateSee extends GateCommand
 {
 	public CmdGateSee()
 	{
-		super();
 		this.addAliases("see");
 		
 		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.get());

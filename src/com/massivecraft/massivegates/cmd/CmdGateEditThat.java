@@ -18,7 +18,6 @@ public class CmdGateEditThat extends GateCommand
 {
 	public CmdGateEditThat()
 	{
-		super();
 		this.addAliases("that");
 		this.addRequiredArg("frame|content|del");
 		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.get());

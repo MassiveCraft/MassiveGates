@@ -16,7 +16,6 @@ public class CmdGateTaAlt extends GateCommand
 {
 	public CmdGateTaAlt()
 	{
-		super();
 		this.addAliases("alt");
 		this.addRequiredArg("trigger|action");
 		this.addOptionalArg("page", "1");

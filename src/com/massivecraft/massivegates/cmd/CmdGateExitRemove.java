@@ -10,7 +10,6 @@ public class CmdGateExitRemove extends GateCommand
 {
 	public CmdGateExitRemove()
 	{
-		super();
 		this.addAliases("rm","remove");
 		this.addRequirements(ReqGateSelected.get());
 		this.addRequirements(new ReqHasPerm(Permission.EXIT_REMOVE.node));

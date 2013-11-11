@@ -10,7 +10,6 @@ public class CmdGateNameRemove extends GateCommand
 {
 	public CmdGateNameRemove()
 	{
-		super();
 		this.addAliases("remove");
 		this.addRequirements(ReqGateSelected.get());
 		this.addRequirements(new ReqHasPerm(Permission.NAME_REMOVE.node));
