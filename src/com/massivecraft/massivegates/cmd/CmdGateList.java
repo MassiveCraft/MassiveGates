@@ -23,14 +23,18 @@ public class CmdGateList extends GateCommand
 	@Override
 	public void perform()
 	{
+		// Args
 		Integer pageHumanBased = this.arg(0, ARInteger.get(), 1);
 		if (pageHumanBased == null) return;
-		List<String> gateInfos = new ArrayList<String>(GateColl.i.getAll().size());
+		
+		// Create Lines
+		List<String> lines = new ArrayList<String>(GateColl.i.getAll().size());
 		for (Gate gate : GateColl.i.getAll())
 		{
-			gateInfos.add("<white>"+gate.getIdNameStringShort());
+			lines.add(Txt.parse(gate.getIdNameStringShort()));
 		}
 		
-		this.sendMessage(Txt.getPage(Txt.parseWrap(Txt.implodeCommaAndDot(gateInfos, "<i>")), pageHumanBased, "Gate List", sender));	
+		// Send Lines
+		this.sendMessage(Txt.getPage(lines, pageHumanBased, "Gate List", sender));	
 	}
 }
