@@ -16,7 +16,7 @@ public class GSenderColl extends SenderColl<GSender>
 	}
 
 	// -------------------------------------------- //
-	// EXTRAS
+	// OVERRIDE
 	// -------------------------------------------- //
 	
 	@Override
@@ -24,4 +24,5 @@ public class GSenderColl extends SenderColl<GSender>
 	{
 		return entity.getSelectedGate() == null;
 	}
+	
 }

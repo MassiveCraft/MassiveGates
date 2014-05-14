@@ -48,7 +48,6 @@ import com.massivecraft.massivegates.util.VisualizeUtil;
 import com.massivecraft.mcore.event.MCoreAfterPlayerTeleportEvent;
 import com.massivecraft.mcore.ps.PS;
 
-
 public class TheListener implements Listener
 {
 	// -------------------------------------------- //
