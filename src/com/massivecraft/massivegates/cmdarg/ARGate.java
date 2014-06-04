@@ -6,13 +6,13 @@ import java.util.Map;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.massivecraft.massivecore.cmd.arg.ArgReaderAbstract;
+import com.massivecraft.massivecore.cmd.arg.ArgResult;
+import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.GSender;
 import com.massivecraft.massivegates.GSenderColl;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateColl;
-import com.massivecraft.mcore.cmd.arg.ArgReaderAbstract;
-import com.massivecraft.mcore.cmd.arg.ArgResult;
-import com.massivecraft.mcore.util.Txt;
 
 public class ARGate extends ArgReaderAbstract<Gate>
 {

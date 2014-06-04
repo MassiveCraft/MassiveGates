@@ -2,11 +2,11 @@ package com.massivecraft.massivegates.cmd;
 
 import org.bukkit.Location;
 
+import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
+import com.massivecraft.massivecore.cmd.req.ReqIsPlayer;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.util.Fx;
-import com.massivecraft.mcore.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore.cmd.req.ReqIsPlayer;
 
 public class CmdGateFxTest extends GateCommand
 {

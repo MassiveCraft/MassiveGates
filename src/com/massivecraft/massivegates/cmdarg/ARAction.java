@@ -6,10 +6,10 @@ import java.util.List;
 
 import org.bukkit.command.CommandSender;
 
+import com.massivecraft.massivecore.cmd.arg.ARAbstractSelect;
 import com.massivecraft.massivegates.GateColl;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.ta.Action;
-import com.massivecraft.mcore.cmd.arg.ARAbstractSelect;
 
 public class ARAction extends ARAbstractSelect<Action>
 {

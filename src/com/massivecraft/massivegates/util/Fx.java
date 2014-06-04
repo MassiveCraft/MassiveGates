@@ -13,10 +13,10 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.HumanEntity;
 
+import com.massivecraft.massivecore.ps.PS;
+import com.massivecraft.massivecore.util.SmokeUtil;
+import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Gate;
-import com.massivecraft.mcore.ps.PS;
-import com.massivecraft.mcore.util.SmokeUtil;
-import com.massivecraft.mcore.util.Txt;
 
 public enum Fx
 {	

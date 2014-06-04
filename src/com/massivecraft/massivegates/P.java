@@ -6,6 +6,7 @@ import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 
+import com.massivecraft.massivecore.MassivePlugin;
 import com.massivecraft.massivegates.cmd.CmdGate;
 import com.massivecraft.massivegates.event.GateAfterTeleportEvent;
 import com.massivecraft.massivegates.ta.ActionChat;
@@ -29,9 +30,8 @@ import com.massivecraft.massivegates.ta.TriggerOpen;
 import com.massivecraft.massivegates.ta.TriggerPowerOff;
 import com.massivecraft.massivegates.ta.TriggerPowerOn;
 import com.massivecraft.massivegates.ta.TriggerUse;
-import com.massivecraft.mcore.MPlugin;
 
-public class P extends MPlugin
+public class P extends MassivePlugin
 {
 	// Our single plugin instance
 	public static P p;

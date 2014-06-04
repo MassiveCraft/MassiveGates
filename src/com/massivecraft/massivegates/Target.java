@@ -5,10 +5,10 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
-import com.massivecraft.mcore.mixin.Mixin;
-import com.massivecraft.mcore.mixin.TeleporterException;
-import com.massivecraft.mcore.ps.PS;
-import com.massivecraft.mcore.ps.PSFormatDesc;
+import com.massivecraft.massivecore.mixin.Mixin;
+import com.massivecraft.massivecore.mixin.TeleporterException;
+import com.massivecraft.massivecore.ps.PS;
+import com.massivecraft.massivecore.ps.PSFormatDesc;
 
 public class Target
 {

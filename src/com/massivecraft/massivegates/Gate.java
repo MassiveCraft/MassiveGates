@@ -23,6 +23,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 
+import com.massivecraft.massivecore.ps.PS;
+import com.massivecraft.massivecore.ps.PSFormatDesc;
 import com.massivecraft.massivegates.event.GateBeforeTeleportEvent;
 import com.massivecraft.massivegates.event.GateAfterTeleportEvent;
 import com.massivecraft.massivegates.event.GateOpenChangeEvent;
@@ -33,10 +35,8 @@ import com.massivecraft.massivegates.event.GateUseEvent;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
 import com.massivecraft.massivegates.util.VisualizeUtil;
-import com.massivecraft.mcore.ps.PS;
-import com.massivecraft.mcore.ps.PSFormatDesc;
 
-public class Gate extends com.massivecraft.mcore.store.Entity<Gate>
+public class Gate extends com.massivecraft.massivecore.store.Entity<Gate>
 {
 	// -------------------------------------------- //
 	// LOAD
@@ -631,7 +631,7 @@ public class Gate extends com.massivecraft.mcore.store.Entity<Gate>
 		// Do safe teleport
 		target.delayedTeleport(user);
 		
-		// Queue up the after teleport event to be run in the MCore event
+		// Queue up the after teleport event to be run in the MassiveCore event
 		P.p.afterTeleportTodo.put(user, new GateAfterTeleportEvent(this, user, from, to));
 	}
 	

@@ -6,16 +6,16 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import com.massivecraft.massivecore.ps.PS;
+import com.massivecraft.massivecore.store.Coll;
+import com.massivecraft.massivecore.store.MStore;
+import com.massivecraft.massivecore.store.ModificationState;
+import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.event.GateAttachEvent;
 import com.massivecraft.massivegates.event.GateDetachEvent;
 import com.massivecraft.massivegates.event.GateSaveEvent;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
-import com.massivecraft.mcore.ps.PS;
-import com.massivecraft.mcore.store.Coll;
-import com.massivecraft.mcore.store.MStore;
-import com.massivecraft.mcore.store.ModificationState;
-import com.massivecraft.mcore.util.Txt;
 
 public class GateColl extends Coll<Gate>
 {

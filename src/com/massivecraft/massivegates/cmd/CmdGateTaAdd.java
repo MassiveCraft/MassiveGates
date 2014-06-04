@@ -2,6 +2,8 @@ package com.massivecraft.massivegates.cmd;
 
 import java.util.List;
 
+import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
+import com.massivecraft.massivecore.util.PermUtil;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
@@ -10,8 +12,6 @@ import com.massivecraft.massivegates.cmdarg.ARTrigger;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
-import com.massivecraft.mcore.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore.util.PermUtil;
 
 public class CmdGateTaAdd extends GateCommand
 {

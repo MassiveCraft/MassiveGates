@@ -27,6 +27,8 @@ import org.bukkit.event.player.PlayerBucketFillEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
 
+import com.massivecraft.massivecore.event.EventMassiveCoreAfterPlayerTeleport;
+import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivegates.event.GateAfterTeleportEvent;
 import com.massivecraft.massivegates.event.GateAlterEvent;
 import com.massivecraft.massivegates.event.GateBeforeTeleportEvent;
@@ -45,8 +47,6 @@ import com.massivecraft.massivegates.ta.TriggerPowerOff;
 import com.massivecraft.massivegates.ta.TriggerPowerOn;
 import com.massivecraft.massivegates.ta.TriggerUse;
 import com.massivecraft.massivegates.util.VisualizeUtil;
-import com.massivecraft.mcore.event.MCoreAfterPlayerTeleportEvent;
-import com.massivecraft.mcore.ps.PS;
 
 public class TheListener implements Listener
 {
@@ -176,7 +176,7 @@ public class TheListener implements Listener
 	// -------------------------------------------- //
 	
 	@EventHandler(priority = EventPriority.NORMAL)
-	public void afterTeleport(MCoreAfterPlayerTeleportEvent event)
+	public void afterTeleport(EventMassiveCoreAfterPlayerTeleport event)
 	{
 		Player player = event.getPlayer();
 		GateAfterTeleportEvent ate = p.afterTeleportTodo.remove(player);

@@ -2,9 +2,9 @@ package com.massivecraft.massivegates.cmd;
 
 import java.util.List;
 
+import com.massivecraft.massivecore.cmd.HelpCommand;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.MConf;
-import com.massivecraft.mcore.cmd.HelpCommand;
 
 public class CmdGate extends GateCommand
 {

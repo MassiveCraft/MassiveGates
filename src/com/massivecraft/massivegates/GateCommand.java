@@ -1,8 +1,8 @@
 package com.massivecraft.massivegates;
 
-import com.massivecraft.mcore.cmd.MCommand;
+import com.massivecraft.massivecore.cmd.MassiveCommand;
 
-public abstract class GateCommand extends MCommand
+public abstract class GateCommand extends MassiveCommand
 {	
 	public GSender gme;
 	

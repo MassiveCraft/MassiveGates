@@ -1,11 +1,11 @@
 package com.massivecraft.massivegates.cmd;
 
+import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdarg.ARGate;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
-import com.massivecraft.mcore.cmd.req.ReqHasPerm;
 
 public class CmdGateTargetGate extends GateCommand
 {

@@ -1,14 +1,14 @@
 package com.massivecraft.massivegates.cmd;
 
+import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
+import com.massivecraft.massivecore.cmd.req.ReqIsPlayer;
+import com.massivecraft.massivecore.mixin.Mixin;
+import com.massivecraft.massivecore.mixin.TeleporterException;
+import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
 import com.massivecraft.massivegates.Permission;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
-import com.massivecraft.mcore.cmd.req.ReqHasPerm;
-import com.massivecraft.mcore.cmd.req.ReqIsPlayer;
-import com.massivecraft.mcore.mixin.Mixin;
-import com.massivecraft.mcore.mixin.TeleporterException;
-import com.massivecraft.mcore.ps.PS;
 
 public class CmdGateExitGoto extends GateCommand
 {

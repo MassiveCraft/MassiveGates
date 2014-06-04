@@ -1,7 +1,7 @@
 package com.massivecraft.massivegates;
 
-import com.massivecraft.mcore.store.MStore;
-import com.massivecraft.mcore.store.SenderColl;
+import com.massivecraft.massivecore.store.MStore;
+import com.massivecraft.massivecore.store.SenderColl;
 
 public class GSenderColl extends SenderColl<GSender>
 {

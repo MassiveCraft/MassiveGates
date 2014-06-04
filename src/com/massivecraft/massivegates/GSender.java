@@ -10,10 +10,10 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.util.BlockIterator;
 
+import com.massivecraft.massivecore.ps.PS;
+import com.massivecraft.massivecore.store.SenderEntity;
 import com.massivecraft.massivegates.util.FloodOrientation;
 import com.massivecraft.massivegates.util.FloodUtil;
-import com.massivecraft.mcore.ps.PS;
-import com.massivecraft.mcore.store.SenderEntity;
 
 /**
  * The VPlayer is a "skin" for a normal player.
