@@ -11,4 +11,11 @@ public abstract class GateCommand extends MassiveCommand
 	{
 		this.gme = GSenderColl.i.get(this.sender);
 	}
+	
+	@Override
+	public void unsetSenderVars()
+	{
+		this.gme = null;
+	}
+	
 }
