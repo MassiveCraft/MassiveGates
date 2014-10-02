@@ -1,6 +1,5 @@
 package com.massivecraft.massivegates;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -94,15 +93,4 @@ public class Target
 		return false;
 	}
 	
-	public void delayedTeleport(final Entity entity)
-	{
-		final Target ME = this;
-		Bukkit.getScheduler().scheduleSyncDelayedTask(P.p, new Runnable()
-		{
-			public void run()
-			{
-				ME.teleport(entity);
-			}
-		});
-	}
 }

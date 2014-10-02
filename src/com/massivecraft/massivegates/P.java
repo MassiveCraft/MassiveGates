@@ -1,14 +1,9 @@
 package com.massivecraft.massivegates;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Entity;
 
 import com.massivecraft.massivecore.MassivePlugin;
 import com.massivecraft.massivegates.cmd.CmdGate;
-import com.massivecraft.massivegates.event.GateAfterTeleportEvent;
 import com.massivecraft.massivegates.ta.ActionChat;
 import com.massivecraft.massivegates.ta.ActionClose;
 import com.massivecraft.massivegates.ta.ActionCmd;
@@ -41,9 +36,6 @@ public class P extends MassivePlugin
 	
 	// Command
 	public CmdGate cmdGate;
-	
-	// after teleport todo
-	public Map<Entity, GateAfterTeleportEvent> afterTeleportTodo = new HashMap<Entity, GateAfterTeleportEvent>(); 
 	
 	public P()
 	{

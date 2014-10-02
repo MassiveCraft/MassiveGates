@@ -611,7 +611,7 @@ public class Gate extends com.massivecraft.massivecore.store.Entity<Gate>
 	// ACTIONS AND EVENTS
 	// -------------------------------------------- //
 	
-	public void use(Entity user)
+	public void use(final Entity user)
 	{
 		// Is there even a target?
 		if (!this.getTarget().exists()) return;
@@ -622,17 +622,24 @@ public class Gate extends com.massivecraft.massivecore.store.Entity<Gate>
 		if (useEvent.isCancelled()) return;
 		
 		// Store from and to locations
-		Location from = user.getLocation();
-		Target to = this.getTarget();
+		final Location from = user.getLocation();
+		final Target to = this.getTarget();
 		
 		// Call the before event
 		new GateBeforeTeleportEvent(this, user, from, to).run();
 		
 		// Do safe teleport
-		target.delayedTeleport(user);
-		
-		// Queue up the after teleport event to be run in the MassiveCore event
-		P.p.afterTeleportTodo.put(user, new GateAfterTeleportEvent(this, user, from, to));
+		final Gate gate = this;
+		Bukkit.getScheduler().scheduleSyncDelayedTask(P.p, new Runnable()
+		{
+			public void run()
+			{
+				if (target.teleport(user))
+				{
+					new GateAfterTeleportEvent(gate, user, from, to).run();
+				}
+			}
+		});
 	}
 	
 	// -------------------------------------------- //
