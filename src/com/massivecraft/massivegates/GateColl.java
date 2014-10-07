@@ -5,12 +5,14 @@ import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivecore.store.Coll;
 import com.massivecraft.massivecore.store.MStore;
 import com.massivecraft.massivecore.store.ModificationState;
 import com.massivecraft.massivecore.util.Txt;
+import com.massivecraft.massivecore.xlib.gson.JsonElement;
 import com.massivecraft.massivegates.event.GateAttachEvent;
 import com.massivecraft.massivegates.event.GateDetachEvent;
 import com.massivecraft.massivegates.event.GateSaveEvent;
@@ -107,15 +109,29 @@ public class GateColl extends Coll<Gate>
 		return super.removeAtLocal(id);
 	}
 	
+	/*
+	Convert to this?
 	@Override
-	public synchronized void loadFromRemote(Object oid)
+	public void preDetach(Gate entity, String id)
+	{
+		super.preDetach(entity, id);
+		
+		this.clearIndexFor(entity);
+		
+		// Run event
+		new GateDetachEvent(entity).run();
+	}
+	*/
+	
+	@Override
+	public synchronized void loadFromRemote(Object oid, Entry<JsonElement, Long> entry, boolean entrySupplied)
 	{
 		String id = this.fixId(oid);
 		
 		Gate gate = this.id2entity.get(id);
 		if (gate == null)
 		{
-			super.loadFromRemote(id);
+			super.loadFromRemote(oid, entry, entrySupplied);
 			gate = this.id2entity.get(id);
 			this.buildIndexFor(gate);
 			new GateAttachEvent(gate).run();
@@ -123,7 +139,7 @@ public class GateColl extends Coll<Gate>
 		else
 		{
 			this.clearIndexFor(gate);
-			super.loadFromRemote(id);
+			super.loadFromRemote(oid, entry, entrySupplied);
 			this.buildIndexFor(gate);
 		}
 	}
