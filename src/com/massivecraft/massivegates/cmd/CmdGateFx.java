@@ -19,10 +19,4 @@ public class CmdGateFx extends GateCommand
 		);
 	}
 	
-	@Override
-	public void perform()
-	{
-		this.getCommandChain().add(this);
-		HelpCommand.get().execute(this.sender, this.args, this.commandChain);
-	}
 }
