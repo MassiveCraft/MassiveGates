@@ -78,7 +78,7 @@ public class P extends MassivePlugin
 		
 		// Add Base Commands
 		this.cmdGate = new CmdGate();
-		this.cmdGate.register();	
+		this.cmdGate.register(this);
 		
 		// Register events
 		this.theListener = new TheListener(this);
