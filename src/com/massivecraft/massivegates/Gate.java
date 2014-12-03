@@ -25,6 +25,7 @@ import org.bukkit.event.Cancellable;
 
 import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivecore.ps.PSFormatDesc;
+import com.massivecraft.massivecore.util.MUtil;
 import com.massivecraft.massivegates.event.GateBeforeTeleportEvent;
 import com.massivecraft.massivegates.event.GateAfterTeleportEvent;
 import com.massivecraft.massivegates.event.GateOpenChangeEvent;
@@ -80,7 +81,7 @@ public class Gate extends com.massivecraft.massivecore.store.Entity<Gate>
 		if (this.open)
 		{
 			PS coord = null;
-			for (Player player : Bukkit.getOnlinePlayers())
+			for (Player player : MUtil.getOnlinePlayers())
 			{
 				coord = PS.valueOf(player.getLocation().getBlock());
 				if (this != GateColl.i.getGateAtContentCoord(coord)) continue;
