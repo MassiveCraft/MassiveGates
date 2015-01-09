@@ -73,8 +73,6 @@ public class Gate extends com.massivecraft.massivecore.store.Entity<Gate>
 		this.open = open;
 		this.fillContent();
 		
-		// This is safe as you only may save attached entites.
-		this.sync();
 		new GateOpenChangeEvent(this).run();
 		
 		// If someone is standing in a gate while it opens that should be considered as entering the gate.
