@@ -30,6 +30,16 @@ public class GateColl extends Coll<Gate>
 	{
 		super(Const.COLLECTION_GATE, Gate.class, MStore.getDb(), P.p);
 	}
+
+	// -------------------------------------------- //
+	// STACK TRACEABILITY
+	// -------------------------------------------- //
+	
+	@Override
+	public void onTick()
+	{
+		super.onTick();
+	}
 	
 	// -------------------------------------------- //
 	// INDEX
