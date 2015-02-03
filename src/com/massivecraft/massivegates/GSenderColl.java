@@ -16,6 +16,16 @@ public class GSenderColl extends SenderColl<GSender>
 	}
 
 	// -------------------------------------------- //
+	// STACK TRACEABILITY
+	// -------------------------------------------- //
+	
+	@Override
+	public void onTick()
+	{
+		super.onTick();
+	}
+	
+	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
 	
