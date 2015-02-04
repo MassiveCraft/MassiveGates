@@ -6,8 +6,8 @@ import java.util.Map;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import com.massivecraft.massivecore.cmd.MassiveCommandException;
 import com.massivecraft.massivecore.cmd.arg.ArgReaderAbstract;
-import com.massivecraft.massivecore.cmd.arg.ArgResult;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.GSender;
 import com.massivecraft.massivegates.GSenderColl;
@@ -16,35 +16,42 @@ import com.massivecraft.massivegates.GateColl;
 
 public class ARGate extends ArgReaderAbstract<Gate>
 {
+	// -------------------------------------------- //
+	// INSTANCE & CONSTRUCT
+	// -------------------------------------------- //
+	
+	private static ARGate i = new ARGate();
+	public static ARGate get() { return i; }
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
+	
 	@Override
-	public ArgResult<Gate> read(String str, CommandSender sender)
+	public Gate read(String str, CommandSender sender) throws MassiveCommandException
 	{
-		ArgResult<Gate> result = new ArgResult<Gate>();
+		Gate ret;
 		
 		// Is this by chance a "that" request
 		if (str.equalsIgnoreCase("that"))
 		{
-			if ( ! (sender instanceof Player))
-			{
-				result.getErrors().add("<b>You must be ingame player to use \"that\" gate detection.");
-				return null;
-			}
-			else
+			if (sender instanceof Player)
 			{
 				Player me = (Player)sender;
 				GSender gme = GSenderColl.i.get(me);
-				result.setResult(gme.getThatGate(false));
-				if (result.hasResult() == false)
-				{
-					result.getErrors().add("<b>No gate in sight.");
-				}
-				return result;
+				ret = gme.getThatGate(false);
+				if (ret != null) return ret;
+				throw new MassiveCommandException().addMsg("<b>No gate in sight.");
+			}
+			else
+			{
+				throw new MassiveCommandException().addMsg("<b>You must be ingame player to use \"that\" gate detection.");
 			}
 		}
 		
 		// Then we attempt to get by id.
-		result.setResult(GateColl.i.get(str));
-		if (result.hasResult()) return result;
+		ret = GateColl.i.get(str);
+		if (ret != null) return ret;
 		
 		// No matching id huh?... Lets test against the gate's name then:
 		// Build a name to gate map:
@@ -59,21 +66,15 @@ public class ARGate extends ArgReaderAbstract<Gate>
 		String bestName = Txt.getBestCIStart(name2gate.keySet(), str);
 		if (bestName != null)
 		{
-			result.setResult(name2gate.get(bestName));
+			ret = name2gate.get(bestName);
 		}
 		
-		if (result.hasResult() == false)
+		if (ret != null)
 		{
-			result.getErrors().add("<b>No gate matching \"<p>"+str+"<b>\".");
+			return ret;
 		}
 		
-		return result;
+		throw new MassiveCommandException().addMsg("<b>No gate matching \"<p>%s<b>\".", str);
 	}
 	
-	// -------------------------------------------- //
-	// INSTANCE
-	// -------------------------------------------- //
-	
-	private static ARGate i = new ARGate();
-	public static ARGate get() { return i; }
 }

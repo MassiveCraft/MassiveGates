@@ -2,6 +2,7 @@ package com.massivecraft.massivegates.cmd;
 
 import org.bukkit.Material;
 
+import com.massivecraft.massivecore.cmd.MassiveCommandException;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
@@ -19,10 +20,9 @@ public class CmdGateDelete extends GateCommand
 	}
 
 	@Override
-	public void perform()
+	public void perform() throws MassiveCommandException
 	{
 		Gate gate = this.arg(0, ARGate.get());
-		if (gate == null) return;
 		this.msg("<i>Gate deleted: "+gate.getIdNameStringLong());
 		gate.setOpen(false);
 		gate.fillContent(Material.AIR);

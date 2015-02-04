@@ -1,5 +1,6 @@
 package com.massivecraft.massivegates.cmd;
 
+import com.massivecraft.massivecore.cmd.MassiveCommandException;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
@@ -18,12 +19,11 @@ public class CmdGateTargetGate extends GateCommand
 	}
 	
 	@Override
-	public void perform()
+	public void perform() throws MassiveCommandException
 	{
 		Gate gate = gme.getSelectedGate();
 		
 		Gate target = this.arg(0, ARGate.get());
-		if (target == null) return;
 		
 		gate.getTarget().setGate(target);
 		this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>now has target gate "+target.getIdNameStringShort()+"<i>.");

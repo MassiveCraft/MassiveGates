@@ -2,6 +2,7 @@ package com.massivecraft.massivegates.cmd;
 
 import java.util.List;
 
+import com.massivecraft.massivecore.cmd.MassiveCommandException;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.util.PermUtil;
 import com.massivecraft.massivegates.Gate;
@@ -28,18 +29,16 @@ public class CmdGateTaAdd extends GateCommand
 	}
 	
 	@Override
-	public void perform()
+	public void perform() throws MassiveCommandException
 	{
 		Gate gate = gme.getSelectedGate();
 		
 		// Fetch Trigger
 		Trigger trigger = this.arg(0, ARTrigger.get());
-		if (trigger == null) return;
 		
 		// Fetch the Action
 		Action action = this.arg(1, ARAction.get());
-		if (action == null) return;
-		
+				
 		// Fetch the arg
 		String arg = this.argConcatFrom(2);
 		

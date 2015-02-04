@@ -1,5 +1,6 @@
 package com.massivecraft.massivegates.cmd;
 
+import com.massivecraft.massivecore.cmd.MassiveCommandException;
 import com.massivecraft.massivecore.cmd.arg.ARString;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivegates.Gate;
@@ -18,12 +19,11 @@ public class CmdGateTargetRubberserver extends GateCommand
 	}
 	
 	@Override
-	public void perform()
+	public void perform() throws MassiveCommandException
 	{
 		Gate gate = gme.getSelectedGate();
 		
 		String name = this.arg(0, ARString.get());
-		if (name == null) return;
 		
 		gate.getTarget().setRubberServer(name);
 		this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>now has target rubberserver <h>"+name+"<i>.");

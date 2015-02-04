@@ -1,5 +1,6 @@
 package com.massivecraft.massivegates.cmd;
 
+import com.massivecraft.massivecore.cmd.MassiveCommandException;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.GateCommand;
@@ -17,7 +18,7 @@ public class CmdGateSel extends GateCommand
 	}
 	
 	@Override
-	public void perform()
+	public void perform() throws MassiveCommandException
 	{
 		Gate gate = gme.getSelectedGate();
 		
@@ -35,7 +36,6 @@ public class CmdGateSel extends GateCommand
 		}
 		
 		gate = this.arg(0, ARGate.get());
-		if (gate == null) return;
 		gme.setSelectedGate(gate);
 		if (me != null)
 		{

@@ -1,5 +1,6 @@
 package com.massivecraft.massivegates.cmd;
 
+import com.massivecraft.massivecore.cmd.MassiveCommandException;
 import com.massivecraft.massivecore.cmd.arg.ARInteger;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivegates.Gate;
@@ -34,7 +35,7 @@ public class CmdGateTaDel extends GateCommand
 	}
 	
 	@Override
-	public void perform()
+	public void perform() throws MassiveCommandException
 	{
 		Gate gate = gme.getSelectedGate();
 		
@@ -47,7 +48,6 @@ public class CmdGateTaDel extends GateCommand
 		
 		// Fetch the Trigger
 		Trigger trigger = this.arg(0, ARTrigger.get());
-		if (trigger == null) return;
 		
 		if ( ! this.argIsSet(1) || this.arg(1).equalsIgnoreCase("all"))
 		{
@@ -61,7 +61,6 @@ public class CmdGateTaDel extends GateCommand
 		{
 			// Delete by index
 			Integer index = this.arg(1, ARInteger.get());
-			if (index == null) return;
 			
 			// Make it zero-based while deleting
 			index -= 1;
@@ -82,7 +81,6 @@ public class CmdGateTaDel extends GateCommand
 			// Delete by actionId
 			// Fetch the Action
 			Action action = this.arg(1, ARAction.get());
-			if (action == null) return;
 			
 			int count = gate.delActions(trigger, action);
 			this.msg("<i>Gate "+gate.getIdNameStringShort()+"<i> deleted "+count+" <pink>"+action.getName()+"-action <i>for trigger <lime>"+trigger.getName()+"<i>.");

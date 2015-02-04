@@ -2,6 +2,7 @@ package com.massivecraft.massivegates.cmd;
 
 import org.bukkit.Material;
 
+import com.massivecraft.massivecore.cmd.MassiveCommandException;
 import com.massivecraft.massivecore.cmd.arg.ARByte;
 import com.massivecraft.massivecore.cmd.arg.ARMaterial;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
@@ -24,7 +25,7 @@ public class CmdGateMatc extends GateCommand
 	}
 	
 	@Override
-	public void perform()
+	public void perform() throws MassiveCommandException
 	{
 		Gate gate = gme.getSelectedGate();
 		Material mat = gate.getMatclosed();
@@ -37,10 +38,8 @@ public class CmdGateMatc extends GateCommand
 		}
 		
 		mat = this.arg(0, ARMaterial.get());
-		if (mat == null) return;
 		
 		data = this.arg(1, ARByte.get(), (byte) 0);
-		if (data == null) return;
 		
 		if ( ! mat.isBlock())
 		{

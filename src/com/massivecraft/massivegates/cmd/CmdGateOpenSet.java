@@ -1,5 +1,6 @@
 package com.massivecraft.massivegates.cmd;
 
+import com.massivecraft.massivecore.cmd.MassiveCommandException;
 import com.massivecraft.massivecore.cmd.arg.ARBoolean;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivegates.Gate;
@@ -18,12 +19,11 @@ public class CmdGateOpenSet extends GateCommand
 	}
 	
 	@Override
-	public void perform()
+	public void perform() throws MassiveCommandException
 	{
 		Gate gate = gme.getSelectedGate();
 		
 		Boolean newState = this.arg(0, ARBoolean.get());
-		if (newState == null) return;
 		
 		boolean currentState = gate.isOpen();
 		String newStateStr = newState ? "<g>OPEN" : "<b>CLOSED";

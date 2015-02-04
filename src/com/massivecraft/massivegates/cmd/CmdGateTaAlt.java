@@ -3,6 +3,7 @@ package com.massivecraft.massivegates.cmd;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.massivecraft.massivecore.cmd.MassiveCommandException;
 import com.massivecraft.massivecore.cmd.arg.ARInteger;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.util.Txt;
@@ -23,10 +24,9 @@ public class CmdGateTaAlt extends GateCommand
 	}
 	
 	@Override
-	public void perform()
+	public void perform() throws MassiveCommandException
 	{
 		Integer pageHumanBased = this.arg(1, ARInteger.get(), 1);
-		if (pageHumanBased == null) return;
 		
 		List<String> lines = new ArrayList<String>();
 		
