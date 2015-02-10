@@ -3,16 +3,25 @@ package com.massivecraft.massivegates.ta;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 
-import com.massivecraft.massivegates.Gate;
+import com.massivecraft.massivegates.entity.Gate;
 
 public class ActionClose extends BaseAction
 {
+	// -------------------------------------------- //
+	// INTANCE AND CONSTRUCT
+	// -------------------------------------------- //
+	
 	protected static ActionClose instance = new ActionClose();
-	public static ActionClose getInstance() { return instance; }
+	public static ActionClose get() { return instance; }
+	
 	protected ActionClose()
 	{
-		super("mgcore_close", "Close", "Ensure the gate is closed.");
+		super("close", "Close", "Ensure the gate is closed.");
 	}
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public void perform(String arg, Gate gate, Entity entity, Cancellable cancellable)
@@ -21,4 +30,5 @@ public class ActionClose extends BaseAction
 		if (gate.isOpen() == false) return;
 		gate.setOpen(false);
 	}
+	
 }

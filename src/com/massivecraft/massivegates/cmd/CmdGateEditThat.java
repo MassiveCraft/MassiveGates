@@ -8,28 +8,40 @@ import com.massivecraft.massivecore.cmd.req.ReqIsPlayer;
 import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivecore.util.SmokeUtil;
 import com.massivecraft.massivegates.Const;
-import com.massivecraft.massivegates.Gate;
-import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.Permission;
+import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
+import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.util.VisualizeUtil;
 
 public class CmdGateEditThat extends GateCommand
 {
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
 	public CmdGateEditThat()
 	{
+		// Aliases
 		this.addAliases("that");
+		
+		// Args
 		this.addRequiredArg("frame|content|del");
+		
+		// Requirements
 		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.get());
-		this.addRequirements(new ReqHasPerm(Permission.EDIT_THAT.node));
+		this.addRequirements(ReqHasPerm.get(Perm.EDIT_THAT.node));
 	}
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public void perform()
 	{
-		Gate gate = gme.getSelectedGate();
-		
-		Block thatBlock = gme.getThatBlock(true);
+		// Args
+		Gate gate = gsender.getSelectedGate();
+		Block thatBlock = gsender.getThatBlock(true);
 		if (thatBlock == null) return;
 		
 		Location thatLoc = thatBlock.getLocation();
@@ -37,6 +49,7 @@ public class CmdGateEditThat extends GateCommand
 		
 		char firstArgChar = this.arg(0).toLowerCase().charAt(0);
 		
+		// Apply
 		if (firstArgChar == 'f')
 		{
 			gate.addFrame(thatCoord);
@@ -57,7 +70,9 @@ public class CmdGateEditThat extends GateCommand
 		}
 		else
 		{
-			this.msg("<b>arg must be frame|content|del");
+			// Inform
+			this.msg("<b>Arg must be frame|content|del .");
 		}
 	}
+	
 }

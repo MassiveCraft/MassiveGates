@@ -5,6 +5,17 @@ import java.util.Map;
 
 public class TriggerHour extends BaseTrigger
 {
+	// -------------------------------------------- //
+	// INTANCE AND CONSTRUCT
+	// -------------------------------------------- //
+	
+	protected TriggerHour(Integer h)
+	{
+		super("mgcore_h_"+h, "H"+h, "Ingame hour "+h+" of 23.");
+	}
+	
+	public static TriggerHour get(Integer h) { return triggerHours.get(h); }
+	
 	public static Map<Integer, TriggerHour> triggerHours;
 	static
 	{
@@ -14,10 +25,5 @@ public class TriggerHour extends BaseTrigger
 			triggerHours.put(h, new TriggerHour(h));
 		}
 	}
-	public static TriggerHour getInstance(Integer h) { return triggerHours.get(h); }
 	
-	protected TriggerHour(Integer h)
-	{
-		super("mgcore_h_"+h, "H"+h, "Ingame hour "+h+" of 23.");
-	}
 }

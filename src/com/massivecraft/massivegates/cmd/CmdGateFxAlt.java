@@ -7,27 +7,41 @@ import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.cmd.arg.ARInteger;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.util.Txt;
-import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.Permission;
+import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.util.Fx;
 
 public class CmdGateFxAlt extends GateCommand
 {
+	// -------------------------------------------- //
+	// CONSTRUCTOR
+	// -------------------------------------------- //
+	
 	public CmdGateFxAlt()
 	{
+		// Aliases
 		this.addAliases("alt");
+		
+		// Args
 		this.addOptionalArg("page", "1");
-		this.addRequirements(new ReqHasPerm(Permission.FX_ALT.node));
+		
+		// Requirements
+		this.addRequirements(ReqHasPerm.get(Perm.FX_ALT.node));
 	}
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public void perform() throws MassiveException
 	{
+		List<String> messages = new ArrayList<String>();
+		
+		// Args
 		Integer pageHumanBased = this.arg(0, ARInteger.get(), 1);
 		
-		List<String> lines = new ArrayList<String>();
-		lines.add("<a># <i>There is one FX per line in this list.");
-		lines.add("<a># <i>S = Sound, V = Visual, D = Data");
+		messages.add(Txt.parse("<a># <i>There is one FX per line in this list."));
+		messages.add(Txt.parse("<a># <i>S = Sound, V = Visual, D = Data"));
 		
 		for(Fx fx: Fx.values())
 		{
@@ -47,10 +61,11 @@ public class CmdGateFxAlt extends GateCommand
 			
 			sb.append(" <i>");
 			sb.append(fx.getDesc());
-			lines.add(sb.toString());
+			messages.add(Txt.parse(sb.toString()));
 		}
 		
-		lines = Txt.parseWrap(lines);
-		this.sendMessage(Txt.getPage(lines, pageHumanBased, "Available Special FX", sender));
+		// Inform
+		this.sendMessage(Txt.getPage(messages, pageHumanBased, "Available Special FX", sender));
 	}
+	
 }

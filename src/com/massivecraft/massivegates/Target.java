@@ -1,27 +1,37 @@
 package com.massivecraft.massivegates;
 
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import com.massivecraft.massivecore.mixin.Mixin;
 import com.massivecraft.massivecore.mixin.TeleporterException;
 import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivecore.ps.PSFormatDesc;
+import com.massivecraft.massivecore.util.Txt;
+import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.GateColl;
 
 public class Target
 {
+	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
+	
 	public PS location;
 	public void setLocation(Location location) { this.remove(); this.location = PS.valueOf(location); }
 	public PS getLocation() { return this.location; }
 	
 	public String gateId;
 	public void setGate(Gate gate) { this.remove(); this.gateId = gate.getId(); }
-	public Gate getGate() { return GateColl.i.get(this.gateId); }
+	public Gate getGate() { return GateColl.get().get(this.gateId); }
 	
 	public String rubberServerName;
 	public void setRubberServer(String name) { this.remove(); this.rubberServerName = name; }
 	public String getRubberServer() { return this.rubberServerName; }
+	
+	// -------------------------------------------- //
+	// METHODS
+	// -------------------------------------------- //
 	
 	public void remove()
 	{
@@ -42,10 +52,10 @@ public class Target
 	{
 		switch(this.getType())
 		{
-			case LOCATION: return "<k>Location: <v>"+this.location.toString(PSFormatDesc.get());
-			case GATE: return "<k>Gate: <v>"+this.getGate().getIdNameStringShort();
-			case RUBBERSERVER: return "<k>RubberServer: <v>"+this.rubberServerName;
-			default: return "<v>*NONE*";
+			case LOCATION: return Txt.parse("<k>Location: <v>%s", this.location.toString(PSFormatDesc.get()));
+			case GATE: return Txt.parse("<k>Gate: <v>%s", this.getGate().getIdNameStringShort());
+			case RUBBERSERVER: return Txt.parse("<k>RubberServer: <v>%s", this.rubberServerName);
+			default: return Txt.parse("<v>*NONE*");
 		}
 	}
 	
@@ -60,23 +70,21 @@ public class Target
 		}
 	}
 	
-	public boolean teleport(Entity entity)
+	public boolean teleport(Player player)
 	{
-		if (!this.exists()) return false;
+		if ( ! this.exists()) return false;
 		try
 		{
 			switch(this.getType())
 			{
 				case LOCATION:
-					Mixin.teleport((Player)entity, this.getLocation());
+					Mixin.teleport(player, this.getLocation());
 					return true;
 				case GATE:
-					Mixin.teleport((Player)entity, this.getGate().getExit());
+					Mixin.teleport(player, this.getGate().getExit());
 					return true;
 				case RUBBERSERVER: 
-					if (!(entity instanceof Player)) return false;
-					Player player = (Player) entity;
-					player.sendPluginMessage(P.p, "RubberBand", this.rubberServerName.getBytes());
+					player.sendPluginMessage(MassiveGates.get(), "RubberBand", this.rubberServerName.getBytes());
 					return true;
 				default:
 					return false;
@@ -84,11 +92,7 @@ public class Target
 		}
 		catch (TeleporterException e)
 		{
-			if (entity instanceof Player)
-			{
-				Player player = (Player) entity;
-				player.sendMessage(e.getMessage());
-			}
+			player.sendMessage(e.getMessage());
 		}
 		return false;
 	}

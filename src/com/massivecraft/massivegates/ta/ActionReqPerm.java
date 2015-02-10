@@ -8,17 +8,31 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.permissions.Permissible;
 
 import com.massivecraft.massivecore.util.PermUtil;
-import com.massivecraft.massivegates.Gate;
+import com.massivecraft.massivegates.entity.Gate;
 
 public class ActionReqPerm extends BaseAction
 {
+	// -------------------------------------------- //
+	// INTANCE AND CONSTRUCT
+	// -------------------------------------------- //
+	
 	protected static ActionReqPerm instance = new ActionReqPerm();
-	public static ActionReqPerm getInstance() { return instance; }
+	public static ActionReqPerm get() { return instance; }
 	
 	protected ActionReqPerm()
 	{
-		super("mgcore_reqperm", "reqperm", "Require that entity has permission node");
+		super("reqperm", "reqperm", "Require that player has permission node");
 	}
+	
+	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
+	
+	public final static List<String> errorsRequired = Arrays.asList("<b>Please provide the permission node");
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public void perform(String arg, Gate gate, Entity entity, Cancellable cancellable)
@@ -29,7 +43,6 @@ public class ActionReqPerm extends BaseAction
 		}
 	}
 	
-	public final static List<String> errorsRequired = Arrays.asList("<b>Please provide the permission node");
 	@Override
 	public List<String> checkArg(String arg)
 	{
@@ -49,4 +62,5 @@ public class ActionReqPerm extends BaseAction
 		
 		return PermUtil.has(permissible, perm, true);
 	}
+	
 }

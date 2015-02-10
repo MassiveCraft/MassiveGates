@@ -2,6 +2,21 @@ package com.massivecraft.massivegates.util;
 
 public class StandableInfo
 {
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
+	public StandableInfo(final boolean validGround, final boolean validLower, final boolean validUpper)
+	{
+		this.validGround = validGround;
+		this.validLower = validLower;
+		this.validUpper = validUpper;
+	}
+	
+	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
+	
 	private final boolean validGround;
 	public boolean isValidGround() { return this.validGround; }
 	
@@ -10,11 +25,5 @@ public class StandableInfo
 	
 	private final boolean validUpper;
 	public boolean isValidUpper() { return this.validUpper; }
-	
-	public StandableInfo(final boolean validGround, final boolean validLower, final boolean validUpper)
-	{
-		this.validGround = validGround;
-		this.validLower = validLower;
-		this.validUpper = validUpper;
-	}
+
 }

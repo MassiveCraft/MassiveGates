@@ -9,10 +9,10 @@ import org.bukkit.entity.Player;
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.cmd.arg.ArgReaderAbstract;
 import com.massivecraft.massivecore.util.Txt;
-import com.massivecraft.massivegates.GSender;
-import com.massivecraft.massivegates.GSenderColl;
-import com.massivecraft.massivegates.Gate;
-import com.massivecraft.massivegates.GateColl;
+import com.massivecraft.massivegates.entity.GSender;
+import com.massivecraft.massivegates.entity.GSenderColl;
+import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.GateColl;
 
 public class ARGate extends ArgReaderAbstract<Gate>
 {
@@ -38,7 +38,7 @@ public class ARGate extends ArgReaderAbstract<Gate>
 			if (sender instanceof Player)
 			{
 				Player me = (Player)sender;
-				GSender gme = GSenderColl.i.get(me);
+				GSender gme = GSenderColl.get().get(me);
 				ret = gme.getThatGate(false);
 				if (ret != null) return ret;
 				throw new MassiveException().addMsg("<b>No gate in sight.");
@@ -50,13 +50,13 @@ public class ARGate extends ArgReaderAbstract<Gate>
 		}
 		
 		// Then we attempt to get by id.
-		ret = GateColl.i.get(str);
+		ret = GateColl.get().get(str);
 		if (ret != null) return ret;
 		
 		// No matching id huh?... Lets test against the gate's name then:
 		// Build a name to gate map:
 		Map<String, Gate> name2gate = new HashMap<String, Gate>();
-		for (Gate g : GateColl.i.getAll())
+		for (Gate g : GateColl.get().getAll())
 		{
 			if (g.getName() == null) continue;
 			name2gate.put(g.getName(), g);

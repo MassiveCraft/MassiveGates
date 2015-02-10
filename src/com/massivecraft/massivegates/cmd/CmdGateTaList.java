@@ -8,35 +8,48 @@ import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.cmd.arg.ARInteger;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.util.Txt;
-import com.massivecraft.massivegates.Gate;
-import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.GateColl;
-import com.massivecraft.massivegates.Permission;
+import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
+import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.GateColl;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
 
 public class CmdGateTaList extends GateCommand
 {
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
 	public CmdGateTaList()
 	{
+		// Aliases
 		this.addAliases("list");
+		
+		// Args
 		this.addOptionalArg("page", "1");
 		
+		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(new ReqHasPerm(Permission.TA_LIST.node));
+		this.addRequirements(ReqHasPerm.get(Perm.TA_LIST.node));
 	}
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public void perform() throws MassiveException
 	{
-		Integer pageHumanBased = this.arg(0, ARInteger.get(), 1);
-		
-		Gate gate = gme.getSelectedGate();
-		
 		List<String> lines = new ArrayList<String>();
 		
-		for(Trigger trigger : GateColl.i.getTriggers())
+		// Args
+		Integer pageHumanBased = this.arg(0, ARInteger.get(), 1);
+		
+		Gate gate = gsender.getSelectedGate();
+		
+		// Apply
+		for(Trigger trigger : GateColl.get().getTriggers())
 		{
 			int i = 0;
 			for (Entry<Action, String> actionArg : gate.getActionArgs(trigger))
@@ -44,16 +57,17 @@ public class CmdGateTaList extends GateCommand
 				i += 1;
 				Action action = actionArg.getKey();
 				String arg = actionArg.getValue();
-				lines.add("<lime>"+trigger.getName()+" <rose>"+i+" <k>"+action.getName()+(arg==null?"":(" <v>"+arg))+" <i>"+action.getDesc());
+				lines.add(Txt.parse("<lime>%s <rose>%s <k>%s %s <i>%s", trigger.getName(), action.getName(), i, (arg==null ? "":Txt.parse((" <v>"+arg))), action.getDesc()));
 			}
 		}
 		
 		if (lines.size() == 0)
 		{
-			lines.add("<i>This gate has NO actions added. What a lame gate! :O");
+			lines.add(Txt.parse("<i>This gate has <h>NO <i>actions added. What a lame gate! :O"));
 		}
 		
-		lines = Txt.parseWrap(lines);
-		this.sendMessage(Txt.getPage(lines, pageHumanBased, "TriggerActions For Gate "+Txt.parse(gate.getIdNameStringShort()), sender));
+		// Inform
+		this.sendMessage(Txt.getPage(lines, pageHumanBased, "TriggerActions For Gate "+gate.getIdNameStringShort(), sender));
 	}
+
 }

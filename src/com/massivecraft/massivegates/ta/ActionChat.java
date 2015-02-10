@@ -7,29 +7,45 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 
-import com.massivecraft.massivegates.Gate;
-import com.massivecraft.massivegates.P;
+import com.massivecraft.massivegates.MassiveGates;
+import com.massivecraft.massivegates.entity.Gate;
 
 public class ActionChat extends BaseAction
 {
-	protected static ActionChat instance = new ActionChat();
-	public static ActionChat getInstance() { return instance; }
+	// -------------------------------------------- //
+	// INTANCE AND CONSTRUCT
+	// -------------------------------------------- //
+	
+	protected static ActionChat i = new ActionChat();
+	public static ActionChat get() { return i; }
+	
 	protected ActionChat()
 	{
-		super("mgcore_chat", "Chat", "chat/command as player. Replacing {p} with playername.");
+		super("chat", "Chat", "chat/command as player. Replacing {p} with playername.");
 	}
+	
+	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
+	
+	public final static List<String> errorsRequired = Arrays.asList("<b>You must enter the chat string in the argument!");
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public void perform(String arg, Gate gate, Entity entity, Cancellable cancellable)
 	{
+		// Only for players
 		if ( ! (entity instanceof Player)) return;
 		Player player = (Player) entity;
+		
 		String chat = arg.replace("{p}", player.getName());
-		P.p.log("Chat-Action as "+player.getName()+": "+ chat);
+		MassiveGates.get().log("Chat-Action as " + player.getName()+": " + chat);
 		player.chat(chat);
 	}
 	
-	public final static List<String> errorsRequired = Arrays.asList("<b>You must enter the chat string in the argument!");
 	@Override
 	public List<String> checkArg(String arg)
 	{
@@ -39,4 +55,5 @@ public class ActionChat extends BaseAction
 		}
 		return null;
 	}
+	
 }

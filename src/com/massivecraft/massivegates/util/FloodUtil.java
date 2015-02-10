@@ -12,7 +12,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 
-import com.massivecraft.massivegates.MConf;
+import com.massivecraft.massivegates.entity.MConf;
 
 public class FloodUtil
 {
@@ -21,6 +21,7 @@ public class FloodUtil
 	//----------------------------------------------//
 	
 	public static EnumSet<Material> airSet = EnumSet.of(Material.AIR);
+	
 	public static Set<Block> getFloodBlocks(Block startBlock, Set<BlockFace> expandFaces, Set<Material> allowedMaterials, int limit, Set<Block> foundBlocks)
 	{
 		if (foundBlocks == null) return null;
@@ -42,14 +43,17 @@ public class FloodUtil
 		
 		return foundBlocks;
 	}
+	
 	public static Set<Block> getFloodBlocks(Block startBlock, Set<BlockFace> expandFaces, Set<Material> allowedMaterials, int limit)
 	{
 		return getFloodBlocks(startBlock, expandFaces, allowedMaterials, limit, new HashSet<Block>());
 	}
+	
 	public static Set<Block> getFloodBlocks(Block startBlock, Set<BlockFace> expandFaces, Set<Material> allowedMaterials)
 	{
 		return getFloodBlocks(startBlock, expandFaces, allowedMaterials, MConf.get().floodFillLimit);
 	}
+	
 	public static Set<Block> getFloodBlocks(Block startBlock, Set<BlockFace> expandFaces)
 	{
 		return getFloodBlocks(startBlock, expandFaces, airSet);
@@ -68,14 +72,17 @@ public class FloodUtil
 		}
 		return ret;
 	}
+	
 	public static Map<FloodOrientation, Set<Block>> getFloods(Block startBlock, Collection<FloodOrientation> orientations, Set<Material> allowedMaterials)
 	{
 		return getFloods(startBlock, orientations, allowedMaterials, MConf.get().floodFillLimit);
 	}
+	
 	public static Map<FloodOrientation, Set<Block>> getFloods(Block startBlock, Collection<FloodOrientation> orientations)
 	{
 		return getFloods(startBlock, orientations, airSet);
 	}
+	
 	public static Map<FloodOrientation, Set<Block>> getFloods(Block startBlock)
 	{
 		return getFloods(startBlock, EnumSet.allOf(FloodOrientation.class));
@@ -102,14 +109,17 @@ public class FloodUtil
 		}
 		return ret;
 	}
+	
 	public static Entry<FloodOrientation, Set<Block>> getBestFlood(Block startBlock, Collection<FloodOrientation> orientations, Set<Material> allowedMaterials)
 	{
 		return getBestFlood(startBlock, orientations, allowedMaterials, MConf.get().floodFillLimit);
 	}
+	
 	public static Entry<FloodOrientation, Set<Block>> getBestFlood(Block startBlock, Collection<FloodOrientation> orientations)
 	{
 		return getBestFlood(startBlock, orientations, airSet);
 	}
+	
 	public static Entry<FloodOrientation, Set<Block>> getBestFlood(Block startBlock)
 	{
 		return getBestFlood(startBlock, EnumSet.allOf(FloodOrientation.class));
@@ -138,8 +148,10 @@ public class FloodUtil
 		}
 		return frame;
 	}
+	
 	public static Set<Block> getFrameFor(Set<Block> content, FloodOrientation orientation)
 	{
 		return getFrameFor(content, orientation.getDirections());
 	}
+	
 }

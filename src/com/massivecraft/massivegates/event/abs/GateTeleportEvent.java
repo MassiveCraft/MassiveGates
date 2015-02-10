@@ -1,30 +1,36 @@
 package com.massivecraft.massivegates.event.abs;
 
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 
-import com.massivecraft.massivegates.Gate;
 import com.massivecraft.massivegates.Target;
+import com.massivecraft.massivegates.entity.Gate;
 
 public abstract class GateTeleportEvent extends SingleGateEvent
 {	
-	// FIELD: user
-	private Entity user;
-	public Entity getUser() { return this.user; }
+	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
 	
-	// FIELD: from
+	private Player player;
+	public Player getPlayer() { return this.player; }
+	
 	private Location from;
 	public Location getFrom() { return this.from; }
 	
-	// FIELD: to
 	private Target to;
 	public Target getTo() { return this.to; }
 	
-	public GateTeleportEvent(Gate gate, Entity user, Location from, Target to)
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
+	public GateTeleportEvent(Gate gate, Player player, Location from, Target to)
 	{
 		super(gate);
-		this.user = user;
+		this.player = player;
 		this.from = from;
 		this.to = to;
 	}
+	
 }

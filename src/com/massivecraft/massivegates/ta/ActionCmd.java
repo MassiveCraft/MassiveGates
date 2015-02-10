@@ -8,24 +8,39 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 
-import com.massivecraft.massivegates.Gate;
-import com.massivecraft.massivegates.P;
+import com.massivecraft.massivegates.MassiveGates;
+import com.massivecraft.massivegates.entity.Gate;
 
 public class ActionCmd extends BaseAction
 {
+	// -------------------------------------------- //
+	// INTANCE AND CONSTRUCT
+	// -------------------------------------------- //
+	
 	protected static ActionCmd instance = new ActionCmd();
-	public static ActionCmd getInstance() { return instance; }
+	public static ActionCmd get() { return instance; }
+	
 	protected ActionCmd()
 	{
-		super("mgcore_cmd", "cmd", "Console command. Replacing {p} with playername.");
+		super("cmd", "cmd", "Console command. Replacing {p} with playername.");
 	}
+	
+	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
+	
+	public final static List<String> errorsRequired = Arrays.asList("<b>You must enter the command in the argument!");
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public void perform(String arg, Gate gate, Entity entity, Cancellable cancellable)
 	{
 		// Remove all leading slashes and spaces from the command
 		String cmd = arg.replaceAll("^[/\\s]+", "");
-				
+		
 		// Fetch the player
 		Player player = null;
 		if (entity instanceof Player)
@@ -40,11 +55,10 @@ public class ActionCmd extends BaseAction
 			cmd = cmd.replace("{p}", player.getName());
 		}
 		
-		P.p.log("CMD-Action: ", cmd);
+		MassiveGates.get().log("CMD-Action: ", cmd);
 		Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), cmd);
 	}
 	
-	public final static List<String> errorsRequired = Arrays.asList("<b>You must enter the command in the argument!");
 	@Override
 	public List<String> checkArg(String arg)
 	{
@@ -54,4 +68,5 @@ public class ActionCmd extends BaseAction
 		}
 		return null;
 	}
+	
 }

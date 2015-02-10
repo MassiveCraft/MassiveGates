@@ -8,26 +8,42 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 
 import com.massivecraft.massivecore.util.Txt;
-import com.massivecraft.massivegates.Gate;
+import com.massivecraft.massivegates.entity.Gate;
 
 public class ActionMsg extends BaseAction
 {
+	// -------------------------------------------- //
+	// INTANCE AND CONSTRUCT
+	// -------------------------------------------- //
+	
 	protected static ActionMsg instance = new ActionMsg();
-	public static ActionMsg getInstance() { return instance; }
+	public static ActionMsg get() { return instance; }
+	
 	protected ActionMsg()
 	{
-		super("mgcore_msg", "Msg", "msg:message to the player.");
+		super("msg", "Msg", "msg:message to the player.");
 	}
+	
+	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
+	
+	public final static List<String> errors = Arrays.asList("<b>You must enter a message to be sent!");
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public void perform(String arg, Gate gate, Entity entity, Cancellable cancellable)
 	{
+		// Only for players
 		if ( ! (entity instanceof Player)) return;
 		Player player = (Player) entity;
+		
 		player.sendMessage(Txt.parse(arg));
 	}
 	
-	public final static List<String> errors = Arrays.asList("<b>You must enter a message to be sent!");
 	@Override
 	public List<String> checkArg(String arg)
 	{
@@ -37,4 +53,5 @@ public class ActionMsg extends BaseAction
 		}
 		return null;
 	}
+	
 }

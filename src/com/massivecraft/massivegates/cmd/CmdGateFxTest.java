@@ -4,34 +4,50 @@ import org.bukkit.Location;
 
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.cmd.req.ReqIsPlayer;
-import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.Permission;
+import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.util.Fx;
 
 public class CmdGateFxTest extends GateCommand
 {
+	// -------------------------------------------- //
+	// CONSTRUCTOR
+	// -------------------------------------------- //
 	public CmdGateFxTest()
 	{
+		// Aliases
 		this.addAliases("test");
+		
+		// Arg
 		this.addRequiredArg("fxstring");
+		
+		// Requirements
 		this.addRequirements(ReqIsPlayer.get());
-		this.addRequirements(new ReqHasPerm(Permission.FX_TEST.node));
+		this.addRequirements(ReqHasPerm.get(Perm.FX_TEST.node));
 	}
 	
-	@SuppressWarnings("deprecation")
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
+	
 	@Override
 	public void perform()
 	{
-		Location location = me.getLastTwoTargetBlocks(null, 5).get(0).getLocation();
+		// Args
+		Location location = gsender.getThatBlock(false).getLocation();
+		String fx = this.arg(0);
 		
-		boolean success = Fx.perform(this.arg(0), location);
+		// Apply
+		boolean success = Fx.perform(fx, location);
+		
+		// Inform
 		if (success)
 		{
-			this.msg("<i>Just performed the fx \"<h>"+this.arg(0)+"<i>\" where you looked.");
+			this.msg("<i>Just performed the fx \"<h>%s<i>\" where you looked.", fx);
 		}
 		else
 		{
 			this.msg(Fx.parseMultiErrors);
 		}
 	}
+	
 }

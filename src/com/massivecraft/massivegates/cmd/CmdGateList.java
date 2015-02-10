@@ -1,40 +1,60 @@
 package com.massivecraft.massivegates.cmd;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.cmd.arg.ARInteger;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
-import com.massivecraft.massivecore.util.Txt;
-import com.massivecraft.massivegates.Gate;
-import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.GateColl;
-import com.massivecraft.massivegates.Permission;
+import com.massivecraft.massivecore.pager.PagerSimple;
+import com.massivecraft.massivecore.pager.Stringifier;
+import com.massivecraft.massivegates.Perm;
+import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.GateColl;
 
 public class CmdGateList extends GateCommand
 {
+	// -------------------------------------------- //
+	// CONSTRUCTOR
+	// -------------------------------------------- //
+	
 	public CmdGateList()
 	{
-		this.addAliases("l","ls","list");
+		// Aliases
+		this.addAliases("l","list");
+		
+		// Args
 		this.addOptionalArg("page", "1");
-		this.addRequirements(new ReqHasPerm(Permission.LIST.node));
+		
+		// Requirements
+		this.addRequirements(ReqHasPerm.get(Perm.LIST.node));
 	}
 
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
+	
 	@Override
 	public void perform() throws MassiveException
 	{
 		// Args
 		Integer pageHumanBased = this.arg(0, ARInteger.get(), 1);
 		
-		// Create Lines
-		List<String> lines = new ArrayList<String>(GateColl.i.getAll().size());
-		for (Gate gate : GateColl.i.getAll())
-		{
-			lines.add(Txt.parse(gate.getIdNameStringShort()));
-		}
+		// Create Pager
+		final PagerSimple<Gate> pager = new PagerSimple<Gate>(GateColl.get().getAll(), sender);
+		
+		// Use Pager
+		List<String> messages = pager.getPageTxt(pageHumanBased, "List Of Gates", new Stringifier<Gate>(){
+			
+			@Override
+			public String toString(Gate gate, int index)
+			{
+				return gate.getIdNameStringShort();
+			}
+			
+		});
 		
 		// Send Lines
-		this.sendMessage(Txt.getPage(lines, pageHumanBased, "Gate List", sender));	
+		this.sendMessage(messages);	
 	}
+	
 }

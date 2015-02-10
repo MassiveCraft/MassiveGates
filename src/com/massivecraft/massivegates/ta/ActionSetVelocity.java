@@ -7,16 +7,26 @@ import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 import org.bukkit.util.Vector;
 
-import com.massivecraft.massivegates.Gate;
+import com.massivecraft.massivegates.entity.Gate;
 
 public class ActionSetVelocity extends BaseAction
 {
+	// -------------------------------------------- //
+	// INTANCE AND CONSTRUCT
+	// -------------------------------------------- //
+	
+	public final static List<String> errorsRequired = Arrays.asList("<b>Please provide the permission node");
 	protected static ActionSetVelocity instance = new ActionSetVelocity();
-	public static ActionSetVelocity getInstance() { return instance; }
+	public static ActionSetVelocity get() { return instance; }
+	
 	protected ActionSetVelocity()
 	{
-		super("mgcore_SetVelocity", "setvel", "Set entity velocity: X Y Z");
+		super("setvel", "setvel", "Set entity velocity: X Y Z");
 	}
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public void perform(String arg, Gate gate, Entity entity, Cancellable cancellable)
@@ -25,7 +35,6 @@ public class ActionSetVelocity extends BaseAction
 		entity.setVelocity(parseVector(arg));
 	}
 	
-	public final static List<String> errorsRequired = Arrays.asList("<b>Please provide three doubles: X Y X");
 	@Override
 	public List<String> checkArg(String arg)
 	{
@@ -52,4 +61,5 @@ public class ActionSetVelocity extends BaseAction
 			return null;
 		}
 	}
+	
 }

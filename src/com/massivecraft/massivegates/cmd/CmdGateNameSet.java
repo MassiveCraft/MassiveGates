@@ -1,27 +1,45 @@
 package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
-import com.massivecraft.massivegates.Gate;
-import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.Permission;
+import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
+import com.massivecraft.massivegates.entity.Gate;
 
 public class CmdGateNameSet extends GateCommand
 {
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
 	public CmdGateNameSet()
 	{
+		// Aliases
 		this.addAliases("set");
+		
+		// Args
 		this.addRequiredArg("name");
+		
+		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(new ReqHasPerm(Permission.NAME_SET.node));
+		this.addRequirements(ReqHasPerm.get(Perm.NAME_SET.node));
 	}
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public void perform()
 	{
-		Gate gate = gme.getSelectedGate();
+		// Args
+		Gate gate = gsender.getSelectedGate();
 		String name = this.arg(0);
+		
+		// Apply
 		gate.setName(name);
-		this.msg("<i>Name updated: Gate "+gate.getIdNameStringShort()+"<i>.");
+		
+		// Inform
+		this.msg("<i>Name updated: Gate %s<i>.", gate.getIdNameStringShort());
 	}
+	
 }

@@ -5,6 +5,21 @@ import java.util.List;
 
 public abstract class BaseAction implements Action
 {
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
+	protected BaseAction(final String id, final String name, final String desc)
+	{
+		this.id = id;
+		this.name = name;
+		this.desc = desc;
+	}
+	
+	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
+	
 	protected final String id;
 	@Override public String getId() { return id; }
 	
@@ -14,15 +29,12 @@ public abstract class BaseAction implements Action
 	protected final String desc;
 	@Override public String getDesc() { return desc; }
 	
-	protected BaseAction(final String id, final String name, final String desc)
-	{
-		this.id = id;
-		this.name = name;
-		this.desc = desc;
-	}
-	
-	
 	public final static List<String> errorsNoneExpected = Arrays.asList("<b>No argument expected for this action.");
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
+	
 	@Override
 	public List<String> checkArg(String arg)
 	{
@@ -43,4 +55,6 @@ public abstract class BaseAction implements Action
 	{
 		return this.getId().hashCode();
 	}
+	
 }
+

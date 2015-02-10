@@ -1,8 +1,63 @@
 name: MassiveGates
 version: 1.1.3
-main: com.massivecraft.massivegates.P
+main: com.massivecraft.massivegates.MassiveGates
 depend: [MassiveCore]
 permissions:
+# -------------------------------------------- #
+# THE REAL NODES
+# -------------------------------------------- #
+  massivegates.action.chat: {description: assign the chat action to a gate, default: false}
+  massivegates.action.close: {description: assign the close action to a gate, default: false}
+  massivegates.action.cmd: {description: assign the cmd action to a gate, default: false}
+  massivegates.action.fxe: {description: assign the fxe action to a gate, default: false}
+  massivegates.action.fxg: {description: assign the fxg action to a gate, default: false}
+  massivegates.action.msg: {description: assign the msg action to a gate, default: false}
+  massivegates.action.open: {description: assign the open action to a gate, default: false}
+  massivegates.action.use: {description: assign the use action to a gate, default: false}
+  massivegates.action.use_forced: {description: assign the useforce action to a gate, default: false}
+  massivegates.action.reqperm: {description: assign the reqperm action to a gate, default: false}
+  massivegates.action.setvel: {description: assign the setvel action to a gate, default: false}
+  massivegates.delete: {description: delete a gate, default: false}
+  massivegates.edit: {description: edit gate shape, default: false}
+  massivegates.edit.clear: {description: clear gate parts, default: false}
+  massivegates.edit.flood: {description: append using floodfill, default: false}
+  massivegates.edit.that: {description: edit that block, default: false}
+  massivegates.exit: {description: manage gate exit, default: false}
+  massivegates.exit.get: {description: get internal exit, default: false}
+  massivegates.exit.here: {description: set internal exit, default: false}
+  massivegates.exit.goto: {description: got internal exit, default: false}
+  massivegates.exit.remove: {description: remove internal exit, default: false}
+  massivegates.fx: {description: list available special fx, default: false}
+  massivegates.fx.alt: {description: list available special fx, default: false}
+  massivegates.fx.test: {description: info on the special effects system, default: false}
+  massivegates.list: {description: list gates, default: false}
+  massivegates.matc: {description: set closed material, default: false}
+  massivegates.mato: {description: set open material, default: false}
+  massivegates.name: {description: manage gate name, default: false}
+  massivegates.name.get: {description: get gate name, default: false}
+  massivegates.name.set: {description: set gate name, default: false}
+  massivegates.new: {description: create new gates, default: false}
+  massivegates.open: {description:  manage gate open/closed state, default: false}
+  massivegates.open.get: {description: get the open-state, default: false}
+  massivegates.open.set: {description: set the open-state, default: false}
+  massivegates.see: {description: visualise the gate, default: false}
+  massivegates.select: {description: select a gate, default: false}
+  massivegates.simple.create: {description: create simple gates, default: false}
+  massivegates.simple.destroy: {description: destroy simple gates, default: false}
+  massivegates.simple.use: {description: use simple gates, default: false}
+  massivegates.target: {description: manage gate target, default: false }
+  massivegates.target.get: {description: get current target, default: false}
+  massivegates.target.gate: {description: set target to a gate, default: false}
+  massivegates.target.here: {description: set target where you stand, default: false}
+  massivegates.target.rubberserver: {description: target rubberband server, default: false}
+  massivegates.ta: {description: manage gate trigger-actions, default: false}
+  massivegates.ta.add: {description: add action, default: false}
+  massivegates.ta.alt: {description: list triggers or action, default: false}
+  massivegates.ta.del: {description: delete action, default: false}
+  massivegates.ta.list: {description: list current trigger-action, default: false}
+# -------------------------------------------- #
+# STAR NOTATION
+# -------------------------------------------- #
   massivegates.*:
     children:
       massivegates.simple.*: true
@@ -21,109 +76,46 @@ permissions:
       massivegates.target.*: true
       massivegates.ta.*: true
       massivegates.action.*: true
+# -------------------------------------------- #
+# KITS
+# -------------------------------------------- #
   massivegates.simple.*:
     children:
       massivegates.simple.create: true
       massivegates.simple.destroy: true
       massivegates.simple.use: true
-  massivegates.simple.create:
-    default: false
-    description: create simple gates
-  massivegates.simple.destroy:
-    default: false
-    description: destroy simple gates
-  massivegates.simple.use:
-    default: false
-    description: use simple gates
-  massivegates.delete:
-    default: false
-    description: delete a gate
   massivegates.edit.*:
     children:
+      massivegates.edit: true
       massivegates.edit.clear: true
       massivegates.edit.flood: true
       massivegates.edit.that: true
-  massivegates.edit.clear:
-    default: false
-    description: clear gate parts
-  massivegates.edit.flood:
-    default: false
-    description: append using floodfill
-  massivegates.edit.that:
-    default: false
-    description: sniper edit
   massivegates.exit.*:
     children:
+      massivegates.exit: true
       massivegates.exit.get: true
       massivegates.exit.here: true
       massivegates.exit.goto: true
       massivegates.exit.remove: true
-  massivegates.exit.get:
-    default: false
-    description: get internal exit
-  massivegates.exit.here:
-    default: false
-    description: set internal exit
-  massivegates.exit.goto:
-    default: false
-    description: goto internal exit
-  massivegates.exit.remove:
-    default: false
-    description: remove internal exit
   massivegates.fx.*:
     children:
+      massivegates.fx: true
       massivegates.fx.alt: true
       massivegates.fx.test: true
-  massivegates.fx.alt:
-    default: false
-    description: list available special fx
-  massivegates.fx.test:
-    default: false
-    description: test special fx
-  massivegates.list:
-    default: false
-    description: list gates
-  massivegates.matc:
-    default: false
-    description: set closed material
-  massivegates.mato:
-    default: false
-    description: set open material
   massivegates.name.*:
     children:
+      massivegates.name: true
       massivegates.name.get: true
       massivegates.name.set: true
       massivegates.name.remove: true
-  massivegates.name.get:
-    default: false
-    description: get gate name
-  massivegates.name.set:
-    default: false
-    description: set gate name
-  massivegates.name.remove:
-    default: false
-    description: remove gate name
-  massivegates.new:
-    default: false
-    description: create new gate
   massivegates.open.*:
     children:
+      massivegates.open: true
       massivegates.open.get: true
       massivegates.open.set: true
-  massivegates.open.get:
-    default: false
-    description: get the open-state
-  massivegates.open.set:
-    default: false
-    description: set the open-state
-  massivegates.see:
-    default: false
-    description: visualise the gate
-  massivegates.select:
-    default: false
-    description: select a gate
   massivegates.target.*:
     children:
+      massivegates.target: true
       massivegates.target.get: true
       massivegates.target.set: true
       massivegates.target.here: true
@@ -131,85 +123,24 @@ permissions:
       massivegates.target.rubberserver: true
       massivegates.target.goto: true
       massivegates.target.remove: true
-  massivegates.target.get:
-    default: false
-    description: get current target
-  massivegates.target.gate:
-    default: false
-    description: set target to a gate
-  massivegates.target.here:
-    default: false
-    description: set target where you stand
-  massivegates.target.rubberserver:
-    default: false
-    description: target rubberband server
-  massivegates.target.goto:
-    default: false
-    description: goto current target
-  massivegates.target.remove:
-    default: false
-    description: remove current target
   massivegates.ta.*:
     children:
+      massivegates.ta: true
       massivegates.ta.add: true
       massivegates.ta.alt: true
       massivegates.ta.del: true
       massivegates.ta.list: true
-  massivegates.ta.add:
-    default: false
-    description: add action
-  massivegates.ta.alt:
-    default: false
-    description: list triggers or actions
-  massivegates.ta.del:
-    default: false
-    description: delete action
-  massivegates.ta.list:
-    default: false
-    description: list current trigger-actions
   massivegates.action.*:
     children:
-      massivegates.action.mgcore_chat: true
-      massivegates.action.mgcore_close: true
-      massivegates.action.mgcore_cmd: true
-      massivegates.action.mgcore_fxe: true
-      massivegates.action.mgcore_fxg: true
-      massivegates.action.mgcore_msg: true
-      massivegates.action.mgcore_open: true
-      massivegates.action.mgcore_use: true
-      massivegates.action.mgcore_use_forced: true
-      massivegates.action.mgcore_reqperm: true
-      massivegates.action.mgcore_SetVelocity: true
-  massivegates.action.mgcore_chat:
-    default: false
-    description: assign the chat action to a gate
-  massivegates.action.mgcore_close:
-    default: false
-    description: assign the close action to a gate
-  massivegates.action.mgcore_cmd:
-    default: false
-    description: assign the cmd action to a gate
-  massivegates.action.mgcore_fxe:
-    default: false
-    description: assign the fxe action to a gate
-  massivegates.action.mgcore_fxg:
-    default: false
-    description: assign the fxg action to a gate
-  massivegates.action.mgcore_msg:
-    default: false
-    description: assign the msg action to a gate
-  massivegates.action.mgcore_open:
-    default: false
-    description: assign the open action to a gate
-  massivegates.action.mgcore_use:
-    default: false
-    description: assign the use action to a gate
-  massivegates.action.mgcore_use_forced:
-    default: false
-    description: assign the useforced action to a gate
-  massivegates.action.mgcore_reqperm:
-    default: false
-    description: assign the reqperm action to a gate
-  massivegates.action.mgcore_SetVelocity:
-    default: false
-    description: assign the setvel action to a gate
+      massivegates.action.chat: true
+      massivegates.action.close: true
+      massivegates.action.cmd: true
+      massivegates.action.fxe: true
+      massivegates.action.fxg: true
+      massivegates.action.msg: true
+      massivegates.action.open: true
+      massivegates.action.use: true
+      massivegates.action.use_forced: true
+      massivegates.action.reqperm: true
+      massivegates.action.setvel: true
+      

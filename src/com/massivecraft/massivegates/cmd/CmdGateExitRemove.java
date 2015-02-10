@@ -1,25 +1,39 @@
 package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
-import com.massivecraft.massivegates.Gate;
-import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.Permission;
+import com.massivecraft.massivecore.util.Txt;
+import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
+import com.massivecraft.massivegates.entity.Gate;
 
 public class CmdGateExitRemove extends GateCommand
 {
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
 	public CmdGateExitRemove()
 	{
+		// Aliases
 		this.addAliases("rm","remove");
+		
+		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(new ReqHasPerm(Permission.EXIT_REMOVE.node));
+		this.addRequirements(ReqHasPerm.get(Perm.EXIT_REMOVE.node));
 	}
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public void perform()
 	{
-		Gate gate = gme.getSelectedGate();
+		// Apply
+		Gate gate = gsender.getSelectedGate();
 		gate.setExit(null);
-		this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>exit was removed.");
+		
+		// Inform
+		sendMessage(Txt.parse("<i>Gate %s<i>: The exit was removed.", gate.getIdNameStringShort()));
 	}
 }

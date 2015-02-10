@@ -2,25 +2,37 @@ package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
-import com.massivecraft.massivegates.Gate;
-import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.Permission;
+import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdarg.ARGate;
+import com.massivecraft.massivegates.entity.Gate;
 
 public class CmdGateSel extends GateCommand
 {
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
 	public CmdGateSel()
 	{
+		// Aliases
 		this.addAliases("sel");
+		
+		// Args
 		this.addOptionalArg("gate", "*get*");
 		
-		this.addRequirements(new ReqHasPerm(Permission.SELECT.node));
+		// Requirements
+		this.addRequirements(ReqHasPerm.get(Perm.SELECT.node));
 	}
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public void perform() throws MassiveException
 	{
-		Gate gate = gme.getSelectedGate();
+		// Args
+		Gate gate = gsender.getSelectedGate();
 		
 		if ( ! this.argIsSet(0))
 		{
@@ -36,11 +48,16 @@ public class CmdGateSel extends GateCommand
 		}
 		
 		gate = this.arg(0, ARGate.get());
-		gme.setSelectedGate(gate);
+		
+		// Apply
+		gsender.setSelectedGate(gate);
 		if (me != null)
 		{
 			gate.visualizeFor(me);
 		}
-		this.msg("<i>Selected gate "+gate.getIdNameStringLong());
+		
+		// Inform
+		this.msg("<i>Selected gate %s", gate.getIdNameStringLong());
 	}
+	
 }

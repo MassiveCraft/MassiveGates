@@ -3,7 +3,7 @@ package com.massivecraft.massivegates.event;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
-import com.massivecraft.massivegates.Gate;
+import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.event.abs.SingleGateEvent;
 
 public class GateAlterEvent extends SingleGateEvent
@@ -11,6 +11,7 @@ public class GateAlterEvent extends SingleGateEvent
 	// -------------------------------------------- //
 	// REQUIRED EVENT CODE
 	// -------------------------------------------- //
+	
 	private static final HandlerList handlers = new HandlerList();
 	public HandlerList getHandlers() { return handlers; }
 	public static HandlerList getHandlerList() { return handlers; }
@@ -28,6 +29,10 @@ public class GateAlterEvent extends SingleGateEvent
 	private Player player;
 	public Player getPlayer() { return this.player; }
 	
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
 	public GateAlterEvent(Gate gate, GateAlterType alterType, Player player)
 	{
 		super(gate);
@@ -36,8 +41,9 @@ public class GateAlterEvent extends SingleGateEvent
 	}
 	
 	// -------------------------------------------- //
-	// DA FANCY ENUM
+	// ENUM
 	// -------------------------------------------- //
+	
 	public enum GateAlterType
 	{
 		PLACE(true),
@@ -54,6 +60,8 @@ public class GateAlterEvent extends SingleGateEvent
 		PISTON_EXTEND(false),
 		PISTON_RETRACT(false),
 		EXPLODE(false),
+		
+		// END OF LIST
 		;
 		
 		private final boolean playerInduced;
@@ -64,4 +72,5 @@ public class GateAlterEvent extends SingleGateEvent
 			this.playerInduced = playerInduced;
 		}
 	}
+	
 }

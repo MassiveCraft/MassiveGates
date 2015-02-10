@@ -3,7 +3,7 @@ package com.massivecraft.massivegates.event;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.HandlerList;
 
-import com.massivecraft.massivegates.Gate;
+import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.event.abs.CancellableSingleGateEvent;
 
 /**
@@ -16,6 +16,7 @@ public class GateUseEvent extends CancellableSingleGateEvent
 	// -------------------------------------------- //
 	// REQUIRED EVENT CODE
 	// -------------------------------------------- //
+	
 	private static final HandlerList handlers = new HandlerList();
 	public HandlerList getHandlers() { return handlers; }
 	public static HandlerList getHandlerList() { return handlers; }
@@ -28,9 +29,14 @@ public class GateUseEvent extends CancellableSingleGateEvent
 	private Entity user;
 	public Entity getUser() { return this.user; }
 	
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
 	public GateUseEvent(Gate gate, Entity user)
 	{
 		super(gate);
 		this.user = user;
 	}
+	
 }

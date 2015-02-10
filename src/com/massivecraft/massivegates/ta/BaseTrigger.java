@@ -2,6 +2,21 @@ package com.massivecraft.massivegates.ta;
 
 public abstract class BaseTrigger implements Trigger
 {
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
+	protected BaseTrigger(final String id, final String name, final String desc)
+	{
+		this.id = id;
+		this.name = name;
+		this.desc = desc;
+	}
+	
+	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
+	
 	protected final String id;
 	@Override public String getId() { return id; }
 	
@@ -11,12 +26,9 @@ public abstract class BaseTrigger implements Trigger
 	protected final String desc;
 	@Override public String getDesc() { return desc; }
 	
-	protected BaseTrigger(final String id, final String name, final String desc)
-	{
-		this.id = id;
-		this.name = name;
-		this.desc = desc;
-	}
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public boolean equals(Object that)
@@ -31,4 +43,5 @@ public abstract class BaseTrigger implements Trigger
 	{
 		return this.getId().hashCode();
 	}
+	
 }

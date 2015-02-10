@@ -3,46 +3,48 @@ package com.massivecraft.massivegates.cmd;
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.cmd.arg.ARInteger;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
-import com.massivecraft.massivegates.Gate;
-import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.Permission;
+import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdarg.ARAction;
 import com.massivecraft.massivegates.cmdarg.ARTrigger;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
+import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
 
 public class CmdGateTaDel extends GateCommand
 {
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
 	public CmdGateTaDel()
 	{
+		// Aliases
 		this.addAliases("del");
+		
+		// Args
 		this.addRequiredArg("trigger|all");
 		this.addOptionalArg("index|action|all","all");
 		
+		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(new ReqHasPerm(Permission.TA_DEL.node));
+		this.addRequirements(ReqHasPerm.get(Perm.TA_DEL.node));
 	}
-	
-	public boolean isNumeric(String s)
-	{
-		if (s == null) return false;
-		for (int i = 0; i < s.length(); i++)
-		{
-			if ( ! Character.isDigit(s.charAt(i))) return false;
-		}
-		return true;
-	}
+
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public void perform() throws MassiveException
 	{
-		Gate gate = gme.getSelectedGate();
+		// Args
+		Gate gate = gsender.getSelectedGate();
 		
 		if (this.arg(0).equalsIgnoreCase("all"))
 		{
 			gate.delActions();
-			this.msg("<i>Gate "+gate.getIdNameStringShort()+"<i> deleted all actions.");
+			this.msg("<i>Gate %s<i>: All actions were deleted.", gate.getIdNameStringShort());
 			return;
 		}
 		
@@ -52,7 +54,7 @@ public class CmdGateTaDel extends GateCommand
 		if ( ! this.argIsSet(1) || this.arg(1).equalsIgnoreCase("all"))
 		{
 			int count = gate.delActions(trigger);
-			this.msg("<i>Gate "+gate.getIdNameStringShort()+"<i> deleted all (<h>"+count+"<i>) actions for trigger <lime>"+trigger.getName()+"<i>.");
+			this.msg("<i>Gate %s<i>: All (<h>%s<i>) actions for trigger <lime>%s<i> were deleted.", gate.getIdNameStringShort(), count, trigger.getName());
 			return;
 		}
 		
@@ -69,11 +71,11 @@ public class CmdGateTaDel extends GateCommand
 			
 			if (success)
 			{
-				this.msg("<i>Gate "+gate.getIdNameStringShort()+"<i> deleted action index <rose>"+index+" <i>for trigger <lime>"+trigger.getName()+"<i>.");
+				this.msg("<i>Gate %s<i>: Action index <rose>%s <i>for trigger <lime>%s<i> was deleted.", gate.getIdNameStringShort(), index, trigger.getName());
 			}
 			else
 			{
-				this.msg("<b>Gate "+gate.getIdNameStringShort()+"<b> there is no index <rose>"+index+" <i>for trigger <lime>"+trigger.getName()+"<i>.");
+				this.msg("<i>Gate %s<i>: There is no index <rose>%s <i>for trigger <lime>%s<i>.", gate.getIdNameStringShort(), index, trigger.getName());
 			}
 		}
 		else
@@ -83,9 +85,23 @@ public class CmdGateTaDel extends GateCommand
 			Action action = this.arg(1, ARAction.get());
 			
 			int count = gate.delActions(trigger, action);
-			this.msg("<i>Gate "+gate.getIdNameStringShort()+"<i> deleted "+count+" <pink>"+action.getName()+"-action <i>for trigger <lime>"+trigger.getName()+"<i>.");
+			this.msg("<i>Gate %s<i>: %s <pink>%s-actions <i>for trigger <lime>%s<i> were deleted.", gate.getIdNameStringShort(), count, action.getName(), trigger.getName());
 		}
 		
-		
 	}
+	
+	// -------------------------------------------- //
+	// PRIVATE
+	// -------------------------------------------- //
+	
+	private boolean isNumeric(String s)
+	{
+		if (s == null) return false;
+		for (int i = 0; i < s.length(); i++)
+		{
+			if ( ! Character.isDigit(s.charAt(i))) return false;
+		}
+		return true;
+	}
+	
 }

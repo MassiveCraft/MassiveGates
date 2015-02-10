@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
@@ -31,6 +32,7 @@ public class VisualizeUtil
 		}
 		return ret;
 	}
+	
 	public static Set<Location> getPlayerLocations(Player player)
 	{
 		return getPlayerLocations(player.getName());
@@ -41,17 +43,17 @@ public class VisualizeUtil
 	// -------------------------------------------- //
 	
 	@SuppressWarnings("deprecation")
-	public static void addLocation(Player player, Location location, int typeId, byte data)
+	public static void addLocation(Player player, Location location, Material material, byte data)
 	{
 		getPlayerLocations(player).add(location);
-		player.sendBlockChange(location, typeId, data);
+		player.sendBlockChange(location, material, data);
 	}
 	
 	@SuppressWarnings("deprecation")
-	public static void addLocation(Player player, Location location, int typeId)
+	public static void addLocation(Player player, Location location, Material material)
 	{
 		getPlayerLocations(player).add(location);
-		player.sendBlockChange(location, typeId, (byte) 0);
+		player.sendBlockChange(location, material, (byte) 0);
 	}
 	
 	// -------------------------------------------- //
@@ -70,18 +72,18 @@ public class VisualizeUtil
 	}
 	
 	@SuppressWarnings("deprecation")
-	public static void addLocations(Player player, Collection<Location> locations, int typeId)
+	public static void addLocations(Player player, Collection<Location> locations, Material material)
 	{
 		Set<Location> ploc = getPlayerLocations(player);
 		for (Location location : locations)
 		{
 			ploc.add(location);
-			player.sendBlockChange(location, typeId, (byte) 0);
+			player.sendBlockChange(location, material, (byte) 0);
 		}
 	}
 	
 	@SuppressWarnings("deprecation")
-	public static void addCoords(Player player, Collection<PS> coords, int typeId)
+	public static void addCoords(Player player, Collection<PS> coords, Material material)
 	{
 		Set<Location> ploc = getPlayerLocations(player);
 		for (PS coord : coords)
@@ -97,19 +99,19 @@ public class VisualizeUtil
 			}
 			
 			ploc.add(location);
-			player.sendBlockChange(location, typeId, (byte) 0);
+			player.sendBlockChange(location, material, (byte) 0);
 		}
 	}
 	
 	@SuppressWarnings("deprecation")
-	public static void addBlocks(Player player, Collection<Block> blocks, int typeId)
+	public static void addBlocks(Player player, Collection<Block> blocks, Material material)
 	{
 		Set<Location> ploc = getPlayerLocations(player);
 		for (Block block : blocks)
 		{
 			Location location = block.getLocation();
 			ploc.add(location);
-			player.sendBlockChange(location, typeId, (byte) 0);
+			player.sendBlockChange(location, material, (byte) 0);
 		}
 	}
 	

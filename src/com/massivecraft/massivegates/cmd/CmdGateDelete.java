@@ -4,28 +4,45 @@ import org.bukkit.Material;
 
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
-import com.massivecraft.massivegates.Gate;
-import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.Permission;
+import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdarg.ARGate;
+import com.massivecraft.massivegates.entity.Gate;
 
 public class CmdGateDelete extends GateCommand
 {
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
 	public CmdGateDelete()
 	{
+		// Aliases
 		this.addAliases("del", "delete", "rm", "remove");
+		
+		// Args
 		this.addRequiredArg("gate");
 		
-		this.addRequirements(new ReqHasPerm(Permission.DELETE.node));
+		// Requirements
+		this.addRequirements(ReqHasPerm.get(Perm.DELETE.node));
 	}
 
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
+	
 	@Override
 	public void perform() throws MassiveException
 	{
+		// Args
 		Gate gate = this.arg(0, ARGate.get());
-		this.msg("<i>Gate deleted: "+gate.getIdNameStringLong());
+		
+		// Infrom
+		this.msg("<i>Gate %s<i> was deleted.", gate.getIdNameStringLong());
+		
+		// Apply
 		gate.setOpen(false);
 		gate.fillContent(Material.AIR);
 		gate.detach();
 	}
+	
 }

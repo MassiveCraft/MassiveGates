@@ -1,25 +1,41 @@
 package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
-import com.massivecraft.massivegates.Gate;
-import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.Permission;
+import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
+import com.massivecraft.massivegates.entity.Gate;
 
 public class CmdGateNameRemove extends GateCommand
 {
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
 	public CmdGateNameRemove()
 	{
+		// Aliases
 		this.addAliases("remove");
+		
+		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(new ReqHasPerm(Permission.NAME_REMOVE.node));
+		this.addRequirements(ReqHasPerm.get(Perm.NAME_REMOVE.node));
 	}
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public void perform()
 	{
-		Gate gate = gme.getSelectedGate();
+		// Args
+		Gate gate = gsender.getSelectedGate();
+		
+		// Apply
 		gate.setName(null);
-		this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>name was removed.");
+		
+		// Inform
+		this.msg("<i>Gate %s<i>: The name was removed.", gate.getIdNameStringShort());
 	}
+	
 }

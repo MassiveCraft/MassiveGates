@@ -1,28 +1,45 @@
 package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
-import com.massivecraft.massivegates.Gate;
-import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.GateColl;
-import com.massivecraft.massivegates.Permission;
+import com.massivecraft.massivegates.Perm;
+import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.GateColl;
 
 public class CmdGateNew extends GateCommand
 {
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
 	public CmdGateNew()
 	{
+		// Aliases
 		this.addAliases("new", "create");
+		
+		// Args
 		this.addOptionalArg("name", "*none*");
 		this.setErrorOnToManyArgs(false);
-		this.addRequirements(new ReqHasPerm(Permission.NEW.node));
+		
+		// Requirements
+		this.addRequirements(ReqHasPerm.get(Perm.NEW.node));
 	}
 
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
+	
 	@Override
 	public void perform()
 	{
-		Gate gate = GateColl.i.create();
+		// Args
+		Gate gate = GateColl.get().create();
 		String name = this.argConcatFrom(0);
+		
+		// Apply
 		gate.setName(name);
-		gme.setSelectedGate(gate);
+		gsender.setSelectedGate(gate);
+		
+		// Inform
 		this.msg("<i>Created and selected the new gate: "+gate.getIdNameStringLong());
 	}
 	

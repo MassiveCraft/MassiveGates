@@ -6,17 +6,32 @@ import java.util.List;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 
-import com.massivecraft.massivegates.Gate;
+import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.util.Fx;
 
 public class ActionFxg extends BaseAction
 {
+	// -------------------------------------------- //
+	// INTANCE AND CONSTRUCT
+	// -------------------------------------------- //
+	
 	protected static ActionFxg instance = new ActionFxg();
-	public static ActionFxg getInstance() { return instance; }
+	public static ActionFxg get() { return instance; }
+	
 	protected ActionFxg()
 	{
-		super("mgcore_fxg", "FXG", "Perform FX at the gate");
+		super("fxg", "FXG", "Perform FX at the gate");
 	}
+	
+	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
+	
+	public final static List<String> errorsRequired = Arrays.asList("<b>You must describe the FX in the argument!");
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public void perform(String arg, Gate gate, Entity entity, Cancellable cancellable)
@@ -25,7 +40,6 @@ public class ActionFxg extends BaseAction
 		Fx.perform(arg, gate);
 	}
 	
-	public final static List<String> errorsRequired = Arrays.asList("<b>You must describe the FX in the argument!");
 	@Override
 	public List<String> checkArg(String arg)
 	{
@@ -42,4 +56,5 @@ public class ActionFxg extends BaseAction
 		
 		return null;
 	}
+	
 }

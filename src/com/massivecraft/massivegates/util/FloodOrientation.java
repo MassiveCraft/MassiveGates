@@ -8,6 +8,10 @@ import org.bukkit.block.BlockFace;
 
 public enum FloodOrientation
 {
+	// -------------------------------------------- //
+	// ENUM
+	// -------------------------------------------- //
+	
 	// |
 	VERTICAL1("facing west/east", BlockFace.NORTH, BlockFace.SOUTH, BlockFace.UP, BlockFace.DOWN),
 	
@@ -22,7 +26,13 @@ public enum FloodOrientation
 	
 	// O
 	HORIZONTAL("facing up/down", BlockFace.NORTH, BlockFace.SOUTH, BlockFace.WEST, BlockFace.EAST),
+	
+	// END OF LIST
 	;
+	
+	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
 	
 	protected final Set<BlockFace> directions;
 	public Set<BlockFace> getDirections() { return this.directions; }

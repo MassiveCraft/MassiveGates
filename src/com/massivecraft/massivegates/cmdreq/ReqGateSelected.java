@@ -4,13 +4,12 @@ import org.bukkit.command.CommandSender;
 
 import com.massivecraft.massivecore.cmd.MassiveCommand;
 import com.massivecraft.massivecore.cmd.req.ReqAbstract;
-import com.massivecraft.massivegates.GSender;
-import com.massivecraft.massivegates.GSenderColl;
+import com.massivecraft.massivecore.util.Txt;
+import com.massivecraft.massivegates.entity.GSender;
+import com.massivecraft.massivegates.entity.GSenderColl;
 
 public class ReqGateSelected extends ReqAbstract
 {
-	private static final long serialVersionUID = 1L;
-	
 	// -------------------------------------------- //
 	// INSTANCE & CONSTRUCT
 	// -------------------------------------------- //
@@ -19,21 +18,28 @@ public class ReqGateSelected extends ReqAbstract
 	public static ReqGateSelected get() { return i; }
 	
 	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
+	
+	private static final long serialVersionUID = 1L;
+	
+	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
 	
 	@Override
 	public boolean apply(CommandSender sender, MassiveCommand command)
 	{
-		GSender gsender = GSenderColl.i.get(sender);
+		GSender gsender = GSenderColl.get().get(sender);
 		if (gsender == null) return false;
+		
 		return gsender.getSelectedGate() != null;
 	}
 	
 	@Override
 	public String createErrorMessage(CommandSender sender, MassiveCommand command)
 	{
-		return "<b>You must select a gate before you "+(command == null ? "do that" : command.getDesc())+".";
+		return Txt.parse("<b>You must select a gate before you %s.", (command == null ? "do that" : command.getDesc()));
 	}
 	
 }

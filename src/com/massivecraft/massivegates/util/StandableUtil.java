@@ -10,6 +10,11 @@ import org.bukkit.block.BlockFace;
 
 public class StandableUtil
 {
+	// -------------------------------------------- //
+	// STATIC
+	// -------------------------------------------- //
+	
+	// Player location
 	public static boolean validPlayerLocation(Location location)
 	{
 		return validPlayerLocation(location.getBlock());
@@ -28,6 +33,7 @@ public class StandableUtil
 		return true;
 	}
 	
+	// Valid surrounding
 	public static boolean validGround(Material material)
 	{
 		StandableInfo info = null;
@@ -50,6 +56,7 @@ public class StandableUtil
 		return info.isValidUpper();
 	}	
 	
+	// Set Info
 	protected static void setInfo(Material material, final boolean validGround, final boolean validLower, final boolean validUpper)
 	{
 		m2s.put(material, new StandableInfo(validGround, validLower, validUpper));

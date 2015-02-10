@@ -16,36 +16,42 @@ import org.bukkit.entity.HumanEntity;
 import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivecore.util.SmokeUtil;
 import com.massivecraft.massivecore.util.Txt;
-import com.massivecraft.massivegates.Gate;
+import com.massivecraft.massivegates.entity.Gate;
 
 public enum Fx
 {	
+	// -------------------------------------------- //
+	// ENUM
+	// -------------------------------------------- //
 	
-	POTION_BREAK(true, true, true, Effect.POTION_BREAK, "Potion break sound and particles", "potion", "potionbreak"),
-    STEP_SOUND(true, true, true, Effect.STEP_SOUND, "Step sound and particles", "step", "stepsound"),
-	TNT(true, true, false, null, "Non-damaging TNT explosion", "tnt", "tntexplosion", "explostion"), // SELFMADE
-	STRIKE(true, true, false, null, "Non-damaging lightning strike", "strike", "lightningstrike"), // SELFMADE
-	SMOKE(true, false, false, null, "A smoke cloud", "smoke", "smokes"), // SELFMADE
-	ENDER_SIGNAL(true, false, false, Effect.ENDER_SIGNAL, "Ender signal particles", "ender", "endersignal", "nethersignal", "neathersignal", "netherparticles", "neatherparticles"),
-    MOBSPAWNER_FLAMES(true, false, false, Effect.MOBSPAWNER_FLAMES, "Mobspawner flame particles", "fire", "flames", "mobspawnerflames", "mobspawnerfire", "mobflames", "mobfire", "spawnerflames", "spawnerfire"),
+    BLAZE_SHOOT(false, true, false, Effect.BLAZE_SHOOT, "Blaze shoot sound", "blazeshoot"),
     BOW(false, true, false, Effect.BOW_FIRE, "Fire bow sound", "bow", "bowfire"),
     CLICK1(false, true, false, Effect.CLICK1, "\"tick\" sound", "tick", "click"),
     CLICK2(false, true, false, Effect.CLICK2, "\"tock\" sound", "tock"),
     DOOR_TOGGLE(false, true, false, Effect.DOOR_TOGGLE, "Toggle door sound", "door", "doortoggle"),
+    ENDER_SIGNAL(true, false, false, Effect.ENDER_SIGNAL, "Ender signal particles", "ender", "endersignal", "nethersignal", "neathersignal", "netherparticles", "neatherparticles"),
     EXTINGUISH(false, true, false, Effect.EXTINGUISH, "Extinguish fire sound", "ext", "extinguish"),
     GHAST_SHRIEK(false, true, false, Effect.GHAST_SHRIEK, "Screaming ghast sound", "scream", "ghastshriek", "shriek", "schriek", "screem"),
     GHAST_SHOOT(false, true, false, Effect.GHAST_SHOOT, "Shoot fireball sound", "shoot", "ghastshoot"),
-    BLAZE_SHOOT(false, true, false, Effect.BLAZE_SHOOT, "Blaze shoot sound", "blazeshoot"),
+    MOBSPAWNER_FLAMES(true, false, false, Effect.MOBSPAWNER_FLAMES, "Mobspawner flame particles", "fire", "flames", "mobspawnerflames", "mobspawnerfire", "mobflames", "mobfire", "spawnerflames", "spawnerfire"),
+    POTION_BREAK(true, true, true, Effect.POTION_BREAK, "Potion break sound and particles", "potion", "potionbreak"),
     RECORD_PLAY(false, true, true, Effect.RECORD_PLAY, "Play record sound", "record", "recordplay"),
-    
-    // TODO
-    /*
-    ZOMBIE_CHEW_WOODEN_DOOR(1010, Type.SOUND),
-    ZOMBIE_CHEW_IRON_DOOR(1011, Type.SOUND),
-    ZOMBIE_DESTROY_DOOR(1012, Type.SOUND),
-    */
+	SMOKE(true, false, false, null, "A smoke cloud", "smoke", "smokes"), // SELFMADE
+    STEP_SOUND(true, true, true, Effect.STEP_SOUND, "Step sound and particles", "step", "stepsound"),
+	STRIKE(true, true, false, null, "Non-damaging lightning strike", "strike", "lightningstrike"), // SELFMADE
+	TNT(true, true, false, null, "Non-damaging TNT explosion", "tnt", "tntexplosion", "explostion"), // SELFMADE
+	
+	// ZOMBIE_CHEW_WOODEN_DOOR(true, true, true, Effect.ZOMBIE_CHEW_WOODEN_DOOR, "Wooden door chewing particles", "chew_wood"),
+	// ZOMBIE_CHEW_IRON_DOOR(true, true, true, Effect.ZOMBIE_CHEW_IRON_DOOR, "Iron door chewing particles", "chew_iron"),
+	// ZOMBIE_DESTROY_DOOR(false, true, true, Effect.ZOMBIE_DESTROY_DOOR, "Destroy door sounds", "doordestroy"),
+	
+	// END OF LIST
 	;
 	
+	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
+    
 	protected final boolean hasVisual;
 	public boolean getHasVisual() { return this.hasVisual; }
 	
@@ -63,6 +69,10 @@ public enum Fx
 	protected final String[] aliases;
 	public String[] getAliases() { return this.aliases; }
 	public String getName() { return this.aliases[0]; }
+	
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
 	
 	private Fx(boolean hasVisual, boolean hasSound, boolean takesData, Effect bukkitEffect, String desc, String... aliases)
 	{

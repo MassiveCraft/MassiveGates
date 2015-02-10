@@ -1,48 +1,71 @@
 package com.massivecraft.massivegates.cmd;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.cmd.req.ReqIsPlayer;
 import com.massivecraft.massivecore.mixin.Mixin;
 import com.massivecraft.massivecore.mixin.TeleporterException;
 import com.massivecraft.massivecore.ps.PS;
-import com.massivecraft.massivegates.Gate;
-import com.massivecraft.massivegates.GateCommand;
-import com.massivecraft.massivegates.Permission;
+import com.massivecraft.massivecore.util.Txt;
+import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
+import com.massivecraft.massivegates.entity.Gate;
 
 public class CmdGateExitGoto extends GateCommand
 {
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
 	public CmdGateExitGoto()
 	{
+		// Aliases
 		this.addAliases("goto");
+		
+		// Requirements
 		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.get());
-		this.addRequirements(new ReqHasPerm(Permission.EXIT_GOTO.node));
+		this.addRequirements(ReqHasPerm.get(Perm.EXIT_GOTO.node));
 	}
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public void perform()
 	{
-		
 		// TODO: Unreachable location check.
+		List<String> messages = new ArrayList<String>();
 		
-		Gate gate = gme.getSelectedGate();
+		// Args
+		Gate gate = gsender.getSelectedGate();
 		PS locw = gate.getExit();
+		
 		if (locw != null)
 		{
 			try
 			{
-				Mixin.teleport(me, locw, "sdf");
-				this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>teleported to exit:");
-				this.msg(gate.getExitDesc());
+				// Apply
+				Mixin.teleport(me, locw, "to exit");
+				
+				messages.add(Txt.parse("<i>Gate %s<i>: Teleported to exit:", gate.getIdNameStringShort()));
+				messages.add(gate.getExitDesc());
 			}
 			catch (TeleporterException e)
 			{
-				me.sendMessage(e.getMessage());
+				messages.add(e.getMessage());
 			}
 		}
 		else
 		{
-			this.msg("<i>Gate "+gate.getIdNameStringShort()+" <i>does not have an exit.");
+			messages.add(Txt.parse("<i>Gate %s<i> does not have an exit.", gate.getIdNameStringShort()));
 		}
+		
+		// Inform
+		sendMessage(messages);
+		
 	}
+	
 }

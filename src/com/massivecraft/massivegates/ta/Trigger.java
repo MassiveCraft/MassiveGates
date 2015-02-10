@@ -2,6 +2,10 @@ package com.massivecraft.massivegates.ta;
 
 public interface Trigger
 {
+	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
+	
 	/** The id should be unique and never change */
 	public String getId();
 	
@@ -10,4 +14,5 @@ public interface Trigger
 	
 	/** A description of the trigger */
 	public String getDesc();
+	
 }

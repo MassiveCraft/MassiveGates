@@ -1,4 +1,4 @@
-package com.massivecraft.massivegates;
+package com.massivecraft.massivegates.entity;
 
 import java.util.Iterator;
 import java.util.Set;
@@ -15,21 +15,17 @@ import com.massivecraft.massivecore.store.SenderEntity;
 import com.massivecraft.massivegates.util.FloodOrientation;
 import com.massivecraft.massivegates.util.FloodUtil;
 
-/**
- * The VPlayer is a "skin" for a normal player.
- * Through this skin we can reach the player plus extra plugin specific data and functionality.
- */
 public class GSender extends SenderEntity<GSender>
 {
 	// -------------------------------------------- //
 	// FIELDS
 	// -------------------------------------------- //
 	
-	// FIELD: selectedGateId
 	protected String selectedGateId = null;
+	
 	public Gate getSelectedGate()
 	{
-		return this.selectedGateId == null ? null : GateColl.i.get(this.selectedGateId);
+		return this.selectedGateId == null ? null : GateColl.get().get(this.selectedGateId);
 	}
 	
 	public void setSelectedGate(Gate val)
@@ -43,12 +39,12 @@ public class GSender extends SenderEntity<GSender>
 	
 	public Block getThatBlock(boolean verboose)
 	{
-		Player me = this.getPlayer();
-		if (me == null) return null;
+		Player player = this.getPlayer();
+		if (player == null) return null;
 		
 		Block block = null;
 		
-		Iterator<Block> itr = new BlockIterator(me, MConf.get().lineOfSightLimit);
+		Iterator<Block> itr = new BlockIterator(player, MConf.get().lineOfSightLimit);
 		while (itr.hasNext())
 		{
 			block = itr.next();
@@ -68,16 +64,16 @@ public class GSender extends SenderEntity<GSender>
 	
 	public Gate getThatGate(boolean verboose)
 	{
-		Player me = this.getPlayer();
-		if (me == null) return null;
+		Player player = this.getPlayer();
+		if (player == null) return null;
 		
 		Gate ret = null;
 		
-		Iterator<Block> itr = new BlockIterator(me, MConf.get().lineOfSightLimit);
+		Iterator<Block> itr = new BlockIterator(player, MConf.get().lineOfSightLimit);
 		while (itr.hasNext())
 		{
 			PS coord = PS.valueOf(itr.next());
-			ret = GateColl.i.getGateAtCoord(coord);
+			ret = GateColl.get().getGateAtCoord(coord);
 			if (ret != null) break;
 		}
 		
@@ -91,10 +87,10 @@ public class GSender extends SenderEntity<GSender>
 	
 	public Entry<FloodOrientation, Set<Block>> getBestFloodHere(boolean verboose)
 	{
-		Player me = this.getPlayer();
-		if (me == null) return null;
+		Player player = this.getPlayer();
+		if (player == null) return null;
 		
-		Block startBlock = me.getLocation().getBlock();
+		Block startBlock = player.getLocation().getBlock();
 		if (startBlock.getType() != Material.AIR)
 		{
 			startBlock = startBlock.getRelative(BlockFace.UP);

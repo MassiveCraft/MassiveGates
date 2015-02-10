@@ -1,16 +1,35 @@
 package com.massivecraft.massivegates.cmd;
 
-import com.massivecraft.massivegates.GateCommand;
+import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
+import com.massivecraft.massivegates.Perm;
+
 
 public class CmdGateEdit extends GateCommand
 {
+	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
+	
+	public CmdGateEditThat cmdMassiveGatesEditThat = new CmdGateEditThat();
+	public CmdGateEditFlood cmdMassiveGatesEditFlood = new CmdGateEditFlood();
+	public CmdGateEditClear cmdMassiveGatesEditClear = new CmdGateEditClear();
+	
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
 	public CmdGateEdit()
 	{
+		// Aliases
 		this.addAliases("e", "edit");
-		this.addSubCommand(new CmdGateEditThat());
-		this.addSubCommand(new CmdGateEditFlood());
-		this.addSubCommand(new CmdGateEditClear());
-		this.setDesc("edit gate shape");
+		
+		// Subcommands
+		this.addSubCommand(this.cmdMassiveGatesEditThat);
+		this.addSubCommand(this.cmdMassiveGatesEditFlood);
+		this.addSubCommand(this.cmdMassiveGatesEditClear);
+		
+		// Requirements
+		this.addRequirements(ReqHasPerm.get(Perm.EDIT.node));
 	}
 
 }

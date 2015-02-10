@@ -5,14 +5,18 @@ import java.util.List;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 
-import com.massivecraft.massivegates.Gate;
+import com.massivecraft.massivegates.entity.Gate;
 
 public interface Action
 {
+	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
+	
 	/** The id should be unique and never change */
 	public String getId();
 	
-	/** An nicename for the action */
+	/** An nice name for the action */
 	public String getName();
 	
 	/** A description of the action */
@@ -23,4 +27,5 @@ public interface Action
 	
 	/** Check the arg to see if it looks ok. Returns errors. */
 	public List<String> checkArg(String arg);
+	
 }

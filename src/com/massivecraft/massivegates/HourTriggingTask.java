@@ -6,10 +6,16 @@ import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 
+import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.GateColl;
 import com.massivecraft.massivegates.ta.TriggerHour;
 
 public class HourTriggingTask implements Runnable
 {
+	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
+	
 	public static final int ticksAtMidnight = 18000;
 	public static final int ticksPerDay = 24000;
 	public static final int ticksPerHour = 1000;
@@ -18,10 +24,18 @@ public class HourTriggingTask implements Runnable
 	
 	protected Map<String, Integer> worldName2Time;
 	
+	// -------------------------------------------- //
+	// INSTANCE AND CONSTRUCT
+	// -------------------------------------------- //
+	
 	public HourTriggingTask()
 	{
 		this.worldName2Time = new HashMap<String, Integer>();
 	}
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
 	
 	@Override
 	public void run()
@@ -66,13 +80,17 @@ public class HourTriggingTask implements Runnable
 	public void triggerWorldHour(World world, int h)
 	{
 		h = h % 24;
-		for (Gate gate : GateColl.i.getAll())
+		for (Gate gate : GateColl.get().getAll())
 		{
 			World gateWorld = gate.calcGateWorld();
 			if ( ! world.equals(gateWorld)) continue;
-			gate.trigger(TriggerHour.getInstance(h), null, null);
+			gate.trigger(TriggerHour.get(h), null, null);
 		}
 	}
+	
+	// -------------------------------------------- //
+	// CONVENIENCE
+	// -------------------------------------------- //
 	
 	public static int hour2ticks(int hour)
 	{
@@ -91,4 +109,5 @@ public class HourTriggingTask implements Runnable
 		ret /= ticksPerHour;
 		return ret;
 	}
+	
 }
