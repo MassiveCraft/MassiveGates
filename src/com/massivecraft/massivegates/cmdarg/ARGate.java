@@ -6,7 +6,7 @@ import java.util.Map;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.massivecraft.massivecore.cmd.MassiveCommandException;
+import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.cmd.arg.ArgReaderAbstract;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.GSender;
@@ -28,7 +28,7 @@ public class ARGate extends ArgReaderAbstract<Gate>
 	// -------------------------------------------- //
 	
 	@Override
-	public Gate read(String str, CommandSender sender) throws MassiveCommandException
+	public Gate read(String str, CommandSender sender) throws MassiveException
 	{
 		Gate ret;
 		
@@ -41,11 +41,11 @@ public class ARGate extends ArgReaderAbstract<Gate>
 				GSender gme = GSenderColl.i.get(me);
 				ret = gme.getThatGate(false);
 				if (ret != null) return ret;
-				throw new MassiveCommandException().addMsg("<b>No gate in sight.");
+				throw new MassiveException().addMsg("<b>No gate in sight.");
 			}
 			else
 			{
-				throw new MassiveCommandException().addMsg("<b>You must be ingame player to use \"that\" gate detection.");
+				throw new MassiveException().addMsg("<b>You must be ingame player to use \"that\" gate detection.");
 			}
 		}
 		
@@ -74,7 +74,7 @@ public class ARGate extends ArgReaderAbstract<Gate>
 			return ret;
 		}
 		
-		throw new MassiveCommandException().addMsg("<b>No gate matching \"<p>%s<b>\".", str);
+		throw new MassiveException().addMsg("<b>No gate matching \"<p>%s<b>\".", str);
 	}
 	
 }

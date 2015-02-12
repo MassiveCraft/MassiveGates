@@ -2,7 +2,7 @@ package com.massivecraft.massivegates.cmd;
 
 import org.bukkit.Material;
 
-import com.massivecraft.massivecore.cmd.MassiveCommandException;
+import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.cmd.arg.ARByte;
 import com.massivecraft.massivecore.cmd.arg.ARMaterial;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
@@ -25,7 +25,7 @@ public class CmdGateMato extends GateCommand
 	}
 	
 	@Override
-	public void perform() throws MassiveCommandException
+	public void perform() throws MassiveException
 	{
 		Gate gate = gme.getSelectedGate();
 		Material mat = gate.getMatopen();

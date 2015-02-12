@@ -1,6 +1,6 @@
 package com.massivecraft.massivegates.cmd;
 
-import com.massivecraft.massivecore.cmd.MassiveCommandException;
+import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.cmd.arg.ARInteger;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivegates.Gate;
@@ -35,7 +35,7 @@ public class CmdGateTaDel extends GateCommand
 	}
 	
 	@Override
-	public void perform() throws MassiveCommandException
+	public void perform() throws MassiveException
 	{
 		Gate gate = gme.getSelectedGate();
 		

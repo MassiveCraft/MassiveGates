@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 
 import org.bukkit.block.Block;
 
-import com.massivecraft.massivecore.cmd.MassiveCommandException;
+import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.cmd.arg.ARBoolean;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.cmd.req.ReqIsPlayer;
@@ -29,7 +29,7 @@ public class CmdGateEditFlood extends GateCommand
 	}
 	
 	@Override
-	public void perform() throws MassiveCommandException
+	public void perform() throws MassiveException
 	{
 		Gate gate = gme.getSelectedGate();
 		
