@@ -28,18 +28,18 @@ import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivegates.MassiveGates;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.entity.GateColl;
-import com.massivecraft.massivegates.event.GateAlterEvent;
-import com.massivecraft.massivegates.event.GateAlterEvent.GateAlterType;
+import com.massivecraft.massivegates.event.EventMassiveGatesAlter;
+import com.massivecraft.massivegates.event.EventMassiveGatesAlter.GateAlterType;
 
-public class ProtectionEngine extends EngineAbstract
+public class EngineProtection extends EngineAbstract
 {
 	// -------------------------------------------- //
 	// INSTANCE & CONSTRUCT
 	// -------------------------------------------- //
 	
-	private static ProtectionEngine i = new ProtectionEngine();
-	public static ProtectionEngine get() { return i; }
-	private ProtectionEngine() {}
+	private static EngineProtection i = new EngineProtection();
+	public static EngineProtection get() { return i; }
+	private EngineProtection() {}
 	
 	// -------------------------------------------- //
 	// OVERRIDE
@@ -90,7 +90,7 @@ public class ProtectionEngine extends EngineAbstract
 		Gate gate = GateColl.get().getGateAtCoord(coord);
 		if (gate == null) return;
 		
-		new GateAlterEvent(gate, alterType, player).run();
+		new EventMassiveGatesAlter(gate, alterType, player).run();
 	}
 			
 	@EventHandler(priority = EventPriority.NORMAL)
@@ -159,7 +159,7 @@ public class ProtectionEngine extends EngineAbstract
 		this.handlerMonitorSingle(event, event.getBlock(), GateAlterType.FADE, null);
 	}
 			
-	 @EventHandler(priority = EventPriority.NORMAL)
+	@EventHandler(priority = EventPriority.NORMAL)
  	public void normalBlockBurnEvent(BlockBurnEvent event)
  	{
 		 this.handlerNormalSingle(event.getBlock(), event);
@@ -261,7 +261,7 @@ public class ProtectionEngine extends EngineAbstract
  		
  		for (Gate alteredGate : alteredGates)
  		{
- 			GateAlterEvent alterEvent = new GateAlterEvent(alteredGate, GateAlterType.EXPLODE, null);
+ 			EventMassiveGatesAlter alterEvent = new EventMassiveGatesAlter(alteredGate, GateAlterType.EXPLODE, null);
  			alterEvent.run();
  		} 
 	}

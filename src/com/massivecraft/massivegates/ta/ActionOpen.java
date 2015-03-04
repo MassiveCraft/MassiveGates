@@ -11,8 +11,8 @@ public class ActionOpen extends BaseAction
 	// INTANCE AND CONSTRUCT
 	// -------------------------------------------- //
 	
-	protected static ActionOpen instance = new ActionOpen();
-	public static ActionOpen get() { return instance; }
+	protected static ActionOpen i = new ActionOpen();
+	public static ActionOpen get() { return i; }
 	
 	protected ActionOpen()
 	{

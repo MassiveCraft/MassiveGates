@@ -12,12 +12,17 @@ import com.massivecraft.massivegates.entity.Gate;
 public class ActionSetVelocity extends BaseAction
 {
 	// -------------------------------------------- //
+	// CONSTANTS
+	// -------------------------------------------- //
+	
+	public final static List<String> ERRORS_REQUIRED = Arrays.asList("<b>Please provide the permission node");
+	
+	// -------------------------------------------- //
 	// INTANCE AND CONSTRUCT
 	// -------------------------------------------- //
 	
-	public final static List<String> errorsRequired = Arrays.asList("<b>Please provide the permission node");
-	protected static ActionSetVelocity instance = new ActionSetVelocity();
-	public static ActionSetVelocity get() { return instance; }
+	protected static ActionSetVelocity i = new ActionSetVelocity();
+	public static ActionSetVelocity get() { return i; }
 	
 	protected ActionSetVelocity()
 	{
@@ -40,7 +45,7 @@ public class ActionSetVelocity extends BaseAction
 	{
 		if (arg == null || arg.trim().length() == 0 || parseVector(arg) == null)
 		{
-			return errorsRequired;
+			return ERRORS_REQUIRED;
 		}
 				
 		return null;

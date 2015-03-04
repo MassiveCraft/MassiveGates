@@ -6,8 +6,8 @@ public class TriggerAtp extends BaseTrigger
 	// INTANCE AND CONSTRUCT
 	// -------------------------------------------- //
 	
-	protected static TriggerAtp instance = new TriggerAtp();
-	public static TriggerAtp get() { return instance; }
+	protected static TriggerAtp i = new TriggerAtp();
+	public static TriggerAtp get() { return i; }
 	
 	protected TriggerAtp()
 	{

@@ -16,19 +16,19 @@ import com.massivecraft.massivegates.MassiveGates;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.entity.GateColl;
 import com.massivecraft.massivegates.entity.MConf;
-import com.massivecraft.massivegates.event.GatePlayerWalkEvent;
-import com.massivecraft.massivegates.event.GatePlayerWalkEvent.GatePlayerWalkType;
+import com.massivecraft.massivegates.event.EventMassiveGatesPlayerWalk;
+import com.massivecraft.massivegates.event.EventMassiveGatesPlayerWalk.GatePlayerWalkType;
 import com.massivecraft.massivegates.util.VisualizeUtil;
 
-public class MainEngine extends EngineAbstract
+public class EngineMain extends EngineAbstract
 {
 	// -------------------------------------------- //
 	// INSTANCE & CONSTRUCT
 	// -------------------------------------------- //
 	
-	private static MainEngine i = new MainEngine();
-	public static MainEngine get() { return i; }
-	private MainEngine() {}
+	private static EngineMain i = new EngineMain();
+	public static EngineMain get() { return i; }
+	private EngineMain() {}
 	
 	// -------------------------------------------- //
 	// OVERRIDE
@@ -89,11 +89,9 @@ public class MainEngine extends EngineAbstract
 	// PLAYER MOVE
 	// -------------------------------------------- //
 	
-	@EventHandler(priority = EventPriority.HIGH)
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void onPlayerMove(PlayerMoveEvent event)
-	{
-		if (event.isCancelled()) return;
-		
+	{	
 		Block blockFrom = event.getFrom().getBlock();
 		Block blockTo = event.getTo().getBlock();
 		
@@ -109,11 +107,11 @@ public class MainEngine extends EngineAbstract
 		Gate gateFrom = GateColl.get().getGateAtContentCoord(coordFrom);
 		Gate gateTo = GateColl.get().getGateAtContentCoord(coordTo);
 		
-		GatePlayerWalkEvent gateEvent;
+		EventMassiveGatesPlayerWalk gateEvent;
 		
 		if (gateFrom != null & gateFrom == gateTo)
 		{
-			gateEvent = new GatePlayerWalkEvent(player, gateFrom, gateTo, GatePlayerWalkType.WITHIN);
+			gateEvent = new EventMassiveGatesPlayerWalk(player, gateFrom, gateTo, GatePlayerWalkType.WITHIN);
 			gateEvent.run();
 			if (gateEvent.isCancelled())
 			{
@@ -126,7 +124,7 @@ public class MainEngine extends EngineAbstract
 		if (gateFrom != null)
 		{
 			// OUT
-			gateEvent = new GatePlayerWalkEvent(player, gateFrom, gateTo, GatePlayerWalkType.OUT);
+			gateEvent = new EventMassiveGatesPlayerWalk(player, gateFrom, gateTo, GatePlayerWalkType.OUT);
 			gateEvent.run();
 			if (gateEvent.isCancelled())
 			{
@@ -137,7 +135,7 @@ public class MainEngine extends EngineAbstract
 		if (gateTo != null)
 		{
 			// INTO
-			gateEvent = new GatePlayerWalkEvent(player, gateFrom, gateTo, GatePlayerWalkType.INTO);
+			gateEvent = new EventMassiveGatesPlayerWalk(player, gateFrom, gateTo, GatePlayerWalkType.INTO);
 			gateEvent.run();
 			if (gateEvent.isCancelled())
 			{

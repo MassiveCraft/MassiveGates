@@ -16,8 +16,8 @@ public class ActionReqPerm extends BaseAction
 	// INTANCE AND CONSTRUCT
 	// -------------------------------------------- //
 	
-	protected static ActionReqPerm instance = new ActionReqPerm();
-	public static ActionReqPerm get() { return instance; }
+	protected static ActionReqPerm i = new ActionReqPerm();
+	public static ActionReqPerm get() { return i; }
 	
 	protected ActionReqPerm()
 	{

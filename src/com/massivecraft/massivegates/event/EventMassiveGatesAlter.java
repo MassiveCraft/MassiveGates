@@ -1,13 +1,12 @@
 package com.massivecraft.massivegates.event;
 
 import org.bukkit.entity.Player;
-import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 import com.massivecraft.massivegates.entity.Gate;
-import com.massivecraft.massivegates.event.abs.DualGateEvent;
+import com.massivecraft.massivegates.event.abs.EventMassiveGatesSingle;
 
-public class GatePlayerWalkEvent extends DualGateEvent implements Cancellable
+public class EventMassiveGatesAlter extends EventMassiveGatesSingle
 {
 	// -------------------------------------------- //
 	// REQUIRED EVENT CODE
@@ -20,15 +19,11 @@ public class GatePlayerWalkEvent extends DualGateEvent implements Cancellable
 	// -------------------------------------------- //
 	// FIELDS
 	// -------------------------------------------- //
-	
-	// FIELD: cancelled
-	private boolean cancelled = false;
-	@Override public boolean isCancelled() { return this.cancelled; }
-	@Override public void setCancelled(boolean cancel) { this.cancelled = cancel; }
-	
-	// FIELD: walkType
-	protected GatePlayerWalkType walkType;
-	public GatePlayerWalkType getWalkType() { return this.walkType; }
+
+	// FIELD: alterType
+	private GateAlterType alterType;
+	public GateAlterType getAlterType() { return this.alterType; }
+	public boolean isPlayerInduced() { return this.alterType.isPlayerInduced(); }
 	
 	// FIELD: player
 	private Player player;
@@ -38,25 +33,44 @@ public class GatePlayerWalkEvent extends DualGateEvent implements Cancellable
 	// CONSTRUCT
 	// -------------------------------------------- //
 	
-	public GatePlayerWalkEvent(Player player, Gate gateFrom, Gate gateTo, GatePlayerWalkType walkType)
+	public EventMassiveGatesAlter(Gate gate, GateAlterType alterType, Player player)
 	{
+		super(gate);
+		this.alterType = alterType;
 		this.player = player;
-		this.gateFrom = gateFrom;
-		this.gateTo = gateTo;
-		this.walkType = walkType;
 	}
 	
 	// -------------------------------------------- //
 	// ENUM
 	// -------------------------------------------- //
-	public enum GatePlayerWalkType
+	
+	public enum GateAlterType
 	{
-		INTO,
-		WITHIN,
-		OUT,
+		PLACE(true),
+		BREAK(true),
+		BUCKET_FILL(true),
+		BUCKET_EMPTY(true),
+		IGNITE(true),
+		PHYSICS(false),
+		FLOW(false),
+		FORM(false),
+		FADE(false),
+		BURN(false),
+		SPREAD(false),
+		PISTON_EXTEND(false),
+		PISTON_RETRACT(false),
+		EXPLODE(false),
 		
 		// END OF LIST
 		;
+		
+		private final boolean playerInduced;
+		public boolean isPlayerInduced() { return this.playerInduced; }
+		
+		private GateAlterType(final boolean playerInduced)
+		{
+			this.playerInduced = playerInduced;
+		}
 	}
 	
 }

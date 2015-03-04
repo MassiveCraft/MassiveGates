@@ -6,8 +6,8 @@ public class TriggerPowerOff extends BaseTrigger
 	// INTANCE AND CONSTRUCT
 	// -------------------------------------------- //
 	
-	protected static TriggerPowerOff instance = new TriggerPowerOff();
-	public static TriggerPowerOff get() { return instance; }
+	protected static TriggerPowerOff i = new TriggerPowerOff();
+	public static TriggerPowerOff get() { return i; }
 	
 	protected TriggerPowerOff()
 	{

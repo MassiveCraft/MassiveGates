@@ -6,8 +6,8 @@ public class TriggerBtp extends BaseTrigger
 	// INTANCE AND CONSTRUCT
 	// -------------------------------------------- //
 	
-	protected static TriggerBtp instance = new TriggerBtp();
-	public static TriggerBtp get() { return instance; }
+	protected static TriggerBtp i = new TriggerBtp();
+	public static TriggerBtp get() { return i; }
 	
 	protected TriggerBtp()
 	{

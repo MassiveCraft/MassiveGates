@@ -1,8 +1,9 @@
 package com.massivecraft.massivegates.event.abs;
 
+import com.massivecraft.massivecore.event.EventMassiveCore;
 import com.massivecraft.massivegates.entity.Gate;
 
-public abstract class CancellableSingleGateEvent extends CancellableGateEvent
+public abstract class EventMassiveGatesSingle extends EventMassiveCore
 {
 	// -------------------------------------------- //
 	// FIELDS
@@ -15,7 +16,7 @@ public abstract class CancellableSingleGateEvent extends CancellableGateEvent
 	// CONSTRUCT
 	// -------------------------------------------- //
 	
-	protected CancellableSingleGateEvent(Gate gate)
+	protected EventMassiveGatesSingle(Gate gate)
 	{
 		this.gate = gate;
 	}

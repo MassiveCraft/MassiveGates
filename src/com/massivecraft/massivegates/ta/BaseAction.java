@@ -6,15 +6,10 @@ import java.util.List;
 public abstract class BaseAction implements Action
 {
 	// -------------------------------------------- //
-	// CONSTRUCT
+	// CONSTANTS
 	// -------------------------------------------- //
 	
-	protected BaseAction(final String id, final String name, final String desc)
-	{
-		this.id = id;
-		this.name = name;
-		this.desc = desc;
-	}
+	public final static List<String> ERRORS_NONE_EXPECTED = Arrays.asList("<b>No argument expected for this action.");
 	
 	// -------------------------------------------- //
 	// FIELDS
@@ -29,7 +24,16 @@ public abstract class BaseAction implements Action
 	protected final String desc;
 	@Override public String getDesc() { return desc; }
 	
-	public final static List<String> errorsNoneExpected = Arrays.asList("<b>No argument expected for this action.");
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
+	protected BaseAction(final String id, final String name, final String desc)
+	{
+		this.id = id;
+		this.name = name;
+		this.desc = desc;
+	}
 	
 	// -------------------------------------------- //
 	// OVERRIDE
@@ -39,7 +43,7 @@ public abstract class BaseAction implements Action
 	public List<String> checkArg(String arg)
 	{
 		if (arg == null) return null;
-		return errorsNoneExpected;
+		return ERRORS_NONE_EXPECTED;
 	}
 	
 	@Override

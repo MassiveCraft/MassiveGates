@@ -1,17 +1,15 @@
 package com.massivecraft.massivegates;
 
-import java.util.List;
 
 import org.bukkit.Bukkit;
 
 import com.massivecraft.massivecore.MassivePlugin;
 import com.massivecraft.massivegates.cmd.CmdGate;
-import com.massivecraft.massivegates.engine.GateEngine;
-import com.massivecraft.massivegates.engine.MainEngine;
-import com.massivecraft.massivegates.engine.ProtectionEngine;
+import com.massivecraft.massivegates.engine.EngineGate;
+import com.massivecraft.massivegates.engine.EngineMain;
+import com.massivecraft.massivegates.engine.EngineProtection;
 import com.massivecraft.massivegates.entity.GSenderColl;
 import com.massivecraft.massivegates.entity.GateColl;
-import com.massivecraft.massivegates.entity.MConf;
 import com.massivecraft.massivegates.entity.MConfColl;
 import com.massivecraft.massivegates.ta.ActionChat;
 import com.massivecraft.massivegates.ta.ActionClose;
@@ -50,7 +48,7 @@ public class MassiveGates extends MassivePlugin
 	// -------------------------------------------- //
 	
 	// Command
-	public CmdGate cmdGate = new CmdGate() { @Override public List<String> getAliases() { return MConf.get().aliasesG; } };
+	public CmdGate cmdGate;
 	
 	// -------------------------------------------- //
 	// OVERRIDE
@@ -61,7 +59,7 @@ public class MassiveGates extends MassivePlugin
 	{
 		if ( ! preEnable()) return;
 		
-		// Init collections
+		// Colls
 		MConfColl.get().init();
 		GateColl.get().init();
 		GSenderColl.get().init();
@@ -90,19 +88,17 @@ public class MassiveGates extends MassivePlugin
 		GateColl.get().registerTrigger(TriggerFrameAlter.get());
 		GateColl.get().registerTriggers(TriggerHour.triggerHours.values());
 		
-		// Add Base Commands
-		cmdGate.register(this);
+		// Commands
+		this.cmdGate = new CmdGate();
+		this.cmdGate.register(this);
 		
-		// Register Engines
-		MainEngine.get().activate();
-		ProtectionEngine.get().activate();
-		GateEngine.get().activate();
+		// Engines
+		EngineMain.get().activate();
+		EngineProtection.get().activate();
+		EngineGate.get().activate();
 		
 		// Register the HourTriggingTask
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new HourTriggingTask(), Const.hourTriggingTaskTicks, Const.hourTriggingTaskTicks);
-		
-		// Connect to RubberBand
-		Bukkit.getMessenger().registerOutgoingPluginChannel(this, "RubberBand");
 		
 		postEnable();
 	}

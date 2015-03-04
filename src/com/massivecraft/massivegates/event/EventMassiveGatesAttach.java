@@ -3,9 +3,9 @@ package com.massivecraft.massivegates.event;
 import org.bukkit.event.HandlerList;
 
 import com.massivecraft.massivegates.entity.Gate;
-import com.massivecraft.massivegates.event.abs.SingleGateEvent;
+import com.massivecraft.massivegates.event.abs.EventMassiveGatesSingle;
 
-public class GateAttachEvent extends SingleGateEvent
+public class EventMassiveGatesAttach extends EventMassiveGatesSingle
 {
 	// -------------------------------------------- //
 	// REQUIRED EVENT CODE
@@ -19,7 +19,7 @@ public class GateAttachEvent extends SingleGateEvent
 	// CONSTRUCT
 	// -------------------------------------------- //
 	
-	public GateAttachEvent(Gate gate)
+	public EventMassiveGatesAttach(Gate gate)
 	{
 		super(gate);
 	}

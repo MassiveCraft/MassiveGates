@@ -16,8 +16,8 @@ public class ActionMsg extends BaseAction
 	// INTANCE AND CONSTRUCT
 	// -------------------------------------------- //
 	
-	protected static ActionMsg instance = new ActionMsg();
-	public static ActionMsg get() { return instance; }
+	protected static ActionMsg i = new ActionMsg();
+	public static ActionMsg get() { return i; }
 	
 	protected ActionMsg()
 	{

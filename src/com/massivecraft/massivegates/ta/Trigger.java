@@ -6,13 +6,13 @@ public interface Trigger
 	// FIELDS
 	// -------------------------------------------- //
 	
-	/** The id should be unique and never change */
+	// The id should be unique and never change
 	public String getId();
 	
-	/** An nicename for the trigger */
+	// An nicename for the trigger
 	public String getName();
 	
-	/** A description of the trigger */
+	// A description of the trigger
 	public String getDesc();
 	
 }

@@ -1,12 +1,13 @@
-package com.massivecraft.massivegates.event.abs;
+package com.massivecraft.massivegates.event;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import com.massivecraft.massivegates.Target;
 import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.event.abs.EventMassiveGatesSingle;
 
-public abstract class GateTeleportEvent extends SingleGateEvent
+public abstract class EventMassiveGatesTeleportAbstract extends EventMassiveGatesSingle
 {	
 	// -------------------------------------------- //
 	// FIELDS
@@ -25,7 +26,7 @@ public abstract class GateTeleportEvent extends SingleGateEvent
 	// CONSTRUCT
 	// -------------------------------------------- //
 	
-	public GateTeleportEvent(Gate gate, Player player, Location from, Target to)
+	public EventMassiveGatesTeleportAbstract(Gate gate, Player player, Location from, Target to)
 	{
 		super(gate);
 		this.player = player;

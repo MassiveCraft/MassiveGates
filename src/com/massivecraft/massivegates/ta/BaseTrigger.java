@@ -3,17 +3,6 @@ package com.massivecraft.massivegates.ta;
 public abstract class BaseTrigger implements Trigger
 {
 	// -------------------------------------------- //
-	// CONSTRUCT
-	// -------------------------------------------- //
-	
-	protected BaseTrigger(final String id, final String name, final String desc)
-	{
-		this.id = id;
-		this.name = name;
-		this.desc = desc;
-	}
-	
-	// -------------------------------------------- //
 	// FIELDS
 	// -------------------------------------------- //
 	
@@ -25,6 +14,17 @@ public abstract class BaseTrigger implements Trigger
 	
 	protected final String desc;
 	@Override public String getDesc() { return desc; }
+	
+	// -------------------------------------------- //
+	// CONSTRUCT
+	// -------------------------------------------- //
+	
+	protected BaseTrigger(final String id, final String name, final String desc)
+	{
+		this.id = id;
+		this.name = name;
+		this.desc = desc;
+	}
 	
 	// -------------------------------------------- //
 	// OVERRIDE

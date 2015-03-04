@@ -46,8 +46,6 @@ public class CmdGateEditFlood extends GateCommand
 	@Override
 	public void perform() throws MassiveException
 	{
-		List<String> messages = new ArrayList<String>();
-		
 		// Args
 		Gate gate = gsender.getSelectedGate();
 		Boolean addFrame = this.arg(0, ARBoolean.get(), true);
@@ -68,6 +66,8 @@ public class CmdGateEditFlood extends GateCommand
 		gate.addContentBlocks(content);
 		VisualizeUtil.addBlocks(me, content, Const.visContent);
 		
+		// Create Messages
+		List<String> messages = new ArrayList<String>();
 		messages.add(Txt.parse("<i>The flooding worked and the gate shape <h>%s<i> was added .", orientation.getDesc()));
 		if (addFrame)
 		{
@@ -78,7 +78,7 @@ public class CmdGateEditFlood extends GateCommand
 			messages.add(Txt.parse("<i>No frame blocks were added as per your request."));
 		}
 		
-		// Inform
+		// Send Messages
 		sendMessage(messages);
 	}
 	

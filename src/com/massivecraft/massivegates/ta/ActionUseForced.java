@@ -11,8 +11,8 @@ public class ActionUseForced extends BaseAction
 	// INTANCE AND CONSTRUCT
 	// -------------------------------------------- //
 	
-	protected static ActionUseForced instance = new ActionUseForced();
-	public static ActionUseForced get() { return instance; }
+	protected static ActionUseForced i = new ActionUseForced();
+	public static ActionUseForced get() { return i; }
 	
 	protected ActionUseForced()
 	{

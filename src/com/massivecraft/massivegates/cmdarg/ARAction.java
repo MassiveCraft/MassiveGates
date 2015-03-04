@@ -14,7 +14,7 @@ import com.massivecraft.massivegates.ta.Action;
 public class ARAction extends ARAbstractSelect<Action>
 {
 	// -------------------------------------------- //
-	// INSTANCE
+	// INSTANCE & CONSTRUCT
 	// -------------------------------------------- //
 	
 	private static ARAction i = new ARAction();

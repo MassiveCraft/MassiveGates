@@ -1,8 +1,9 @@
 package com.massivecraft.massivegates.event.abs;
 
+import com.massivecraft.massivecore.event.EventMassiveCore;
 import com.massivecraft.massivegates.entity.Gate;
 
-public abstract class DualGateEvent extends GateEvent
+public abstract class EventMassiveGatesDual extends EventMassiveCore
 {
 	// -------------------------------------------- //
 	// FIELDS

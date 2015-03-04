@@ -1,14 +1,11 @@
 package com.massivecraft.massivegates.event;
 
-import org.bukkit.Location;
-import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
-import com.massivecraft.massivegates.Target;
 import com.massivecraft.massivegates.entity.Gate;
-import com.massivecraft.massivegates.event.abs.GateTeleportEvent;
+import com.massivecraft.massivegates.event.abs.EventMassiveGatesSingle;
 
-public class GateAfterTeleportEvent extends GateTeleportEvent
+public class EventMassiveGatesDetach extends EventMassiveGatesSingle
 {
 	// -------------------------------------------- //
 	// REQUIRED EVENT CODE
@@ -22,9 +19,9 @@ public class GateAfterTeleportEvent extends GateTeleportEvent
 	// CONSTRUCT
 	// -------------------------------------------- //
 	
-	public GateAfterTeleportEvent(Gate gate, Player player, Location from, Target to)
+	public EventMassiveGatesDetach(Gate gate)
 	{
-		super(gate, player, from, to);
+		super(gate);
 	}
 	
 }

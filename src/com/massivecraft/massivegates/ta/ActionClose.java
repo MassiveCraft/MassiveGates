@@ -11,8 +11,8 @@ public class ActionClose extends BaseAction
 	// INTANCE AND CONSTRUCT
 	// -------------------------------------------- //
 	
-	protected static ActionClose instance = new ActionClose();
-	public static ActionClose get() { return instance; }
+	protected static ActionClose i = new ActionClose();
+	public static ActionClose get() { return i; }
 	
 	protected ActionClose()
 	{

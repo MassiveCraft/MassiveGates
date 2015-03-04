@@ -6,8 +6,8 @@ public class TriggerEnter extends BaseTrigger
 	// INTANCE AND CONSTRUCT
 	// -------------------------------------------- //
 	
-	protected static TriggerEnter instance = new TriggerEnter();
-	public static TriggerEnter get() { return instance; }
+	protected static TriggerEnter i = new TriggerEnter();
+	public static TriggerEnter get() { return i; }
 	
 	protected TriggerEnter()
 	{

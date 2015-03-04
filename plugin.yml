@@ -49,7 +49,6 @@ permissions:
   massivegates.target.get: {description: get current target, default: false}
   massivegates.target.gate: {description: set target to a gate, default: false}
   massivegates.target.here: {description: set target where you stand, default: false}
-  massivegates.target.rubberserver: {description: target rubberband server, default: false}
   massivegates.ta: {description: manage gate trigger-actions, default: false}
   massivegates.ta.add: {description: add action, default: false}
   massivegates.ta.alt: {description: list triggers or action, default: false}
@@ -120,7 +119,6 @@ permissions:
       massivegates.target.set: true
       massivegates.target.here: true
       massivegates.target.gate: true
-      massivegates.target.rubberserver: true
       massivegates.target.goto: true
       massivegates.target.remove: true
   massivegates.ta.*:

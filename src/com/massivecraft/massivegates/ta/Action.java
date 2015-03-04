@@ -13,19 +13,19 @@ public interface Action
 	// FIELDS
 	// -------------------------------------------- //
 	
-	/** The id should be unique and never change */
+	// The id should be unique and never change
 	public String getId();
 	
-	/** An nice name for the action */
+	//  An nice name for the action
 	public String getName();
 	
-	/** A description of the action */
+	// A description of the action
 	public String getDesc();
 	
-	/** Perform the action */
+	// Perform the action
 	public void perform(String arg, Gate gate, Entity entity, Cancellable cancellable);
 	
-	/** Check the arg to see if it looks ok. Returns errors. */
+	// Check the arg to see if it looks ok. Returns errors.
 	public List<String> checkArg(String arg);
 	
 }

@@ -44,7 +44,7 @@ public class CmdGateTaList extends GateCommand
 		List<String> lines = new ArrayList<String>();
 		
 		// Args
-		Integer pageHumanBased = this.arg(0, ARInteger.get(), 1);
+		int pageHumanBased = this.arg(0, ARInteger.get(), 1);
 		
 		Gate gate = gsender.getSelectedGate();
 		

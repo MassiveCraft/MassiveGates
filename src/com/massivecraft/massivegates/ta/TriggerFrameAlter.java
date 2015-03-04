@@ -6,8 +6,8 @@ public class TriggerFrameAlter extends BaseTrigger
 	// INTANCE AND CONSTRUCT
 	// -------------------------------------------- //
 	
-	protected static TriggerFrameAlter instance = new TriggerFrameAlter();
-	public static TriggerFrameAlter get() { return instance; }
+	protected static TriggerFrameAlter i = new TriggerFrameAlter();
+	public static TriggerFrameAlter get() { return i; }
 	
 	protected TriggerFrameAlter()
 	{

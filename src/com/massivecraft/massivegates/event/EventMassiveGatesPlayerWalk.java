@@ -4,9 +4,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 import com.massivecraft.massivegates.entity.Gate;
-import com.massivecraft.massivegates.event.abs.SingleGateEvent;
+import com.massivecraft.massivegates.event.abs.EventMassiveGatesDual;
 
-public class GateAlterEvent extends SingleGateEvent
+public class EventMassiveGatesPlayerWalk extends EventMassiveGatesDual
 {
 	// -------------------------------------------- //
 	// REQUIRED EVENT CODE
@@ -19,11 +19,10 @@ public class GateAlterEvent extends SingleGateEvent
 	// -------------------------------------------- //
 	// FIELDS
 	// -------------------------------------------- //
-
-	// FIELD: alterType
-	private GateAlterType alterType;
-	public GateAlterType getAlterType() { return this.alterType; }
-	public boolean isPlayerInduced() { return this.alterType.isPlayerInduced(); }
+	
+	// FIELD: walkType
+	protected GatePlayerWalkType walkType;
+	public GatePlayerWalkType getWalkType() { return this.walkType; }
 	
 	// FIELD: player
 	private Player player;
@@ -33,44 +32,26 @@ public class GateAlterEvent extends SingleGateEvent
 	// CONSTRUCT
 	// -------------------------------------------- //
 	
-	public GateAlterEvent(Gate gate, GateAlterType alterType, Player player)
+	public EventMassiveGatesPlayerWalk(Player player, Gate gateFrom, Gate gateTo, GatePlayerWalkType walkType)
 	{
-		super(gate);
-		this.alterType = alterType;
 		this.player = player;
+		this.gateFrom = gateFrom;
+		this.gateTo = gateTo;
+		this.walkType = walkType;
 	}
 	
 	// -------------------------------------------- //
 	// ENUM
 	// -------------------------------------------- //
 	
-	public enum GateAlterType
+	public enum GatePlayerWalkType
 	{
-		PLACE(true),
-		BREAK(true),
-		BUCKET_FILL(true),
-		BUCKET_EMPTY(true),
-		IGNITE(true),
-		PHYSICS(false),
-		FLOW(false),
-		FORM(false),
-		FADE(false),
-		BURN(false),
-		SPREAD(false),
-		PISTON_EXTEND(false),
-		PISTON_RETRACT(false),
-		EXPLODE(false),
+		INTO,
+		WITHIN,
+		OUT,
 		
 		// END OF LIST
 		;
-		
-		private final boolean playerInduced;
-		public boolean isPlayerInduced() { return this.playerInduced; }
-		
-		private GateAlterType(final boolean playerInduced)
-		{
-			this.playerInduced = playerInduced;
-		}
 	}
 	
 }

@@ -6,8 +6,8 @@ public class TriggerUse extends BaseTrigger
 	// INTANCE AND CONSTRUCT
 	// -------------------------------------------- //
 	
-	protected static TriggerUse instance = new TriggerUse();
-	public static TriggerUse get() { return instance; }
+	protected static TriggerUse i = new TriggerUse();
+	public static TriggerUse get() { return i; }
 	
 	protected TriggerUse()
 	{

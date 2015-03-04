@@ -1,14 +1,11 @@
 package com.massivecraft.massivegates.event;
 
-import org.bukkit.Location;
-import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
-import com.massivecraft.massivegates.Target;
 import com.massivecraft.massivegates.entity.Gate;
-import com.massivecraft.massivegates.event.abs.GateTeleportEvent;
+import com.massivecraft.massivegates.event.abs.EventMassiveGatesSingle;
 
-public class GateBeforeTeleportEvent extends GateTeleportEvent
+public class EventMassiveGatesPowerChange extends EventMassiveGatesSingle
 {
 	// -------------------------------------------- //
 	// REQUIRED EVENT CODE
@@ -19,12 +16,21 @@ public class GateBeforeTeleportEvent extends GateTeleportEvent
 	public static HandlerList getHandlerList() { return handlers; }
 	
 	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
+	
+	// FIELD: power
+	protected boolean power;
+	public boolean powerHas() { return this.power; }
+	
+	// -------------------------------------------- //
 	// CONSTRUCT
 	// -------------------------------------------- //
 	
-	public GateBeforeTeleportEvent(Gate gate, Player player, Location from, Target to)
+	public EventMassiveGatesPowerChange(Gate gate, boolean power)
 	{
-		super(gate, player, from, to);
+		super(gate);
+		this.power = power;
 	}
 	
 }

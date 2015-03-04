@@ -15,9 +15,9 @@ import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivecore.xlib.gson.JsonElement;
 import com.massivecraft.massivegates.Const;
 import com.massivecraft.massivegates.MassiveGates;
-import com.massivecraft.massivegates.event.GateAttachEvent;
-import com.massivecraft.massivegates.event.GateDetachEvent;
-import com.massivecraft.massivegates.event.GateSaveEvent;
+import com.massivecraft.massivegates.event.EventMassiveGatesAttach;
+import com.massivecraft.massivegates.event.EventMassiveGatesDetach;
+import com.massivecraft.massivegates.event.EventMassiveGatesSave;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
 
@@ -184,7 +184,7 @@ public class GateColl extends Coll<Gate>
 		if (gate != null)
 		{
 			// Run event
-			new GateSaveEvent(gate).run();
+			new EventMassiveGatesSave(gate).run();
 		}
 		
 		return super.syncId(id);
@@ -200,7 +200,7 @@ public class GateColl extends Coll<Gate>
 		this.clearIndexFor(entity);
 		
 		// Run event
-		new GateDetachEvent(entity).run();
+		new EventMassiveGatesDetach(entity).run();
 		
 		return super.removeAtLocal(id);
 	}
@@ -216,7 +216,7 @@ public class GateColl extends Coll<Gate>
 			super.loadFromRemote(oid, entry, entrySupplied);
 			gate = this.id2entity.get(id);
 			this.buildIndexFor(gate);
-			new GateAttachEvent(gate).run();
+			new EventMassiveGatesAttach(gate).run();
 		}
 		else
 		{

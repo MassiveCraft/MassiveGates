@@ -36,7 +36,7 @@ public class CmdGateOpenSet extends GateCommand
 	{
 		// Args
 		Gate gate = gsender.getSelectedGate();
-		Boolean newState = this.arg(0, ARBoolean.get());
+		boolean newState = this.arg(0, ARBoolean.get());
 		
 		// Check for state
 		boolean currentState = gate.isOpen();

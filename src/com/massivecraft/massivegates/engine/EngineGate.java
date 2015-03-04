@@ -6,13 +6,13 @@ import org.bukkit.plugin.Plugin;
 
 import com.massivecraft.massivecore.EngineAbstract;
 import com.massivecraft.massivegates.MassiveGates;
-import com.massivecraft.massivegates.event.GateAfterTeleportEvent;
-import com.massivecraft.massivegates.event.GateBeforeTeleportEvent;
-import com.massivecraft.massivegates.event.GateOpenChangeEvent;
-import com.massivecraft.massivegates.event.GatePlayerWalkEvent;
-import com.massivecraft.massivegates.event.GatePowerChangeEvent;
-import com.massivecraft.massivegates.event.GateUseEvent;
-import com.massivecraft.massivegates.event.GatePlayerWalkEvent.GatePlayerWalkType;
+import com.massivecraft.massivegates.event.EventMassiveGatesTeleportAfter;
+import com.massivecraft.massivegates.event.EventMassiveGatesTeleportBefore;
+import com.massivecraft.massivegates.event.EventMassiveGatesOpenChange;
+import com.massivecraft.massivegates.event.EventMassiveGatesPlayerWalk;
+import com.massivecraft.massivegates.event.EventMassiveGatesPowerChange;
+import com.massivecraft.massivegates.event.EventMassiveGatesUse;
+import com.massivecraft.massivegates.event.EventMassiveGatesPlayerWalk.GatePlayerWalkType;
 import com.massivecraft.massivegates.ta.TriggerAtp;
 import com.massivecraft.massivegates.ta.TriggerBtp;
 import com.massivecraft.massivegates.ta.TriggerClose;
@@ -22,15 +22,15 @@ import com.massivecraft.massivegates.ta.TriggerPowerOff;
 import com.massivecraft.massivegates.ta.TriggerPowerOn;
 import com.massivecraft.massivegates.ta.TriggerUse;
 
-public class GateEngine extends EngineAbstract
+public class EngineGate extends EngineAbstract
 {
 	// -------------------------------------------- //
 	// INSTANCE & CONSTRUCT
 	// -------------------------------------------- //
 	
-	private static GateEngine i = new GateEngine();
-	public static GateEngine get() { return i; }
-	private GateEngine() {}
+	private static EngineGate i = new EngineGate();
+	public static EngineGate get() { return i; }
+	private EngineGate() {}
 	
 	// -------------------------------------------- //
 	// OVERRIDE
@@ -47,25 +47,25 @@ public class GateEngine extends EngineAbstract
 	// -------------------------------------------- //
 	
 	@EventHandler(priority = EventPriority.NORMAL)
-	public void normalGateUseEvent(GateUseEvent event)
+	public void normalGateUseEvent(EventMassiveGatesUse event)
 	{
 		event.getGate().trigger(TriggerUse.get(), event.getUser(), event);
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR)
-	public void monitorGateBeforeTeleportEvent(GateBeforeTeleportEvent event)
+	public void monitorGateBeforeTeleportEvent(EventMassiveGatesTeleportBefore event)
 	{
 		event.getGate().trigger(TriggerBtp.get(), event.getPlayer(), null);
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR)
-	public void monitorGateAfterTeleportEvent(GateAfterTeleportEvent event)
+	public void monitorGateAfterTeleportEvent(EventMassiveGatesTeleportAfter event)
 	{
 		event.getGate().trigger(TriggerAtp.get(), event.getPlayer(), null);
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR)
-	public void monitorGateOpenChangeEvent(GateOpenChangeEvent event)
+	public void monitorGateOpenChangeEvent(EventMassiveGatesOpenChange event)
 	{
 		// TODO: Improve with user and cause ???
 		if (event.getGate().isOpen())
@@ -79,7 +79,7 @@ public class GateEngine extends EngineAbstract
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL)
-	public void normalGatePlayerWalkEvent(GatePlayerWalkEvent event)
+	public void normalGatePlayerWalkEvent(EventMassiveGatesPlayerWalk event)
 	{
 		if (event.getWalkType() == GatePlayerWalkType.INTO)
 		{
@@ -88,7 +88,7 @@ public class GateEngine extends EngineAbstract
 	}
 	
 	@EventHandler(priority = EventPriority.MONITOR)
-	public void monitorGatePowerChangeEvent(GatePowerChangeEvent event)
+	public void monitorGatePowerChangeEvent(EventMassiveGatesPowerChange event)
 	{
 		if (event.powerHas())
 		{

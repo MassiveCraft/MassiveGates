@@ -39,7 +39,7 @@ public class CmdGateTargetGoto extends GateCommand
 		Gate gate = gsender.getSelectedGate();
 		
 		// Apply
-		if (!gate.getTarget().exists())
+		if ( ! gate.getTarget().exists())
 		{
 			lines.add(Txt.parse("<i>Gate %s<i>: It doesn't have a target.", gate.getIdNameStringShort()));
 		}

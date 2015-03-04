@@ -8,8 +8,7 @@ public enum TargetType
 	
 	NONE,
 	LOCATION,
-	GATE,
-	RUBBERSERVER
+	GATE
 	
 	// END OF LIST
 	;

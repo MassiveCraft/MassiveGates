@@ -18,7 +18,6 @@ public class CmdGateTarget extends GateCommand
 	
 	public CmdGateTargetHere cmdMassiveGatesTargetHere = new CmdGateTargetHere();
 	public CmdGateTargetGate cmdMassiveGatesTargetGate = new CmdGateTargetGate();
-	public CmdGateTargetRubberserver cmdMassiveGatesTargetRubberserver = new CmdGateTargetRubberserver();
 	public CmdGateTargetGoto cmdMassiveGatesTargetGoto = new CmdGateTargetGoto();
 	public CmdGateTargetRemove cmdMassiveGatesTargetRemove = new CmdGateTargetRemove();
 	
@@ -36,7 +35,6 @@ public class CmdGateTarget extends GateCommand
 		this.addSubCommand(this.cmdMassiveGatesTargetGate);
 		this.addSubCommand(this.cmdMassiveGatesTargetGoto);
 		this.addSubCommand(this.cmdMassiveGatesTargetRemove);
-		this.addSubCommand(this.cmdMassiveGatesTargetRubberserver);
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());

@@ -14,7 +14,7 @@ import com.massivecraft.massivegates.ta.Trigger;
 public class ARTrigger extends ARAbstractSelect<Trigger>
 {
 	// -------------------------------------------- //
-	// INSTANCE
+	// INSTANCE & CONSTRUCT
 	// -------------------------------------------- //
 	
 	private static ARTrigger i = new ARTrigger();

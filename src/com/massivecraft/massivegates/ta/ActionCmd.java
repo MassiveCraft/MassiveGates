@@ -14,22 +14,22 @@ import com.massivecraft.massivegates.entity.Gate;
 public class ActionCmd extends BaseAction
 {
 	// -------------------------------------------- //
+	// CONSTANTS
+	// -------------------------------------------- //
+	
+	public final static List<String> ERRORS_REQUIRED = Arrays.asList("<b>You must enter the command in the argument!");
+	
+	// -------------------------------------------- //
 	// INTANCE AND CONSTRUCT
 	// -------------------------------------------- //
 	
-	protected static ActionCmd instance = new ActionCmd();
-	public static ActionCmd get() { return instance; }
+	protected static ActionCmd i = new ActionCmd();
+	public static ActionCmd get() { return i; }
 	
 	protected ActionCmd()
 	{
 		super("cmd", "cmd", "Console command. Replacing {p} with playername.");
 	}
-	
-	// -------------------------------------------- //
-	// FIELDS
-	// -------------------------------------------- //
-	
-	public final static List<String> errorsRequired = Arrays.asList("<b>You must enter the command in the argument!");
 	
 	// -------------------------------------------- //
 	// OVERRIDE
@@ -64,7 +64,7 @@ public class ActionCmd extends BaseAction
 	{
 		if (arg == null || arg.trim().length() == 0)
 		{
-			return errorsRequired;
+			return ERRORS_REQUIRED;
 		}
 		return null;
 	}

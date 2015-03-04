@@ -11,8 +11,8 @@ public class ActionUse extends BaseAction
 	// INTANCE AND CONSTRUCT
 	// -------------------------------------------- //
 	
-	protected static ActionUse instance = new ActionUse();
-	public static ActionUse get() { return instance; }
+	protected static ActionUse i = new ActionUse();
+	public static ActionUse get() { return i; }
 	
 	protected ActionUse()
 	{

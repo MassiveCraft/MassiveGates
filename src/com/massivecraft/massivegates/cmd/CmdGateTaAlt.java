@@ -42,7 +42,7 @@ public class CmdGateTaAlt extends GateCommand
 		String title = null;
 		
 		// Args
-		Integer pageHumanBased = this.arg(1, ARInteger.get(), 1);
+		int pageHumanBased = this.arg(1, ARInteger.get(), 1);
 		
 		// Apply
 		if (this.arg(0).startsWith("t"))

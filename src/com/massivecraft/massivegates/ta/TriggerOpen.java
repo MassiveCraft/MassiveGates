@@ -6,8 +6,8 @@ public class TriggerOpen extends BaseTrigger
 	// INTANCE AND CONSTRUCT
 	// -------------------------------------------- //
 	
-	protected static TriggerOpen instance = new TriggerOpen();
-	public static TriggerOpen get() { return instance; }
+	protected static TriggerOpen i = new TriggerOpen();
+	public static TriggerOpen get() { return i; }
 	
 	protected TriggerOpen()
 	{

@@ -35,15 +35,16 @@ public class CmdGateFxAlt extends GateCommand
 	@Override
 	public void perform() throws MassiveException
 	{
-		List<String> messages = new ArrayList<String>();
-		
 		// Args
-		Integer pageHumanBased = this.arg(0, ARInteger.get(), 1);
+		int pageHumanBased = this.arg(0, ARInteger.get(), 1);
+		
+		// Create Messages
+		List<String> messages = new ArrayList<String>();
 		
 		messages.add(Txt.parse("<a># <i>There is one FX per line in this list."));
 		messages.add(Txt.parse("<a># <i>S = Sound, V = Visual, D = Data"));
 		
-		for(Fx fx: Fx.values())
+		for (Fx fx: Fx.values())
 		{
 			StringBuilder sb = new StringBuilder();
 			
@@ -64,7 +65,7 @@ public class CmdGateFxAlt extends GateCommand
 			messages.add(Txt.parse(sb.toString()));
 		}
 		
-		// Inform
+		// Send Messages
 		this.sendMessage(Txt.getPage(messages, pageHumanBased, "Available Special FX", sender));
 	}
 	

@@ -15,8 +15,8 @@ public class ActionFxe extends BaseAction
 	// INTANCE AND CONSTRUCT
 	// -------------------------------------------- //
 	
-	protected static ActionFxe instance = new ActionFxe();
-	public static ActionFxe get() { return instance; }
+	protected static ActionFxe i = new ActionFxe();
+	public static ActionFxe get() { return i; }
 	
 	protected ActionFxe()
 	{

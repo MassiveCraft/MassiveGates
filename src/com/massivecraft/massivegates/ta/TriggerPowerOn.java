@@ -6,8 +6,8 @@ public class TriggerPowerOn extends BaseTrigger
 	// INTANCE AND CONSTRUCT
 	// -------------------------------------------- //
 	
-	protected static TriggerPowerOn instance = new TriggerPowerOn();
-	public static TriggerPowerOn get() { return instance; }
+	protected static TriggerPowerOn i = new TriggerPowerOn();
+	public static TriggerPowerOn get() { return i; }
 	
 	protected TriggerPowerOn()
 	{

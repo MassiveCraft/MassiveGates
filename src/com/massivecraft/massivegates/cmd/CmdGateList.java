@@ -37,7 +37,7 @@ public class CmdGateList extends GateCommand
 	public void perform() throws MassiveException
 	{
 		// Args
-		Integer pageHumanBased = this.arg(0, ARInteger.get(), 1);
+		int pageHumanBased = this.arg(0, ARInteger.get(), 1);
 		
 		// Create Pager
 		final PagerSimple<Gate> pager = new PagerSimple<Gate>(GateColl.get().getAll(), sender);

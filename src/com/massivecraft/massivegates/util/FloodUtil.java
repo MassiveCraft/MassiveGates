@@ -16,9 +16,9 @@ import com.massivecraft.massivegates.entity.MConf;
 
 public class FloodUtil
 {
-	//----------------------------------------------//
+	// -------------------------------------------- //
 	// THE BASE FLOOD ALGORITHM
-	//----------------------------------------------//
+	// -------------------------------------------- //
 	
 	public static EnumSet<Material> airSet = EnumSet.of(Material.AIR);
 	
@@ -59,9 +59,9 @@ public class FloodUtil
 		return getFloodBlocks(startBlock, expandFaces, airSet);
 	}
 	
-	//----------------------------------------------//
+	// -------------------------------------------- //
 	// MULTI-FLOOD ALL
-	//----------------------------------------------//
+	// -------------------------------------------- //
 	
 	public static Map<FloodOrientation, Set<Block>> getFloods(Block startBlock, Collection<FloodOrientation> orientations, Set<Material> allowedMaterials, int limit)
 	{
@@ -88,9 +88,9 @@ public class FloodUtil
 		return getFloods(startBlock, EnumSet.allOf(FloodOrientation.class));
 	}
 	
-	//----------------------------------------------//
+	// -------------------------------------------- //
 	// MULTI-FLOOD BEST
-	//----------------------------------------------//
+	// -------------------------------------------- //
 	
 	public static Entry<FloodOrientation, Set<Block>> getBestFlood(Block startBlock, Collection<FloodOrientation> orientations, Set<Material> allowedMaterials, int limit)
 	{
@@ -125,9 +125,9 @@ public class FloodUtil
 		return getBestFlood(startBlock, EnumSet.allOf(FloodOrientation.class));
 	}
 	
-	//----------------------------------------------//
+	// -------------------------------------------- //
 	// GETTING A FRAME
-	//----------------------------------------------//
+	// -------------------------------------------- //
 	
 	// TODO: There is for sure room for more advanced frame finding algorithms...
 	// Detect thicker frames using some sort of additional flood

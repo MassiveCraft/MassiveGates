@@ -25,10 +25,6 @@ public class Target
 	public void setGate(Gate gate) { this.remove(); this.gateId = gate.getId(); }
 	public Gate getGate() { return GateColl.get().get(this.gateId); }
 	
-	public String rubberServerName;
-	public void setRubberServer(String name) { this.remove(); this.rubberServerName = name; }
-	public String getRubberServer() { return this.rubberServerName; }
-	
 	// -------------------------------------------- //
 	// METHODS
 	// -------------------------------------------- //
@@ -37,35 +33,31 @@ public class Target
 	{
 		this.location = null;
 		this.gateId = null;
-		this.rubberServerName = null;
 	}
 	
 	public TargetType getType()
 	{
 		if (this.location != null) return TargetType.LOCATION;
 		if (this.getGate() != null) return TargetType.GATE;
-		if (this.rubberServerName != null) return TargetType.RUBBERSERVER;
 		return TargetType.NONE;
 	}
 	
 	public String getDesc()
 	{
-		switch(this.getType())
+		switch (this.getType())
 		{
 			case LOCATION: return Txt.parse("<k>Location: <v>%s", this.location.toString(PSFormatDesc.get()));
 			case GATE: return Txt.parse("<k>Gate: <v>%s", this.getGate().getIdNameStringShort());
-			case RUBBERSERVER: return Txt.parse("<k>RubberServer: <v>%s", this.rubberServerName);
 			default: return Txt.parse("<v>*NONE*");
 		}
 	}
 	
 	public boolean exists()
 	{
-		switch(this.getType())
+		switch (this.getType())
 		{
 			case LOCATION: return this.getLocation() != null;
 			case GATE: return this.getGate().getExit().getLocation() != null;
-			case RUBBERSERVER: return true;
 			default: return false;
 		}
 	}
@@ -82,9 +74,6 @@ public class Target
 					return true;
 				case GATE:
 					Mixin.teleport(player, this.getGate().getExit());
-					return true;
-				case RUBBERSERVER: 
-					player.sendPluginMessage(MassiveGates.get(), "RubberBand", this.rubberServerName.getBytes());
 					return true;
 				default:
 					return false;

@@ -11,17 +11,17 @@ import com.massivecraft.massivegates.entity.GSenderColl;
 public class ReqGateSelected extends ReqAbstract
 {
 	// -------------------------------------------- //
+	// STATIC
+	// -------------------------------------------- //
+	
+	private static final long serialVersionUID = 1L;
+	
+	// -------------------------------------------- //
 	// INSTANCE & CONSTRUCT
 	// -------------------------------------------- //
 	
 	private static ReqGateSelected i = new ReqGateSelected();
 	public static ReqGateSelected get() { return i; }
-	
-	// -------------------------------------------- //
-	// FIELDS
-	// -------------------------------------------- //
-	
-	private static final long serialVersionUID = 1L;
 	
 	// -------------------------------------------- //
 	// OVERRIDE
