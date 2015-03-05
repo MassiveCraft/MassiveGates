@@ -20,7 +20,7 @@ public class ActionFxe extends BaseAction
 	
 	protected ActionFxe()
 	{
-		super("fxe", "FXE", "Perform FX at the entity");
+		super("mgcore_fxe", "FXE", "Perform FX at the entity");
 	}
 	
 	// -------------------------------------------- //

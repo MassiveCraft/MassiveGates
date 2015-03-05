@@ -21,7 +21,7 @@ public class ActionChat extends BaseAction
 	
 	protected ActionChat()
 	{
-		super("chat", "Chat", "chat/command as player. Replacing {p} with playername.");
+		super("mgcore_chat", "Chat", "chat/command as player. Replacing {p} with playername.");
 	}
 	
 	// -------------------------------------------- //

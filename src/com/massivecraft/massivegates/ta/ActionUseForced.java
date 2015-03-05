@@ -16,7 +16,7 @@ public class ActionUseForced extends BaseAction
 	
 	protected ActionUseForced()
 	{
-		super("use_forced", "UseForced", "Use the gate regardless of open state.");
+		super("mgcore_use_forced", "UseForced", "Use the gate regardless of open state.");
 	}
 	
 	// -------------------------------------------- //

@@ -16,7 +16,7 @@ public class ActionOpen extends BaseAction
 	
 	protected ActionOpen()
 	{
-		super("open", "Open", "Ensure the gate is open.");
+		super("mgcore_open", "Open", "Ensure the gate is open.");
 	}
 	
 	// -------------------------------------------- //

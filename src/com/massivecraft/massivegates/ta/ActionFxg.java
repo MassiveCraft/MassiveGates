@@ -20,7 +20,7 @@ public class ActionFxg extends BaseAction
 	
 	protected ActionFxg()
 	{
-		super("fxg", "FXG", "Perform FX at the gate");
+		super("mgcore_fxg", "FXG", "Perform FX at the gate");
 	}
 	
 	// -------------------------------------------- //

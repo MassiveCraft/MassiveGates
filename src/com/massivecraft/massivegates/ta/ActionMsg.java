@@ -21,7 +21,7 @@ public class ActionMsg extends BaseAction
 	
 	protected ActionMsg()
 	{
-		super("msg", "Msg", "msg:message to the player.");
+		super("mgcore_msg", "Msg", "msg:message to the player.");
 	}
 	
 	// -------------------------------------------- //

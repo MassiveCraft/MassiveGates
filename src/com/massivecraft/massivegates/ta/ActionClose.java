@@ -16,7 +16,7 @@ public class ActionClose extends BaseAction
 	
 	protected ActionClose()
 	{
-		super("close", "Close", "Ensure the gate is closed.");
+		super("mgcore_close", "Close", "Ensure the gate is closed.");
 	}
 	
 	// -------------------------------------------- //

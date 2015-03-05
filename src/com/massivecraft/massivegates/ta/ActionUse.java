@@ -16,7 +16,7 @@ public class ActionUse extends BaseAction
 	
 	protected ActionUse()
 	{
-		super("use", "Use", "Use the gate if it's open.");
+		super("mgcore_use", "Use", "Use the gate if it's open.");
 	}
 	
 	// -------------------------------------------- //

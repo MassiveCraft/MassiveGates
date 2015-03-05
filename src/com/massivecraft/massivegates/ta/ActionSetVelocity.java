@@ -26,7 +26,7 @@ public class ActionSetVelocity extends BaseAction
 	
 	protected ActionSetVelocity()
 	{
-		super("setvel", "setvel", "Set entity velocity: X Y Z");
+		super("mgcore_SetVelocity", "setvel", "Set entity velocity: X Y Z");
 	}
 	
 	// -------------------------------------------- //

@@ -21,7 +21,7 @@ public class ActionReqPerm extends BaseAction
 	
 	protected ActionReqPerm()
 	{
-		super("reqperm", "reqperm", "Require that player has permission node");
+		super("mgcore_reqperm", "reqperm", "Require that player has permission node");
 	}
 	
 	// -------------------------------------------- //

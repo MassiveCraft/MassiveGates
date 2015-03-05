@@ -28,7 +28,7 @@ public class ActionCmd extends BaseAction
 	
 	protected ActionCmd()
 	{
-		super("cmd", "cmd", "Console command. Replacing {p} with playername.");
+		super("mgcore_cmd", "cmd", "Console command. Replacing {p} with playername.");
 	}
 	
 	// -------------------------------------------- //

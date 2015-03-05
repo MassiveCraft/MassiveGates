@@ -49,7 +49,7 @@ public class CmdGateTaList extends GateCommand
 		Gate gate = gsender.getSelectedGate();
 		
 		// Apply
-		for(Trigger trigger : GateColl.get().getTriggers())
+		for (Trigger trigger : GateColl.get().getTriggers())
 		{
 			int i = 0;
 			for (Entry<Action, String> actionArg : gate.getActionArgs(trigger))
