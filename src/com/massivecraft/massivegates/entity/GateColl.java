@@ -10,7 +10,7 @@ import java.util.Map.Entry;
 import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivecore.store.Coll;
 import com.massivecraft.massivecore.store.MStore;
-import com.massivecraft.massivecore.store.ModificationState;
+import com.massivecraft.massivecore.store.Modification;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivecore.xlib.gson.JsonElement;
 import com.massivecraft.massivegates.Const;
@@ -175,7 +175,7 @@ public class GateColl extends Coll<Gate>
 	// -------------------------------------------- //
 	
 	@Override
-	public ModificationState syncId(Object oid)
+	public Modification syncId(Object oid)
 	{
 		String id = this.fixId(oid);
 		
@@ -206,14 +206,14 @@ public class GateColl extends Coll<Gate>
 	}
 	
 	@Override
-	public synchronized void loadFromRemote(Object oid, Entry<JsonElement, Long> entry, boolean entrySupplied)
+	public synchronized void loadFromRemote(Object oid, Entry<JsonElement, Long> entry)
 	{
 		String id = this.fixId(oid);
 		
 		Gate gate = this.id2entity.get(id);
 		if (gate == null)
 		{
-			super.loadFromRemote(oid, entry, entrySupplied);
+			super.loadFromRemote(oid, entry);
 			gate = this.id2entity.get(id);
 			this.buildIndexFor(gate);
 			new EventMassiveGatesAttach(gate).run();
@@ -221,7 +221,7 @@ public class GateColl extends Coll<Gate>
 		else
 		{
 			this.clearIndexFor(gate);
-			super.loadFromRemote(oid, entry, entrySupplied);
+			super.loadFromRemote(oid, entry);
 			this.buildIndexFor(gate);
 		}
 	}
