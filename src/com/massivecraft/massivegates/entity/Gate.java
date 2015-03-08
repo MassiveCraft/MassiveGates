@@ -19,6 +19,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 
@@ -744,6 +745,33 @@ public class Gate extends Entity<Gate>
 			{
 				continue;
 			}
+			
+			// Do orientation check
+			if (material == Material.PORTAL)
+			{
+				try
+				{
+					Block blockSouth = block.getRelative(BlockFace.SOUTH);
+					PS psSouth = PS.valueOf(blockSouth);
+					
+					Block blockNorth = block.getRelative(BlockFace.NORTH);
+					PS psNorth = PS.valueOf(blockNorth);
+					
+					if (coords.contains(psNorth) || coords.contains(psSouth))
+					{
+						data = 2;
+					}
+					else
+					{
+						data = 0;
+					}
+				}
+				catch (Exception e)
+				{
+					
+				}
+			}
+			
 			block.setType(material);
 			block.setData(data);
 		}
@@ -774,6 +802,13 @@ public class Gate extends Entity<Gate>
 		{
 			fillContent(this.getMatclosed(), this.getDataclosed());
 		}
+	}
+	
+	public void recalculatePortalOrientation()
+	{
+		if (this.getMatopen() != Material.PORTAL) return;
+		
+		this.fillContent();
 	}
 	
 	// TODO: UNUSED?

@@ -6,13 +6,14 @@ import org.bukkit.plugin.Plugin;
 
 import com.massivecraft.massivecore.EngineAbstract;
 import com.massivecraft.massivegates.MassiveGates;
-import com.massivecraft.massivegates.event.EventMassiveGatesTeleportAfter;
-import com.massivecraft.massivegates.event.EventMassiveGatesTeleportBefore;
+import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.event.EventMassiveGatesOpenChange;
 import com.massivecraft.massivegates.event.EventMassiveGatesPlayerWalk;
-import com.massivecraft.massivegates.event.EventMassiveGatesPowerChange;
-import com.massivecraft.massivegates.event.EventMassiveGatesUse;
 import com.massivecraft.massivegates.event.EventMassiveGatesPlayerWalk.GatePlayerWalkType;
+import com.massivecraft.massivegates.event.EventMassiveGatesPowerChange;
+import com.massivecraft.massivegates.event.EventMassiveGatesTeleportAfter;
+import com.massivecraft.massivegates.event.EventMassiveGatesTeleportBefore;
+import com.massivecraft.massivegates.event.EventMassiveGatesUse;
 import com.massivecraft.massivegates.ta.TriggerAtp;
 import com.massivecraft.massivegates.ta.TriggerBtp;
 import com.massivecraft.massivegates.ta.TriggerClose;
@@ -84,6 +85,23 @@ public class EngineGate extends EngineAbstract
 		if (event.getWalkType() == GatePlayerWalkType.INTO)
 		{
 			event.getGateTo().trigger(TriggerEnter.get(), event.getPlayer(), event);
+		}
+	}
+	
+	@EventHandler(priority = EventPriority.NORMAL)
+	public void recalculatePortalOrientation(EventMassiveGatesPlayerWalk event)
+	{
+		Gate gateFrom = event.getGateFrom();
+		Gate gateTo = event.getGateTo();
+		
+		if (gateFrom != null)
+		{
+			gateFrom.recalculatePortalOrientation();
+		}
+		
+		if (gateTo != null)
+		{
+			gateTo.recalculatePortalOrientation();
 		}
 	}
 	

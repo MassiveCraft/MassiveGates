@@ -63,7 +63,7 @@ public class CmdGateMato extends GateCommand
 		gate.setMatopen(mat, data);
 		
 		// Inform
-		this.msg("<i>New closed <k>Material <i>is <v>%s <i>with <k>Data <v>%s<i>.", Txt.getMaterialName(mat), data);
+		this.msg("<i>New open <k>Material <i>is <v>%s <i>with <k>Data <v>%s<i>.", Txt.getMaterialName(mat), data);
 	}
 	
 }
