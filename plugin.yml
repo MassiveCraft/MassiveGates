@@ -6,17 +6,17 @@ permissions:
 # -------------------------------------------- #
 # THE REAL NODES
 # -------------------------------------------- #
-  massivegates.action.chat: {description: assign the chat action to a gate, default: false}
-  massivegates.action.close: {description: assign the close action to a gate, default: false}
-  massivegates.action.cmd: {description: assign the cmd action to a gate, default: false}
-  massivegates.action.fxe: {description: assign the fxe action to a gate, default: false}
-  massivegates.action.fxg: {description: assign the fxg action to a gate, default: false}
-  massivegates.action.msg: {description: assign the msg action to a gate, default: false}
-  massivegates.action.open: {description: assign the open action to a gate, default: false}
-  massivegates.action.use: {description: assign the use action to a gate, default: false}
-  massivegates.action.use_forced: {description: assign the useforce action to a gate, default: false}
-  massivegates.action.reqperm: {description: assign the reqperm action to a gate, default: false}
-  massivegates.action.setvel: {description: assign the setvel action to a gate, default: false}
+  massivegates.action.mgcore_chat: {description: assign the chat action to a gate, default: false}
+  massivegates.action.mgcore_close: {description: assign the close action to a gate, default: false}
+  massivegates.action.mgcore_cmd: {description: assign the cmd action to a gate, default: false}
+  massivegates.action.mgcore_fxe: {description: assign the fxe action to a gate, default: false}
+  massivegates.action.mgcore_fxg: {description: assign the fxg action to a gate, default: false}
+  massivegates.action.mgcore_msg: {description: assign the msg action to a gate, default: false}
+  massivegates.action.mgcore_open: {description: assign the open action to a gate, default: false}
+  massivegates.action.mgcore_use: {description: assign the use action to a gate, default: false}
+  massivegates.action.mgcore_use_forced: {description: assign the useforce action to a gate, default: false}
+  massivegates.action.mgcore_reqperm: {description: assign the reqperm action to a gate, default: false}
+  massivegates.action.mgcore_SetVelocity: {description: assign the setvel action to a gate, default: false}
   massivegates.delete: {description: delete a gate, default: false}
   massivegates.edit: {description: edit gate shape, default: false}
   massivegates.edit.clear: {description: clear gate parts, default: false}
@@ -130,15 +130,15 @@ permissions:
       massivegates.ta.list: true
   massivegates.action.*:
     children:
-      massivegates.action.chat: true
-      massivegates.action.close: true
-      massivegates.action.cmd: true
-      massivegates.action.fxe: true
-      massivegates.action.fxg: true
-      massivegates.action.msg: true
-      massivegates.action.open: true
-      massivegates.action.use: true
-      massivegates.action.use_forced: true
-      massivegates.action.reqperm: true
-      massivegates.action.setvel: true
+      massivegates.action.mgcore_chat: true
+      massivegates.action.mgcore_close: true
+      massivegates.action.mgcore_cmd: true
+      massivegates.action.mgcore_fxe: true
+      massivegates.action.mgcore_fxg: true
+      massivegates.action.mgcore_msg: true
+      massivegates.action.mgcore_open: true
+      massivegates.action.mgcore_use: true
+      massivegates.action.mgcore_use_forced: true
+      massivegates.action.mgcore_reqperm: true
+      massivegates.action.mgcore_SetVelocity: true
       
