@@ -23,12 +23,6 @@ public class ARTrigger extends ARAbstractSelect<Trigger>
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
-	
-	@Override
-	public String typename()
-	{
-		return "trigger";
-	}
 
 	@Override
 	public Trigger select(String str, CommandSender sender)
@@ -51,6 +45,12 @@ public class ARTrigger extends ARAbstractSelect<Trigger>
 			ret.add(trigger.getName());
 		}
 		return ret;
+	}
+
+	@Override
+	public Collection<String> getTabList(CommandSender sender, String arg)
+	{
+		return this.altNames(sender);
 	}
 	
 }

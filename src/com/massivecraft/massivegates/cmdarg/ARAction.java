@@ -23,12 +23,6 @@ public class ARAction extends ARAbstractSelect<Action>
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
-	
-	@Override
-	public String typename()
-	{
-		return "action";
-	}
 
 	@Override
 	public Action select(String str, CommandSender sender)
@@ -51,6 +45,12 @@ public class ARAction extends ARAbstractSelect<Action>
 			ret.add(action.getName());
 		}
 		return ret;
+	}
+
+	@Override
+	public Collection<String> getTabList(CommandSender sender, String arg)
+	{
+		return this.altNames(sender);
 	}
 	
 }

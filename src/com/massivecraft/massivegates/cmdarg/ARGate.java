@@ -1,20 +1,23 @@
 package com.massivecraft.massivegates.cmdarg;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.arg.ArgReaderAbstract;
+import com.massivecraft.massivecore.cmd.arg.ARAbstract;
+import com.massivecraft.massivecore.collections.MassiveList;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.entity.GSender;
 import com.massivecraft.massivegates.entity.GSenderColl;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.entity.GateColl;
 
-public class ARGate extends ArgReaderAbstract<Gate>
+public class ARGate extends ARAbstract<Gate>
 {
 	// -------------------------------------------- //
 	// INSTANCE & CONSTRUCT
@@ -75,6 +78,19 @@ public class ARGate extends ArgReaderAbstract<Gate>
 		}
 		
 		throw new MassiveException().addMsg("<b>No gate matching \"<p>%s<b>\".", str);
+	}
+
+	@Override
+	public Collection<String> getTabList(CommandSender sender, String arg)
+	{
+		List<String> ret = new MassiveList<String>();
+		
+		for (Gate gate : GateColl.get().getAll())
+		{
+			ret.add(gate.getName());
+		}
+		
+		return ret;
 	}
 	
 }
