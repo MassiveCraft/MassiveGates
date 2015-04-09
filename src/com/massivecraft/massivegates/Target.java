@@ -7,6 +7,7 @@ import com.massivecraft.massivecore.mixin.Mixin;
 import com.massivecraft.massivecore.mixin.TeleporterException;
 import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivecore.ps.PSFormatDesc;
+import com.massivecraft.massivecore.teleport.DestinationSimple;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.entity.GateColl;
@@ -70,10 +71,10 @@ public class Target
 			switch(this.getType())
 			{
 				case LOCATION:
-					Mixin.teleport(player, this.getLocation());
+					Mixin.teleport(player, new DestinationSimple(this.getLocation()));
 					return true;
 				case GATE:
-					Mixin.teleport(player, this.getGate().getExit());
+					Mixin.teleport(player, new DestinationSimple(this.getGate().getExit()));
 					return true;
 				default:
 					return false;

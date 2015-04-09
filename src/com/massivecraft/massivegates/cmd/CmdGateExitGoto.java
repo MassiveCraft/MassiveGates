@@ -8,6 +8,7 @@ import com.massivecraft.massivecore.cmd.req.ReqIsPlayer;
 import com.massivecraft.massivecore.mixin.Mixin;
 import com.massivecraft.massivecore.mixin.TeleporterException;
 import com.massivecraft.massivecore.ps.PS;
+import com.massivecraft.massivecore.teleport.DestinationSimple;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
@@ -41,14 +42,14 @@ public class CmdGateExitGoto extends GateCommand
 		
 		// Args
 		Gate gate = gsender.getSelectedGate();
-		PS locw = gate.getExit();
-		
-		if (locw != null)
+		PS destinationPs = gate.getExit();
+		if (destinationPs != null)
 		{
 			try
 			{
 				// Apply
-				Mixin.teleport(me, locw, "to exit");
+				
+				Mixin.teleport(me, new DestinationSimple(destinationPs, "to exit"));
 				
 				messages.add(Txt.parse("<i>Gate %s<i>: Teleported to exit:", gate.getIdNameStringShort()));
 				messages.add(gate.getExitDesc());
