@@ -1,5 +1,7 @@
 package com.massivecraft.massivegates.cmd;
 
+import com.massivecraft.massivecore.MassiveException;
+import com.massivecraft.massivecore.cmd.arg.ARString;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
@@ -17,7 +19,7 @@ public class CmdGateNameSet extends GateCommand
 		this.addAliases("set");
 		
 		// Args
-		this.addRequiredArg("name");
+		this.addArg(ARString.get(), "name");
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
@@ -29,11 +31,11 @@ public class CmdGateNameSet extends GateCommand
 	// -------------------------------------------- //
 	
 	@Override
-	public void perform()
+	public void perform() throws MassiveException
 	{
 		// Args
 		Gate gate = gsender.getSelectedGate();
-		String name = this.arg(0);
+		String name = this.readArg();
 		
 		// Apply
 		gate.setName(name);

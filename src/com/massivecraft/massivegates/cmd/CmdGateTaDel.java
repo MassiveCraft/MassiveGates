@@ -1,6 +1,7 @@
 package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivecore.MassiveException;
+import com.massivecraft.massivecore.cmd.ArgSetting;
 import com.massivecraft.massivecore.cmd.arg.ARInteger;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivegates.Perm;
@@ -14,6 +15,12 @@ import com.massivecraft.massivegates.ta.Trigger;
 public class CmdGateTaDel extends GateCommand
 {
 	// -------------------------------------------- //
+	// FIELDS
+	// -------------------------------------------- //
+	
+	private ArgSetting setting = ArgSetting.of(ARAction.get(), false, "index|action|all", "all");
+	
+	// -------------------------------------------- //
 	// CONSTRUCT
 	// -------------------------------------------- //
 	
@@ -23,8 +30,8 @@ public class CmdGateTaDel extends GateCommand
 		this.addAliases("del");
 		
 		// Args
-		this.addRequiredArg("trigger|all");
-		this.addOptionalArg("index|action|all","all");
+		this.addArg(ARTrigger.get(), "trigger|all");
+		this.addArg(setting);
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
@@ -41,7 +48,7 @@ public class CmdGateTaDel extends GateCommand
 		// Args
 		Gate gate = gsender.getSelectedGate();
 		
-		if (this.arg(0).equalsIgnoreCase("all"))
+		if (this.argAt(0).equalsIgnoreCase("all"))
 		{
 			gate.delActions();
 			this.msg("<i>Gate %s<i>: All actions were deleted.", gate.getIdNameStringShort());
@@ -49,9 +56,9 @@ public class CmdGateTaDel extends GateCommand
 		}
 		
 		// Fetch the Trigger
-		Trigger trigger = this.arg(0, ARTrigger.get());
+		Trigger trigger = this.readArgAt(0);
 		
-		if ( ! this.argIsSet(1) || this.arg(1).equalsIgnoreCase("all"))
+		if ( ! this.argIsSet(1) || this.argAt(1).equalsIgnoreCase("all"))
 		{
 			int count = gate.delActions(trigger);
 			this.msg("<i>Gate %s<i>: All (<h>%s<i>) actions for trigger <lime>%s<i> were deleted.", gate.getIdNameStringShort(), count, trigger.getName());
@@ -59,10 +66,11 @@ public class CmdGateTaDel extends GateCommand
 		}
 		
 		// The action may either be an index or an action id
-		if (isNumeric(this.arg(1)))
+		if (isNumeric(this.argAt(1)))
 		{
 			// Delete by index
-			Integer index = this.arg(1, ARInteger.get());
+			this.setting.setReader(ARInteger.get());
+			int index = this.readArg();
 			
 			// Make it zero-based while deleting
 			index -= 1;
@@ -82,7 +90,8 @@ public class CmdGateTaDel extends GateCommand
 		{
 			// Delete by actionId
 			// Fetch the Action
-			Action action = this.arg(1, ARAction.get());
+			this.setting.setReader(ARAction.get());
+			Action action = this.readArgAt(1);
 			
 			int count = gate.delActions(trigger, action);
 			this.msg("<i>Gate %s<i>: %s <pink>%s-actions <i>for trigger <lime>%s<i> were deleted.", gate.getIdNameStringShort(), count, action.getName(), trigger.getName());

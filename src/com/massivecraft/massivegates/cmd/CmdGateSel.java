@@ -18,7 +18,7 @@ public class CmdGateSel extends GateCommand
 		this.addAliases("sel");
 		
 		// Args
-		this.addOptionalArg("gate", "*get*");
+		this.addArg(ARGate.get(), "gate", "*get*");
 		
 		// Requirements
 		this.addRequirements(ReqHasPerm.get(Perm.SELECT.node));
@@ -47,7 +47,7 @@ public class CmdGateSel extends GateCommand
 			return;
 		}
 		
-		gate = this.arg(0, ARGate.get());
+		gate = this.readArg();
 		
 		// Apply
 		gsender.setSelectedGate(gate);

@@ -19,7 +19,7 @@ public class CmdGateTargetGate extends GateCommand
 		this.addAliases("gate");
 		
 		// Args
-		this.addRequiredArg("targetgate");
+		this.addArg(ARGate.get(), "targetgate");
 		
 		// Requirement
 		this.addRequirements(ReqGateSelected.get());
@@ -35,7 +35,7 @@ public class CmdGateTargetGate extends GateCommand
 	{
 		// Args
 		Gate gate = gsender.getSelectedGate();
-		Gate target = this.arg(0, ARGate.get());
+		Gate target = this.readArg( );
 		
 		// Apply
 		gate.getTarget().setGate(target);

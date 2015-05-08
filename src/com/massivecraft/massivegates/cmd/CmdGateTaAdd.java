@@ -3,6 +3,7 @@ package com.massivecraft.massivegates.cmd;
 import java.util.List;
 
 import com.massivecraft.massivecore.MassiveException;
+import com.massivecraft.massivecore.cmd.arg.ARString;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.util.PermUtil;
 import com.massivecraft.massivegates.Perm;
@@ -25,10 +26,9 @@ public class CmdGateTaAdd extends GateCommand
 		this.addAliases("add");
 		
 		// Args
-		this.addRequiredArg("trigger");
-		this.addRequiredArg("action");
-		this.addOptionalArg("argument", "");
-		this.setErrorOnToManyArgs(false);
+		this.addArg(ARTrigger.get(), "trigger");
+		this.addArg(ARAction.get(), "action");
+		this.addArg(ARString.get(), "argument", "", true);
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
@@ -44,9 +44,9 @@ public class CmdGateTaAdd extends GateCommand
 	{
 		// Args
 		Gate gate = gsender.getSelectedGate();
-		Trigger trigger = this.arg(0, ARTrigger.get());
-		Action action = this.arg(1, ARAction.get());
-		String arg = this.argConcatFrom(2);
+		Trigger trigger = this.readArg();
+		Action action = this.readArg();
+		String arg = this.readArg("");
 		
 		// TODO: merge this into the arg-check?
 		// Do you have the permission to add this action?

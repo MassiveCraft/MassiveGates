@@ -20,7 +20,7 @@ public class CmdGateDelete extends GateCommand
 		this.addAliases("del", "delete", "rm", "remove");
 		
 		// Args
-		this.addRequiredArg("gate");
+		this.addArg(ARGate.get(), "gate");
 		
 		// Requirements
 		this.addRequirements(ReqHasPerm.get(Perm.DELETE.node));
@@ -34,7 +34,7 @@ public class CmdGateDelete extends GateCommand
 	public void perform() throws MassiveException
 	{
 		// Args
-		Gate gate = this.arg(0, ARGate.get());
+		Gate gate = this.readArg();
 		
 		// Infrom
 		this.msg("<i>Gate %s<i> was deleted.", gate.getIdNameStringLong());

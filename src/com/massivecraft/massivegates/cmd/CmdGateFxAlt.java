@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.arg.ARInteger;
+import com.massivecraft.massivecore.cmd.ArgSetting;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
@@ -22,7 +22,7 @@ public class CmdGateFxAlt extends GateCommand
 		this.addAliases("alt");
 		
 		// Args
-		this.addOptionalArg("page", "1");
+		this.addArg(ArgSetting.getPager());
 		
 		// Requirements
 		this.addRequirements(ReqHasPerm.get(Perm.FX_ALT.node));
@@ -36,7 +36,7 @@ public class CmdGateFxAlt extends GateCommand
 	public void perform() throws MassiveException
 	{
 		// Args
-		int pageHumanBased = this.arg(0, ARInteger.get(), 1);
+		int pageHumanBased = this.readArg(1);
 		
 		// Create Messages
 		List<String> messages = new ArrayList<String>();

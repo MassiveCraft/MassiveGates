@@ -3,6 +3,7 @@ package com.massivecraft.massivegates.cmd;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.massivecraft.massivecore.cmd.arg.ARString;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
@@ -21,7 +22,7 @@ public class CmdGateEditClear extends GateCommand
 		this.addAliases("clear");
 		
 		// Args
-		this.addRequiredArg("frame|content|all");
+		this.addArg(ARString.get(), "frame|content|all");
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
@@ -40,7 +41,7 @@ public class CmdGateEditClear extends GateCommand
 		// Args
 		Gate gate = gsender.getSelectedGate();
 		
-		char firstArgChar = this.arg(0).toLowerCase().charAt(0);
+		char firstArgChar = this.argAt(0).toLowerCase().charAt(0);
 		
 		// Apply
 		if (firstArgChar == 'f')

@@ -20,7 +20,7 @@ public class CmdGateOpenSet extends GateCommand
 		this.addAliases("set");
 		
 		// Args
-		this.addRequiredArg("flag");
+		this.addArg(ARBoolean.get(), "flag", true);
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
@@ -36,7 +36,7 @@ public class CmdGateOpenSet extends GateCommand
 	{
 		// Args
 		Gate gate = gsender.getSelectedGate();
-		boolean newState = this.arg(0, ARBoolean.get());
+		boolean newState = this.readArg();
 		
 		// Check for state
 		boolean currentState = gate.isOpen();

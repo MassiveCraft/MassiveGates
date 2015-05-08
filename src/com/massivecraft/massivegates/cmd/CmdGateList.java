@@ -3,7 +3,7 @@ package com.massivecraft.massivegates.cmd;
 import java.util.List;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.arg.ARInteger;
+import com.massivecraft.massivecore.cmd.ArgSetting;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.pager.PagerSimple;
 import com.massivecraft.massivecore.pager.Stringifier;
@@ -23,7 +23,7 @@ public class CmdGateList extends GateCommand
 		this.addAliases("l","list");
 		
 		// Args
-		this.addOptionalArg("page", "1");
+		this.addArg(ArgSetting.getPager());
 		
 		// Requirements
 		this.addRequirements(ReqHasPerm.get(Perm.LIST.node));
@@ -37,7 +37,7 @@ public class CmdGateList extends GateCommand
 	public void perform() throws MassiveException
 	{
 		// Args
-		int pageHumanBased = this.arg(0, ARInteger.get(), 1);
+		int pageHumanBased = this.readArg(1);
 		
 		// Create Pager
 		final PagerSimple<Gate> pager = new PagerSimple<Gate>(GateColl.get().getAll(), sender);

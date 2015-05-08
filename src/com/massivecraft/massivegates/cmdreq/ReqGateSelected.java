@@ -39,7 +39,7 @@ public class ReqGateSelected extends ReqAbstract
 	@Override
 	public String createErrorMessage(CommandSender sender, MassiveCommand command)
 	{
-		return Txt.parse("<b>You must select a gate before you %s.", (command == null ? "do that" : command.getDesc()));
+		return Txt.parse("<b>You must select a gate before you %s.", getDesc(command));
 	}
 	
 }

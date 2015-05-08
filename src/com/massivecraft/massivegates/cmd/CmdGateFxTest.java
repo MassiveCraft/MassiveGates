@@ -2,6 +2,8 @@ package com.massivecraft.massivegates.cmd;
 
 import org.bukkit.Location;
 
+import com.massivecraft.massivecore.MassiveException;
+import com.massivecraft.massivecore.cmd.arg.ARString;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.cmd.req.ReqIsPlayer;
 import com.massivecraft.massivegates.Perm;
@@ -18,7 +20,7 @@ public class CmdGateFxTest extends GateCommand
 		this.addAliases("test");
 		
 		// Arg
-		this.addRequiredArg("fxstring");
+		this.addArg(ARString.get(), "fxstring");
 		
 		// Requirements
 		this.addRequirements(ReqIsPlayer.get());
@@ -30,11 +32,11 @@ public class CmdGateFxTest extends GateCommand
 	// -------------------------------------------- //
 	
 	@Override
-	public void perform()
+	public void perform() throws MassiveException
 	{
 		// Args
 		Location location = gsender.getThatBlock(false).getLocation();
-		String fx = this.arg(0);
+		String fx = this.readArg();
 		
 		// Apply
 		boolean success = Fx.perform(fx, location);

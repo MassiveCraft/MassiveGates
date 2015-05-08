@@ -23,8 +23,8 @@ public class CmdGateMato extends GateCommand
 		this.addAliases("mo","mato");
 		
 		// Args
-		this.addOptionalArg("material", "get");
-		this.addOptionalArg("data", "0");
+		this.addArg(ARMaterial.get(), "material", "get");
+		this.addArg(ARByte.get(), "data", "0");
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
@@ -50,8 +50,8 @@ public class CmdGateMato extends GateCommand
 		}
 		
 		// Args
-		mat = this.arg(0, ARMaterial.get());
-		data = this.arg(1, ARByte.get(), (byte) 0);
+		mat = this.readArg();
+		data = this.readArg((byte) 0);
 		
 		if ( ! mat.isBlock())
 		{

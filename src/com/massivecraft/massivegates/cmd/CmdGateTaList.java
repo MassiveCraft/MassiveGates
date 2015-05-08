@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.arg.ARInteger;
+import com.massivecraft.massivecore.cmd.ArgSetting;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
@@ -27,7 +27,7 @@ public class CmdGateTaList extends GateCommand
 		this.addAliases("list");
 		
 		// Args
-		this.addOptionalArg("page", "1");
+		this.addArg(ArgSetting.getPager());
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
@@ -44,7 +44,7 @@ public class CmdGateTaList extends GateCommand
 		List<String> lines = new ArrayList<String>();
 		
 		// Args
-		int pageHumanBased = this.arg(0, ARInteger.get(), 1);
+		int pageHumanBased = this.readArg(1);
 		
 		Gate gate = gsender.getSelectedGate();
 		

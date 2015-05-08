@@ -32,7 +32,7 @@ public class CmdGateEditFlood extends GateCommand
 		this.addAliases("flood");
 		
 		// Args
-		this.addOptionalArg("frame", "true");
+		this.addArg(ARBoolean.get(), "frame", "true");
 		
 		// Requirements
 		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.get());
@@ -48,7 +48,7 @@ public class CmdGateEditFlood extends GateCommand
 	{
 		// Args
 		Gate gate = gsender.getSelectedGate();
-		Boolean addFrame = this.arg(0, ARBoolean.get(), true);
+		boolean addFrame = this.readArg(true);
 		Entry<FloodOrientation, Set<Block>> flood = gsender.getBestFloodHere(true);
 		if (flood == null) return;
 		

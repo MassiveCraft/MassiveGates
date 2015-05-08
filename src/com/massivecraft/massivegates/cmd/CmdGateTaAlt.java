@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.arg.ARInteger;
+import com.massivecraft.massivecore.cmd.ArgSetting;
+import com.massivecraft.massivecore.cmd.arg.ARString;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
@@ -24,8 +25,8 @@ public class CmdGateTaAlt extends GateCommand
 		this.addAliases("alt");
 		
 		// Args
-		this.addRequiredArg("trigger|action");
-		this.addOptionalArg("page", "1");
+		this.addArg(ARString.get(), "trigger|action");
+		this.addArg(ArgSetting.getPager());
 		
 		// Requirements
 		this.addRequirements(ReqHasPerm.get(Perm.TA_ALT.node));
@@ -41,11 +42,8 @@ public class CmdGateTaAlt extends GateCommand
 		List<String> lines = new ArrayList<String>();
 		String title = null;
 		
-		// Args
-		int pageHumanBased = this.arg(1, ARInteger.get(), 1);
-		
 		// Apply
-		if (this.arg(0).startsWith("t"))
+		if (this.argAt(0).startsWith("t"))
 		{
 			title = "Trigger Alternatives";
 			for(Trigger trigger : GateColl.get().getTriggers())
@@ -61,6 +59,9 @@ public class CmdGateTaAlt extends GateCommand
 				lines.add(Txt.parse("<k>%s<i>: %s",action.getName(), action.getDesc()));
 			}
 		}
+		
+		// Args
+		int pageHumanBased = this.readArg(1);
 		
 		// Inform
 		lines = Txt.parseWrap(lines);

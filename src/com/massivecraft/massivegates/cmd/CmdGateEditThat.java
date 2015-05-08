@@ -3,6 +3,7 @@ package com.massivecraft.massivegates.cmd;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 
+import com.massivecraft.massivecore.cmd.arg.ARString;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.cmd.req.ReqIsPlayer;
 import com.massivecraft.massivecore.ps.PS;
@@ -25,7 +26,7 @@ public class CmdGateEditThat extends GateCommand
 		this.addAliases("that");
 		
 		// Args
-		this.addRequiredArg("frame|content|del");
+		this.addArg(ARString.get(), "frame|content|del");
 		
 		// Requirements
 		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.get());
@@ -47,7 +48,7 @@ public class CmdGateEditThat extends GateCommand
 		Location thatLoc = thatBlock.getLocation();
 		PS thatCoord = PS.valueOf(thatBlock);
 		
-		char firstArgChar = this.arg(0).toLowerCase().charAt(0);
+		char firstArgChar = this.argAt(0).toLowerCase().charAt(0);
 		
 		// Apply
 		if (firstArgChar == 'f')
