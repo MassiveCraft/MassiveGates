@@ -23,7 +23,7 @@ public class CmdGateList extends GateCommand
 		this.addAliases("l","list");
 		
 		// Args
-		this.addArg(ArgSetting.getPager());
+		this.addArg(ArgSetting.getPage());
 		
 		// Requirements
 		this.addRequirements(ReqHasPerm.get(Perm.LIST.node));
@@ -37,13 +37,13 @@ public class CmdGateList extends GateCommand
 	public void perform() throws MassiveException
 	{
 		// Args
-		int pageHumanBased = this.readArg(1);
+		int page = this.readArg();
 		
 		// Create Pager
 		final PagerSimple<Gate> pager = new PagerSimple<Gate>(GateColl.get().getAll(), sender);
 		
 		// Use Pager
-		List<String> messages = pager.getPageTxt(pageHumanBased, "List Of Gates", new Stringifier<Gate>(){
+		List<String> messages = pager.getPageTxt(page, "List Of Gates", new Stringifier<Gate>(){
 			
 			@Override
 			public String toString(Gate gate, int index)

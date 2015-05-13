@@ -27,7 +27,7 @@ public class CmdGateTaList extends GateCommand
 		this.addAliases("list");
 		
 		// Args
-		this.addArg(ArgSetting.getPager());
+		this.addArg(ArgSetting.getPage());
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
@@ -44,7 +44,7 @@ public class CmdGateTaList extends GateCommand
 		List<String> lines = new ArrayList<String>();
 		
 		// Args
-		int pageHumanBased = this.readArg(1);
+		int page = this.readArg();
 		
 		Gate gate = gsender.getSelectedGate();
 		
@@ -67,7 +67,7 @@ public class CmdGateTaList extends GateCommand
 		}
 		
 		// Inform
-		this.sendMessage(Txt.getPage(lines, pageHumanBased, "TriggerActions For Gate "+gate.getIdNameStringShort(), sender));
+		this.sendMessage(Txt.getPage(lines, page, "TriggerActions For Gate "+gate.getIdNameStringShort(), sender));
 	}
 
 }

@@ -26,7 +26,7 @@ public class CmdGateTaAlt extends GateCommand
 		
 		// Args
 		this.addArg(ARString.get(), "trigger|action");
-		this.addArg(ArgSetting.getPager());
+		this.addArg(ArgSetting.getPage());
 		
 		// Requirements
 		this.addRequirements(ReqHasPerm.get(Perm.TA_ALT.node));
@@ -61,11 +61,11 @@ public class CmdGateTaAlt extends GateCommand
 		}
 		
 		// Args
-		int pageHumanBased = this.readArg(1);
+		int page = this.readArg();
 		
 		// Inform
 		lines = Txt.parseWrap(lines);
-		this.sendMessage(Txt.getPage(lines, pageHumanBased, title, sender));
+		this.sendMessage(Txt.getPage(lines, page, title, sender));
 	}
 	
 }

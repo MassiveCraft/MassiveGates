@@ -22,7 +22,7 @@ public class CmdGateFxAlt extends GateCommand
 		this.addAliases("alt");
 		
 		// Args
-		this.addArg(ArgSetting.getPager());
+		this.addArg(ArgSetting.getPage());
 		
 		// Requirements
 		this.addRequirements(ReqHasPerm.get(Perm.FX_ALT.node));
@@ -36,7 +36,7 @@ public class CmdGateFxAlt extends GateCommand
 	public void perform() throws MassiveException
 	{
 		// Args
-		int pageHumanBased = this.readArg(1);
+		int page = this.readArg();
 		
 		// Create Messages
 		List<String> messages = new ArrayList<String>();
@@ -66,7 +66,7 @@ public class CmdGateFxAlt extends GateCommand
 		}
 		
 		// Send Messages
-		this.sendMessage(Txt.getPage(messages, pageHumanBased, "Available Special FX", sender));
+		this.sendMessage(Txt.getPage(messages, page, "Available Special FX", sender));
 	}
 	
 }
