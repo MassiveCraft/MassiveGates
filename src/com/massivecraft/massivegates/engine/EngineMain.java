@@ -99,7 +99,7 @@ public class EngineMain extends EngineAbstract
 		if (blockFrom.equals(blockTo)) return;
 		
 		Player player = event.getPlayer();
-		if (MUtil.isNpc(player)) return;
+		if (MUtil.isntPlayer(player)) return;
 		
 		VisualizeUtil.clear(player);
 		
