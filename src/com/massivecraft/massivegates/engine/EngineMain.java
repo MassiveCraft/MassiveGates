@@ -12,6 +12,7 @@ import org.bukkit.plugin.Plugin;
 
 import com.massivecraft.massivecore.EngineAbstract;
 import com.massivecraft.massivecore.ps.PS;
+import com.massivecraft.massivecore.util.MUtil;
 import com.massivecraft.massivegates.MassiveGates;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.entity.GateColl;
@@ -98,6 +99,7 @@ public class EngineMain extends EngineAbstract
 		if (blockFrom.equals(blockTo)) return;
 		
 		Player player = event.getPlayer();
+		if (MUtil.isNpc(player)) return;
 		
 		VisualizeUtil.clear(player);
 		
