@@ -46,7 +46,7 @@ public class CmdGateTaAdd extends GateCommand
 		Gate gate = gsender.getSelectedGate();
 		Trigger trigger = this.readArg();
 		Action action = this.readArg();
-		String arg = this.readArg("");
+		String arg = this.readArg(null);
 		
 		// TODO: merge this into the arg-check?
 		// Do you have the permission to add this action?

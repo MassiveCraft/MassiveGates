@@ -70,7 +70,7 @@ public class CmdGateTaDel extends GateCommand
 		{
 			// Delete by index
 			this.setting.setReader(ARInteger.get());
-			int index = this.readArg();
+			int index = this.readArgAt(1);
 			
 			// Make it zero-based while deleting
 			index -= 1;
