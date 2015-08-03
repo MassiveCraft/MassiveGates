@@ -175,10 +175,8 @@ public class GateColl extends Coll<Gate>
 	// -------------------------------------------- //
 	
 	@Override
-	public Modification syncId(Object oid)
+	public Modification syncIdFixed(String id)
 	{
-		String id = this.fixId(oid);
-		
 		Gate gate = this.id2entity.get(id);
 		
 		if (gate != null)
@@ -187,14 +185,12 @@ public class GateColl extends Coll<Gate>
 			new EventMassiveGatesSave(gate).run();
 		}
 		
-		return super.syncId(id);
+		return super.syncIdFixed(id);
 	}
 	
 	@Override
-	public synchronized Gate removeAtLocal(Object oid)
+	public synchronized Gate removeAtLocalFixed(String id)
 	{
-		String id = this.fixId(oid);
-		
 		Gate entity = this.id2entity.get(id);
 		
 		this.clearIndexFor(entity);
@@ -202,18 +198,16 @@ public class GateColl extends Coll<Gate>
 		// Run event
 		new EventMassiveGatesDetach(entity).run();
 		
-		return super.removeAtLocal(id);
+		return super.removeAtLocalFixed(id);
 	}
 	
 	@Override
-	public synchronized void loadFromRemote(Object oid, Entry<JsonElement, Long> entry)
+	public synchronized void loadFromRemoteFixed(String id, Entry<JsonElement, Long> remoteEntry)
 	{
-		String id = this.fixId(oid);
-		
 		Gate gate = this.id2entity.get(id);
 		if (gate == null)
 		{
-			super.loadFromRemote(oid, entry);
+			super.loadFromRemoteFixed(id, remoteEntry);
 			gate = this.id2entity.get(id);
 			this.buildIndexFor(gate);
 			new EventMassiveGatesAttach(gate).run();
@@ -221,7 +215,7 @@ public class GateColl extends Coll<Gate>
 		else
 		{
 			this.clearIndexFor(gate);
-			super.loadFromRemote(oid, entry);
+			super.loadFromRemoteFixed(id, remoteEntry);
 			this.buildIndexFor(gate);
 		}
 	}
