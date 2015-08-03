@@ -73,10 +73,6 @@ public class GSender extends SenderEntity<GSender>
 		while (itr.hasNext())
 		{
 			PS coord = PS.valueOf(itr.next());
-			
-			System.out.println("PS coord = " + coord.toString());
-			System.out.println("GateColl.get().getContentToGate().size() = " + GateColl.get().getContentToGate().size());
-			
 			ret = GateColl.get().getGateAtCoord(coord);
 			if (ret != null) break;
 		}
