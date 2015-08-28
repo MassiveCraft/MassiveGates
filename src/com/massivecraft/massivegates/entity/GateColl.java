@@ -10,14 +10,10 @@ import java.util.Map.Entry;
 import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivecore.store.Coll;
 import com.massivecraft.massivecore.store.MStore;
-import com.massivecraft.massivecore.store.Modification;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivecore.xlib.gson.JsonElement;
 import com.massivecraft.massivegates.Const;
 import com.massivecraft.massivegates.MassiveGates;
-import com.massivecraft.massivegates.event.EventMassiveGatesAttach;
-import com.massivecraft.massivegates.event.EventMassiveGatesDetach;
-import com.massivecraft.massivegates.event.EventMassiveGatesSave;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
 
@@ -175,28 +171,11 @@ public class GateColl extends Coll<Gate>
 	// -------------------------------------------- //
 	
 	@Override
-	public Modification syncIdFixed(String id)
-	{
-		Gate gate = this.id2entity.get(id);
-		
-		if (gate != null)
-		{
-			// Run event
-			new EventMassiveGatesSave(gate).run();
-		}
-		
-		return super.syncIdFixed(id);
-	}
-	
-	@Override
 	public synchronized Gate removeAtLocalFixed(String id)
 	{
 		Gate entity = this.id2entity.get(id);
 		
 		this.clearIndexFor(entity);
-		
-		// Run event
-		new EventMassiveGatesDetach(entity).run();
 		
 		return super.removeAtLocalFixed(id);
 	}
@@ -210,7 +189,6 @@ public class GateColl extends Coll<Gate>
 			super.loadFromRemoteFixed(id, remoteEntry);
 			gate = this.id2entity.get(id);
 			this.buildIndexFor(gate);
-			new EventMassiveGatesAttach(gate).run();
 		}
 		else
 		{

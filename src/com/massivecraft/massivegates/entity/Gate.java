@@ -31,15 +31,17 @@ import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Const;
 import com.massivecraft.massivegates.MassiveGates;
 import com.massivecraft.massivegates.Target;
-import com.massivecraft.massivegates.event.EventMassiveGatesTeleportAfter;
-import com.massivecraft.massivegates.event.EventMassiveGatesTeleportBefore;
-import com.massivecraft.massivegates.event.EventMassiveGatesOpenChange;
 import com.massivecraft.massivegates.event.EventMassiveGatesPlayerWalk;
 import com.massivecraft.massivegates.event.EventMassiveGatesPlayerWalk.GatePlayerWalkType;
-import com.massivecraft.massivegates.event.EventMassiveGatesPowerChange;
 import com.massivecraft.massivegates.event.EventMassiveGatesUse;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
+import com.massivecraft.massivegates.ta.TriggerAtp;
+import com.massivecraft.massivegates.ta.TriggerBtp;
+import com.massivecraft.massivegates.ta.TriggerClose;
+import com.massivecraft.massivegates.ta.TriggerOpen;
+import com.massivecraft.massivegates.ta.TriggerPowerOff;
+import com.massivecraft.massivegates.ta.TriggerPowerOn;
 import com.massivecraft.massivegates.util.VisualizeUtil;
 
 public class Gate extends Entity<Gate>
@@ -135,7 +137,16 @@ public class Gate extends Entity<Gate>
 		this.open = open;
 		this.fillContent();
 		
-		new EventMassiveGatesOpenChange(this).run();
+		// Trigger!
+		if (open)
+		{
+			this.trigger(TriggerOpen.get(), null, null);
+		}
+		else
+		{
+			this.trigger(TriggerClose.get(), null, null);
+		}
+		
 		
 		// If someone is standing in a gate while it opens that should be considered as entering the gate.
 		if (this.open)
@@ -551,8 +562,14 @@ public class Gate extends Entity<Gate>
 		boolean after = this.powerHas();
 		if (before == after) return;
 		
-		// Call the event
-		new EventMassiveGatesPowerChange(this, after).run();
+		if (after)
+		{
+			this.trigger(TriggerPowerOn.get(), null, null);
+		}
+		else
+		{
+			this.trigger(TriggerPowerOff.get(), null, null);
+		}
 	}
 	
 	// -------------------------------------------- //
@@ -706,12 +723,8 @@ public class Gate extends Entity<Gate>
 		if ( ! (user instanceof Player)) return;
 		final Player player = (Player) user;
 		
-		// Store from and to locations
-		final Location from = player.getLocation();
-		final Target to = this.getTarget();
-		
 		// Call the before event
-		new EventMassiveGatesTeleportBefore(this, player, from, to).run();
+		this.trigger(TriggerBtp.get(), player, null);
 		
 		// Do safe teleport
 		final Gate gate = this;
@@ -721,7 +734,7 @@ public class Gate extends Entity<Gate>
 			{				
 				if (target.teleport(player))
 				{
-					new EventMassiveGatesTeleportAfter(gate, player, from, to).run();
+					gate.trigger(TriggerAtp.get(), player, null);
 				}
 			}
 		});
@@ -809,18 +822,6 @@ public class Gate extends Entity<Gate>
 		if (this.getMatopen() != Material.PORTAL) return;
 		
 		this.fillContent();
-	}
-	
-	// TODO: UNUSED?
-	public void fillFrame(Material material, byte data)
-	{
-		fillCoords(this.getFrame(), material, data);
-	}
-	
-	// TODO: UNUSED?
-	public void fillFrame(Material material)
-	{
-		fillCoords(this.getFrame(), material);
 	}
 	
 }

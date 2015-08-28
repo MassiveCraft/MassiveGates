@@ -123,16 +123,17 @@ public class EngineProtection extends EngineAbstract
 		this.handlerNormalSingle(event.getBlock(), event);
 	}
 	
-	@EventHandler(priority = EventPriority.MONITOR)
-	public void monitorBlockIgniteEvent(BlockIgniteEvent event)
-	{
-		this.handlerMonitorSingle(event, event.getBlock(), GateAlterType.IGNITE, event.getPlayer());
-	}
-			
 	@EventHandler(priority = EventPriority.NORMAL)
 	public void normalBlockPhysicsEvent(BlockPhysicsEvent event)
 	{
 		this.handlerNormalSingle(event.getBlock(), event);
+	}
+
+	
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void monitorBlockIgniteEvent(BlockIgniteEvent event)
+	{
+		this.handlerMonitorSingle(event, event.getBlock(), GateAlterType.IGNITE, event.getPlayer());
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL)
