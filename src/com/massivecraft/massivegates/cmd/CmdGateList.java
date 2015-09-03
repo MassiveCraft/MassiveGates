@@ -54,7 +54,7 @@ public class CmdGateList extends GateCommand
 		});
 		
 		// Send Lines
-		this.sendMessage(messages);	
+		this.message(messages);	
 	}
 	
 }

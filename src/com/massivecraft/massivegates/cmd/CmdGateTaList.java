@@ -67,7 +67,7 @@ public class CmdGateTaList extends GateCommand
 		}
 		
 		// Inform
-		this.sendMessage(Txt.getPage(lines, page, "TriggerActions For Gate "+gate.getIdNameStringShort(), sender));
+		this.message(Txt.getPage(lines, page, "TriggerActions For Gate "+gate.getIdNameStringShort(), sender));
 	}
 
 }

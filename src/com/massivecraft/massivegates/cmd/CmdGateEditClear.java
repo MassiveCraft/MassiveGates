@@ -66,7 +66,7 @@ public class CmdGateEditClear extends GateCommand
 		}
 		
 		// Inform
-		sendMessage(messages);
+		message(messages);
 		
 	}
 	

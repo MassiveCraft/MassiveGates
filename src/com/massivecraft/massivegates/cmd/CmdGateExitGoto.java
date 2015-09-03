@@ -65,7 +65,7 @@ public class CmdGateExitGoto extends GateCommand
 		}
 		
 		// Inform
-		sendMessage(messages);
+		message(messages);
 		
 	}
 	

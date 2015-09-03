@@ -51,7 +51,7 @@ public class CmdGateTargetGoto extends GateCommand
 		}
 		
 		// Inform
-		this.sendMessage(lines);
+		this.message(lines);
 	}
 	
 }

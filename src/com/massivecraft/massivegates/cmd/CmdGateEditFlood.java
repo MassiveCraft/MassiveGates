@@ -79,7 +79,7 @@ public class CmdGateEditFlood extends GateCommand
 		}
 		
 		// Send Messages
-		sendMessage(messages);
+		message(messages);
 	}
 	
 }

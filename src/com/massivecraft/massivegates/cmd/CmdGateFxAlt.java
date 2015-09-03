@@ -66,7 +66,7 @@ public class CmdGateFxAlt extends GateCommand
 		}
 		
 		// Send Messages
-		this.sendMessage(Txt.getPage(messages, page, "Available Special FX", sender));
+		this.message(Txt.getPage(messages, page, "Available Special FX", sender));
 	}
 	
 }

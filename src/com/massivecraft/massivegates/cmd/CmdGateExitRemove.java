@@ -34,6 +34,6 @@ public class CmdGateExitRemove extends GateCommand
 		gate.setExit(null);
 		
 		// Inform
-		sendMessage(Txt.parse("<i>Gate %s<i>: The exit was removed.", gate.getIdNameStringShort()));
+		message(Txt.parse("<i>Gate %s<i>: The exit was removed.", gate.getIdNameStringShort()));
 	}
 }
