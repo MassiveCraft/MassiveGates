@@ -2,7 +2,6 @@ package com.massivecraft.massivegates.cmd;
 
 import java.util.List;
 
-import com.massivecraft.massivecore.cmd.HelpCommand;
 import com.massivecraft.massivegates.entity.MConf;
 
 public class CmdGate extends GateCommand
@@ -33,7 +32,6 @@ public class CmdGate extends GateCommand
 	public CmdGate()
 	{
 		// SubCommands
-		this.addSubCommand(HelpCommand.get());
 		this.addSubCommand(this.cmdMassiveGatesNew);
 		this.addSubCommand(this.cmdMassiveGatesDelete);
 		this.addSubCommand(this.cmdMassiveGatesList);
