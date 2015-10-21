@@ -1,8 +1,8 @@
 package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.arg.ARString;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
+import com.massivecraft.massivecore.cmd.type.TypeString;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.entity.GateColl;
@@ -18,8 +18,8 @@ public class CmdGateNew extends GateCommand
 		// Aliases
 		this.addAliases("new", "create");
 		
-		// Args
-		this.addArg(ARString.get(), "name", "*none*", true);
+		// Parameters
+		this.addParameter(TypeString.get(), "name", "*none*", true);
 		
 		// Requirements
 		this.addRequirements(ReqHasPerm.get(Perm.NEW.node));

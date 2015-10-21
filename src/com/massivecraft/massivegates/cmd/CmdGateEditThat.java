@@ -3,9 +3,9 @@ package com.massivecraft.massivegates.cmd;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 
-import com.massivecraft.massivecore.cmd.arg.ARString;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.cmd.req.ReqIsPlayer;
+import com.massivecraft.massivecore.cmd.type.TypeString;
 import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivecore.util.SmokeUtil;
 import com.massivecraft.massivegates.Const;
@@ -25,8 +25,8 @@ public class CmdGateEditThat extends GateCommand
 		// Aliases
 		this.addAliases("that");
 		
-		// Args
-		this.addArg(ARString.get(), "frame|content|del");
+		// Parameters
+		this.addParameter(TypeString.get(), "frame|content|del");
 		
 		// Requirements
 		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.get());

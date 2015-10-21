@@ -8,9 +8,9 @@ import java.util.Set;
 import org.bukkit.block.Block;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.arg.ARBoolean;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.cmd.req.ReqIsPlayer;
+import com.massivecraft.massivecore.cmd.type.TypeBoolean;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Const;
 import com.massivecraft.massivegates.Perm;
@@ -31,8 +31,8 @@ public class CmdGateEditFlood extends GateCommand
 		// Aliases
 		this.addAliases("flood");
 		
-		// Args
-		this.addArg(ARBoolean.get(), "frame", "true");
+		// Parameters
+		this.addParameter(TypeBoolean.get(), "frame", "true");
 		
 		// Requirements
 		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.get());

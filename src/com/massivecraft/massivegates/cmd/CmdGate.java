@@ -31,21 +31,21 @@ public class CmdGate extends GateCommand
 	
 	public CmdGate()
 	{
-		// SubCommands
-		this.addSubCommand(this.cmdMassiveGatesNew);
-		this.addSubCommand(this.cmdMassiveGatesDelete);
-		this.addSubCommand(this.cmdMassiveGatesList);
-		this.addSubCommand(this.cmdMassiveGatesSel);
-		this.addSubCommand(this.cmdMassiveGatesName);
-		this.addSubCommand(this.cmdMassiveGatesOpen);
-		this.addSubCommand(this.cmdMassiveGatesEdit);
-		this.addSubCommand(this.cmdMassiveGatesMato);
-		this.addSubCommand(this.cmdMassiveGatesMatc);
-		this.addSubCommand(this.cmdMassiveGatesSee);
-		this.addSubCommand(this.cmdMassiveGatesTarget);
-		this.addSubCommand(this.cmdMassiveGatesExit);
-		this.addSubCommand(this.cmdMassiveGatesTa);
-		this.addSubCommand(this.cmdMassiveGatesFx);
+		// Children
+		this.addChild(this.cmdMassiveGatesNew);
+		this.addChild(this.cmdMassiveGatesDelete);
+		this.addChild(this.cmdMassiveGatesList);
+		this.addChild(this.cmdMassiveGatesSel);
+		this.addChild(this.cmdMassiveGatesName);
+		this.addChild(this.cmdMassiveGatesOpen);
+		this.addChild(this.cmdMassiveGatesEdit);
+		this.addChild(this.cmdMassiveGatesMato);
+		this.addChild(this.cmdMassiveGatesMatc);
+		this.addChild(this.cmdMassiveGatesSee);
+		this.addChild(this.cmdMassiveGatesTarget);
+		this.addChild(this.cmdMassiveGatesExit);
+		this.addChild(this.cmdMassiveGatesTa);
+		this.addChild(this.cmdMassiveGatesFx);
 	}
 
 	// -------------------------------------------- //

@@ -1,12 +1,12 @@
 package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.ArgSetting;
-import com.massivecraft.massivecore.cmd.arg.ARInteger;
+import com.massivecraft.massivecore.cmd.Parameter;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
+import com.massivecraft.massivecore.cmd.type.TypeInteger;
 import com.massivecraft.massivegates.Perm;
-import com.massivecraft.massivegates.cmdarg.ARAction;
-import com.massivecraft.massivegates.cmdarg.ARTrigger;
+import com.massivecraft.massivegates.cmdarg.TypeAction;
+import com.massivecraft.massivegates.cmdarg.TypeTrigger;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.ta.Action;
@@ -18,7 +18,7 @@ public class CmdGateTaDel extends GateCommand
 	// FIELDS
 	// -------------------------------------------- //
 	
-	private ArgSetting setting = ArgSetting.of(ARAction.get(), false, "index|action|all", "all");
+	private Parameter parameter = new Parameter(TypeAction.get(), false, "index|action|all", "all");
 	
 	// -------------------------------------------- //
 	// CONSTRUCT
@@ -29,9 +29,9 @@ public class CmdGateTaDel extends GateCommand
 		// Aliases
 		this.addAliases("del");
 		
-		// Args
-		this.addArg(ARTrigger.get(), "trigger|all");
-		this.addArg(setting);
+		// Parameters
+		this.addParameter(TypeTrigger.get(), "trigger|all");
+		this.addParameter(parameter);
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
@@ -69,7 +69,7 @@ public class CmdGateTaDel extends GateCommand
 		if (isNumeric(this.argAt(1)))
 		{
 			// Delete by index
-			this.setting.setReader(ARInteger.get());
+			this.parameter.setType(TypeInteger.get());
 			int index = this.readArgAt(1);
 			
 			// Make it zero-based while deleting
@@ -90,7 +90,7 @@ public class CmdGateTaDel extends GateCommand
 		{
 			// Delete by actionId
 			// Fetch the Action
-			this.setting.setReader(ARAction.get());
+			this.parameter.setType(TypeAction.get());
 			Action action = this.readArgAt(1);
 			
 			int count = gate.delActions(trigger, action);

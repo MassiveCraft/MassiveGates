@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.arg.ARAbstract;
+import com.massivecraft.massivecore.cmd.type.TypeAbstract;
 import com.massivecraft.massivecore.collections.MassiveList;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.entity.GSender;
@@ -17,14 +17,14 @@ import com.massivecraft.massivegates.entity.GSenderColl;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.entity.GateColl;
 
-public class ARGate extends ARAbstract<Gate>
+public class TypeGate extends TypeAbstract<Gate>
 {
 	// -------------------------------------------- //
 	// INSTANCE & CONSTRUCT
 	// -------------------------------------------- //
 	
-	private static ARGate i = new ARGate();
-	public static ARGate get() { return i; }
+	private static TypeGate i = new TypeGate();
+	public static TypeGate get() { return i; }
 	
 	// -------------------------------------------- //
 	// OVERRIDE

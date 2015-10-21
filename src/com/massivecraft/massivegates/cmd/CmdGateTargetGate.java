@@ -3,7 +3,7 @@ package com.massivecraft.massivegates.cmd;
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivegates.Perm;
-import com.massivecraft.massivegates.cmdarg.ARGate;
+import com.massivecraft.massivegates.cmdarg.TypeGate;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
 
@@ -18,8 +18,8 @@ public class CmdGateTargetGate extends GateCommand
 		// Aliases
 		this.addAliases("gate");
 		
-		// Args
-		this.addArg(ARGate.get(), "targetgate");
+		// Parameters
+		this.addParameter(TypeGate.get(), "targetgate");
 		
 		// Requirement
 		this.addRequirements(ReqGateSelected.get());

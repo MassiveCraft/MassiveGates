@@ -23,10 +23,10 @@ public class CmdGateEdit extends GateCommand
 		// Aliases
 		this.addAliases("e", "edit");
 		
-		// Subcommands
-		this.addSubCommand(this.cmdMassiveGatesEditThat);
-		this.addSubCommand(this.cmdMassiveGatesEditFlood);
-		this.addSubCommand(this.cmdMassiveGatesEditClear);
+		// Children
+		this.addChild(this.cmdMassiveGatesEditThat);
+		this.addChild(this.cmdMassiveGatesEditFlood);
+		this.addChild(this.cmdMassiveGatesEditClear);
 		
 		// Requirements
 		this.addRequirements(ReqHasPerm.get(Perm.EDIT.node));

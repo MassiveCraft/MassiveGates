@@ -5,7 +5,7 @@ import org.bukkit.Material;
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivegates.Perm;
-import com.massivecraft.massivegates.cmdarg.ARGate;
+import com.massivecraft.massivegates.cmdarg.TypeGate;
 import com.massivecraft.massivegates.entity.Gate;
 
 public class CmdGateDelete extends GateCommand
@@ -19,8 +19,8 @@ public class CmdGateDelete extends GateCommand
 		// Aliases
 		this.addAliases("del", "delete", "rm", "remove");
 		
-		// Args
-		this.addArg(ARGate.get(), "gate");
+		// Parameters
+		this.addParameter(TypeGate.get(), "gate");
 		
 		// Requirements
 		this.addRequirements(ReqHasPerm.get(Perm.DELETE.node));

@@ -28,9 +28,9 @@ public class CmdGateName extends GateCommand
 		// Aliases
 		this.addAliases("name");
 		
-		// Subcommands
-		this.addSubCommand(this.cmdMassiveGatesNameSet);
-		this.addSubCommand(this.cmdMassiveGatesNameRemove);
+		// Children
+		this.addChild(this.cmdMassiveGatesNameSet);
+		this.addChild(this.cmdMassiveGatesNameRemove);
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());

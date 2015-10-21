@@ -28,8 +28,8 @@ public class CmdGateOpen extends GateCommand
 		// Aliases
 		this.addAliases("open");
 		
-		// Subcommands
-		this.addSubCommand(this.cmdMassiveGatesOpenSet);
+		// Children
+		this.addChild(this.cmdMassiveGatesOpenSet);
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());

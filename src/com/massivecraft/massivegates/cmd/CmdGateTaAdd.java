@@ -3,12 +3,12 @@ package com.massivecraft.massivegates.cmd;
 import java.util.List;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.arg.ARString;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
+import com.massivecraft.massivecore.cmd.type.TypeString;
 import com.massivecraft.massivecore.util.PermUtil;
 import com.massivecraft.massivegates.Perm;
-import com.massivecraft.massivegates.cmdarg.ARAction;
-import com.massivecraft.massivegates.cmdarg.ARTrigger;
+import com.massivecraft.massivegates.cmdarg.TypeAction;
+import com.massivecraft.massivegates.cmdarg.TypeTrigger;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.ta.Action;
@@ -25,10 +25,10 @@ public class CmdGateTaAdd extends GateCommand
 		// Aliases
 		this.addAliases("add");
 		
-		// Args
-		this.addArg(ARTrigger.get(), "trigger");
-		this.addArg(ARAction.get(), "action");
-		this.addArg(ARString.get(), "argument", "", true);
+		// Parameters
+		this.addParameter(TypeTrigger.get(), "trigger");
+		this.addParameter(TypeAction.get(), "action");
+		this.addParameter(TypeString.get(), "argument", "", true);
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());

@@ -3,9 +3,9 @@ package com.massivecraft.massivegates.cmd;
 import org.bukkit.Material;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.arg.ARByte;
-import com.massivecraft.massivecore.cmd.arg.ARMaterial;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
+import com.massivecraft.massivecore.cmd.type.TypeByte;
+import com.massivecraft.massivecore.cmd.type.TypeMaterial;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
@@ -22,9 +22,9 @@ public class CmdGateMatc extends GateCommand
 		// Aliases
 		this.addAliases("mc","matc");
 		
-		// Args
-		this.addArg(ARMaterial.get(), "material", "get");
-		this.addArg(ARByte.get(), "data", "0");
+		// Parameters
+		this.addParameter(TypeMaterial.get(), "material", "get");
+		this.addParameter(TypeByte.get(), "data", "0");
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());

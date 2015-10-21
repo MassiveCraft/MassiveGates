@@ -30,11 +30,11 @@ public class CmdGateTa extends GateCommand
 		// Aliases
 		this.addAliases("ta");
 		
-		// Subcommands
-		this.addSubCommand(this.cmdMassiveGatesTaAlt);
-		this.addSubCommand(this.cmdMassiveGatesTaList);
-		this.addSubCommand(this.cmdMassiveGatesTaAdd);
-		this.addSubCommand(this.cmdMassiveGatesTaDel);
+		// Children
+		this.addChild(this.cmdMassiveGatesTaAlt);
+		this.addChild(this.cmdMassiveGatesTaList);
+		this.addChild(this.cmdMassiveGatesTaAdd);
+		this.addChild(this.cmdMassiveGatesTaDel);
 		
 		// Requirements
 		this.addRequirements(ReqHasPerm.get(Perm.TA.node));

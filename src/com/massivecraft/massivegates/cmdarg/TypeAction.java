@@ -6,28 +6,28 @@ import java.util.List;
 
 import org.bukkit.command.CommandSender;
 
-import com.massivecraft.massivecore.cmd.arg.ARAbstractSelect;
+import com.massivecraft.massivecore.cmd.type.TypeAbstractSelect;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.entity.GateColl;
-import com.massivecraft.massivegates.ta.Trigger;
+import com.massivecraft.massivegates.ta.Action;
 
-public class ARTrigger extends ARAbstractSelect<Trigger>
+public class TypeAction extends TypeAbstractSelect<Action>
 {
 	// -------------------------------------------- //
 	// INSTANCE & CONSTRUCT
 	// -------------------------------------------- //
 	
-	private static ARTrigger i = new ARTrigger();
-	public static ARTrigger get() { return i; }
+	private static TypeAction i = new TypeAction();
+	public static TypeAction get() { return i; }
 	
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
 
 	@Override
-	public Trigger select(String str, CommandSender sender)
+	public Action select(String str, CommandSender sender)
 	{
-		return GateColl.get().getTriggerName(str);
+		return GateColl.get().getActionName(str);
 	}
 	
 	@Override
@@ -40,9 +40,9 @@ public class ARTrigger extends ARAbstractSelect<Trigger>
 	public Collection<String> altNames(CommandSender sender)
 	{
 		List<String> ret = new ArrayList<String>();
-		for (Trigger trigger : GateColl.get().getTriggers())
+		for (Action action : GateColl.get().getActions())
 		{
-			ret.add(trigger.getName());
+			ret.add(action.getName());
 		}
 		return ret;
 	}

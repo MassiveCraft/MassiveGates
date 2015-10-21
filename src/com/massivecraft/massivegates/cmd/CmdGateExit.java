@@ -29,10 +29,10 @@ public class CmdGateExit extends GateCommand
 		// Aliases
 		this.addAliases("exit");
 		
-		// Subcommands
-		this.addSubCommand(this.cmdMassiveGatesExitHere);
-		this.addSubCommand(this.cmdMassiveGatesExitGoto);
-		this.addSubCommand(this.cmdMassiveGatesExitRemove);
+		// Children
+		this.addChild(this.cmdMassiveGatesExitHere);
+		this.addChild(this.cmdMassiveGatesExitGoto);
+		this.addChild(this.cmdMassiveGatesExitRemove);
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());

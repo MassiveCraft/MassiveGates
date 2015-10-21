@@ -30,11 +30,11 @@ public class CmdGateTarget extends GateCommand
 		// Aliases
 		this.addAliases("target");
 		
-		// Subcommands
-		this.addSubCommand(this.cmdMassiveGatesTargetHere);
-		this.addSubCommand(this.cmdMassiveGatesTargetGate);
-		this.addSubCommand(this.cmdMassiveGatesTargetGoto);
-		this.addSubCommand(this.cmdMassiveGatesTargetRemove);
+		// Children
+		this.addChild(this.cmdMassiveGatesTargetHere);
+		this.addChild(this.cmdMassiveGatesTargetGate);
+		this.addChild(this.cmdMassiveGatesTargetGoto);
+		this.addChild(this.cmdMassiveGatesTargetRemove);
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());

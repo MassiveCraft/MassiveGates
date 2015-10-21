@@ -3,9 +3,9 @@ package com.massivecraft.massivegates.cmd;
 import org.bukkit.Location;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.arg.ARString;
 import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
 import com.massivecraft.massivecore.cmd.req.ReqIsPlayer;
+import com.massivecraft.massivecore.cmd.type.TypeString;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.util.Fx;
 
@@ -20,7 +20,7 @@ public class CmdGateFxTest extends GateCommand
 		this.addAliases("test");
 		
 		// Arg
-		this.addArg(ARString.get(), "fxstring");
+		this.addParameter(TypeString.get(), "fxstring");
 		
 		// Requirements
 		this.addRequirements(ReqIsPlayer.get());

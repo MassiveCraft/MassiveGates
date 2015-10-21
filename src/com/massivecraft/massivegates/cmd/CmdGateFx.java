@@ -22,9 +22,9 @@ public class CmdGateFx extends GateCommand
 		// Aliases
 		this.addAliases("fx");
 		
-		// Subcommands
-		this.addSubCommand(this.cmdMassiveGatesFxAlt);
-		this.addSubCommand(this.cmdMassiveGatesFxTest);
+		// Children
+		this.addChild(this.cmdMassiveGatesFxAlt);
+		this.addChild(this.cmdMassiveGatesFxTest);
 		
 		// Requirements
 		this.addRequirements(ReqHasPerm.get(Perm.FX.node));
@@ -34,7 +34,7 @@ public class CmdGateFx extends GateCommand
 		"<i>This system is used by the triggeractions \"FXE\" and \"FXG\".",
 		"<i>Effects are defined with a comma-list of base effects.",
 		"<i>Some effects use a datavalue. Put an int after effect name.",
-		"<i>Example: \"<h>smoke,potion5,fire<i>\". (potion got d§ata=5)"
+		"<i>Example: \"<h>smoke,potion5,fire<i>\". (potion got dï¿½ata=5)"
 		);
 	}
 	
