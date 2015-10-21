@@ -21,7 +21,7 @@ public class CmdGateEdit extends GateCommand
 	public CmdGateEdit()
 	{
 		// Aliases
-		this.addAliases("e", "edit");
+		this.addAliases("edit");
 		
 		// Children
 		this.addChild(this.cmdMassiveGatesEditThat);

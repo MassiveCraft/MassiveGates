@@ -18,7 +18,7 @@ public class CmdGateList extends GateCommand
 	public CmdGateList()
 	{
 		// Aliases
-		this.addAliases("l","list");
+		this.addAliases("list");
 		
 		// Parameters
 		this.addParameter(Parameter.getPage());

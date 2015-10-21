@@ -15,7 +15,7 @@ public class CmdGateSel extends GateCommand
 	public CmdGateSel()
 	{
 		// Aliases
-		this.addAliases("sel");
+		this.addAliases("select", "use");
 		
 		// Parameters
 		this.addParameter(TypeGate.get(), "gate", "*get*");

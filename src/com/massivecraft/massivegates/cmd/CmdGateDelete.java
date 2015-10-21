@@ -17,7 +17,7 @@ public class CmdGateDelete extends GateCommand
 	public CmdGateDelete()
 	{
 		// Aliases
-		this.addAliases("del", "delete", "rm", "remove");
+		this.addAliases("delete", "rm", "remove");
 		
 		// Parameters
 		this.addParameter(TypeGate.get(), "gate");

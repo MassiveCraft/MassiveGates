@@ -15,7 +15,7 @@ public class CmdGateExitRemove extends GateCommand
 	public CmdGateExitRemove()
 	{
 		// Aliases
-		this.addAliases("rm","remove");
+		this.addAliases("rm", "remove");
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
