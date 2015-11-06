@@ -1,6 +1,8 @@
 package com.massivecraft.massivegates.ta;
 
-public interface Trigger
+import com.massivecraft.massivecore.Named;
+
+public interface Trigger extends Named
 {
 	// -------------------------------------------- //
 	// FIELDS

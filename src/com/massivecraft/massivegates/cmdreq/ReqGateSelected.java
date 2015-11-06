@@ -2,13 +2,13 @@ package com.massivecraft.massivegates.cmdreq;
 
 import org.bukkit.command.CommandSender;
 
-import com.massivecraft.massivecore.cmd.MassiveCommand;
-import com.massivecraft.massivecore.cmd.req.ReqAbstract;
+import com.massivecraft.massivecore.command.MassiveCommand;
+import com.massivecraft.massivecore.command.requirement.RequirementAbstract;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.entity.GSender;
 import com.massivecraft.massivegates.entity.GSenderColl;
 
-public class ReqGateSelected extends ReqAbstract
+public class ReqGateSelected extends RequirementAbstract
 {
 	// -------------------------------------------- //
 	// STATIC

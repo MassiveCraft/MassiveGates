@@ -1,4 +1,4 @@
-package com.massivecraft.massivegates.cmdarg;
+package com.massivecraft.massivegates.cmd.type;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -9,8 +9,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.type.TypeAbstract;
 import com.massivecraft.massivecore.collections.MassiveList;
+import com.massivecraft.massivecore.command.type.TypeAbstract;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.entity.GSender;
 import com.massivecraft.massivegates.entity.GSenderColl;

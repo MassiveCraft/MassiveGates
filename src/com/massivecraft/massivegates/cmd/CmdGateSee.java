@@ -1,7 +1,7 @@
 package com.massivecraft.massivegates.cmd;
 
-import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
-import com.massivecraft.massivecore.cmd.req.ReqIsPlayer;
+import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
+import com.massivecraft.massivecore.command.requirement.RequirementIsPlayer;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
@@ -18,8 +18,8 @@ public class CmdGateSee extends GateCommand
 		this.addAliases("see");
 		
 		// Requirements
-		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.get());
-		this.addRequirements(ReqHasPerm.get(Perm.SEE.node));
+		this.addRequirements(RequirementIsPlayer.get(), ReqGateSelected.get());
+		this.addRequirements(RequirementHasPerm.get(Perm.SEE.node));
 	}
 	
 	// -------------------------------------------- //

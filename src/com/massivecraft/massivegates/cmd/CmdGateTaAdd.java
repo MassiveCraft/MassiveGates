@@ -3,12 +3,12 @@ package com.massivecraft.massivegates.cmd;
 import java.util.List;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
-import com.massivecraft.massivecore.cmd.type.TypeString;
+import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
+import com.massivecraft.massivecore.command.type.primitive.TypeString;
 import com.massivecraft.massivecore.util.PermUtil;
 import com.massivecraft.massivegates.Perm;
-import com.massivecraft.massivegates.cmdarg.TypeAction;
-import com.massivecraft.massivegates.cmdarg.TypeTrigger;
+import com.massivecraft.massivegates.cmd.type.TypeAction;
+import com.massivecraft.massivegates.cmd.type.TypeTrigger;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.ta.Action;
@@ -32,7 +32,7 @@ public class CmdGateTaAdd extends GateCommand
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(ReqHasPerm.get(Perm.TA_ADD.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.TA_ADD.node));
 	}
 	
 	// -------------------------------------------- //

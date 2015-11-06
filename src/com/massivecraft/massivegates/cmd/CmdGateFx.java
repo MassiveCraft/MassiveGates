@@ -1,6 +1,6 @@
 package com.massivecraft.massivegates.cmd;
 
-import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
+import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivegates.Perm;
 
 
@@ -27,7 +27,7 @@ public class CmdGateFx extends GateCommand
 		this.addChild(this.cmdMassiveGatesFxTest);
 		
 		// Requirements
-		this.addRequirements(ReqHasPerm.get(Perm.FX.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.FX.node));
 		
 		// Help
 		this.setHelp(

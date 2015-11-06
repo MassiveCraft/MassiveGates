@@ -8,9 +8,9 @@ import java.util.Set;
 import org.bukkit.block.Block;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
-import com.massivecraft.massivecore.cmd.req.ReqIsPlayer;
-import com.massivecraft.massivecore.cmd.type.TypeBoolean;
+import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
+import com.massivecraft.massivecore.command.requirement.RequirementIsPlayer;
+import com.massivecraft.massivecore.command.type.primitive.TypeBoolean;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Const;
 import com.massivecraft.massivegates.Perm;
@@ -32,11 +32,11 @@ public class CmdGateEditFlood extends GateCommand
 		this.addAliases("flood");
 		
 		// Parameters
-		this.addParameter(TypeBoolean.get(), "frame", "true");
+		this.addParameter(TypeBoolean.getTrue(), "frame", "true");
 		
 		// Requirements
-		this.addRequirements(ReqIsPlayer.get(), ReqGateSelected.get());
-		this.addRequirements(ReqHasPerm.get(Perm.EDIT_FLOOD.node));
+		this.addRequirements(RequirementIsPlayer.get(), ReqGateSelected.get());
+		this.addRequirements(RequirementHasPerm.get(Perm.EDIT_FLOOD.node));
 	}
 	
 	// -------------------------------------------- //

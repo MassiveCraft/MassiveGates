@@ -1,6 +1,6 @@
 package com.massivecraft.massivegates.cmd;
 
-import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
+import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
@@ -19,7 +19,7 @@ public class CmdGateExitRemove extends GateCommand
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(ReqHasPerm.get(Perm.EXIT_REMOVE.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.EXIT_REMOVE.node));
 	}
 	
 	// -------------------------------------------- //

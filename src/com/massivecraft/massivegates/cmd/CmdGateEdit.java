@@ -1,6 +1,6 @@
 package com.massivecraft.massivegates.cmd;
 
-import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
+import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivegates.Perm;
 
 
@@ -29,7 +29,7 @@ public class CmdGateEdit extends GateCommand
 		this.addChild(this.cmdMassiveGatesEditClear);
 		
 		// Requirements
-		this.addRequirements(ReqHasPerm.get(Perm.EDIT.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.EDIT.node));
 	}
 
 }

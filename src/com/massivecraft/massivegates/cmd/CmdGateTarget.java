@@ -3,7 +3,7 @@ package com.massivecraft.massivegates.cmd;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
+import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
@@ -38,7 +38,7 @@ public class CmdGateTarget extends GateCommand
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(ReqHasPerm.get(Perm.TARGET.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.TARGET.node));
 	}
 	
 	// -------------------------------------------- //

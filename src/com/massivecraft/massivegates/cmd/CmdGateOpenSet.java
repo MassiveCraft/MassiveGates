@@ -1,8 +1,8 @@
 package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
-import com.massivecraft.massivecore.cmd.type.TypeBoolean;
+import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
+import com.massivecraft.massivecore.command.type.primitive.TypeBoolean;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
@@ -20,11 +20,11 @@ public class CmdGateOpenSet extends GateCommand
 		this.addAliases("set");
 		
 		// Parameters
-		this.addParameter(TypeBoolean.get(), "flag", true);
+		this.addParameter(TypeBoolean.getTrue(), "flag", true);
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(ReqHasPerm.get(Perm.OPEN_SET.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.OPEN_SET.node));
 	}
 	
 	// -------------------------------------------- //

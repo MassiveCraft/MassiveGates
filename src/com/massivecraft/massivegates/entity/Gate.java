@@ -23,6 +23,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 
+import com.massivecraft.massivecore.Named;
 import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivecore.ps.PSFormatDesc;
 import com.massivecraft.massivecore.store.Entity;
@@ -44,7 +45,7 @@ import com.massivecraft.massivegates.ta.TriggerPowerOff;
 import com.massivecraft.massivegates.ta.TriggerPowerOn;
 import com.massivecraft.massivegates.util.VisualizeUtil;
 
-public class Gate extends Entity<Gate>
+public class Gate extends Entity<Gate> implements Named
 {
 	// -------------------------------------------- //
 	// OVERRIDE: ENTITY
@@ -169,6 +170,7 @@ public class Gate extends Entity<Gate>
 	// -------------------------------------------- //
 	
 	// Raw
+	@Override
 	public String getName() { return this.name; }
 	public void setName(String val) { this.name = val; }
 	

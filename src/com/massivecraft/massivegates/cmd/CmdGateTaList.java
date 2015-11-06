@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.Parameter;
-import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
+import com.massivecraft.massivecore.command.Parameter;
+import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
@@ -31,7 +31,7 @@ public class CmdGateTaList extends GateCommand
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(ReqHasPerm.get(Perm.TA_LIST.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.TA_LIST.node));
 	}
 	
 	// -------------------------------------------- //

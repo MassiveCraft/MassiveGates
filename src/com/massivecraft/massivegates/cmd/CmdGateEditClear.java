@@ -3,8 +3,8 @@ package com.massivecraft.massivegates.cmd;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
-import com.massivecraft.massivecore.cmd.type.TypeString;
+import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
+import com.massivecraft.massivecore.command.type.primitive.TypeString;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
@@ -26,7 +26,7 @@ public class CmdGateEditClear extends GateCommand
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(ReqHasPerm.get(Perm.EDIT_CLEAR.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.EDIT_CLEAR.node));
 	}
 	
 	// -------------------------------------------- //

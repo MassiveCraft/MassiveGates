@@ -121,14 +121,6 @@ public class GateColl extends Coll<Gate>
 		return this.id2action.get(id);
 	}
 	
-	public Action getActionName(String name)
-	{
-		Action ret = null;
-		String bestName = Txt.getBestCIStart(name2action.keySet(), name);
-		if (bestName != null) ret = name2action.get(bestName);
-		return ret;
-	}
-	
 	// -------------------------------------------- //
 	// FIELD: triggers
 	// -------------------------------------------- //

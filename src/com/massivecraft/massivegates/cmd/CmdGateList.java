@@ -1,8 +1,8 @@
 package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.Parameter;
-import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
+import com.massivecraft.massivecore.command.Parameter;
+import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivecore.pager.Pager;
 import com.massivecraft.massivecore.pager.Stringifier;
 import com.massivecraft.massivegates.Perm;
@@ -24,7 +24,7 @@ public class CmdGateList extends GateCommand
 		this.addParameter(Parameter.getPage());
 		
 		// Requirements
-		this.addRequirements(ReqHasPerm.get(Perm.LIST.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.LIST.node));
 	}
 
 	// -------------------------------------------- //

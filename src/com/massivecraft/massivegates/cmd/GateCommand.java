@@ -1,6 +1,6 @@
 package com.massivecraft.massivegates.cmd;
 
-import com.massivecraft.massivecore.cmd.MassiveCommand;
+import com.massivecraft.massivecore.command.MassiveCommand;
 import com.massivecraft.massivegates.entity.GSender;
 import com.massivecraft.massivegates.entity.GSenderColl;
 

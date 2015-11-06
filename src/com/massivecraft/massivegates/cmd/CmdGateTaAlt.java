@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.Parameter;
-import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
-import com.massivecraft.massivecore.cmd.type.TypeString;
+import com.massivecraft.massivecore.command.Parameter;
+import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
+import com.massivecraft.massivecore.command.type.primitive.TypeString;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.entity.GateColl;
@@ -29,7 +29,7 @@ public class CmdGateTaAlt extends GateCommand
 		this.addParameter(Parameter.getPage());
 		
 		// Requirements
-		this.addRequirements(ReqHasPerm.get(Perm.TA_ALT.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.TA_ALT.node));
 	}
 	
 	// -------------------------------------------- //

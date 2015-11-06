@@ -3,9 +3,9 @@ package com.massivecraft.massivegates.cmd;
 import org.bukkit.Material;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
-import com.massivecraft.massivecore.cmd.type.TypeByte;
-import com.massivecraft.massivecore.cmd.type.TypeMaterial;
+import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
+import com.massivecraft.massivecore.command.type.enumeration.TypeMaterial;
+import com.massivecraft.massivecore.command.type.primitive.TypeByte;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
@@ -28,7 +28,7 @@ public class CmdGateMato extends GateCommand
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(ReqHasPerm.get(Perm.MATO.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.MATO.node));
 	}
 	
 	// -------------------------------------------- //

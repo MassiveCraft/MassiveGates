@@ -5,9 +5,10 @@ import java.util.List;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 
+import com.massivecraft.massivecore.Named;
 import com.massivecraft.massivegates.entity.Gate;
 
-public interface Action
+public interface Action extends Named
 {
 	// -------------------------------------------- //
 	// FIELDS

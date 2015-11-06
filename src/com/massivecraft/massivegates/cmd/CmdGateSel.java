@@ -1,9 +1,9 @@
 package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivecore.MassiveException;
-import com.massivecraft.massivecore.cmd.req.ReqHasPerm;
+import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivegates.Perm;
-import com.massivecraft.massivegates.cmdarg.TypeGate;
+import com.massivecraft.massivegates.cmd.type.TypeGate;
 import com.massivecraft.massivegates.entity.Gate;
 
 public class CmdGateSel extends GateCommand
@@ -21,7 +21,7 @@ public class CmdGateSel extends GateCommand
 		this.addParameter(TypeGate.get(), "gate", "*get*");
 		
 		// Requirements
-		this.addRequirements(ReqHasPerm.get(Perm.SELECT.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.SELECT.node));
 	}
 	
 	// -------------------------------------------- //
