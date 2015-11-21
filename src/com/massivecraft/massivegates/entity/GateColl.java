@@ -11,7 +11,7 @@ import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivecore.store.Coll;
 import com.massivecraft.massivecore.store.MStore;
 import com.massivecraft.massivecore.util.Txt;
-import com.massivecraft.massivecore.xlib.gson.JsonElement;
+import com.massivecraft.massivecore.xlib.gson.JsonObject;
 import com.massivecraft.massivegates.Const;
 import com.massivecraft.massivegates.MassiveGates;
 import com.massivecraft.massivegates.ta.Action;
@@ -173,7 +173,7 @@ public class GateColl extends Coll<Gate>
 	}
 	
 	@Override
-	public synchronized void loadFromRemoteFixed(String id, Entry<JsonElement, Long> remoteEntry)
+	public synchronized void loadFromRemoteFixed(String id, Entry<JsonObject, Long> remoteEntry)
 	{
 		Gate gate = this.id2entity.get(id);
 		if (gate == null)
