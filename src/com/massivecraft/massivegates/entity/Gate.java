@@ -136,6 +136,7 @@ public class Gate extends Entity<Gate> implements Named
 	public void setOpen(boolean open)
 	{
 		this.open = open;
+		this.changed();
 		this.fillContent();
 		
 		// Trigger!
@@ -147,7 +148,6 @@ public class Gate extends Entity<Gate> implements Named
 		{
 			this.trigger(TriggerClose.get(), null, null);
 		}
-		
 		
 		// If someone is standing in a gate while it opens that should be considered as entering the gate.
 		if (this.open)
@@ -172,7 +172,7 @@ public class Gate extends Entity<Gate> implements Named
 	// Raw
 	@Override
 	public String getName() { return this.name; }
-	public void setName(String val) { this.name = val; }
+	public void setName(String val) { this.name = val; this.changed(); }
 	
 	// Finer
 	public String getIdNameStringShort()
@@ -201,7 +201,7 @@ public class Gate extends Entity<Gate> implements Named
 	
 	// Raw
 	public String getDesc() { return this.desc; }
-	public void setDesc(String val) { this.desc = val; }
+	public void setDesc(String val) { this.desc = val; this.changed(); }
 	
 	// -------------------------------------------- //
 	// FIELD: matopen
@@ -221,6 +221,7 @@ public class Gate extends Entity<Gate> implements Named
 		{
 			this.fillContent(this.matopen, this.dataopen);
 		}
+		this.changed();
 	}
 	
 	public Byte getDataopen()
@@ -245,13 +246,13 @@ public class Gate extends Entity<Gate> implements Named
 		{
 			this.fillContent(this.matclosed, this.dataclosed);
 		}
+		this.changed();
 	}
 	
 	public Byte getDataclosed()
 	{
 		return this.dataclosed;
 	}
-
 	
 	// -------------------------------------------- //
 	// FIELD: exit
@@ -259,7 +260,7 @@ public class Gate extends Entity<Gate> implements Named
 	
 	//Raw
 	public PS getExit() { return this.exit; }
-	public void setExit(PS val) { this.exit = val; }
+	public void setExit(PS val) { this.exit = val; this.changed(); }
 	
 	// Finer
 	public String getExitDesc()
@@ -290,11 +291,14 @@ public class Gate extends Entity<Gate> implements Named
 	{
 		this.clearContent();
 		this.addContent(coords);
+		this.changed();
 	}
 	
 	// Finer
 	public void addContent(PS coord)
 	{
+		this.changed();
+		
 		// Easy if detached
 		if (this.detached())
 		{
@@ -354,6 +358,8 @@ public class Gate extends Entity<Gate> implements Named
 	
 	public void delContent(PS coord)
 	{
+		this.changed();
+		 
 		// Easy if detached
 		if (this.detached())
 		{
@@ -429,6 +435,8 @@ public class Gate extends Entity<Gate> implements Named
 
 	public void addFrame(PS coord)
 	{
+		this.changed();
+		 
 		// Easy if detached
 		if (this.detached())
 		{
@@ -456,6 +464,8 @@ public class Gate extends Entity<Gate> implements Named
 	
 	public void delFrame(PS coord)
 	{
+		this.changed();
+		
 		// Easy if detached
 		if (this.detached())
 		{
@@ -495,6 +505,7 @@ public class Gate extends Entity<Gate> implements Named
 		this.powercoords.clear();
 		this.powercoords.addAll(coords);
 		this.powerEventCheck(before);
+		this.changed();
 	}
 	
 	// Finer
@@ -507,6 +518,7 @@ public class Gate extends Entity<Gate> implements Named
 		{
 			this.powerEventCheck(before);
 		}
+		this.changed();
 	}
 	
 	public void powerAdd(Collection<PS> coords)
@@ -516,6 +528,7 @@ public class Gate extends Entity<Gate> implements Named
 		{
 			this.powerEventCheck(before);
 		}
+		this.changed();
 	}
 	
 	public void powerRemove(PS coord)
@@ -525,6 +538,7 @@ public class Gate extends Entity<Gate> implements Named
 		{
 			this.powerEventCheck(before);
 		}
+		this.changed();
 	}
 	
 	public void powerRemove(Collection<PS> coords)
@@ -534,6 +548,7 @@ public class Gate extends Entity<Gate> implements Named
 		{
 			this.powerEventCheck(before);
 		}
+		this.changed();
 	}
 
 	public void powerCheck(PS coord)
@@ -557,6 +572,8 @@ public class Gate extends Entity<Gate> implements Named
 		{
 			this.powerRemove(coord);
 		}
+		
+		this.changed();
 	}
 	
 	protected void powerEventCheck(boolean before)
@@ -586,6 +603,7 @@ public class Gate extends Entity<Gate> implements Named
 	{
 		if (this.trigger2ActionIdArgs.containsKey(trigger.getId())) return;
 		this.trigger2ActionIdArgs.put(trigger.getId(), new ArrayList<List<String>>());
+		this.changed();
 	}
 	
 	public List<Entry<Action, String>> getActionArgs(Trigger trigger)
@@ -601,6 +619,7 @@ public class Gate extends Entity<Gate> implements Named
 			if (action == null) continue;
 			Entry<Action, String> actionArg = new SimpleEntry<Action, String>(action, arg);
 			ret.add(actionArg);
+			this.changed();
 		}
 		return ret;
 	}
@@ -609,6 +628,7 @@ public class Gate extends Entity<Gate> implements Named
 	{
 		this.ensureTriggerListExists(trigger);
 		this.trigger2ActionIdArgs.get(trigger.getId()).add(Arrays.asList(action.getId(), arg));
+		this.changed();
 	}
 	
 	public boolean delAction(Trigger trigger, int index)
@@ -620,6 +640,7 @@ public class Gate extends Entity<Gate> implements Named
 			return false;
 		}
 		actionIdArgs.remove(index);
+		this.changed();
 		return true;
 	}
 	public int delActions(Trigger trigger, Action action)
@@ -633,6 +654,7 @@ public class Gate extends Entity<Gate> implements Named
 			String actionId = actionIdArg.get(0);
 			if ( ! actionId.equals(action.getId())) continue;
 			iter.remove();
+			this.changed();
 			ret += 1;
 		}
 		return ret;
@@ -642,11 +664,13 @@ public class Gate extends Entity<Gate> implements Named
 		if ( ! this.trigger2ActionIdArgs.containsKey(trigger.getId())) return 0;
 		int ret = this.trigger2ActionIdArgs.get(trigger.getId()).size();
 		this.trigger2ActionIdArgs.remove(trigger.getId());
+		this.changed();
 		return ret;
 	}
 	public void delActions()
 	{
 		this.trigger2ActionIdArgs.clear();
+		this.changed();
 	}
 	public void trigger(Trigger trigger, org.bukkit.entity.Entity entity, Cancellable cancellable)
 	{
