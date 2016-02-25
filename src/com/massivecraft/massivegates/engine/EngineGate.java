@@ -2,10 +2,7 @@ package com.massivecraft.massivegates.engine;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.plugin.Plugin;
-
-import com.massivecraft.massivecore.EngineAbstract;
-import com.massivecraft.massivegates.MassiveGates;
+import com.massivecraft.massivecore.Engine;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.event.EventMassiveGatesPlayerWalk;
 import com.massivecraft.massivegates.event.EventMassiveGatesPlayerWalk.GatePlayerWalkType;
@@ -13,7 +10,7 @@ import com.massivecraft.massivegates.event.EventMassiveGatesUse;
 import com.massivecraft.massivegates.ta.TriggerEnter;
 import com.massivecraft.massivegates.ta.TriggerUse;
 
-public class EngineGate extends EngineAbstract
+public class EngineGate extends Engine
 {
 	// -------------------------------------------- //
 	// INSTANCE & CONSTRUCT
@@ -21,17 +18,6 @@ public class EngineGate extends EngineAbstract
 	
 	private static EngineGate i = new EngineGate();
 	public static EngineGate get() { return i; }
-	private EngineGate() {}
-	
-	// -------------------------------------------- //
-	// OVERRIDE
-	// -------------------------------------------- //
-	
-	@Override
-	public Plugin getPlugin()
-	{
-		return MassiveGates.get();
-	}
 
 	// -------------------------------------------- //
 	// GATE EVENTS

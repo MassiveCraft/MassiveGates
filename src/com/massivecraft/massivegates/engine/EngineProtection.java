@@ -21,17 +21,14 @@ import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
-import org.bukkit.plugin.Plugin;
-
-import com.massivecraft.massivecore.EngineAbstract;
+import com.massivecraft.massivecore.Engine;
 import com.massivecraft.massivecore.ps.PS;
-import com.massivecraft.massivegates.MassiveGates;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.entity.GateColl;
 import com.massivecraft.massivegates.event.EventMassiveGatesAlter;
 import com.massivecraft.massivegates.event.EventMassiveGatesAlter.GateAlterType;
 
-public class EngineProtection extends EngineAbstract
+public class EngineProtection extends Engine
 {
 	// -------------------------------------------- //
 	// INSTANCE & CONSTRUCT
@@ -39,17 +36,6 @@ public class EngineProtection extends EngineAbstract
 	
 	private static EngineProtection i = new EngineProtection();
 	public static EngineProtection get() { return i; }
-	private EngineProtection() {}
-	
-	// -------------------------------------------- //
-	// OVERRIDE
-	// -------------------------------------------- //
-	
-	@Override
-	public Plugin getPlugin()
-	{
-		return MassiveGates.get();
-	}
 	
 	// -------------------------------------------- //
 	// PROTECTION AND REACTION TO EDITS - BLOCKS

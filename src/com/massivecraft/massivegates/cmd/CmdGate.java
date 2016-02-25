@@ -7,6 +7,13 @@ import com.massivecraft.massivegates.entity.MConf;
 public class CmdGate extends GateCommand
 {
 	// -------------------------------------------- //
+	// INSTANCE
+	// -------------------------------------------- //
+	
+	private static CmdGate i = new CmdGate();
+	public static CmdGate get() { return i; }
+	
+	// -------------------------------------------- //
 	// FIELDS
 	// -------------------------------------------- //
 	

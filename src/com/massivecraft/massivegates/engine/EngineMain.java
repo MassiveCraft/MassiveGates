@@ -8,12 +8,9 @@ import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.entity.EntityPortalEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPortalEvent;
-import org.bukkit.plugin.Plugin;
-
-import com.massivecraft.massivecore.EngineAbstract;
+import com.massivecraft.massivecore.Engine;
 import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivecore.util.MUtil;
-import com.massivecraft.massivegates.MassiveGates;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.entity.GateColl;
 import com.massivecraft.massivegates.entity.MConf;
@@ -21,7 +18,7 @@ import com.massivecraft.massivegates.event.EventMassiveGatesPlayerWalk;
 import com.massivecraft.massivegates.event.EventMassiveGatesPlayerWalk.GatePlayerWalkType;
 import com.massivecraft.massivegates.util.VisualizeUtil;
 
-public class EngineMain extends EngineAbstract
+public class EngineMain extends Engine
 {
 	// -------------------------------------------- //
 	// INSTANCE & CONSTRUCT
@@ -29,17 +26,6 @@ public class EngineMain extends EngineAbstract
 	
 	private static EngineMain i = new EngineMain();
 	public static EngineMain get() { return i; }
-	private EngineMain() {}
-	
-	// -------------------------------------------- //
-	// OVERRIDE
-	// -------------------------------------------- //
-	
-	@Override
-	public Plugin getPlugin()
-	{
-		return MassiveGates.get();
-	}
 	
 	// -------------------------------------------- //
 	// DISABLE VANILLA GATES CONFIG OPTION

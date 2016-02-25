@@ -44,26 +44,28 @@ public class MassiveGates extends MassivePlugin
 	public MassiveGates() { MassiveGates.i = this; }
 	
 	// -------------------------------------------- //
-	// FIELDS
-	// -------------------------------------------- //
-	
-	// Command
-	public CmdGate cmdGate;
-	
-	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
 	
 	@Override
-	public void onEnable()
+	public void onEnableInner()
 	{
-		if ( ! preEnable()) return;
+		// Activate
+		this.activate(
+			// Coll
+			MConfColl.get(),
+			GateColl.get(),
+			GSenderColl.get(),
 		
-		// Colls
-		MConfColl.get().init();
-		GateColl.get().init();
-		GSenderColl.get().init();
-		
+			// Engine
+			EngineMain.get(),
+			EngineProtection.get(),
+			EngineGate.get(),
+			
+			// Command
+			CmdGate.get()
+		);
+
 		// Register Triggers & Actions
 		GateColl.get().registerAction(ActionUse.get());
 		GateColl.get().registerAction(ActionUseForced.get());
@@ -88,19 +90,8 @@ public class MassiveGates extends MassivePlugin
 		GateColl.get().registerTrigger(TriggerFrameAlter.get());
 		GateColl.get().registerTriggers(TriggerHour.triggerHours.values());
 		
-		// Commands
-		this.cmdGate = new CmdGate();
-		this.cmdGate.register(this);
-		
-		// Engines
-		EngineMain.get().activate();
-		EngineProtection.get().activate();
-		EngineGate.get().activate();
-		
 		// Register the HourTriggingTask
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new HourTriggingTask(), Const.hourTriggingTaskTicks, Const.hourTriggingTaskTicks);
-		
-		postEnable();
 	}
 	
 }
