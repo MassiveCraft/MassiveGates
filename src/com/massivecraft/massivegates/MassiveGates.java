@@ -53,17 +53,17 @@ public class MassiveGates extends MassivePlugin
 		// Activate
 		this.activate(
 			// Coll
-			MConfColl.get(),
-			GateColl.get(),
-			GSenderColl.get(),
+			MConfColl.class,
+			GateColl.class,
+			GSenderColl.class,
 		
 			// Engine
-			EngineMain.get(),
-			EngineProtection.get(),
-			EngineGate.get(),
+			EngineMain.class,
+			EngineProtection.class,
+			EngineGate.class,
 			
 			// Command
-			CmdGate.get()
+			CmdGate.class
 		);
 
 		// Register Triggers & Actions
