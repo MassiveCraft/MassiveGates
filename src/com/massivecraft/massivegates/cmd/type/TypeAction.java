@@ -17,6 +17,7 @@ public class TypeAction extends TypeAbstractChoice<Action>
 	
 	private static TypeAction i = new TypeAction();
 	public static TypeAction get() { return i; }
+	public TypeAction() { super(Action.class); }
 	
 	// -------------------------------------------- //
 	// OVERRIDE

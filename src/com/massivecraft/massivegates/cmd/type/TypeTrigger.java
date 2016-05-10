@@ -17,6 +17,7 @@ public class TypeTrigger extends TypeAbstractChoice<Trigger>
 	
 	private static TypeTrigger i = new TypeTrigger();
 	public static TypeTrigger get() { return i; }
+	public TypeTrigger() { super(Trigger.class); }
 	
 	// -------------------------------------------- //
 	// OVERRIDE

@@ -25,6 +25,7 @@ public class TypeGate extends TypeAbstract<Gate>
 	
 	private static TypeGate i = new TypeGate();
 	public static TypeGate get() { return i; }
+	public TypeGate() { super(Gate.class); }
 	
 	// -------------------------------------------- //
 	// OVERRIDE
