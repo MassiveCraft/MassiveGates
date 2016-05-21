@@ -5,7 +5,7 @@ import java.util.List;
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivecore.command.type.primitive.TypeString;
-import com.massivecraft.massivecore.util.PermUtil;
+import com.massivecraft.massivecore.util.PermissionUtil;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmd.type.TypeAction;
 import com.massivecraft.massivegates.cmd.type.TypeTrigger;
@@ -53,7 +53,7 @@ public class CmdGateTaAdd extends GateCommand
 		String perm = "massivegates.action."+action.getId();;
 		if ( ! sender.hasPermission(perm))
 		{
-			this.msg(PermUtil.getDeniedMessage(perm));
+			this.msg(PermissionUtil.getDeniedMessage(perm));
 			return;
 		}
 		

@@ -7,7 +7,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 import org.bukkit.permissions.Permissible;
 
-import com.massivecraft.massivecore.util.PermUtil;
+import com.massivecraft.massivecore.util.PermissionUtil;
 import com.massivecraft.massivegates.entity.Gate;
 
 public class ActionReqPerm extends BaseAction
@@ -60,7 +60,7 @@ public class ActionReqPerm extends BaseAction
 		if ( ! (entity instanceof Permissible)) return false;
 		Permissible permissible = (Permissible)entity;
 		
-		return PermUtil.has(permissible, perm, true);
+		return PermissionUtil.has(permissible, perm, true);
 	}
 	
 }
