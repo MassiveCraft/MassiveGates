@@ -53,7 +53,7 @@ public class CmdGateTaAdd extends GateCommand
 		String perm = "massivegates.action."+action.getId();;
 		if ( ! sender.hasPermission(perm))
 		{
-			this.msg(PermissionUtil.getDeniedMessage(perm));
+			this.msg(PermissionUtil.getPermissionDeniedMessage(perm));
 			return;
 		}
 		

@@ -60,7 +60,7 @@ public class ActionReqPerm extends BaseAction
 		if ( ! (entity instanceof Permissible)) return false;
 		Permissible permissible = (Permissible)entity;
 		
-		return PermissionUtil.has(permissible, perm, true);
+		return PermissionUtil.hasPermission(permissible, perm, true);
 	}
 	
 }
