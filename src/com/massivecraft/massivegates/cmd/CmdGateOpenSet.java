@@ -2,7 +2,7 @@ package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
-import com.massivecraft.massivecore.command.type.primitive.TypeBoolean;
+import com.massivecraft.massivecore.command.type.primitive.TypeBooleanTrue;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
@@ -20,7 +20,7 @@ public class CmdGateOpenSet extends GateCommand
 		this.addAliases("set");
 		
 		// Parameters
-		this.addParameter(TypeBoolean.getTrue(), "flag", true);
+		this.addParameter(TypeBooleanTrue.get(), "flag", true);
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());

@@ -10,7 +10,7 @@ import org.bukkit.block.Block;
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivecore.command.requirement.RequirementIsPlayer;
-import com.massivecraft.massivecore.command.type.primitive.TypeBoolean;
+import com.massivecraft.massivecore.command.type.primitive.TypeBooleanTrue;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Const;
 import com.massivecraft.massivegates.Perm;
@@ -32,7 +32,7 @@ public class CmdGateEditFlood extends GateCommand
 		this.addAliases("flood");
 		
 		// Parameters
-		this.addParameter(TypeBoolean.getTrue(), "frame", "true");
+		this.addParameter(TypeBooleanTrue.get(), "frame", "true");
 		
 		// Requirements
 		this.addRequirements(RequirementIsPlayer.get(), ReqGateSelected.get());
