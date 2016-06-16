@@ -20,7 +20,7 @@ public class CmdGateExitHere extends GateCommand
 		
 		// Requirements
 		this.addRequirements(RequirementIsPlayer.get(), ReqGateSelected.get());
-		this.addRequirements(RequirementHasPerm.get(Perm.EXIT_HERE.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.EXIT_HERE.id));
 	}
 	
 	// -------------------------------------------- //

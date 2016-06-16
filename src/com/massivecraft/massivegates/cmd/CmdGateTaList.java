@@ -31,7 +31,7 @@ public class CmdGateTaList extends GateCommand
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(RequirementHasPerm.get(Perm.TA_LIST.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.TA_LIST.id));
 	}
 	
 	// -------------------------------------------- //

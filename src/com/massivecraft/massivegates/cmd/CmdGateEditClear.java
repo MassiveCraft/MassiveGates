@@ -26,7 +26,7 @@ public class CmdGateEditClear extends GateCommand
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(RequirementHasPerm.get(Perm.EDIT_CLEAR.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.EDIT_CLEAR.id));
 	}
 	
 	// -------------------------------------------- //

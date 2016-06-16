@@ -21,7 +21,7 @@ public class CmdGateSel extends GateCommand
 		this.addParameter(TypeGate.get(), "gate", "*get*");
 		
 		// Requirements
-		this.addRequirements(RequirementHasPerm.get(Perm.SELECT.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.SELECT.id));
 	}
 	
 	// -------------------------------------------- //

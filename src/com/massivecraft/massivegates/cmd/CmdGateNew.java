@@ -22,7 +22,7 @@ public class CmdGateNew extends GateCommand
 		this.addParameter(TypeString.get(), "name", "*none*", true);
 		
 		// Requirements
-		this.addRequirements(RequirementHasPerm.get(Perm.NEW.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.NEW.id));
 	}
 
 	// -------------------------------------------- //

@@ -27,7 +27,7 @@ public class CmdGateFx extends GateCommand
 		this.addChild(this.cmdMassiveGatesFxTest);
 		
 		// Requirements
-		this.addRequirements(RequirementHasPerm.get(Perm.FX.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.FX.id));
 		
 		// Help
 		this.setHelp(

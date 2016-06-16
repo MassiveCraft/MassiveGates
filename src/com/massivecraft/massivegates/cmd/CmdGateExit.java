@@ -36,7 +36,7 @@ public class CmdGateExit extends GateCommand
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(RequirementHasPerm.get(Perm.EXIT.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.EXIT.id));
 	}
 	
 	// -------------------------------------------- //

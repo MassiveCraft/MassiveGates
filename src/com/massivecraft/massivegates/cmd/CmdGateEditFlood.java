@@ -36,7 +36,7 @@ public class CmdGateEditFlood extends GateCommand
 		
 		// Requirements
 		this.addRequirements(RequirementIsPlayer.get(), ReqGateSelected.get());
-		this.addRequirements(RequirementHasPerm.get(Perm.EDIT_FLOOD.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.EDIT_FLOOD.id));
 	}
 	
 	// -------------------------------------------- //

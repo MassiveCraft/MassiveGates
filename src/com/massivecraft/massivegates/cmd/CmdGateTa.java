@@ -37,7 +37,7 @@ public class CmdGateTa extends GateCommand
 		this.addChild(this.cmdMassiveGatesTaDel);
 		
 		// Requirements
-		this.addRequirements(RequirementHasPerm.get(Perm.TA.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.TA.id));
 	}
 
 }

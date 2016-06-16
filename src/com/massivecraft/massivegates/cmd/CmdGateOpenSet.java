@@ -24,7 +24,7 @@ public class CmdGateOpenSet extends GateCommand
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(RequirementHasPerm.get(Perm.OPEN_SET.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.OPEN_SET.id));
 	}
 	
 	// -------------------------------------------- //

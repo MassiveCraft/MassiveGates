@@ -19,7 +19,7 @@ public class CmdGateSee extends GateCommand
 		
 		// Requirements
 		this.addRequirements(RequirementIsPlayer.get(), ReqGateSelected.get());
-		this.addRequirements(RequirementHasPerm.get(Perm.SEE.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.SEE.id));
 	}
 	
 	// -------------------------------------------- //

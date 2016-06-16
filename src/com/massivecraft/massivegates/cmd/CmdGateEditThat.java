@@ -30,7 +30,7 @@ public class CmdGateEditThat extends GateCommand
 		
 		// Requirements
 		this.addRequirements(RequirementIsPlayer.get(), ReqGateSelected.get());
-		this.addRequirements(RequirementHasPerm.get(Perm.EDIT_THAT.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.EDIT_THAT.id));
 	}
 	
 	// -------------------------------------------- //

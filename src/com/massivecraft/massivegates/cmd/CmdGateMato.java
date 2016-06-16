@@ -28,7 +28,7 @@ public class CmdGateMato extends GateCommand
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(RequirementHasPerm.get(Perm.MATO.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.MATO.id));
 	}
 	
 	// -------------------------------------------- //

@@ -1,10 +1,11 @@
 package com.massivecraft.massivegates;
 
-import org.bukkit.command.CommandSender;
+import org.bukkit.permissions.Permissible;
 
+import com.massivecraft.massivecore.Identified;
 import com.massivecraft.massivecore.util.PermissionUtil;
 
-public enum Perm
+public enum Perm implements Identified
 {
 	// -------------------------------------------- //
 	// ENUM
@@ -67,29 +68,30 @@ public enum Perm
 	// FIELDS
 	// -------------------------------------------- //
 	
-	public final String node;
+	public final String id;
+	@Override public String getId() { return this.id; }
 	
 	// -------------------------------------------- //
 	// CONSTRUCT
 	// -------------------------------------------- //
 	
-	Perm(final String permissionNode)
+	Perm(final String permissionIdTail)
 	{
-		this.node = "massivegates." + permissionNode;
+		this.id = "massivegates." + permissionIdTail;
     }
 	
 	// -------------------------------------------- //
 	// HAS
 	// -------------------------------------------- //
 	
-	public boolean has(CommandSender sender, boolean informSenderIfNot)
+	public boolean has(Permissible permissible, boolean verboose)
 	{
-		return PermissionUtil.hasPermission(sender, this.node, informSenderIfNot);
+		return PermissionUtil.hasPermission(permissible, this, verboose);
 	}
 	
-	public boolean has(CommandSender sender)
+	public boolean has(Permissible permissible)
 	{
-		return has(sender, false);
+		return PermissionUtil.hasPermission(permissible, this);
 	}
 	
 }

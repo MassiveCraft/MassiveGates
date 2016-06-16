@@ -28,7 +28,7 @@ public class CmdGateMatc extends GateCommand
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(RequirementHasPerm.get(Perm.MATC.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.MATC.id));
 	}
 	
 	// -------------------------------------------- //

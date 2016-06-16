@@ -19,7 +19,7 @@ public class CmdGateTargetHere extends GateCommand
 		
 		// Requirements
 		this.addRequirements(RequirementIsPlayer.get(), ReqGateSelected.get());
-		this.addRequirements(RequirementHasPerm.get(Perm.TARGET_HERE.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.TARGET_HERE.id));
 	}
 	
 	// -------------------------------------------- //

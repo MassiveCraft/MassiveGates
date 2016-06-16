@@ -18,7 +18,7 @@ public class CmdGateTargetRemove extends GateCommand
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(RequirementHasPerm.get(Perm.TARGET_REMOVE.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.TARGET_REMOVE.id));
 	}
 	
 	// -------------------------------------------- //

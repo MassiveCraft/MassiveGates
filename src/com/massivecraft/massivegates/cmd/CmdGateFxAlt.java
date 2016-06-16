@@ -25,7 +25,7 @@ public class CmdGateFxAlt extends GateCommand
 		this.addParameter(Parameter.getPage());
 		
 		// Requirements
-		this.addRequirements(RequirementHasPerm.get(Perm.FX_ALT.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.FX_ALT.id));
 	}
 	
 	// -------------------------------------------- //

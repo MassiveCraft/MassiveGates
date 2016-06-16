@@ -54,13 +54,13 @@ public class ActionReqPerm extends BaseAction
 		return null;
 	}
 	
-	public static boolean hasPerm(String perm, Entity entity)
+	public static boolean hasPerm(String permissionId, Entity entity)
 	{
 		if (entity == null) return false;
 		if ( ! (entity instanceof Permissible)) return false;
 		Permissible permissible = (Permissible)entity;
 		
-		return PermissionUtil.hasPermission(permissible, perm, true);
+		return PermissionUtil.hasPermission(permissible, permissionId, true);
 	}
 	
 }

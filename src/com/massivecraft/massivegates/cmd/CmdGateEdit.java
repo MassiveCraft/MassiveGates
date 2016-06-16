@@ -29,7 +29,7 @@ public class CmdGateEdit extends GateCommand
 		this.addChild(this.cmdMassiveGatesEditClear);
 		
 		// Requirements
-		this.addRequirements(RequirementHasPerm.get(Perm.EDIT.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.EDIT.id));
 	}
 
 }

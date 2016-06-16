@@ -24,7 +24,7 @@ public class CmdGateFxTest extends GateCommand
 		
 		// Requirements
 		this.addRequirements(RequirementIsPlayer.get());
-		this.addRequirements(RequirementHasPerm.get(Perm.FX_TEST.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.FX_TEST.id));
 	}
 	
 	// -------------------------------------------- //

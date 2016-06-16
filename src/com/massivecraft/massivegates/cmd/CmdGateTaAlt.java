@@ -29,7 +29,7 @@ public class CmdGateTaAlt extends GateCommand
 		this.addParameter(Parameter.getPage());
 		
 		// Requirements
-		this.addRequirements(RequirementHasPerm.get(Perm.TA_ALT.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.TA_ALT.id));
 	}
 	
 	// -------------------------------------------- //

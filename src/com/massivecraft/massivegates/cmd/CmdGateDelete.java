@@ -23,7 +23,7 @@ public class CmdGateDelete extends GateCommand
 		this.addParameter(TypeGate.get(), "gate");
 		
 		// Requirements
-		this.addRequirements(RequirementHasPerm.get(Perm.DELETE.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.DELETE.id));
 	}
 
 	// -------------------------------------------- //

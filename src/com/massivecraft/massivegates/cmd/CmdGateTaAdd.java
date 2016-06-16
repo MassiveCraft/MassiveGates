@@ -32,7 +32,7 @@ public class CmdGateTaAdd extends GateCommand
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(RequirementHasPerm.get(Perm.TA_ADD.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.TA_ADD.id));
 	}
 	
 	// -------------------------------------------- //
@@ -50,7 +50,7 @@ public class CmdGateTaAdd extends GateCommand
 		
 		// TODO: merge this into the arg-check?
 		// Do you have the permission to add this action?
-		String perm = "massivegates.action."+action.getId();;
+		String perm = "massivegates.action."+action.getId();
 		if ( ! sender.hasPermission(perm))
 		{
 			this.msg(PermissionUtil.getPermissionDeniedMessage(perm));

@@ -35,7 +35,7 @@ public class CmdGateTaDel extends GateCommand
 		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
-		this.addRequirements(RequirementHasPerm.get(Perm.TA_DEL.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.TA_DEL.id));
 	}
 
 	// -------------------------------------------- //

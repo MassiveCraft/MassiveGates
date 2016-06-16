@@ -24,7 +24,7 @@ public class CmdGateList extends GateCommand
 		this.addParameter(Parameter.getPage());
 		
 		// Requirements
-		this.addRequirements(RequirementHasPerm.get(Perm.LIST.node));
+		this.addRequirements(RequirementHasPerm.get(Perm.LIST.id));
 	}
 
 	// -------------------------------------------- //
