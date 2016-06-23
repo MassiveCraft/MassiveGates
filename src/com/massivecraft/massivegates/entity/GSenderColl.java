@@ -1,9 +1,7 @@
 package com.massivecraft.massivegates.entity;
 
-import com.massivecraft.massivecore.store.MStore;
 import com.massivecraft.massivecore.store.SenderColl;
 import com.massivecraft.massivegates.Const;
-import com.massivecraft.massivegates.MassiveGates;
 
 public class GSenderColl extends SenderColl<GSender>
 {
@@ -15,7 +13,7 @@ public class GSenderColl extends SenderColl<GSender>
 	public static GSenderColl get() { return i; }
 	private GSenderColl()
 	{
-		super(Const.COLLECTION_SENDER, GSender.class, MStore.getDb(), MassiveGates.get());
+		super(Const.COLLECTION_SENDER);
 	}
 
 	// -------------------------------------------- //
