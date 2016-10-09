@@ -78,7 +78,7 @@ public enum Perm implements Identified
 	Perm(final String permissionIdTail)
 	{
 		this.id = "massivegates." + permissionIdTail;
-    }
+	}
 	
 	// -------------------------------------------- //
 	// HAS

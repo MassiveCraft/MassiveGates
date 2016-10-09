@@ -1,6 +1,9 @@
-name: MassiveGates
-version: 1.1.3
-main: com.massivecraft.massivegates.MassiveGates
+main: ${project.groupId}.${project.name}
+name: ${project.name}
+version: ${project.version}
+website: ${project.url}
+description: ${project.description}
+authors: [Cayorion]
 depend: [MassiveCore]
 permissions:
 # -------------------------------------------- #

@@ -24,20 +24,20 @@ public enum Fx
 	// ENUM
 	// -------------------------------------------- //
 	
-    BLAZE_SHOOT(false, true, false, Effect.BLAZE_SHOOT, "Blaze shoot sound", "blazeshoot"),
-    BOW(false, true, false, Effect.BOW_FIRE, "Fire bow sound", "bow", "bowfire"),
-    CLICK1(false, true, false, Effect.CLICK1, "\"tick\" sound", "tick", "click"),
-    CLICK2(false, true, false, Effect.CLICK2, "\"tock\" sound", "tock"),
-    DOOR_TOGGLE(false, true, false, Effect.DOOR_TOGGLE, "Toggle door sound", "door", "doortoggle"),
-    ENDER_SIGNAL(true, false, false, Effect.ENDER_SIGNAL, "Ender signal particles", "ender", "endersignal", "nethersignal", "neathersignal", "netherparticles", "neatherparticles"),
-    EXTINGUISH(false, true, false, Effect.EXTINGUISH, "Extinguish fire sound", "ext", "extinguish"),
-    GHAST_SHRIEK(false, true, false, Effect.GHAST_SHRIEK, "Screaming ghast sound", "scream", "ghastshriek", "shriek", "schriek", "screem"),
-    GHAST_SHOOT(false, true, false, Effect.GHAST_SHOOT, "Shoot fireball sound", "shoot", "ghastshoot"),
-    MOBSPAWNER_FLAMES(true, false, false, Effect.MOBSPAWNER_FLAMES, "Mobspawner flame particles", "fire", "flames", "mobspawnerflames", "mobspawnerfire", "mobflames", "mobfire", "spawnerflames", "spawnerfire"),
-    POTION_BREAK(true, true, true, Effect.POTION_BREAK, "Potion break sound and particles", "potion", "potionbreak"),
-    RECORD_PLAY(false, true, true, Effect.RECORD_PLAY, "Play record sound", "record", "recordplay"),
+	BLAZE_SHOOT(false, true, false, Effect.BLAZE_SHOOT, "Blaze shoot sound", "blazeshoot"),
+	BOW(false, true, false, Effect.BOW_FIRE, "Fire bow sound", "bow", "bowfire"),
+	CLICK1(false, true, false, Effect.CLICK1, "\"tick\" sound", "tick", "click"),
+	CLICK2(false, true, false, Effect.CLICK2, "\"tock\" sound", "tock"),
+	DOOR_TOGGLE(false, true, false, Effect.DOOR_TOGGLE, "Toggle door sound", "door", "doortoggle"),
+	ENDER_SIGNAL(true, false, false, Effect.ENDER_SIGNAL, "Ender signal particles", "ender", "endersignal", "nethersignal", "neathersignal", "netherparticles", "neatherparticles"),
+	EXTINGUISH(false, true, false, Effect.EXTINGUISH, "Extinguish fire sound", "ext", "extinguish"),
+	GHAST_SHRIEK(false, true, false, Effect.GHAST_SHRIEK, "Screaming ghast sound", "scream", "ghastshriek", "shriek", "schriek", "screem"),
+	GHAST_SHOOT(false, true, false, Effect.GHAST_SHOOT, "Shoot fireball sound", "shoot", "ghastshoot"),
+	MOBSPAWNER_FLAMES(true, false, false, Effect.MOBSPAWNER_FLAMES, "Mobspawner flame particles", "fire", "flames", "mobspawnerflames", "mobspawnerfire", "mobflames", "mobfire", "spawnerflames", "spawnerfire"),
+	POTION_BREAK(true, true, true, Effect.POTION_BREAK, "Potion break sound and particles", "potion", "potionbreak"),
+	RECORD_PLAY(false, true, true, Effect.RECORD_PLAY, "Play record sound", "record", "recordplay"),
 	SMOKE(true, false, false, null, "A smoke cloud", "smoke", "smokes"), // SELFMADE
-    STEP_SOUND(true, true, true, Effect.STEP_SOUND, "Step sound and particles", "step", "stepsound"),
+	STEP_SOUND(true, true, true, Effect.STEP_SOUND, "Step sound and particles", "step", "stepsound"),
 	STRIKE(true, true, false, null, "Non-damaging lightning strike", "strike", "lightningstrike"), // SELFMADE
 	TNT(true, true, false, null, "Non-damaging TNT explosion", "tnt", "tntexplosion", "explostion"), // SELFMADE
 	
@@ -51,7 +51,7 @@ public enum Fx
 	// -------------------------------------------- //
 	// FIELDS
 	// -------------------------------------------- //
-    
+	
 	protected final boolean hasVisual;
 	public boolean getHasVisual() { return this.hasVisual; }
 	

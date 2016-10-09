@@ -50,8 +50,8 @@ public abstract class BaseAction implements Action
 	public boolean equals(Object that)
 	{
 		if (that == null) return false;
-        if (this.getClass() != that.getClass()) return false;
-        return this.getId().equals(((BaseAction)that).getId());
+		if (this.getClass() != that.getClass()) return false;
+		return this.getId().equals(((BaseAction)that).getId());
 	}
 	
 	@Override
