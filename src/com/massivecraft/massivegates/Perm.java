@@ -60,6 +60,7 @@ public enum Perm implements Identified
 	TA_ALT("ta.alt"),
 	TA_DEL("ta.del"),
 	TA_LIST("ta.list"),
+	CONFIG("config"),
 	
 	// END OF LIST
 	;

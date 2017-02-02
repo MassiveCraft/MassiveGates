@@ -31,6 +31,7 @@ public class CmdGate extends GateCommand
 	public CmdGateExit cmdMassiveGatesExit = new CmdGateExit();
 	public CmdGateTa cmdMassiveGatesTa = new CmdGateTa();
 	public CmdGateFx cmdMassiveGatesFx = new CmdGateFx();
+	public CmdGateConfig cmdGateConfig = new CmdGateConfig();
 	
 	// -------------------------------------------- //
 	// CONSTRUCT
@@ -53,6 +54,7 @@ public class CmdGate extends GateCommand
 		this.addChild(this.cmdMassiveGatesExit);
 		this.addChild(this.cmdMassiveGatesTa);
 		this.addChild(this.cmdMassiveGatesFx);
+		this.addChild(this.cmdGateConfig);
 	}
 
 	// -------------------------------------------- //
