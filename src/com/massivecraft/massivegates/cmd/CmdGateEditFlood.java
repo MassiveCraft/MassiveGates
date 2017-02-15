@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import com.massivecraft.massivegates.entity.MConf;
 import org.bukkit.block.Block;
 
 import com.massivecraft.massivecore.MassiveException;
@@ -28,9 +29,6 @@ public class CmdGateEditFlood extends GateCommand
 	
 	public CmdGateEditFlood()
 	{
-		// Aliases
-		this.addAliases("flood");
-		
 		// Parameters
 		this.addParameter(TypeBooleanTrue.get(), "frame", "true");
 		
@@ -42,6 +40,12 @@ public class CmdGateEditFlood extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateEditFlood;
+	}
 	
 	@Override
 	public void perform() throws MassiveException

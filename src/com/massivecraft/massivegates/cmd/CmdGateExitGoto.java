@@ -13,6 +13,7 @@ import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.MConf;
 
 public class CmdGateExitGoto extends GateCommand
 {
@@ -22,9 +23,6 @@ public class CmdGateExitGoto extends GateCommand
 	
 	public CmdGateExitGoto()
 	{
-		// Aliases
-		this.addAliases("goto");
-		
 		// Requirements
 		this.addRequirements(RequirementIsPlayer.get(), ReqGateSelected.get());
 		this.addRequirements(RequirementHasPerm.get(Perm.EXIT_GOTO.id));
@@ -33,6 +31,12 @@ public class CmdGateExitGoto extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateExitGoto;
+	}
 	
 	@Override
 	public void perform()

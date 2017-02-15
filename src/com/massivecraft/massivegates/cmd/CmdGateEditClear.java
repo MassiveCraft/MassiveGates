@@ -9,6 +9,7 @@ import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.MConf;
 
 public class CmdGateEditClear extends GateCommand
 {
@@ -18,9 +19,6 @@ public class CmdGateEditClear extends GateCommand
 	
 	public CmdGateEditClear()
 	{
-		// Aliases
-		this.addAliases("clear");
-		
 		// Parameters
 		this.addParameter(TypeString.get(), "frame|content|all");
 		
@@ -32,6 +30,12 @@ public class CmdGateEditClear extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateEditClear;
+	}
 	
 	@Override
 	public void perform()

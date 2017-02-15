@@ -9,8 +9,11 @@ import com.massivecraft.massivegates.cmd.type.TypeAction;
 import com.massivecraft.massivegates.cmd.type.TypeTrigger;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.MConf;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
+
+import java.util.List;
 
 public class CmdGateTaDel extends GateCommand
 {
@@ -26,9 +29,6 @@ public class CmdGateTaDel extends GateCommand
 	
 	public CmdGateTaDel()
 	{
-		// Aliases
-		this.addAliases("del");
-		
 		// Parameters
 		this.addParameter(TypeTrigger.get(), "trigger|all");
 		this.addParameter(parameter);
@@ -41,6 +41,12 @@ public class CmdGateTaDel extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateTaDel;
+	}
 	
 	@Override
 	public void perform() throws MassiveException

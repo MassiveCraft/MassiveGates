@@ -10,6 +10,7 @@ import com.massivecraft.massivecore.command.type.primitive.TypeString;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.entity.GateColl;
+import com.massivecraft.massivegates.entity.MConf;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
 
@@ -21,9 +22,6 @@ public class CmdGateTaAlt extends GateCommand
 	
 	public CmdGateTaAlt()
 	{
-		// Aliases
-		this.addAliases("alt");
-		
 		// Parameters
 		this.addParameter(TypeString.get(), "trigger|action");
 		this.addParameter(Parameter.getPage());
@@ -35,6 +33,12 @@ public class CmdGateTaAlt extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateTaAlt;
+	}
 	
 	@Override
 	public void perform() throws MassiveException

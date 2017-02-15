@@ -1,5 +1,6 @@
 package com.massivecraft.massivegates.cmd;
 
+import com.massivecraft.massivegates.entity.MConf;
 import org.bukkit.Location;
 
 import com.massivecraft.massivecore.MassiveException;
@@ -9,6 +10,8 @@ import com.massivecraft.massivecore.command.type.primitive.TypeString;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.util.Fx;
 
+import java.util.List;
+
 public class CmdGateFxTest extends GateCommand
 {
 	// -------------------------------------------- //
@@ -16,9 +19,6 @@ public class CmdGateFxTest extends GateCommand
 	// -------------------------------------------- //
 	public CmdGateFxTest()
 	{
-		// Aliases
-		this.addAliases("test");
-		
 		// Arg
 		this.addParameter(TypeString.get(), "fxstring");
 		
@@ -30,6 +30,12 @@ public class CmdGateFxTest extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateFxTest;
+	}
 	
 	@Override
 	public void perform() throws MassiveException

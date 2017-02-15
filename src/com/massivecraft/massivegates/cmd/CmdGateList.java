@@ -8,6 +8,9 @@ import com.massivecraft.massivecore.pager.Stringifier;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.entity.GateColl;
+import com.massivecraft.massivegates.entity.MConf;
+
+import java.util.List;
 
 public class CmdGateList extends GateCommand
 {
@@ -17,9 +20,6 @@ public class CmdGateList extends GateCommand
 	
 	public CmdGateList()
 	{
-		// Aliases
-		this.addAliases("list");
-		
 		// Parameters
 		this.addParameter(Parameter.getPage());
 		
@@ -30,6 +30,12 @@ public class CmdGateList extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateList;
+	}
 	
 	@Override
 	public void perform() throws MassiveException

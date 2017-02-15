@@ -12,6 +12,7 @@ import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.entity.GateColl;
+import com.massivecraft.massivegates.entity.MConf;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
 
@@ -23,9 +24,6 @@ public class CmdGateTaList extends GateCommand
 	
 	public CmdGateTaList()
 	{
-		// Aliases
-		this.addAliases("list");
-		
 		// Parameters
 		this.addParameter(Parameter.getPage());
 		
@@ -37,6 +35,12 @@ public class CmdGateTaList extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateTaList;
+	}
 	
 	@Override
 	public void perform() throws MassiveException

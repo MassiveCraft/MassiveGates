@@ -61,6 +61,7 @@ public enum Perm implements Identified
 	TA_DEL("ta.del"),
 	TA_LIST("ta.list"),
 	CONFIG("config"),
+	VERSION("version"),
 	
 	// END OF LIST
 	;

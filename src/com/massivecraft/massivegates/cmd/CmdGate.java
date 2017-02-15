@@ -17,21 +17,22 @@ public class CmdGate extends GateCommand
 	// FIELDS
 	// -------------------------------------------- //
 	
-	public CmdGateNew cmdMassiveGatesNew = new CmdGateNew();
-	public CmdGateDelete cmdMassiveGatesDelete = new CmdGateDelete();
-	public CmdGateList cmdMassiveGatesList = new CmdGateList();
-	public CmdGateSel cmdMassiveGatesSel = new CmdGateSel();
-	public CmdGateName cmdMassiveGatesName = new CmdGateName();
-	public CmdGateOpen cmdMassiveGatesOpen = new CmdGateOpen();
-	public CmdGateEdit cmdMassiveGatesEdit = new CmdGateEdit();
-	public CmdGateMato cmdMassiveGatesMato = new CmdGateMato();
-	public CmdGateMatc cmdMassiveGatesMatc = new CmdGateMatc();
-	public CmdGateSee cmdMassiveGatesSee = new CmdGateSee();
-	public CmdGateTarget cmdMassiveGatesTarget = new CmdGateTarget();
-	public CmdGateExit cmdMassiveGatesExit = new CmdGateExit();
-	public CmdGateTa cmdMassiveGatesTa = new CmdGateTa();
-	public CmdGateFx cmdMassiveGatesFx = new CmdGateFx();
+	public CmdGateNew cmdGateNew = new CmdGateNew();
+	public CmdGateDelete cmdGateDelete = new CmdGateDelete();
+	public CmdGateList cmdGateList = new CmdGateList();
+	public CmdGateSel cmdGateSel = new CmdGateSel();
+	public CmdGateName cmdGateName = new CmdGateName();
+	public CmdGateOpen cmdGateOpen = new CmdGateOpen();
+	public CmdGateEdit cmdGateEdit = new CmdGateEdit();
+	public CmdGateMato cmdGateMato = new CmdGateMato();
+	public CmdGateMatc cmdGateMatc = new CmdGateMatc();
+	public CmdGateSee cmdGateSee = new CmdGateSee();
+	public CmdGateTarget cmdGateTarget = new CmdGateTarget();
+	public CmdGateExit cmdGateExit = new CmdGateExit();
+	public CmdGateTa cmdGateTa = new CmdGateTa();
+	public CmdGateFx cmdGateFx = new CmdGateFx();
 	public CmdGateConfig cmdGateConfig = new CmdGateConfig();
+	public CmdGateVersion cmdGateVersion = new CmdGateVersion();
 	
 	// -------------------------------------------- //
 	// CONSTRUCT
@@ -40,21 +41,22 @@ public class CmdGate extends GateCommand
 	public CmdGate()
 	{
 		// Children
-		this.addChild(this.cmdMassiveGatesNew);
-		this.addChild(this.cmdMassiveGatesDelete);
-		this.addChild(this.cmdMassiveGatesList);
-		this.addChild(this.cmdMassiveGatesSel);
-		this.addChild(this.cmdMassiveGatesName);
-		this.addChild(this.cmdMassiveGatesOpen);
-		this.addChild(this.cmdMassiveGatesEdit);
-		this.addChild(this.cmdMassiveGatesMato);
-		this.addChild(this.cmdMassiveGatesMatc);
-		this.addChild(this.cmdMassiveGatesSee);
-		this.addChild(this.cmdMassiveGatesTarget);
-		this.addChild(this.cmdMassiveGatesExit);
-		this.addChild(this.cmdMassiveGatesTa);
-		this.addChild(this.cmdMassiveGatesFx);
+		this.addChild(this.cmdGateNew);
+		this.addChild(this.cmdGateDelete);
+		this.addChild(this.cmdGateList);
+		this.addChild(this.cmdGateSel);
+		this.addChild(this.cmdGateName);
+		this.addChild(this.cmdGateOpen);
+		this.addChild(this.cmdGateEdit);
+		this.addChild(this.cmdGateMato);
+		this.addChild(this.cmdGateMatc);
+		this.addChild(this.cmdGateSee);
+		this.addChild(this.cmdGateTarget);
+		this.addChild(this.cmdGateExit);
+		this.addChild(this.cmdGateTa);
+		this.addChild(this.cmdGateFx);
 		this.addChild(this.cmdGateConfig);
+		this.addChild(this.cmdGateVersion);
 	}
 
 	// -------------------------------------------- //
@@ -64,7 +66,7 @@ public class CmdGate extends GateCommand
 	@Override
 	public List<String> getAliases() 
 	{
-		return MConf.get().aliasesG;
+		return MConf.get().aliasesGate;
 	}
 	
 }

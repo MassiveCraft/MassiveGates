@@ -2,6 +2,9 @@ package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivegates.Perm;
+import com.massivecraft.massivegates.entity.MConf;
+
+import java.util.List;
 
 
 // In the sub commands we will often have rows like this:
@@ -27,9 +30,6 @@ public class CmdGateTa extends GateCommand
 	
 	public CmdGateTa()
 	{
-		// Aliases
-		this.addAliases("ta");
-		
 		// Children
 		this.addChild(this.cmdMassiveGatesTaAlt);
 		this.addChild(this.cmdMassiveGatesTaList);
@@ -38,6 +38,16 @@ public class CmdGateTa extends GateCommand
 		
 		// Requirements
 		this.addRequirements(RequirementHasPerm.get(Perm.TA.id));
+	}
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateTa;
 	}
 
 }

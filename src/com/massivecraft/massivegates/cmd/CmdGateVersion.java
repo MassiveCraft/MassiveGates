@@ -1,31 +1,25 @@
 package com.massivecraft.massivegates.cmd;
 
-import com.massivecraft.massivecore.command.editor.CommandEditSingleton;
+import com.massivecraft.massivecore.command.MassiveCommandVersion;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
+import com.massivecraft.massivegates.MassiveGates;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.entity.MConf;
 
 import java.util.List;
 
-public class CmdGateConfig extends CommandEditSingleton<MConf>
+public class CmdGateVersion extends MassiveCommandVersion
 {
-	// -------------------------------------------- //
-	// INSTANCE
-	// -------------------------------------------- //
-	
-	private static CmdGateConfig i = new CmdGateConfig();
-	public static CmdGateConfig get() { return i; }
-	
 	// -------------------------------------------- //
 	// CONSTRUCT
 	// -------------------------------------------- //
 	
-	public CmdGateConfig()
+	public CmdGateVersion()
 	{
-		super(MConf.get());
+		super(MassiveGates.get());
 		
 		// Requirements
-		this.addRequirements(RequirementHasPerm.get(Perm.CONFIG));
+		this.addRequirements(RequirementHasPerm.get(Perm.VERSION));
 	}
 	
 	// -------------------------------------------- //
@@ -35,7 +29,7 @@ public class CmdGateConfig extends CommandEditSingleton<MConf>
 	@Override
 	public List<String> getAliases()
 	{
-		return MConf.get().aliasesGateConfig;
+		return MConf.get().aliasesGateVersion;
 	}
-	
+
 }

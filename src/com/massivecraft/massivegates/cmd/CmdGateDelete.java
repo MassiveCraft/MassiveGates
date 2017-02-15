@@ -1,5 +1,6 @@
 package com.massivecraft.massivegates.cmd;
 
+import com.massivecraft.massivegates.entity.MConf;
 import org.bukkit.Material;
 
 import com.massivecraft.massivecore.MassiveException;
@@ -7,6 +8,8 @@ import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmd.type.TypeGate;
 import com.massivecraft.massivegates.entity.Gate;
+
+import java.util.List;
 
 public class CmdGateDelete extends GateCommand
 {
@@ -16,9 +19,6 @@ public class CmdGateDelete extends GateCommand
 	
 	public CmdGateDelete()
 	{
-		// Aliases
-		this.addAliases("delete", "rm", "remove");
-		
 		// Parameters
 		this.addParameter(TypeGate.get(), "gate");
 		
@@ -29,6 +29,12 @@ public class CmdGateDelete extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateDelete;
+	}
 	
 	@Override
 	public void perform() throws MassiveException

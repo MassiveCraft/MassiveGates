@@ -1,5 +1,6 @@
 package com.massivecraft.massivegates.cmd;
 
+import com.massivecraft.massivegates.entity.MConf;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 
@@ -14,6 +15,8 @@ import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.util.VisualizeUtil;
 
+import java.util.List;
+
 public class CmdGateEditThat extends GateCommand
 {
 	// -------------------------------------------- //
@@ -22,9 +25,6 @@ public class CmdGateEditThat extends GateCommand
 	
 	public CmdGateEditThat()
 	{
-		// Aliases
-		this.addAliases("that");
-		
 		// Parameters
 		this.addParameter(TypeString.get(), "frame|content|del");
 		
@@ -36,6 +36,12 @@ public class CmdGateEditThat extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateEditThat;
+	}
 	
 	@Override
 	public void perform()

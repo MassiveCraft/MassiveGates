@@ -7,6 +7,9 @@ import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.MConf;
+
+import java.util.List;
 
 public class CmdGateOpenSet extends GateCommand
 {
@@ -16,9 +19,6 @@ public class CmdGateOpenSet extends GateCommand
 	
 	public CmdGateOpenSet()
 	{
-		// Aliases
-		this.addAliases("set");
-		
 		// Parameters
 		this.addParameter(TypeBooleanTrue.get(), "flag", true);
 		
@@ -30,6 +30,12 @@ public class CmdGateOpenSet extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateOpenSet;
+	}
 	
 	@Override
 	public void perform() throws MassiveException

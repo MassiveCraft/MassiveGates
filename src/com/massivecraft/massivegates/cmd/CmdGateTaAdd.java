@@ -11,6 +11,7 @@ import com.massivecraft.massivegates.cmd.type.TypeAction;
 import com.massivecraft.massivegates.cmd.type.TypeTrigger;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.MConf;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
 
@@ -22,9 +23,6 @@ public class CmdGateTaAdd extends GateCommand
 	
 	public CmdGateTaAdd()
 	{
-		// Aliases
-		this.addAliases("add");
-		
 		// Parameters
 		this.addParameter(TypeTrigger.get(), "trigger");
 		this.addParameter(TypeAction.get(), "action");
@@ -38,6 +36,12 @@ public class CmdGateTaAdd extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateTaAdd;
+	}
 	
 	@Override
 	public void perform() throws MassiveException

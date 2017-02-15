@@ -2,6 +2,9 @@ package com.massivecraft.massivegates.cmd;
 
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivegates.Perm;
+import com.massivecraft.massivegates.entity.MConf;
+
+import java.util.List;
 
 
 public class CmdGateEdit extends GateCommand
@@ -20,9 +23,6 @@ public class CmdGateEdit extends GateCommand
 	
 	public CmdGateEdit()
 	{
-		// Aliases
-		this.addAliases("edit");
-		
 		// Children
 		this.addChild(this.cmdMassiveGatesEditThat);
 		this.addChild(this.cmdMassiveGatesEditFlood);
@@ -30,6 +30,16 @@ public class CmdGateEdit extends GateCommand
 		
 		// Requirements
 		this.addRequirements(RequirementHasPerm.get(Perm.EDIT.id));
+	}
+	
+	// -------------------------------------------- //
+	// OVERRIDE
+	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateEdit;
 	}
 
 }

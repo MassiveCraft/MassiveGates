@@ -58,6 +58,7 @@ permissions:
   massivegates.ta.del: {description: delete action, default: false}
   massivegates.ta.list: {description: list current trigger-action, default: false}
   massivegates.config: {description: edit MassiveGates config, default: false}
+  massivegates.version: {description: display plugin version, default: false}
 # -------------------------------------------- #
 # STAR NOTATION
 # -------------------------------------------- #
@@ -80,6 +81,7 @@ permissions:
       massivegates.ta.*: true
       massivegates.action.*: true
       massivegates.config: true
+      massivegates.version: true
 # -------------------------------------------- #
 # KITS
 # -------------------------------------------- #

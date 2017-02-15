@@ -6,6 +6,9 @@ import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.MConf;
+
+import java.util.List;
 
 public class CmdGateExitHere extends GateCommand
 {
@@ -15,9 +18,6 @@ public class CmdGateExitHere extends GateCommand
 	
 	public CmdGateExitHere()
 	{
-		// Aliases
-		this.addAliases("here", "set");
-		
 		// Requirements
 		this.addRequirements(RequirementIsPlayer.get(), ReqGateSelected.get());
 		this.addRequirements(RequirementHasPerm.get(Perm.EXIT_HERE.id));
@@ -26,6 +26,12 @@ public class CmdGateExitHere extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateExitHere;
+	}
 	
 	@Override
 	public void perform()

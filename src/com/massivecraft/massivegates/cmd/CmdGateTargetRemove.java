@@ -4,6 +4,9 @@ import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.MConf;
+
+import java.util.List;
 
 public class CmdGateTargetRemove extends GateCommand
 {
@@ -13,9 +16,6 @@ public class CmdGateTargetRemove extends GateCommand
 	
 	public CmdGateTargetRemove()
 	{
-		// Aliases
-		this.addAliases("remove");
-		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
 		this.addRequirements(RequirementHasPerm.get(Perm.TARGET_REMOVE.id));
@@ -24,6 +24,12 @@ public class CmdGateTargetRemove extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateTargetRemove;
+	}
 	
 	@Override
 	public void perform()

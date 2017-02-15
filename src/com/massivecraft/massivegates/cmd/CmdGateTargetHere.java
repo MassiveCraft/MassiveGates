@@ -5,6 +5,9 @@ import com.massivecraft.massivecore.command.requirement.RequirementIsPlayer;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.MConf;
+
+import java.util.List;
 
 public class CmdGateTargetHere extends GateCommand
 {
@@ -14,9 +17,6 @@ public class CmdGateTargetHere extends GateCommand
 	
 	public CmdGateTargetHere()
 	{
-		// Aliases
-		this.addAliases("here", "set");
-		
 		// Requirements
 		this.addRequirements(RequirementIsPlayer.get(), ReqGateSelected.get());
 		this.addRequirements(RequirementHasPerm.get(Perm.TARGET_HERE.id));
@@ -25,6 +25,12 @@ public class CmdGateTargetHere extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateTargetHere;
+	}
 	
 	@Override
 	public void perform()

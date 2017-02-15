@@ -1,5 +1,6 @@
 package com.massivecraft.massivegates.cmd;
 
+import com.massivecraft.massivegates.entity.MConf;
 import org.bukkit.Material;
 
 import com.massivecraft.massivecore.MassiveException;
@@ -11,6 +12,8 @@ import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
 
+import java.util.List;
+
 public class CmdGateMatc extends GateCommand
 {
 	// -------------------------------------------- //
@@ -19,9 +22,6 @@ public class CmdGateMatc extends GateCommand
 	
 	public CmdGateMatc()
 	{
-		// Aliases
-		this.addAliases("mc","matc");
-		
 		// Parameters
 		this.addParameter(TypeMaterial.get(), "material", "get");
 		this.addParameter(TypeByte.get(), "data", "0");
@@ -34,6 +34,12 @@ public class CmdGateMatc extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateMatc;
+	}
 	
 	@Override
 	public void perform() throws MassiveException

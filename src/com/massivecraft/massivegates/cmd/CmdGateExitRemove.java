@@ -5,6 +5,9 @@ import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.MConf;
+
+import java.util.List;
 
 public class CmdGateExitRemove extends GateCommand
 {
@@ -14,9 +17,6 @@ public class CmdGateExitRemove extends GateCommand
 	
 	public CmdGateExitRemove()
 	{
-		// Aliases
-		this.addAliases("rm", "remove");
-		
 		// Requirements
 		this.addRequirements(ReqGateSelected.get());
 		this.addRequirements(RequirementHasPerm.get(Perm.EXIT_REMOVE.id));
@@ -25,6 +25,12 @@ public class CmdGateExitRemove extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateExitRemove;
+	}
 	
 	@Override
 	public void perform()
@@ -36,4 +42,5 @@ public class CmdGateExitRemove extends GateCommand
 		// Inform
 		message(Txt.parse("<i>Gate %s<i>: The exit was removed.", gate.getIdNameStringShort()));
 	}
+	
 }

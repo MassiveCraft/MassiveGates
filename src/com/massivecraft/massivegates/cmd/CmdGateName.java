@@ -7,6 +7,7 @@ import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.MConf;
 
 public class CmdGateName extends GateCommand
 {
@@ -25,9 +26,6 @@ public class CmdGateName extends GateCommand
 	
 	public CmdGateName()
 	{
-		// Aliases
-		this.addAliases("name");
-		
 		// Children
 		this.addChild(this.cmdMassiveGatesNameSet);
 		this.addChild(this.cmdMassiveGatesNameRemove);
@@ -54,6 +52,12 @@ public class CmdGateName extends GateCommand
 		}
 		
 		return ret;
+	}
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateName;
 	}
 
 }

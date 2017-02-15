@@ -8,6 +8,7 @@ import com.massivecraft.massivecore.command.Parameter;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
+import com.massivecraft.massivegates.entity.MConf;
 import com.massivecraft.massivegates.util.Fx;
 
 public class CmdGateFxAlt extends GateCommand
@@ -18,9 +19,6 @@ public class CmdGateFxAlt extends GateCommand
 	
 	public CmdGateFxAlt()
 	{
-		// Aliases
-		this.addAliases("alt");
-		
 		// Parameters
 		this.addParameter(Parameter.getPage());
 		
@@ -31,6 +29,12 @@ public class CmdGateFxAlt extends GateCommand
 	// -------------------------------------------- //
 	// OVERRIDE
 	// -------------------------------------------- //
+	
+	@Override
+	public List<String> getAliases()
+	{
+		return MConf.get().aliasesGateFxAlt;
+	}
 	
 	@Override
 	public void perform() throws MassiveException
