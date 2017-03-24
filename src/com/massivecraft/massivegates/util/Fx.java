@@ -1,22 +1,21 @@
 package com.massivecraft.massivegates.util;
 
-import java.util.AbstractMap.SimpleEntry;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map.Entry;
-
+import com.massivecraft.massivecore.ps.PS;
+import com.massivecraft.massivecore.util.SmokeUtil;
+import com.massivecraft.massivecore.util.Txt;
+import com.massivecraft.massivegates.entity.Gate;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.HumanEntity;
 
-import com.massivecraft.massivecore.ps.PS;
-import com.massivecraft.massivecore.util.SmokeUtil;
-import com.massivecraft.massivecore.util.Txt;
-import com.massivecraft.massivegates.entity.Gate;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map.Entry;
 
 public enum Fx
 {	

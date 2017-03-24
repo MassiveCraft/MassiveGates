@@ -1,10 +1,9 @@
 package com.massivecraft.massivegates.event;
 
-import org.bukkit.entity.Player;
-import org.bukkit.event.HandlerList;
-
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.event.abs.EventMassiveGatesDual;
+import org.bukkit.entity.Player;
+import org.bukkit.event.HandlerList;
 
 public class EventMassiveGatesPlayerWalk extends EventMassiveGatesDual
 {

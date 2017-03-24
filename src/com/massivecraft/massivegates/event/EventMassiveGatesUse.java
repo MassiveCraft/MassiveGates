@@ -1,10 +1,9 @@
 package com.massivecraft.massivegates.event;
 
-import org.bukkit.entity.Entity;
-import org.bukkit.event.HandlerList;
-
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.event.abs.EventMassiveGatesSingle;
+import org.bukkit.entity.Entity;
+import org.bukkit.event.HandlerList;
 
 /**
  * Should be fired when someone uses a gate. Some gates might be used just by

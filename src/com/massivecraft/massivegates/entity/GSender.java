@@ -1,19 +1,18 @@
 package com.massivecraft.massivegates.entity;
 
-import java.util.Iterator;
-import java.util.Set;
-import java.util.Map.Entry;
-
+import com.massivecraft.massivecore.ps.PS;
+import com.massivecraft.massivecore.store.SenderEntity;
+import com.massivecraft.massivegates.util.FloodOrientation;
+import com.massivecraft.massivegates.util.FloodUtil;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.util.BlockIterator;
 
-import com.massivecraft.massivecore.ps.PS;
-import com.massivecraft.massivecore.store.SenderEntity;
-import com.massivecraft.massivegates.util.FloodOrientation;
-import com.massivecraft.massivegates.util.FloodUtil;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class GSender extends SenderEntity<GSender>
 {

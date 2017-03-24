@@ -1,9 +1,5 @@
 package com.massivecraft.massivegates.cmd;
 
-import com.massivecraft.massivegates.entity.MConf;
-import org.bukkit.Location;
-import org.bukkit.block.Block;
-
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivecore.command.requirement.RequirementIsPlayer;
 import com.massivecraft.massivecore.command.type.primitive.TypeString;
@@ -13,7 +9,10 @@ import com.massivecraft.massivegates.Const;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.MConf;
 import com.massivecraft.massivegates.util.VisualizeUtil;
+import org.bukkit.Location;
+import org.bukkit.block.Block;
 
 import java.util.List;
 

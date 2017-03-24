@@ -1,10 +1,10 @@
 package com.massivecraft.massivegates.util;
 
+import org.bukkit.block.BlockFace;
+
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
-import org.bukkit.block.BlockFace;
 
 public enum FloodOrientation
 {

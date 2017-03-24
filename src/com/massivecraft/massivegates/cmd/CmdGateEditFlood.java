@@ -1,13 +1,5 @@
 package com.massivecraft.massivegates.cmd;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.Set;
-
-import com.massivecraft.massivegates.entity.MConf;
-import org.bukkit.block.Block;
-
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivecore.command.requirement.RequirementIsPlayer;
@@ -17,9 +9,16 @@ import com.massivecraft.massivegates.Const;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.MConf;
 import com.massivecraft.massivegates.util.FloodOrientation;
 import com.massivecraft.massivegates.util.FloodUtil;
 import com.massivecraft.massivegates.util.VisualizeUtil;
+import org.bukkit.block.Block;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class CmdGateEditFlood extends GateCommand
 {

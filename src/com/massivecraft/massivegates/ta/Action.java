@@ -1,12 +1,11 @@
 package com.massivecraft.massivegates.ta;
 
-import java.util.List;
-
+import com.massivecraft.massivecore.Named;
+import com.massivecraft.massivegates.entity.Gate;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 
-import com.massivecraft.massivecore.Named;
-import com.massivecraft.massivegates.entity.Gate;
+import java.util.List;
 
 public interface Action extends Named
 {

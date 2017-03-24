@@ -1,14 +1,13 @@
 package com.massivecraft.massivegates.ta;
 
-import java.util.Arrays;
-import java.util.List;
-
+import com.massivecraft.massivecore.util.Txt;
+import com.massivecraft.massivegates.entity.Gate;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 
-import com.massivecraft.massivecore.util.Txt;
-import com.massivecraft.massivegates.entity.Gate;
+import java.util.Arrays;
+import java.util.List;
 
 public class ActionMsg extends BaseAction
 {

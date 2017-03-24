@@ -1,8 +1,8 @@
 package com.massivecraft.massivegates.cmd;
 
-import java.util.List;
-
 import com.massivecraft.massivegates.entity.MConf;
+
+import java.util.List;
 
 public class CmdGate extends GateCommand
 {

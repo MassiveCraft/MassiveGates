@@ -1,7 +1,5 @@
 package com.massivecraft.massivegates.engine;
 
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import com.massivecraft.massivecore.Engine;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.event.EventMassiveGatesPlayerWalk;
@@ -9,6 +7,8 @@ import com.massivecraft.massivegates.event.EventMassiveGatesPlayerWalk.GatePlaye
 import com.massivecraft.massivegates.event.EventMassiveGatesUse;
 import com.massivecraft.massivegates.ta.TriggerEnter;
 import com.massivecraft.massivegates.ta.TriggerUse;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 
 public class EngineGate extends Engine
 {

@@ -1,13 +1,12 @@
 package com.massivecraft.massivegates.cmd.type;
 
-import java.util.Collection;
-
-import org.bukkit.command.CommandSender;
-
 import com.massivecraft.massivecore.command.type.TypeAbstractChoice;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.entity.GateColl;
 import com.massivecraft.massivegates.ta.Action;
+import org.bukkit.command.CommandSender;
+
+import java.util.Collection;
 
 public class TypeAction extends TypeAbstractChoice<Action>
 {

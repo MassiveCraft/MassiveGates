@@ -1,13 +1,13 @@
 package com.massivecraft.massivegates.cmd;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.entity.MConf;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CmdGateTarget extends GateCommand
 {

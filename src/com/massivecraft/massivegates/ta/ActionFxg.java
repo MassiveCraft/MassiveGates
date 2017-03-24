@@ -1,13 +1,12 @@
 package com.massivecraft.massivegates.ta;
 
-import java.util.Arrays;
-import java.util.List;
-
+import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.util.Fx;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 
-import com.massivecraft.massivegates.entity.Gate;
-import com.massivecraft.massivegates.util.Fx;
+import java.util.Arrays;
+import java.util.List;
 
 public class ActionFxg extends BaseAction
 {

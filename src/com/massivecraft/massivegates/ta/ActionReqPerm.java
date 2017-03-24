@@ -1,14 +1,13 @@
 package com.massivecraft.massivegates.ta;
 
-import java.util.Arrays;
-import java.util.List;
-
+import com.massivecraft.massivecore.util.PermissionUtil;
+import com.massivecraft.massivegates.entity.Gate;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 import org.bukkit.permissions.Permissible;
 
-import com.massivecraft.massivecore.util.PermissionUtil;
-import com.massivecraft.massivegates.entity.Gate;
+import java.util.Arrays;
+import java.util.List;
 
 public class ActionReqPerm extends BaseAction
 {

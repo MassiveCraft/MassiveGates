@@ -1,18 +1,17 @@
 package com.massivecraft.massivegates.util;
 
+import com.massivecraft.massivecore.ps.PS;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
-
-import com.massivecraft.massivecore.ps.PS;
 
 // TODO: Only send blocks in visual range
 // TODO: Only send blocks that where changed when clearing?

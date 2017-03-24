@@ -1,8 +1,5 @@
 package com.massivecraft.massivegates.cmd;
 
-import com.massivecraft.massivegates.entity.MConf;
-import org.bukkit.Material;
-
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivecore.command.type.enumeration.TypeMaterial;
@@ -11,6 +8,8 @@ import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.MConf;
+import org.bukkit.Material;
 
 import java.util.List;
 

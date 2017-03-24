@@ -1,14 +1,13 @@
 package com.massivecraft.massivegates.cmd;
 
-import com.massivecraft.massivegates.entity.MConf;
-import org.bukkit.Location;
-
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivecore.command.requirement.RequirementIsPlayer;
 import com.massivecraft.massivecore.command.type.primitive.TypeString;
 import com.massivecraft.massivegates.Perm;
+import com.massivecraft.massivegates.entity.MConf;
 import com.massivecraft.massivegates.util.Fx;
+import org.bukkit.Location;
 
 import java.util.List;
 

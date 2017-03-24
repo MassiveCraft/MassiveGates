@@ -1,8 +1,11 @@
 package com.massivecraft.massivegates.engine;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import com.massivecraft.massivecore.Engine;
+import com.massivecraft.massivecore.ps.PS;
+import com.massivecraft.massivegates.entity.Gate;
+import com.massivecraft.massivegates.entity.GateColl;
+import com.massivecraft.massivegates.event.EventMassiveGatesAlter;
+import com.massivecraft.massivegates.event.EventMassiveGatesAlter.GateAlterType;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -21,12 +24,9 @@ import org.bukkit.event.block.BlockSpreadEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
 import org.bukkit.event.player.PlayerBucketFillEvent;
-import com.massivecraft.massivecore.Engine;
-import com.massivecraft.massivecore.ps.PS;
-import com.massivecraft.massivegates.entity.Gate;
-import com.massivecraft.massivegates.entity.GateColl;
-import com.massivecraft.massivegates.event.EventMassiveGatesAlter;
-import com.massivecraft.massivegates.event.EventMassiveGatesAlter.GateAlterType;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class EngineProtection extends Engine
 {

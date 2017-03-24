@@ -1,8 +1,5 @@
 package com.massivecraft.massivegates.cmd;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.Parameter;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
@@ -10,6 +7,9 @@ import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.entity.MConf;
 import com.massivecraft.massivegates.util.Fx;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CmdGateFxAlt extends GateCommand
 {

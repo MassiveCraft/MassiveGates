@@ -1,14 +1,13 @@
 package com.massivecraft.massivegates;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.bukkit.Bukkit;
-import org.bukkit.World;
-
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.entity.GateColl;
 import com.massivecraft.massivegates.ta.TriggerHour;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HourTriggingTask implements Runnable
 {

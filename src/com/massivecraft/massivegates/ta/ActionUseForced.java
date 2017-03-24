@@ -1,9 +1,8 @@
 package com.massivecraft.massivegates.ta;
 
+import com.massivecraft.massivegates.entity.Gate;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
-
-import com.massivecraft.massivegates.entity.Gate;
 
 public class ActionUseForced extends BaseAction
 {

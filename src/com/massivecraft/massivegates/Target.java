@@ -1,8 +1,5 @@
 package com.massivecraft.massivegates;
 
-import org.bukkit.Location;
-import org.bukkit.entity.Player;
-
 import com.massivecraft.massivecore.mixin.MixinTeleport;
 import com.massivecraft.massivecore.mixin.TeleporterException;
 import com.massivecraft.massivecore.ps.PS;
@@ -11,6 +8,8 @@ import com.massivecraft.massivecore.teleport.DestinationSimple;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.entity.GateColl;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
 public class Target
 {

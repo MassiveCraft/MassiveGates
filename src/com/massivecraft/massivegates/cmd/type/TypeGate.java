@@ -1,13 +1,5 @@
 package com.massivecraft.massivegates.cmd.type;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.collections.MassiveList;
 import com.massivecraft.massivecore.command.type.TypeAbstract;
@@ -16,6 +8,13 @@ import com.massivecraft.massivegates.entity.GSender;
 import com.massivecraft.massivegates.entity.GSenderColl;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.entity.GateColl;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class TypeGate extends TypeAbstract<Gate>
 {

@@ -1,5 +1,10 @@
 package com.massivecraft.massivegates.util;
 
+import com.massivecraft.massivegates.entity.MConf;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+
 import java.util.Collection;
 import java.util.EnumSet;
 import java.util.HashMap;
@@ -7,12 +12,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-
-import com.massivecraft.massivegates.entity.MConf;
 
 public class FloodUtil
 {

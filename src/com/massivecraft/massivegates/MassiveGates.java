@@ -1,8 +1,5 @@
 package com.massivecraft.massivegates;
 
-
-import org.bukkit.Bukkit;
-
 import com.massivecraft.massivecore.MassivePlugin;
 import com.massivecraft.massivegates.cmd.CmdGate;
 import com.massivecraft.massivegates.engine.EngineGate;
@@ -32,6 +29,7 @@ import com.massivecraft.massivegates.ta.TriggerOpen;
 import com.massivecraft.massivegates.ta.TriggerPowerOff;
 import com.massivecraft.massivegates.ta.TriggerPowerOn;
 import com.massivecraft.massivegates.ta.TriggerUse;
+import org.bukkit.Bukkit;
 
 public class MassiveGates extends MassivePlugin
 {

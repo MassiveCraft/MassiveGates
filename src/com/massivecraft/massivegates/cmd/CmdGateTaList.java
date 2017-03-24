@@ -1,9 +1,5 @@
 package com.massivecraft.massivegates.cmd;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map.Entry;
-
 import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.Parameter;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
@@ -15,6 +11,10 @@ import com.massivecraft.massivegates.entity.GateColl;
 import com.massivecraft.massivegates.entity.MConf;
 import com.massivecraft.massivegates.ta.Action;
 import com.massivecraft.massivegates.ta.Trigger;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map.Entry;
 
 public class CmdGateTaList extends GateCommand
 {
