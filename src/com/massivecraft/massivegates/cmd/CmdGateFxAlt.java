@@ -43,7 +43,7 @@ public class CmdGateFxAlt extends GateCommand
 		int page = this.readArg();
 		
 		// Create Messages
-		List<String> messages = new ArrayList<String>();
+		List<String> messages = new ArrayList<>();
 		
 		messages.add(Txt.parse("<a># <i>There is one FX per line in this list."));
 		messages.add(Txt.parse("<a># <i>S = Sound, V = Visual, D = Data"));

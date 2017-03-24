@@ -19,14 +19,14 @@ import java.util.Set;
 
 public class VisualizeUtil
 {
-	protected static Map<String, Set<Location>> playerLocations = new HashMap<String, Set<Location>>();
+	protected static Map<String, Set<Location>> playerLocations = new HashMap<>();
 	
 	public static Set<Location> getPlayerLocations(String playerName)
 	{
 		Set<Location> ret = playerLocations.get(playerName);
 		if (ret == null)
 		{
-			ret = new HashSet<Location>();
+			ret = new HashSet<>();
 			playerLocations.put(playerName, ret);
 		}
 		return ret;

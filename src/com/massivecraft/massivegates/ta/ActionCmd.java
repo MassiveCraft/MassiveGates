@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ActionCmd extends BaseAction
@@ -16,7 +17,7 @@ public class ActionCmd extends BaseAction
 	// CONSTANTS
 	// -------------------------------------------- //
 	
-	public final static List<String> ERRORS_REQUIRED = Arrays.asList("<b>You must enter the command in the argument!");
+	public final static List<String> ERRORS_REQUIRED = Collections.singletonList("<b>You must enter the command in the argument!");
 	
 	// -------------------------------------------- //
 	// INTANCE AND CONSTRUCT

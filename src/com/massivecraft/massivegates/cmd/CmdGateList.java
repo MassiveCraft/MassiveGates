@@ -44,7 +44,8 @@ public class CmdGateList extends GateCommand
 		int page = this.readArg();
 		
 		// Pager Create
-		final Pager<Gate> pager = new Pager<Gate>(this, "List Of Gates", page, GateColl.get().getAll(), new Stringifier<Gate>(){
+		final Pager<Gate> pager = new Pager<>(this, "List Of Gates", page, GateColl.get().getAll(), new Stringifier<Gate>()
+		{
 			@Override
 			public String toString(Gate gate, int index)
 			{

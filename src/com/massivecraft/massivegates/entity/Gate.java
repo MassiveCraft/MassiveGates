@@ -80,10 +80,10 @@ public class Gate extends Entity<Gate> implements Named
 		this.dataclosed = 0;
 		this.matopen = Material.PORTAL;
 		this.dataopen = 0;
-		this.content = new HashSet<PS>();
-		this.frame = new HashSet<PS>();
-		this.powercoords = new LinkedHashSet<PS>();
-		this.trigger2ActionIdArgs = new HashMap<String, List<List<String>>>();
+		this.content = new HashSet<>();
+		this.frame = new HashSet<>();
+		this.powercoords = new LinkedHashSet<>();
+		this.trigger2ActionIdArgs = new HashMap<>();
 	}
 	
 	// -------------------------------------------- //
@@ -347,7 +347,7 @@ public class Gate extends Entity<Gate> implements Named
 	
 	public void addContentBlocks(Collection<Block> blocks)
 	{
-		List<PS> coords = new ArrayList<PS>();
+		List<PS> coords = new ArrayList<>();
 		for (Block block : blocks)
 		{
 			coords.add(PS.valueOf(block));
@@ -392,7 +392,7 @@ public class Gate extends Entity<Gate> implements Named
 	
 	public void clearContent()
 	{
-		List<PS> contentCopy = new ArrayList<PS>(this.content);
+		List<PS> contentCopy = new ArrayList<>(this.content);
 		for (PS coord : contentCopy)
 		{
 			this.delContent(coord);
@@ -423,7 +423,7 @@ public class Gate extends Entity<Gate> implements Named
 	
 	public void addFrameBlocks(Collection<Block> blocks)
 	{
-		List<PS> coords = new ArrayList<PS>();
+		List<PS> coords = new ArrayList<>();
 		for (Block block : blocks)
 		{
 			coords.add(PS.valueOf(block));
@@ -484,7 +484,7 @@ public class Gate extends Entity<Gate> implements Named
 	
 	public void clearFrame()
 	{
-		List<PS> frameCopy = new ArrayList<PS>(this.frame);
+		List<PS> frameCopy = new ArrayList<>(this.frame);
 		for (PS coord : frameCopy)
 		{
 			this.delFrame(coord);
@@ -609,14 +609,14 @@ public class Gate extends Entity<Gate> implements Named
 	{
 		this.ensureTriggerListExists(trigger);
 		List<List<String>> actionIdArgs = this.trigger2ActionIdArgs.get(trigger.getId());
-		List<Entry<Action, String>> ret = new ArrayList<Entry<Action, String>>(actionIdArgs.size());
+		List<Entry<Action, String>> ret = new ArrayList<>(actionIdArgs.size());
 		for (List<String> actionIdArg : actionIdArgs)
 		{
 			String actionId = actionIdArg.get(0);
 			String arg = actionIdArg.get(1);
 			Action action = GateColl.get().getActionId(actionId);
 			if (action == null) continue;
-			Entry<Action, String> actionArg = new SimpleEntry<Action, String>(action, arg);
+			Entry<Action, String> actionArg = new SimpleEntry<>(action, arg);
 			ret.add(actionArg);
 			this.changed();
 		}

@@ -14,6 +14,7 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -73,7 +74,7 @@ public enum Fx
 	// CONSTRUCT
 	// -------------------------------------------- //
 	
-	private Fx(boolean hasVisual, boolean hasSound, boolean takesData, Effect bukkitEffect, String desc, String... aliases)
+	Fx(boolean hasVisual, boolean hasSound, boolean takesData, Effect bukkitEffect, String desc, String... aliases)
 	{
 		this.hasVisual = hasVisual;
 		this.hasSound = hasSound;
@@ -91,7 +92,7 @@ public enum Fx
 	
 	public static List<Fx> match(String str)
 	{
-		List<Fx> ret = new ArrayList<Fx>();
+		List<Fx> ret = new ArrayList<>();
 		str = str.toLowerCase().replace("_", "").replace("-", "");
 		for (Fx fx : Fx.values())
 		{
@@ -153,16 +154,16 @@ public enum Fx
 		}
 		Fx fx = matches.get(0);
 		
-		return new SimpleEntry<Fx, String>(fx, dataString);
+		return new SimpleEntry<>(fx, dataString);
 	}
 	
-	public static List<String> parseMultiErrors = new ArrayList<String>();
+	public static List<String> parseMultiErrors = new ArrayList<>();
 	public static List<Entry<Fx, String>> parseMultiFxString(String multiFxString)
 	{
 		// Clear the errors
 		parseMultiErrors.clear();
 		
-		List<Entry<Fx, String>> ret = new ArrayList<Entry<Fx, String>>();
+		List<Entry<Fx, String>> ret = new ArrayList<>();
 		
 		String[] singleFxStrings = multiFxString.split(",\\s*");
 		for (String singleFxString : singleFxStrings)
@@ -239,7 +240,7 @@ public enum Fx
 		}
 		else
 		{
-			locations = Arrays.asList(entity.getLocation());
+			locations = Collections.singletonList(entity.getLocation());
 		}
 		perform(fx, dataString, locations);
 	}
@@ -249,11 +250,11 @@ public enum Fx
 		Collection<Location> locations;
 		if (fx.hasSound)
 		{
-			locations = Arrays.asList(gate.calcGateCenter());
+			locations = Collections.singletonList(gate.calcGateCenter());
 		}
 		else
 		{
-			locations = new ArrayList<Location>(gate.getContent().size());
+			locations = new ArrayList<>(gate.getContent().size());
 			for (PS coord : gate.getContent())
 			{
 				try
@@ -271,7 +272,7 @@ public enum Fx
 	
 	public static void perform (Fx fx, String dataString, Location location)
 	{
-		perform(fx, dataString, Arrays.asList(location));
+		perform(fx, dataString, Collections.singletonList(location));
 	}
 	
 	// -------------------------------------------- //

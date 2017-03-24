@@ -6,6 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.util.Vector;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ActionSetVelocity extends BaseAction
@@ -14,7 +15,7 @@ public class ActionSetVelocity extends BaseAction
 	// CONSTANTS
 	// -------------------------------------------- //
 	
-	public final static List<String> ERRORS_REQUIRED = Arrays.asList("<b>Please provide the permission node");
+	public final static List<String> ERRORS_REQUIRED = Collections.singletonList("<b>Please provide the permission node");
 	
 	// -------------------------------------------- //
 	// INTANCE AND CONSTRUCT

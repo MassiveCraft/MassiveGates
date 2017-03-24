@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ActionMsg extends BaseAction
@@ -27,7 +28,7 @@ public class ActionMsg extends BaseAction
 	// FIELDS
 	// -------------------------------------------- //
 	
-	public final static List<String> errors = Arrays.asList("<b>You must enter a message to be sent!");
+	public final static List<String> errors = Collections.singletonList("<b>You must enter a message to be sent!");
 	
 	// -------------------------------------------- //
 	// OVERRIDE

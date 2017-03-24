@@ -42,7 +42,7 @@ public class CmdGateExitGoto extends GateCommand
 	public void perform()
 	{
 		// TODO: Unreachable location check.
-		List<String> messages = new ArrayList<String>();
+		List<String> messages = new ArrayList<>();
 		
 		// Args
 		Gate gate = gsender.getSelectedGate();

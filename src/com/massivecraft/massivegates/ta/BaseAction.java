@@ -1,6 +1,7 @@
 package com.massivecraft.massivegates.ta;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class BaseAction implements Action
@@ -9,7 +10,7 @@ public abstract class BaseAction implements Action
 	// CONSTANTS
 	// -------------------------------------------- //
 	
-	public final static List<String> ERRORS_NONE_EXPECTED = Arrays.asList("<b>No argument expected for this action.");
+	public final static List<String> ERRORS_NONE_EXPECTED = Collections.singletonList("<b>No argument expected for this action.");
 	
 	// -------------------------------------------- //
 	// FIELDS

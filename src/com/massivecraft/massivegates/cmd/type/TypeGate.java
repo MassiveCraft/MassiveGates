@@ -58,7 +58,7 @@ public class TypeGate extends TypeAbstract<Gate>
 		
 		// No matching id huh?... Lets test against the gate's name then:
 		// Build a name to gate map:
-		Map<String, Gate> name2gate = new HashMap<String, Gate>();
+		Map<String, Gate> name2gate = new HashMap<>();
 		for (Gate g : GateColl.get().getAll())
 		{
 			if (g.getName() == null) continue;
@@ -83,7 +83,7 @@ public class TypeGate extends TypeAbstract<Gate>
 	@Override
 	public Collection<String> getTabList(CommandSender sender, String arg)
 	{
-		List<String> ret = new MassiveList<String>();
+		List<String> ret = new MassiveList<>();
 		
 		for (Gate gate : GateColl.get().getAll())
 		{

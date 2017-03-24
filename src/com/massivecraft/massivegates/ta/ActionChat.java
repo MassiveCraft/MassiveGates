@@ -6,7 +6,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ActionChat extends BaseAction
@@ -27,7 +27,7 @@ public class ActionChat extends BaseAction
 	// FIELDS
 	// -------------------------------------------- //
 	
-	public final static List<String> errorsRequired = Arrays.asList("<b>You must enter the chat string in the argument!");
+	public final static List<String> errorsRequired = Collections.singletonList("<b>You must enter the chat string in the argument!");
 	
 	// -------------------------------------------- //
 	// OVERRIDE

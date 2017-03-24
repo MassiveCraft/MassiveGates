@@ -70,7 +70,7 @@ public class CmdGateEditFlood extends GateCommand
 		VisualizeUtil.addBlocks(me, content, Const.visContent);
 		
 		// Create Messages
-		List<String> messages = new ArrayList<String>();
+		List<String> messages = new ArrayList<>();
 		messages.add(Txt.parse("<i>The flooding worked and the gate shape <h>%s<i> was added .", orientation.getDesc()));
 		if (addFrame)
 		{

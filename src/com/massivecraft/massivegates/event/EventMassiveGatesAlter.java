@@ -66,7 +66,7 @@ public class EventMassiveGatesAlter extends EventMassiveGatesSingle
 		private final boolean playerInduced;
 		public boolean isPlayerInduced() { return this.playerInduced; }
 		
-		private GateAlterType(final boolean playerInduced)
+		GateAlterType(final boolean playerInduced)
 		{
 			this.playerInduced = playerInduced;
 		}

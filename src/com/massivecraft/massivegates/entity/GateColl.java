@@ -38,18 +38,18 @@ public class GateColl extends Coll<Gate>
 	// -------------------------------------------- //
 	
 	// PSToGate
-	protected Map<PS, Gate> contentToGate = new HashMap<PS, Gate>();
-	protected Map<PS, Gate> frameToGate = new HashMap<PS, Gate>();
+	protected Map<PS, Gate> contentToGate = new HashMap<>();
+	protected Map<PS, Gate> frameToGate = new HashMap<>();
 	
 	// Trigger
-	protected Set<Trigger> triggers = new LinkedHashSet<Trigger>();
-	protected Map<String, Trigger> id2trigger = new HashMap<String, Trigger>();
-	protected Map<String, Trigger> name2trigger = new HashMap<String, Trigger>();
+	protected Set<Trigger> triggers = new LinkedHashSet<>();
+	protected Map<String, Trigger> id2trigger = new HashMap<>();
+	protected Map<String, Trigger> name2trigger = new HashMap<>();
 	
 	// Action
-	protected Set<Action> actions = new LinkedHashSet<Action>();
-	protected Map<String, Action> id2action = new HashMap<String, Action>();
-	protected Map<String, Action> name2action = new HashMap<String, Action>();
+	protected Set<Action> actions = new LinkedHashSet<>();
+	protected Map<String, Action> id2action = new HashMap<>();
+	protected Map<String, Action> name2action = new HashMap<>();
 	
 	// -------------------------------------------- //
 	// FIELDS: ...toGate

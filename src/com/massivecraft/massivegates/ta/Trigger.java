@@ -9,12 +9,12 @@ public interface Trigger extends Named
 	// -------------------------------------------- //
 	
 	// The id should be unique and never change
-	public String getId();
+	String getId();
 	
 	// An nicename for the trigger
-	public String getName();
+	String getName();
 	
 	// A description of the trigger
-	public String getDesc();
+	String getDesc();
 	
 }

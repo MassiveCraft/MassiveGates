@@ -46,7 +46,7 @@ public class CmdGateTarget extends GateCommand
 	@Override
 	public List<String> getHelp()
 	{
-		List<String> ret = new ArrayList<String>(2);
+		List<String> ret = new ArrayList<>(2);
 		ret.add(firstHelpLine);
 		
 		if (Perm.TARGET_GET.has(sender))

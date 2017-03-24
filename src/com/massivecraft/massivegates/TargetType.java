@@ -11,6 +11,5 @@ public enum TargetType
 	GATE
 	
 	// END OF LIST
-	;
 	
 }

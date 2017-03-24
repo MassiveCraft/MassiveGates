@@ -7,6 +7,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.permissions.Permissible;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ActionReqPerm extends BaseAction
@@ -27,7 +28,7 @@ public class ActionReqPerm extends BaseAction
 	// FIELDS
 	// -------------------------------------------- //
 	
-	public final static List<String> errorsRequired = Arrays.asList("<b>Please provide the permission node");
+	public final static List<String> errorsRequired = Collections.singletonList("<b>Please provide the permission node");
 	
 	// -------------------------------------------- //
 	// OVERRIDE

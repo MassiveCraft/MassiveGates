@@ -37,7 +37,7 @@ public class CmdGateTargetGoto extends GateCommand
 	@Override
 	public void perform()
 	{
-		List<String> lines = new ArrayList<String>();
+		List<String> lines = new ArrayList<>();
 		
 		// Args
 		Gate gate = gsender.getSelectedGate();

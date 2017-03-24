@@ -6,6 +6,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ActionFxg extends BaseAction
@@ -26,7 +27,7 @@ public class ActionFxg extends BaseAction
 	// FIELDS
 	// -------------------------------------------- //
 	
-	public final static List<String> errorsRequired = Arrays.asList("<b>You must describe the FX in the argument!");
+	public final static List<String> errorsRequired = Collections.singletonList("<b>You must describe the FX in the argument!");
 	
 	// -------------------------------------------- //
 	// OVERRIDE

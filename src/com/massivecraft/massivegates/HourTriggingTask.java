@@ -29,7 +29,7 @@ public class HourTriggingTask implements Runnable
 	
 	public HourTriggingTask()
 	{
-		this.worldName2Time = new HashMap<String, Integer>();
+		this.worldName2Time = new HashMap<>();
 	}
 	
 	// -------------------------------------------- //

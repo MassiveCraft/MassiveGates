@@ -237,7 +237,7 @@ public class EngineProtection extends Engine
  	{
  		if (event.isCancelled()) return;
  		
- 		Set<Gate> alteredGates = new HashSet<Gate>();
+ 		Set<Gate> alteredGates = new HashSet<>();
   
  		for (Block block : event.blockList())
  		{

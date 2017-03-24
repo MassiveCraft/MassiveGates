@@ -19,7 +19,7 @@ public class TriggerHour extends BaseTrigger
 	public static Map<Integer, TriggerHour> triggerHours;
 	static
 	{
-		triggerHours = new LinkedHashMap<Integer, TriggerHour>();
+		triggerHours = new LinkedHashMap<>();
 		for (int h = 0; h <= 23; h++)
 		{
 			triggerHours.put(h, new TriggerHour(h));

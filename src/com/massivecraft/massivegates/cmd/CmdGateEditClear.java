@@ -40,7 +40,7 @@ public class CmdGateEditClear extends GateCommand
 	@Override
 	public void perform()
 	{
-		List<String> messages = new ArrayList<String>();
+		List<String> messages = new ArrayList<>();
 		
 		// Args
 		Gate gate = gsender.getSelectedGate();

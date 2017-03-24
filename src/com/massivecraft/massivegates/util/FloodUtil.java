@@ -64,7 +64,7 @@ public class FloodUtil
 	
 	public static Map<FloodOrientation, Set<Block>> getFloods(Block startBlock, Collection<FloodOrientation> orientations, Set<Material> allowedMaterials, int limit)
 	{
-		Map<FloodOrientation, Set<Block>> ret = new HashMap<FloodOrientation, Set<Block>>();
+		Map<FloodOrientation, Set<Block>> ret = new HashMap<>();
 		for (FloodOrientation orientation : orientations)
 		{
 			ret.put(orientation, getFloodBlocks(startBlock, orientation.getDirections(), allowedMaterials, limit));
@@ -133,7 +133,7 @@ public class FloodUtil
 	
 	public static Set<Block> getFrameFor(Set<Block> content, Set<BlockFace> expandFaces)
 	{
-		Set<Block> frame = new HashSet<Block>();
+		Set<Block> frame = new HashSet<>();
 		for (Block currentBlock : content)
 		{
 			for (BlockFace face : expandFaces)

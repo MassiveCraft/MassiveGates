@@ -42,7 +42,7 @@ public class CmdGateName extends GateCommand
 	@Override
 	public List<String> getHelp()
 	{
-		List<String> ret = new ArrayList<String>(2);
+		List<String> ret = new ArrayList<>(2);
 		ret.add(firstHelpLine);
 		
 		if (Perm.NAME_GET.has(sender))

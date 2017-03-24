@@ -40,9 +40,9 @@ public enum FloodOrientation
 	protected final String desc;
 	public String getDesc() { return this.desc; }
 	
-	private FloodOrientation(final String desc, final BlockFace... directions)
+	FloodOrientation(final String desc, final BlockFace... directions)
 	{
-		this.directions = new LinkedHashSet<BlockFace>(Arrays.asList(directions));
+		this.directions = new LinkedHashSet<>(Arrays.asList(directions));
 		this.desc = desc;
 	}
 	

@@ -45,7 +45,7 @@ public class CmdGateTaList extends GateCommand
 	@Override
 	public void perform() throws MassiveException
 	{
-		List<String> lines = new ArrayList<String>();
+		List<String> lines = new ArrayList<>();
 		
 		// Args
 		int page = this.readArg();
