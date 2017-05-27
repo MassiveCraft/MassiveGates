@@ -158,7 +158,7 @@ public class GateColl extends Coll<Gate>
 	@Override
 	public synchronized Gate removeAtLocalFixed(String id)
 	{
-		Gate entity = this.id2entity.get(id);
+		Gate entity = this.getIdToEntity().get(id);
 		
 		this.clearIndexFor(entity);
 		
@@ -168,11 +168,11 @@ public class GateColl extends Coll<Gate>
 	@Override
 	public synchronized void loadFromRemoteFixed(String id, Entry<JsonObject, Long> remoteEntry)
 	{
-		Gate gate = this.id2entity.get(id);
+		Gate gate = this.getIdToEntity().get(id);
 		if (gate == null)
 		{
 			super.loadFromRemoteFixed(id, remoteEntry);
-			gate = this.id2entity.get(id);
+			gate = this.getIdToEntity().get(id);
 			this.buildIndexFor(gate);
 		}
 		else
