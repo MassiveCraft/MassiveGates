@@ -1,13 +1,7 @@
 package com.massivecraft.massivegates;
 
 import com.massivecraft.massivecore.MassivePlugin;
-import com.massivecraft.massivegates.cmd.CmdGate;
-import com.massivecraft.massivegates.engine.EngineGate;
-import com.massivecraft.massivegates.engine.EngineMain;
-import com.massivecraft.massivegates.engine.EngineProtection;
-import com.massivecraft.massivegates.entity.GSenderColl;
 import com.massivecraft.massivegates.entity.GateColl;
-import com.massivecraft.massivegates.entity.MConfColl;
 import com.massivecraft.massivegates.ta.ActionChat;
 import com.massivecraft.massivegates.ta.ActionClose;
 import com.massivecraft.massivegates.ta.ActionCmd;
@@ -49,20 +43,7 @@ public class MassiveGates extends MassivePlugin
 	public void onEnableInner()
 	{
 		// Activate
-		this.activate(
-			// Coll
-			MConfColl.class,
-			GateColl.class,
-			GSenderColl.class,
-		
-			// Engine
-			EngineMain.class,
-			EngineProtection.class,
-			EngineGate.class,
-			
-			// Command
-			CmdGate.class
-		);
+		this.activateAuto();
 
 		// Register Triggers & Actions
 		GateColl.get().registerAction(ActionUse.get());
