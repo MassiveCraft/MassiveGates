@@ -1,5 +1,6 @@
 package com.massivecraft.massivegates;
 
+import com.massivecraft.massivecore.mixin.MixinMessage;
 import com.massivecraft.massivecore.mixin.MixinTeleport;
 import com.massivecraft.massivecore.mixin.TeleporterException;
 import com.massivecraft.massivecore.ps.PS;
@@ -81,7 +82,8 @@ public class Target
 		}
 		catch (TeleporterException e)
 		{
-			player.sendMessage(e.getMessage());
+			String message = e.getMessage();
+			MixinMessage.get().messageOne(player, message);
 		}
 		return false;
 	}

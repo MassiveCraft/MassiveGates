@@ -1,5 +1,6 @@
 package com.massivecraft.massivegates.ta;
 
+import com.massivecraft.massivecore.mixin.MixinMessage;
 import com.massivecraft.massivecore.util.Txt;
 import com.massivecraft.massivegates.entity.Gate;
 import org.bukkit.entity.Entity;
@@ -41,7 +42,8 @@ public class ActionMsg extends BaseAction
 		if ( ! (entity instanceof Player)) return;
 		Player player = (Player) entity;
 		
-		player.sendMessage(Txt.parse(arg));
+		String message = Txt.parse(arg);
+		MixinMessage.get().messageOne(player, message);
 	}
 	
 	@Override
