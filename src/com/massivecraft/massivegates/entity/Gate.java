@@ -1,6 +1,7 @@
 package com.massivecraft.massivegates.entity;
 
 import com.massivecraft.massivecore.Named;
+import com.massivecraft.massivecore.collections.MassiveSet;
 import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivecore.ps.PSFormatDesc;
 import com.massivecraft.massivecore.store.Entity;
@@ -82,7 +83,7 @@ public class Gate extends Entity<Gate> implements Named
 		this.dataopen = 0;
 		this.content = new HashSet<>();
 		this.frame = new HashSet<>();
-		this.powercoords = new LinkedHashSet<>();
+		this.powercoords = new MassiveSet<>();
 		this.trigger2ActionIdArgs = new HashMap<>();
 	}
 	

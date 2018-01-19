@@ -1,5 +1,6 @@
 package com.massivecraft.massivegates.entity;
 
+import com.massivecraft.massivecore.collections.MassiveSet;
 import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivecore.store.Coll;
 import com.massivecraft.massivecore.util.Txt;
@@ -42,12 +43,12 @@ public class GateColl extends Coll<Gate>
 	protected Map<PS, Gate> frameToGate = new HashMap<>();
 	
 	// Trigger
-	protected Set<Trigger> triggers = new LinkedHashSet<>();
+	protected Set<Trigger> triggers = new MassiveSet<>();
 	protected Map<String, Trigger> id2trigger = new HashMap<>();
 	protected Map<String, Trigger> name2trigger = new HashMap<>();
 	
 	// Action
-	protected Set<Action> actions = new LinkedHashSet<>();
+	protected Set<Action> actions = new MassiveSet<>();
 	protected Map<String, Action> id2action = new HashMap<>();
 	protected Map<String, Action> name2action = new HashMap<>();
 	

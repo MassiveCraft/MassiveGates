@@ -1,5 +1,6 @@
 package com.massivecraft.massivegates.util;
 
+import com.massivecraft.massivecore.collections.MassiveSet;
 import org.bukkit.block.BlockFace;
 
 import java.util.Arrays;
@@ -42,7 +43,7 @@ public enum FloodOrientation
 	
 	FloodOrientation(final String desc, final BlockFace... directions)
 	{
-		this.directions = new LinkedHashSet<>(Arrays.asList(directions));
+		this.directions = new MassiveSet<>(Arrays.asList(directions));
 		this.desc = desc;
 	}
 	
