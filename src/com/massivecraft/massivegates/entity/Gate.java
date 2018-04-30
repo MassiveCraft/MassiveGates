@@ -135,8 +135,10 @@ public class Gate extends Entity<Gate> implements Named
 	// Raw
 	public void setOpen(boolean open)
 	{
+		this.changed(this.open, open);
+		
 		this.open = open;
-		this.changed();
+		
 		this.fillContent();
 		
 		// Trigger!
@@ -171,8 +173,15 @@ public class Gate extends Entity<Gate> implements Named
 	
 	// Raw
 	@Override
-	public String getName() { return this.name; }
-	public void setName(String val) { this.name = val; this.changed(); }
+	public String getName()
+	{
+		return this.name;
+	}
+	public void setName(String val)
+	{
+		this.changed(this.name, val);
+		this.name = val;
+	}
 	
 	// Finer
 	public String getIdNameStringShort()
@@ -200,8 +209,15 @@ public class Gate extends Entity<Gate> implements Named
 	// -------------------------------------------- //
 	
 	// Raw
-	public String getDesc() { return this.desc; }
-	public void setDesc(String val) { this.desc = val; this.changed(); }
+	public String getDesc()
+	{
+		return this.desc;
+	}
+	public void setDesc(String val)
+	{
+		this.changed(this.desc, val);
+		this.desc = val;
+	}
 	
 	// -------------------------------------------- //
 	// FIELD: matopen
@@ -215,13 +231,15 @@ public class Gate extends Entity<Gate> implements Named
 	
 	public void setMatopen(Material mat, Byte data)
 	{
+		this.changed(this.matopen, mat);
+		this.changed(this.dataopen, data);
+		
 		this.matopen = mat;
 		this.dataopen = data;
-		if (this.open == true)
+		if (this.open)
 		{
 			this.fillContent(this.matopen, this.dataopen);
 		}
-		this.changed();
 	}
 	
 	public Byte getDataopen()
@@ -240,13 +258,15 @@ public class Gate extends Entity<Gate> implements Named
 	
 	public void setMatclosed(Material mat, Byte data)
 	{
+		this.changed(this.matclosed, mat);
+		this.changed(this.dataclosed, data);
+		
 		this.matclosed = mat;
 		this.dataclosed = data;
 		if (this.open == false)
 		{
 			this.fillContent(this.matclosed, this.dataclosed);
 		}
-		this.changed();
 	}
 	
 	public Byte getDataclosed()
@@ -259,8 +279,15 @@ public class Gate extends Entity<Gate> implements Named
 	// -------------------------------------------- //
 	
 	//Raw
-	public PS getExit() { return this.exit; }
-	public void setExit(PS val) { this.exit = val; this.changed(); }
+	public PS getExit()
+	{
+		return this.exit;
+	}
+	public void setExit(PS val)
+	{
+		this.changed(this.exit, val);
+		this.exit = val;
+	}
 	
 	// Finer
 	public String getExitDesc()
@@ -619,7 +646,6 @@ public class Gate extends Entity<Gate> implements Named
 			if (action == null) continue;
 			Entry<Action, String> actionArg = new SimpleEntry<>(action, arg);
 			ret.add(actionArg);
-			this.changed();
 		}
 		return ret;
 	}
@@ -669,8 +695,8 @@ public class Gate extends Entity<Gate> implements Named
 	}
 	public void delActions()
 	{
+		if (!this.trigger2ActionIdArgs.isEmpty()) this.changed();
 		this.trigger2ActionIdArgs.clear();
-		this.changed();
 	}
 	public void trigger(Trigger trigger, org.bukkit.entity.Entity entity, Cancellable cancellable)
 	{

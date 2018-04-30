@@ -29,8 +29,9 @@ public class GSender extends SenderEntity<GSender>
 	
 	public void setSelectedGate(Gate val)
 	{
-		this.selectedGateId = (val == null ? null : val.getId());
-		this.changed();
+		String target = (val == null ? null : val.getId());
+		this.changed(this.selectedGateId, target);
+		this.selectedGateId = target;
 	}
 	
 	// -------------------------------------------- //
