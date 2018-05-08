@@ -1,12 +1,14 @@
 package com.massivecraft.massivegates.cmd;
 
+import com.massivecraft.massivecore.MassiveException;
 import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivecore.command.requirement.RequirementIsPlayer;
-import com.massivecraft.massivecore.command.type.primitive.TypeString;
 import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivecore.util.SmokeUtil;
 import com.massivecraft.massivegates.Const;
+import com.massivecraft.massivegates.GateStructureChange;
 import com.massivecraft.massivegates.Perm;
+import com.massivecraft.massivegates.cmd.type.TypeGateStructureChange;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
 import com.massivecraft.massivegates.entity.MConf;
@@ -25,7 +27,7 @@ public class CmdGateEditThat extends GateCommand
 	public CmdGateEditThat()
 	{
 		// Parameters
-		this.addParameter(TypeString.get(), "frame|content|del");
+		this.addParameter(TypeGateStructureChange.get(), "frame|content|del");
 		
 		// Requirements
 		this.addRequirements(RequirementIsPlayer.get(), ReqGateSelected.get());
@@ -43,7 +45,7 @@ public class CmdGateEditThat extends GateCommand
 	}
 	
 	@Override
-	public void perform()
+	public void perform() throws MassiveException
 	{
 		// Args
 		Gate gate = gsender.getSelectedGate();
@@ -53,31 +55,26 @@ public class CmdGateEditThat extends GateCommand
 		Location thatLoc = thatBlock.getLocation();
 		PS thatCoord = PS.valueOf(thatBlock);
 		
-		char firstArgChar = this.argAt(0).toLowerCase().charAt(0);
+		GateStructureChange edit = this.readArg();
 		
 		// Apply
-		if (firstArgChar == 'f')
+		if (edit == GateStructureChange.FRAME)
 		{
 			gate.addFrame(thatCoord);
 			VisualizeUtil.addLocation(me, thatLoc, Const.visFrame);
 			SmokeUtil.spawnCloudSimple(thatLoc);
 		}
-		else if (firstArgChar == 'c')
+		else if (edit == GateStructureChange.CONTENT)
 		{
 			gate.addContent(thatCoord);
 			VisualizeUtil.addLocation(me, thatLoc, Const.visContent);
 			SmokeUtil.spawnCloudSimple(thatLoc);	
 		}
-		else if (firstArgChar == 'd')
+		else if (edit == GateStructureChange.DELETE)
 		{
 			gate.delContent(thatCoord);
 			gate.delFrame(thatCoord);
 			SmokeUtil.spawnCloudSimple(thatLoc);	
-		}
-		else
-		{
-			// Inform
-			this.msg("<b>Arg must be frame|content|del .");
 		}
 	}
 	
