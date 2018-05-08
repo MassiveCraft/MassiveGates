@@ -5,7 +5,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 import org.bukkit.util.Vector;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

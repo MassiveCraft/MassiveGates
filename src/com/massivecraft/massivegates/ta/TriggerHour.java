@@ -2,7 +2,6 @@ package com.massivecraft.massivegates.ta;
 
 import com.massivecraft.massivecore.collections.MassiveMap;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class TriggerHour extends BaseTrigger
