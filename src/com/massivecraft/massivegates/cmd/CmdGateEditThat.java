@@ -5,7 +5,6 @@ import com.massivecraft.massivecore.command.requirement.RequirementIsPlayer;
 import com.massivecraft.massivecore.command.type.primitive.TypeString;
 import com.massivecraft.massivecore.ps.PS;
 import com.massivecraft.massivecore.util.SmokeUtil;
-import com.massivecraft.massivegates.Const;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
@@ -59,13 +58,13 @@ public class CmdGateEditThat extends GateCommand
 		if (firstArgChar == 'f')
 		{
 			gate.addFrame(thatCoord);
-			VisualizeUtil.addLocation(me, thatLoc, Const.visFrame);
+			VisualizeUtil.addLocation(me, thatLoc, MConf.get().visualizationBlockFrame);
 			SmokeUtil.spawnCloudSimple(thatLoc);
 		}
 		else if (firstArgChar == 'c')
 		{
 			gate.addContent(thatCoord);
-			VisualizeUtil.addLocation(me, thatLoc, Const.visContent);
+			VisualizeUtil.addLocation(me, thatLoc, MConf.get().visualizationBlockContent);
 			SmokeUtil.spawnCloudSimple(thatLoc);	
 		}
 		else if (firstArgChar == 'd')

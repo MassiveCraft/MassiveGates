@@ -3,6 +3,7 @@ package com.massivecraft.massivegates.entity;
 import com.massivecraft.massivecore.command.editor.annotation.EditorName;
 import com.massivecraft.massivecore.store.Entity;
 import com.massivecraft.massivecore.util.MUtil;
+import org.bukkit.Material;
 
 import java.util.List;
 
@@ -72,5 +73,9 @@ public class MConf extends Entity<MConf>
 	public int floodFillLimit = 200;
 	
 	public int lineOfSightLimit = 100;
+	
+	public Material visualizationBlockFrame = Material.JACK_O_LANTERN;
+	public Material visualizationBlockContent = Material.GLOWSTONE;
+	public Material visualizationBlockPower = Material.STATIONARY_LAVA;
 
 }
