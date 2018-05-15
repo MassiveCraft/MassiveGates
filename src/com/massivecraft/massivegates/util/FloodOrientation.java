@@ -4,7 +4,6 @@ import com.massivecraft.massivecore.collections.MassiveSet;
 import org.bukkit.block.BlockFace;
 
 import java.util.Arrays;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 public enum FloodOrientation
