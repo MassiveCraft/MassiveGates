@@ -1,7 +1,5 @@
 package com.massivecraft.massivegates;
 
-import org.bukkit.Material;
-
 public class Const
 {
 	// -------------------------------------------- //
@@ -16,13 +14,9 @@ public class Const
 	public static final String COLLECTION_MCONF = BASENAME_ + "mconf";
 	
 	// -------------------------------------------- //
-	// VISIBLES & TASKTICKS
+	// TASKTICKS
 	// -------------------------------------------- //
 	
 	public static final int hourTriggingTaskTicks = 60;
-	
-	public static final Material visFrame = Material.JACK_O_LANTERN;
-	public static final Material visContent = Material.GLOWSTONE;
-	public static final Material visPower = Material.STATIONARY_LAVA;
 	
 }

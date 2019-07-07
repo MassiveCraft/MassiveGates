@@ -7,7 +7,6 @@ import com.massivecraft.massivecore.ps.PSFormatDesc;
 import com.massivecraft.massivecore.store.Entity;
 import com.massivecraft.massivecore.util.MUtil;
 import com.massivecraft.massivecore.util.Txt;
-import com.massivecraft.massivegates.Const;
 import com.massivecraft.massivegates.MassiveGates;
 import com.massivecraft.massivegates.Target;
 import com.massivecraft.massivegates.event.EventMassiveGatesPlayerWalk;
@@ -751,9 +750,9 @@ public class Gate extends Entity<Gate> implements Named
 	
 	public void visualizeFor(Player player)
 	{
-		VisualizeUtil.addCoords(player, this.getFrame(), Const.visFrame);
-		VisualizeUtil.addCoords(player, this.getContent(), Const.visContent);
-		VisualizeUtil.addCoords(player, this.getPower(), Const.visPower);
+		VisualizeUtil.addCoords(player, this.getFrame(), MConf.get().visualizationBlockFrame);
+		VisualizeUtil.addCoords(player, this.getContent(), MConf.get().visualizationBlockContent);
+		VisualizeUtil.addCoords(player, this.getPower(), MConf.get().visualizationBlockPower);
 	}
 
 	// -------------------------------------------- //

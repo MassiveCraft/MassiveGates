@@ -5,7 +5,6 @@ import com.massivecraft.massivecore.command.requirement.RequirementHasPerm;
 import com.massivecraft.massivecore.command.requirement.RequirementIsPlayer;
 import com.massivecraft.massivecore.command.type.primitive.TypeBooleanTrue;
 import com.massivecraft.massivecore.util.Txt;
-import com.massivecraft.massivegates.Const;
 import com.massivecraft.massivegates.Perm;
 import com.massivecraft.massivegates.cmdreq.ReqGateSelected;
 import com.massivecraft.massivegates.entity.Gate;
@@ -63,11 +62,11 @@ public class CmdGateEditFlood extends GateCommand
 		{
 			Set<Block> frame = FloodUtil.getFrameFor(content, orientation);
 			gate.addFrameBlocks(frame);
-			VisualizeUtil.addBlocks(me, frame, Const.visFrame);
+			VisualizeUtil.addBlocks(me, frame, MConf.get().visualizationBlockFrame);
 		}
 		
 		gate.addContentBlocks(content);
-		VisualizeUtil.addBlocks(me, content, Const.visContent);
+		VisualizeUtil.addBlocks(me, content, MConf.get().visualizationBlockContent);
 		
 		// Create Messages
 		List<String> messages = new ArrayList<>();
